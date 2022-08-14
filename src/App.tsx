@@ -4,7 +4,7 @@ import './App.css';
 import Accordion from "./components/Accordion"; */
 
 import Header from "./components/Header";
-import Navbar from "./components/Navbar";
+//import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import Footer from "./components/Footer";
 
@@ -18,7 +18,6 @@ function App(props: any) {
         <Accordion titleValue={"menu 2"} menuCollapsed={true}/> */}
 
         <Header />
-        <Navbar />
         <Profile />
         <Footer />
         
