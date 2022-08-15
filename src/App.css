@@ -80,7 +80,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   min-height: 100vh;
   
   display: grid;
-  grid-template: minmax(100px, auto) 1fr minmax(70px, auto) / 1fr; /*строки / колонки*/
+  grid-template: minmax(100px, auto) 1fr minmax(50px, auto) / 1fr; /*строки / колонки*/
   grid-template-areas: 
     "header"
     "content"
@@ -155,20 +155,14 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   margin-bottom: 20px;
   display: grid;
   position: relative;
-  /* width: 100%;
-  height: 30vh;
-  overflow: hidden;
-  align-self: center;
-  margin-bottom: 30px;
-  object-fit: cover; 
-  object-position: top; */
+  /* margin-bottom: 50px; */
 }
 .content__avatar img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
   object-position: top;
 }
@@ -178,23 +172,24 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   justify-content: flex-start;
   align-items: middle;
   margin-bottom: 20px;
+  margin-top: 50px;
 }
-.content__info-avatar {
+.content__info_avatar {
   padding-left: 150px;
 }
-.content__info-avatar img {
+.content__info_avatar img {
   width: 150px;
   height: 150px;
   padding: 10px;
   border-radius: 50%;
 }
-.content__info-info {
+.content__info_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 50px;
 }
-.content__info-info > *:first-child {
+.content__info_info > *:first-child {
   padding-bottom: 20px;
   font-weight: bold;
 }
@@ -204,11 +199,11 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   flex-direction: column;
   margin: 0 100px 20px 100px;
 }
-.content__myposts-title {
+.content__myposts_title {
   margin-bottom: 10px;
   font-size: 20px;
 }
-.content__myposts-add {
+.content__myposts_add {
   margin-bottom: 10px;
 }
 .newMessage {
