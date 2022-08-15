@@ -7,7 +7,6 @@ function Profile() {
       <div className="right__profile">
         <MyProfile />
         <MyPosts />
-        
       </div>
   );
 }
