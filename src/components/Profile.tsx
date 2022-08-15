@@ -23,7 +23,7 @@ function Profile() {
 
       <div className="right__profile">
         <div className="content__avatar">
-          <img src="https://twentysix.ru/uploads/images/00/02/33/2021/07/26/94076d_full.jpg" style={{ width: "500px" }}></img>
+          <img src="https://twentysix.ru/uploads/images/00/02/33/2021/07/26/94076d_full.jpg" /* style={{ width: "500px" }} */></img>
         </div>
 
         <div className="content__info">
@@ -40,11 +40,21 @@ function Profile() {
         </div>
 
         <div className="content__myposts">
-          <div className="content__myposts-title">My Posts</div>
-          <div className="content__myposts-add">Add post...</div>
+          <div className="content__myposts-title">
+            My Posts
+          </div>
+          <div className="content__myposts-add">
+            <textarea className="newMessage"></textarea>
+          </div>
+          <div className="sendButton">
+            <button>Send message</button>
+          </div>
+          
         </div>
         <div className="content__postlist">
-          PostList
+          <div>PostList</div>
+          <div>PostList</div>
+          <div>PostList</div>
         </div>
       </div>
     </main>
