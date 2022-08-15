@@ -80,11 +80,11 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   min-height: 100vh;
   
   display: grid;
-  grid-template: minmax(100px, auto) 1fr minmax(50px, auto) / 1fr; /*строки / колонки*/
+  grid-template: minmax(100px, auto) 1fr minmax(50px, auto) / 1fr 4fr; /*строки / колонки*/
   grid-template-areas: 
-    "header"
-    "content"
-    "footer";
+    "header header"
+    "left__navmenu right__profile"
+    "footer footer";
   grid-gap: 10px;
 }
 
@@ -93,14 +93,21 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 .header {
   grid-area: header;
   background-color: green;
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
+  align-items: center; */
+
+  display: grid;
+  /* grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 1000px) 1fr; */
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr minmax(auto, 200px) / minmax(auto, 1000px) 1fr;
   align-items: center;
 }
 .header__logo {
-
+  grid-column: 2 / 3;
 }
 .header__socialName {
+  grid-column: 3 / 4;
   font-size: 30px;
   color: white;
   padding-right: 50px;
@@ -108,30 +115,30 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 /*---------------------------------*/
 
-.content {
+/* .content {
   grid-area: content;
   display: grid;
   grid-template: 1fr / minmax(200px, auto) 1fr;
   grid-template-areas:
     "left__menu right__profile";
   column-gap: 10px;
-}
+} */
 
-.left__menu {
-  grid-area: left__menu;
+.left__navmenu {
+  grid-area: left__navmenu;
   background-color: green;
   padding: 25px;
   /* margin-right: 10px; */
 }
-.left__menu a {
+.left__navmenu a {
   color: white;
   font-size: 20px;
   text-decoration: none;
 }
-.left__menu > div {
+.left__navmenu > div {
   padding-bottom: 20px;
 }
-.left__menu > *:last-child {
+.left__navmenu > *:last-child {
   padding-top: 50px;
 }
 
