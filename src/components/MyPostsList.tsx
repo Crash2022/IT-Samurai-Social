@@ -7,7 +7,6 @@ function MyPostsList() {
         <div className="content__postlist">
           <MyPostsItem />
           <MyPostsItem />
-          <MyPostsItem />
         </div>
       </>
   );
