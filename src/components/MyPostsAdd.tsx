@@ -1,6 +1,6 @@
 import React from "react";
 
-function MyPostsAdd() {
+export const MyPostsAdd = () => {
   return (
       <>
         <div className="content__myposts">
@@ -17,5 +17,3 @@ function MyPostsAdd() {
       </>
   );
 }
-
-export default MyPostsAdd;

@@ -1,6 +1,6 @@
 import React from "react";
 
-function MyProfile() {
+export const MyProfile = () => {
   return (
       <>
         <div className="content__avatar">
@@ -22,5 +22,3 @@ function MyProfile() {
       </>
   );
 }
-
-export default MyProfile;

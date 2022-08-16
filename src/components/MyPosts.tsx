@@ -1,8 +1,8 @@
 import React from "react";
-import MyPostsAdd from "./MyPostsAdd";
-import MyPostsList from "./MyPostsList";
+import {MyPostsAdd} from "./MyPostsAdd";
+import {MyPostsList} from "./MyPostsList";
 
-function MyPosts() {
+export const MyPosts = () => {
   return (
       <>
        <MyPostsAdd />
@@ -10,5 +10,3 @@ function MyPosts() {
       </>
   );
 }
-
-export default MyPosts;

@@ -145,7 +145,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 .right__profile {
   grid-area: right__profile;
   display: grid;
-  grid-template: minmax(200px, auto) minmax(150px, auto) 1fr 1fr / 1fr;
+  grid-template: minmax(200px, auto) minmax(150px, auto) 1fr 2fr / 1fr;
   grid-template-areas:
     "content__avatar"
     "content__info"
@@ -204,7 +204,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   grid-area: content__myposts;
   display: flex;
   flex-direction: column;
-  margin: 0 100px 20px 100px;
+  margin: 0 100px 0px 100px;
 }
 .content__myposts_title {
   margin-bottom: 10px;
@@ -216,7 +216,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 .newMessage {
   width: 100%;
   max-width: 100wh;
-  height: 80px;
+  height: 70px;
   resize: none;
 }
 .sendButton {

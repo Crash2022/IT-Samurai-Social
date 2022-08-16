@@ -1,8 +1,8 @@
 import React from "react";
-import MyProfile from "./MyProfile";
-import MyPosts from "./MyPosts";
+import {MyProfile} from "./MyProfile";
+import {MyPosts} from "./MyPosts";
 
-function Profile() {
+export const Profile = () => {
   return (
       <div className="right__profile">
         <MyProfile />
@@ -10,5 +10,3 @@ function Profile() {
       </div>
   );
 }
-
-export default Profile;

@@ -1,6 +1,6 @@
 .postitem {
   display: flex;
-  margin-bottom: 20px;
+  /* margin-bottom: 0px; */
   align-items: center;
 }
 
@@ -8,8 +8,30 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin-right: 20px;
 }
 
+.userinfo {
+  display: flex;
+  flex-direction: column;
+}
+.nickname {
+  text-align: left;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
 .message {
-  
+  text-align: left;
+}
+
+.counter {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+.likes {
+  padding-right: 30px;
+}
+.dislikes {
+
 }
