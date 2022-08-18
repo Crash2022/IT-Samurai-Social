@@ -135,11 +135,20 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   font-size: 20px;
   text-decoration: none;
 }
+.left__navmenu a:hover {
+  color: gold;
+}
 .left__navmenu > div {
   padding-bottom: 20px;
 }
 .left__navmenu > *:last-child {
   padding-top: 50px;
+}
+
+/*---------------------------------*/
+
+.main {
+
 }
 
 .right__profile {

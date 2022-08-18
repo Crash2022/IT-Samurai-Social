@@ -1,0 +1,14 @@
+.messages {
+    display: flex;
+}
+
+.dialogs {
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+}
