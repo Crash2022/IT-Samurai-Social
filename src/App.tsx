@@ -7,6 +7,9 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Messages} from "./components/Messages/Messages";
 import {Profile} from "./components/Profile/Profile";
+import {News} from "./components/News/News";
+import {Music} from "./components/Music/Music";
+import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
 {/*<Router>
@@ -18,7 +21,7 @@ import {Footer} from "./components/Footer/Footer";
     </Routes>
 </Router>*/}
 
-function App(props: any) {
+function App() {
     return (
         <BrowserRouter>
             <div className="wrapper">
@@ -27,6 +30,9 @@ function App(props: any) {
                 <div className="main">
                     <Route path={"/profile"} component={Profile}/>
                     <Route path={"/messages"} component={Messages}/>
+                    <Route path={"/news"} component={News}/>
+                    <Route path={"/music"} component={Music}/>
+                    <Route path={"/settings"} component={Settings}/>
                 </div>
                 {/*<Footer />*/}
             </div>
