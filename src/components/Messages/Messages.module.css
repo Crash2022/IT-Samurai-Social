@@ -1,14 +1,29 @@
 .messages {
-    display: flex;
+    /* display: flex; */
+    display: grid;
+    grid-template: 1fr/ 3fr 9fr; /*строки / колонки*/
+    grid-template-areas: 
+        "dialogs text";
 }
 
 .dialogs {
+    grid-area: dialogs;
     display: flex;
     flex-direction: column;
-    margin-right: 50px;
+}
+.dialogs > div {
+    padding: 10px;
+    font-size: 18px;
+}
+.dialogs .activeLink {
+    color: green;
 }
 
 .text {
+    grid-area: text;
     display: flex;
     flex-direction: column;
+}
+.text > div {
+    padding: 10px;
 }

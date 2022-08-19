@@ -148,8 +148,8 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 }
 
 .right__profile {
-  grid-area: right__profile;
   display: grid;
+  grid-area: right__profile;
   grid-template: minmax(200px, auto) minmax(150px, auto) 1fr 2fr / 1fr;
   grid-template-areas:
     "content__avatar"

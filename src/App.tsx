@@ -34,7 +34,8 @@ function App() {
                     <Route path={"/music"} component={Music}/>
                     <Route path={"/settings"} component={Settings}/>
                 </div>
-                {/*<Footer />*/}
+                {/* <Profile /> */}
+                <Footer />
             </div>
         </BrowserRouter>
     );
