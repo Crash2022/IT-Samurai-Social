@@ -22,7 +22,7 @@ export const DialogItem = (props: DialogPropsType) => {
 
   return (
       <div>
-        <NavLink to={path}>{props.dialogName}</NavLink>
+        <NavLink to={path} activeClassName={classes.activeLink}>{props.dialogName}</NavLink>
       </div>
     
   );
@@ -39,25 +39,30 @@ export const MessageItem = (props: MessagePropsType) => {
   };
 
 export const Messages = (props: PropsType) => {
+
+    let messageData = [
+        {}
+    ]
+
   return (
     <>
-      <div className={classes.messages}>
-        <div className={classes.dialogs}>
-          <DialogItem id="1" dialogName="Neil Tunicliff"/>
-          <DialogItem id="2" dialogName="Craig Lee Scott"/>
-          <DialogItem id="3" dialogName="Ali Clarkson"/>
-          <DialogItem id="4" dialogName="Thomas Remvik Aasen"/>
-          <DialogItem id="5" dialogName="Damon Watson"/>
-        </div>
+        <div className={classes.messages}>
+            <div className={classes.dialogs}>
+                <DialogItem id="1" dialogName="Neil Tunicliff"/>
+                <DialogItem id="2" dialogName="Craig Lee Scott"/>
+                <DialogItem id="3" dialogName="Ali Clarkson"/>
+                <DialogItem id="4" dialogName="Thomas Remvik Aasen"/>
+                <DialogItem id="5" dialogName="Damon Watson"/>
+            </div>
 
-        <div className={classes.text}>
-            <MessageItem text="Hello, Damon Watson"/>
-            <MessageItem text="Hello, Damon Watson"/>
-            <MessageItem text="Hello, Damon Watson"/>
-            <MessageItem text="Hello, Damon Watson"/>
-            <MessageItem text="Hello, Damon Watson"/>
+            <div className={classes.text}>
+                <MessageItem text="Hello, Damon Watson"/>
+                <MessageItem text="Hello, Damon Watson"/>
+                <MessageItem text="Hello, Damon Watson"/>
+                <MessageItem text="Hello, Damon Watson"/>
+                <MessageItem text="Hello, Damon Watson"/>
+            </div>
         </div>
-      </div>
     </>
   );
 };

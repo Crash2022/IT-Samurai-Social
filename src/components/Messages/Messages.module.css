@@ -16,7 +16,9 @@
     font-size: 18px;
 }
 .dialogs .activeLink {
-    color: green;
+    color: black;
+    border: 2px solid gold;
+    text-decoration: none;
 }
 
 .text {
