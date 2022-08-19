@@ -1,7 +1,6 @@
 .right__profile {
   display: grid;
-  /* grid-area: right__profile; */
-  grid-template: minmax(200px, auto) minmax(150px, auto) 1fr 2fr / 1fr;
+  grid-template: minmax(200px, auto) minmax(150px, auto) 1fr 3fr / 1fr;
   grid-template-areas:
     "content__avatar"
     "content__info"
