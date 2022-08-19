@@ -1,5 +1,6 @@
 import React from "react";
 import {MyPostsItem} from "./MyPostsItem";
+import classes from './MyPostsList.module.css';
 
 const user1 = [
   {
@@ -53,7 +54,7 @@ const user3 = [
 export const MyPostsList = () => {
   return (
       <>
-        <div className="content__postlist">
+        <div className={classes.content__postlist}>
           <MyPostsItem message={user1}/>
           <MyPostsItem message={user2}/>
           <MyPostsItem message={user3}/>

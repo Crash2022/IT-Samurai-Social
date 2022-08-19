@@ -1,6 +1,6 @@
 import React from "react";
-import {MyProfile} from "./MyProfile";
-import {MyPosts} from "./MyPosts";
+import {MyProfile} from "./MyProfile/MyProfile";
+import {MyPosts} from "./MyPosts/MyPosts";
 
 export const Profile = () => {
   return (

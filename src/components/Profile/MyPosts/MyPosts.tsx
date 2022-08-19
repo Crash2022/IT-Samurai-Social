@@ -1,5 +1,5 @@
 import React from "react";
-import {MyPostsAdd} from "./MyPostsAdd";
+import {MyPostsAdd} from "../MyPosts/MyPostsAdd";
 import {MyPostsList} from "./MyPostsList";
 
 export const MyPosts = () => {

@@ -1,0 +1,22 @@
+.content__myposts {
+  grid-area: content__myposts;
+  display: flex;
+  flex-direction: column;
+  margin: 0 100px 0px 100px;
+}
+.content__myposts_title {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+.content__myposts_add {
+  margin-bottom: 10px;
+}
+.newMessage {
+  width: 100%;
+  max-width: 100wh;
+  height: 70px;
+  resize: none;
+}
+.sendButton {
+  align-self: flex-end;
+}

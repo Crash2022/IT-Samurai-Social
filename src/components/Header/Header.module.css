@@ -1,0 +1,22 @@
+.header {
+  grid-area: header;
+  background-color: green;
+  /* display: flex;
+    justify-content: space-around;
+    align-items: center; */
+
+  display: grid;
+  /* grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 1000px) 1fr; */
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr minmax(auto, 200px) / minmax(auto, 1000px) 1fr;
+  align-items: center;
+}
+.header__logo {
+  grid-column: 2 / 3;
+}
+.header__socialName {
+  grid-column: 3 / 4;
+  font-size: 30px;
+  color: white;
+  padding-right: 50px;
+}

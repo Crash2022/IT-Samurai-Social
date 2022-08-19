@@ -1,0 +1,5 @@
+.content__postlist {
+  grid-area: content__postlist;
+  margin: 0 50px;
+  text-align: center;
+}
