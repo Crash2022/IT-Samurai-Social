@@ -10,11 +10,9 @@ export const MessageItem = (props: MessagePropsType) => {
     <>
       {props.textProps.map((elem) => {
         return (
-          <>
             <div>
               {elem.text}
             </div>
-          </>
         )
       })}
     </>
