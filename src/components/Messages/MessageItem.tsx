@@ -8,10 +8,10 @@ import {MessagePropsType} from "./Messages";
 export const MessageItem = (props: MessagePropsType) => {
   return (
     <>
-      {props.textProps.map((elem) => {
+      {props.textProps.map(message => {
         return (
             <div>
-              {elem.text}
+              {message.text}
             </div>
         )
       })}

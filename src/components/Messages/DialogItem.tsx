@@ -8,11 +8,11 @@ export const DialogItem = (props: DialogsPropsType) => {
 
   return (
     <>
-      {props.dialogProps.map(elem => {
+      {props.dialogProps.map(dialog => {
         return (
           <div>
-            <NavLink to={'/messages/' + elem.id} activeClassName={classes.activeLink}>
-              {elem.name}
+            <NavLink to={'/messages/' + dialog.id} activeClassName={classes.activeLink}>
+              {dialog.name}
             </NavLink>
           </div>
         )

@@ -42,22 +42,10 @@ export const Messages = (/* props: PropsType */) => {
     <>
       <div className={classes.messages}>
         <div className={classes.dialogs}>
-          {/* <DialogItem id="1" dialogName="Neil Tunicliff" />
-          <DialogItem id="2" dialogName="Craig Lee Scott" />
-          <DialogItem id="3" dialogName="Ali Clarkson" />
-          <DialogItem id="4" dialogName="Thomas Remvik Aasen" />
-          <DialogItem id="5" dialogName="Damon Watson" /> */}
-
           <DialogItem dialogProps={dialogsData} />
         </div>
 
         <div className={classes.text}>
-          {/* <MessageItem text="Hello, Damon Watson" />
-          <MessageItem text="Hello, Damon Watson" />
-          <MessageItem text="Hello, Damon Watson" />
-          <MessageItem text="Hello, Damon Watson" />
-          <MessageItem text="Hello, Damon Watson" /> */}
-
           <MessageItem textProps={messagesData} />
         </div>
       </div>
