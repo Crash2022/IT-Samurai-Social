@@ -79,7 +79,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   max-width: 1200px;
   margin: 0 auto;
   min-height: 100vh;
-  
+    
   display: grid;
   grid-template: minmax(100px, auto) 1fr minmax(50px, auto) / 1fr 4fr; /*строки / колонки*/
   grid-template-areas: 
@@ -102,11 +102,13 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   grid-area: right__main;
 }
 
+/*Profile*/
 /*right MyProfile*/
-
+/*right MyPosts*/
   /*right MyPostsAdd*/
-
   /*right MyPostsList*/
+
+/*Messages*/
 
 /*---------------------------------*/
 /*footer*/
