@@ -5,7 +5,9 @@ import classes from "./Messages.module.css";
 import {DialogItem} from "./DialogItem";
 import {MessageItem} from "./MessageItem";
 
-export type DialogsPropsType = {
+import {MessagesType} from '../../index';
+
+/* export type DialogsPropsType = {
   dialogProps: Array<DialogsArray>
 };
 type DialogsArray = {
@@ -18,9 +20,9 @@ export type MessagePropsType = {
 };
 type MessagesArray = {
   text: string
-};
+}; */
 
-const dialogsData = [
+/* const dialogsData = [
   { id: 1, name: "Neil Tunicliff" },
   { id: 2, name: "Craig Lee Scott" },
   { id: 3, name: "Ali Clarkson" },
@@ -35,18 +37,18 @@ const messagesData = [
   { text: "Hello, Thomas Remvik Aasen" },
   { text: "Hello, Damon Watson" },
 ];
-
-export const Messages = () => {
+ */
+export const Messages = (props: MessagesType) => {
     
   return (
     <>
       <div className={classes.messages}>
         <div className={classes.dialogs}>
-          <DialogItem dialogProps={dialogsData} />
+          <DialogItem mydialogs={props.mydialogs} />
         </div>
 
         <div className={classes.text}>
-          <MessageItem textProps={messagesData} />
+          <MessageItem mymessages={props.mymessages} />
         </div>
       </div>
     </>

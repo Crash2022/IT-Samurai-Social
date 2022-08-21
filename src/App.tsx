@@ -12,7 +12,7 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
-import {MyPostsItemPropsType} from "./index";
+import {AllType} from "./index";
 
 {/*<Router>
     <Routes>
@@ -23,7 +23,7 @@ import {MyPostsItemPropsType} from "./index";
     </Routes>
 </Router>*/}
 
-function App(props: MyPostsItemPropsType) {
+function App(props: AllType) {
     return (
         <BrowserRouter>
             <div className="wrapper">
@@ -32,7 +32,7 @@ function App(props: MyPostsItemPropsType) {
                 {/* <Profile /> */}
                 <div className="right__main">
                     <Route path={"/profile"} render={ () => <Profile myposts={props.myposts}/> }/>
-                    <Route path={"/messages"} render={ () => <Messages/> }/>
+                    <Route path={"/messages"} render={ () => <Messages mydialogs={props.mydialogs} mymessages={props.mymessages}/> }/>
                     <Route path={"/news"} render={ () => <News/> }/>
                     <Route path={"/music"} render={ () => <Music/> }/>
                     <Route path={"/settings"} render={ () => <Settings/> }/>
