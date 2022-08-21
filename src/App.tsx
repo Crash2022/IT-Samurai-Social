@@ -12,6 +12,8 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
+import {MyPostsItemPropsType} from "./index";
+
 {/*<Router>
     <Routes>
         <Route path="*" element={<Navigate to='/profile'/>}/>
@@ -21,20 +23,20 @@ import {Footer} from "./components/Footer/Footer";
     </Routes>
 </Router>*/}
 
-function App() {
+function App(props: MyPostsItemPropsType) {
     return (
         <BrowserRouter>
             <div className="wrapper">
                 <Header/>
                 <Navbar/>
-                <div className="right__main">
-                    <Route path={"/profile"} component={Profile}/>
-                    <Route path={"/messages"} component={Messages}/>
-                    <Route path={"/news"} component={News}/>
-                    <Route path={"/music"} component={Music}/>
-                    <Route path={"/settings"} component={Settings}/>
-                </div>
                 {/* <Profile /> */}
+                <div className="right__main">
+                    <Route path={"/profile"} render={ () => <Profile myposts={props.myposts}/> }/>
+                    <Route path={"/messages"} render={ () => <Messages/> }/>
+                    <Route path={"/news"} render={ () => <News/> }/>
+                    <Route path={"/music"} render={ () => <Music/> }/>
+                    <Route path={"/settings"} render={ () => <Settings/> }/>
+                </div>
                 <Footer />
             </div>
         </BrowserRouter>

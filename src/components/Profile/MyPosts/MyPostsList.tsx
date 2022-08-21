@@ -2,7 +2,9 @@ import React from "react";
 import {MyPostsItem} from "./MyPostsItem";
 import classes from './MyPostsList.module.css';
 
-const user1 = [
+import {MyPostsItemPropsType} from "../../../index";
+
+/* const user1 = [
   {
   avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
   nickname: "Ivan", 
@@ -49,15 +51,28 @@ const user3 = [
     likes: 105,
     dislikes: 10
   }
-]
+] */
 
-export const MyPostsList = () => {
+/* export type MyPostsItemPropsType = {
+  message: Array<UserMessageType>
+}
+
+type UserMessageType = {
+  avatar: string
+  nickname: string
+  postmessage: string
+  likes: number
+  dislikes: number
+} */
+
+export const MyPostsList = (props: MyPostsItemPropsType) => {
   return (
       <>
         <div className={classes.content__postlist}>
-          <MyPostsItem message={user1}/>
+          <MyPostsItem myposts={props.myposts}/>
+          {/* <MyPostsItem message={user1}/>
           <MyPostsItem message={user2}/>
-          <MyPostsItem message={user3}/>
+          <MyPostsItem message={user3}/> */}
         </div>
       </>
   );

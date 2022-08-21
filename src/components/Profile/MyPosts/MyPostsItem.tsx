@@ -1,22 +1,12 @@
 import React from "react";
 import classes from './MyPostsItem.module.css';
-
-type MyPostsItemPropsType = {
-    message: Array<UserMessageType>
-}
-
-type UserMessageType = {
-    avatar: string,
-    nickname: string,
-    postmessage: string,
-    likes: number,
-    dislikes: number
-}
+/* import {MyPostsItemPropsType} from "./MyPostsList"; */
+import {MyPostsItemPropsType} from "../../../index";
 
 export const MyPostsItem = (props: MyPostsItemPropsType) => {
     return (
         <>
-        {props.message.map((elem) => {
+        {props.myposts.map((elem) => {
                 return (
                     <>
                         <div className={classes.postitem}>

@@ -3,11 +3,13 @@ import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
 
-export const Profile = () => {
+import {MyPostsItemPropsType} from "../../index";
+
+export const Profile = (props: MyPostsItemPropsType) => {
   return (
       <div className={classes.right__profile}>
         <MyProfile />
-        <MyPosts />
+        <MyPosts myposts={props.myposts}/>
       </div>
   );
 }

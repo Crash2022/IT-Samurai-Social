@@ -6,7 +6,7 @@ import {DialogItem} from "./DialogItem";
 import {MessageItem} from "./MessageItem";
 
 export type DialogsPropsType = {
-  dialogProps: Array<DialogsArray>;
+  dialogProps: Array<DialogsArray>
 };
 type DialogsArray = {
   id: number
@@ -14,10 +14,10 @@ type DialogsArray = {
 }
 
 export type MessagePropsType = {
-  textProps: Array<MessagesArray>;
+  textProps: Array<MessagesArray>
 };
 type MessagesArray = {
-  text: string;
+  text: string
 };
 
 const dialogsData = [
@@ -36,7 +36,7 @@ const messagesData = [
   { text: "Hello, Damon Watson" },
 ];
 
-export const Messages = (/* props: PropsType */) => {
+export const Messages = () => {
     
   return (
     <>
