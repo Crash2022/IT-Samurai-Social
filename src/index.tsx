@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import datastate from './redux/datastate';
 
-export type AllType = MyPostsItemPropsType & DialogsPropsType & MessagePropsType
+/* export type AllType = MyPostsItemPropsType & DialogsPropsType & MessagePropsType */
 /* export type AllType = {
   myposts: Array<UserMessageType>
   mydialogs: Array<DialogsArray>
   mymessages: Array<MessagesArray>
 } */
 
-export type MyPostsItemPropsType = {
+/* export type MyPostsItemPropsType = {
   myposts: Array<UserMessageType>
 }
 
@@ -48,16 +49,16 @@ const user1 = [
     avatar: "https://www.mag-russia.ru/f/product/21_merida_e_bikes_mountainbikes_eone_sixty_my2021_gallery_05.jpg",
     nickname: "Dimych", 
     postmessage: "Hello to all FreeCodeCamp", 
-    likes: 105, 
+    likes: 105,
     dislikes: 10
-    }
+  }
 ]
 
 export type MessagesType = DialogsPropsType & MessagePropsType
 
 export type DialogsPropsType = {
   mydialogs: Array<DialogsArray>
-};
+}
 type DialogsArray = {
   id: number
   name: string
@@ -65,26 +66,26 @@ type DialogsArray = {
 
 export type MessagePropsType = {
   mymessages: Array<MessagesArray>
-};
+}
 type MessagesArray = {
   text: string
-};
+}
 
 const dialogsData = [
   { id: 1, name: "Neil Tunicliff" },
   { id: 2, name: "Craig Lee Scott" },
   { id: 3, name: "Ali Clarkson" },
   { id: 4, name: "Thomas Remvik Aasen" },
-  { id: 5, name: "Damon Watson" },
-];
+  { id: 5, name: "Damon Watson" }
+]
 
 const messagesData = [
   { text: "Hello, Neil Tunicliff" },
   { text: "Hello, Craig Lee Scott" },
   { text: "Hello, Ali Clarkson" },
   { text: "Hello, Thomas Remvik Aasen" },
-  { text: "Hello, Damon Watson" },
-];
+  { text: "Hello, Damon Watson" }
+] */
 
 ReactDOM.render(
     <App myposts={user1} mydialogs={dialogsData} mymessages={messagesData}/>,

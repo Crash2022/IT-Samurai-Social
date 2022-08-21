@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './MyPostsItem.module.css';
 /* import {MyPostsItemPropsType} from "./MyPostsList"; */
-import {MyPostsItemPropsType} from "../../../index";
+import {MyPostsItemPropsType} from "../../../redux/datastate";
 
 export const MyPostsItem = (props: MyPostsItemPropsType) => {
     return (

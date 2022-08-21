@@ -2,7 +2,7 @@ import React from "react";
 import {MyPostsItem} from "./MyPostsItem";
 import classes from './MyPostsList.module.css';
 
-import {MyPostsItemPropsType} from "../../../index";
+import {MyPostsItemPropsType} from "../../../redux/datastate";
 
 /* const user1 = [
   {

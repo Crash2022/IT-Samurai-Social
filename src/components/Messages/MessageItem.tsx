@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./Messages.module.css";
-import {MessagePropsType} from '../../index';
+import {MessagePropsType} from '../../redux/datastate';
 
 {/* <div>{props.textProps.map((elem) => elem.text)}</div>; */}
 

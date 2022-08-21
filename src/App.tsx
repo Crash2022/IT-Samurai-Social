@@ -12,7 +12,8 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
-import {AllType} from "./index";
+/* import {AllType} from "./index"; */
+import {AllType} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
