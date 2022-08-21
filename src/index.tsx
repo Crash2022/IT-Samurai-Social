@@ -88,6 +88,6 @@ const messagesData = [
 ] */
 
 ReactDOM.render(
-    <App myposts={user1} mydialogs={dialogsData} mymessages={messagesData}/>,
+    <App /*myposts={props.user1} mydialogs={props.dialogsData} mymessages={props.messagesData}*//>,
   document.getElementById('root')
 );

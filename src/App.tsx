@@ -11,9 +11,10 @@ import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
+import {RootDataStateType} from "./redux/datastateindex";
 
 /* import {AllType} from "./index"; */
-import {AllType} from "./redux/datastate";
+import {AllType, MyPostsItemPropsType} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
@@ -24,7 +25,7 @@ import {AllType} from "./redux/datastate";
     </Routes>
 </Router>*/}
 
-function App(props: AllType) {
+function App(props: RootDataStateType) {
     return (
         <BrowserRouter>
             <div className="wrapper">
@@ -32,8 +33,8 @@ function App(props: AllType) {
                 <Navbar/>
                 {/* <Profile /> */}
                 <div className="right__main">
-                    <Route path={"/profile"} render={ () => <Profile myposts={props.myposts}/> }/>
-                    <Route path={"/messages"} render={ () => <Messages mydialogs={props.mydialogs} mymessages={props.mymessages}/> }/>
+                    <Route path={"/profile"} render={ () => <Profile myposts={props.MyPostsItemPropsType}/> }/>
+                    <Route path={"/messages"} render={ () => <Messages mydialogs={props.DialogsArray} mymessages={props.MessagesArray}/> }/>
                     <Route path={"/news"} render={ () => <News/> }/>
                     <Route path={"/music"} render={ () => <Music/> }/>
                     <Route path={"/settings"} render={ () => <Settings/> }/>
