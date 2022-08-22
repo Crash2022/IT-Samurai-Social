@@ -5,22 +5,7 @@ import classes from "./Messages.module.css";
 import {DialogItem} from "./DialogItem";
 import {MessageItem} from "./MessageItem";
 
-import {MessagesType} from '../../redux/datastate';
-
-/* export type DialogsPropsType = {
-  dialogProps: Array<DialogsArray>
-};
-type DialogsArray = {
-  id: number
-  name: string
-}
-
-export type MessagePropsType = {
-  textProps: Array<MessagesArray>
-};
-type MessagesArray = {
-  text: string
-}; */
+import {DialogsArray, MessagesArray} from '../../redux/datastate';
 
 /* const dialogsData = [
   { id: 1, name: "Neil Tunicliff" },
@@ -38,8 +23,13 @@ const messagesData = [
   { text: "Hello, Damon Watson" },
 ];
  */
+
+type MessagesType = {
+  mydialogs: DialogsArray[]
+  mymessages: MessagesArray[]
+}
+
 export const Messages = (props: MessagesType) => {
-    
   return (
     <>
       <div className={classes.messages}>

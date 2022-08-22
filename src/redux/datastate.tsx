@@ -1,15 +1,11 @@
-/*export type AllType = MyPostsItemPropsType & DialogsPropsType*/
-/* export type AllType = {
-  myposts: Array<UserMessageType>
-  mydialogs: Array<DialogsArray>
-  mymessages: Array<MessagesArray>
-} */
-
-export type MyPostsItemPropsType = {
-  user1: Array<UserMessageType>
+export type RootDataStateType = {
+    user1: MyPostsItemPropsType
+    dialogsPage: DialogsPropsType
 }
 
-type UserMessageType = {
+export type MyPostsItemPropsType = Array<UserMessageType>
+
+export type UserMessageType = {
   avatar: string
   nickname: string
   postMessage: string
@@ -17,30 +13,20 @@ type UserMessageType = {
   dislikes: number
 }
 
-/*export type MessagesType = DialogsPropsType & MessagePropsType*/
-
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
     messagesData: Array<MessagesArray>
 }
-type DialogsArray = {
+export type DialogsArray = {
   id: number
   name: string
 }
 
-/*export type MessagePropsType = {
-    messagesData: Array<MessagesArray>
-}*/
-type MessagesArray = {
-  text: string
+export type MessagesArray = {
+    text: string
 }
 
-type RootDataStateType = {
-    user1: MyPostsItemPropsType
-    dialogsPage: DialogsPropsType
-}
-
-const dataState:  RootDataStateType = {
+const datastate:  RootDataStateType = {
     user1: [
         {
             avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -89,4 +75,4 @@ const dataState:  RootDataStateType = {
     }
 }
 
-export default dataState;
+export default datastate;

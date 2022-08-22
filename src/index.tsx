@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {App} from "./App";
 import datastate from './redux/datastate';
 
 /* export type AllType = MyPostsItemPropsType & DialogsPropsType & MessagePropsType */
@@ -88,6 +88,6 @@ const messagesData = [
 ] */
 
 ReactDOM.render(
-    <App /*myposts={props.user1} mydialogs={props.dialogsData} mymessages={props.messagesData}*//>,
+    <App state={datastate}/>,
   document.getElementById('root')
 );

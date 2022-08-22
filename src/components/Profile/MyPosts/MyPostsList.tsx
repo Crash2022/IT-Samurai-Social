@@ -2,7 +2,7 @@ import React from "react";
 import {MyPostsItem} from "./MyPostsItem";
 import classes from './MyPostsList.module.css';
 
-import {MyPostsItemPropsType} from "../../../redux/datastate";
+/*import {MyPostsItemPropsType} from "../../../redux/datastate";*/
 
 /* const user1 = [
   {
@@ -53,19 +53,13 @@ const user3 = [
   }
 ] */
 
-/* export type MyPostsItemPropsType = {
-  message: Array<UserMessageType>
+import {UserMessageType} from "../../../redux/datastate";
+
+type ProfileType = {
+    myposts: UserMessageType[]
 }
 
-type UserMessageType = {
-  avatar: string
-  nickname: string
-  postmessage: string
-  likes: number
-  dislikes: number
-} */
-
-export const MyPostsList = (props: MyPostsItemPropsType) => {
+export const MyPostsList = (props: ProfileType) => {
   return (
       <>
         <div className={classes.content__postlist}>

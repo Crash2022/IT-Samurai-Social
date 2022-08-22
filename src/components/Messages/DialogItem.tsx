@@ -1,9 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./Messages.module.css";
-import {DialogsPropsType} from '../../redux/datastate';
 
-export const DialogItem = (props: DialogsPropsType) => {
+import {DialogsArray, MessagesArray} from '../../redux/datastate';
+
+type MessagesType = {
+  mydialogs: DialogsArray[]
+}
+
+export const DialogItem = (props: MessagesType) => {
   /* let path = '/messages/' + props.id; */
 
   return (

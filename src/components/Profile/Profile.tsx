@@ -3,9 +3,13 @@ import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
 
-import {MyPostsItemPropsType} from "../../redux/datastate";
+import {UserMessageType} from "../../redux/datastate";
 
-export const Profile = (props: MyPostsItemPropsType) => {
+type ProfileType = {
+    myposts: UserMessageType[]
+}
+
+export const Profile = (props: ProfileType) => {
   return (
       <div className={classes.right__profile}>
         <MyProfile />

@@ -2,9 +2,15 @@ import React from "react";
 import {MyPostsAdd} from "../MyPosts/MyPostsAdd";
 import {MyPostsList} from "./MyPostsList";
 
-import {MyPostsItemPropsType} from "../../../redux/datastate";
+/*import {MyPostsItemPropsType} from "../../../redux/datastate";*/
 
-export const MyPosts = (props: MyPostsItemPropsType) => {
+import {UserMessageType} from "../../../redux/datastate";
+
+type ProfileType = {
+    myposts: UserMessageType[]
+}
+
+export const MyPosts = (props: ProfileType) => {
   return (
       <>
        <MyPostsAdd />

@@ -1,9 +1,15 @@
 import React from "react";
 import classes from './MyPostsItem.module.css';
-/* import {MyPostsItemPropsType} from "./MyPostsList"; */
-import {MyPostsItemPropsType} from "../../../redux/datastate";
 
-export const MyPostsItem = (props: MyPostsItemPropsType) => {
+/*import {MyPostsItemPropsType} from "../../../redux/datastate";*/
+
+import {UserMessageType} from "../../../redux/datastate";
+
+type ProfileType = {
+    myposts: UserMessageType[]
+}
+
+export const MyPostsItem = (props: ProfileType) => {
     return (
         <>
         {props.myposts.map((elem) => {
@@ -18,7 +24,7 @@ export const MyPostsItem = (props: MyPostsItemPropsType) => {
                                     {elem.nickname}
                                 </div>
                                 <div className={classes.message}>
-                                    {elem.postmessage}
+                                    {elem.postMessage}
                                 </div>
                             </div>
                         </div>

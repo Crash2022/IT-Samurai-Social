@@ -1,11 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import classes from "./Messages.module.css";
-import {MessagePropsType} from '../../redux/datastate';
+
+import {DialogsArray, MessagesArray} from '../../redux/datastate';
+
+type MessagesType = {
+  mymessages: MessagesArray[]
+}
 
 {/* <div>{props.textProps.map((elem) => elem.text)}</div>; */}
 
-export const MessageItem = (props: MessagePropsType) => {
+export const MessageItem = (props: MessagesType) => {
   return (
     <>
       {props.mymessages.map(message => {
