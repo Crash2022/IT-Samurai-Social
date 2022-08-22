@@ -35,7 +35,7 @@ export const App:FC<AppPropsType> = ({state}) => {
                 <Navbar/>
                 {/* <Profile /> */}
                 <div className="right__main">
-                    <Route path={"/profile"} render={ () => <Profile myposts={state.user1}/> }/>
+                    <Route path={"/profile"} render={ () => <Profile myposts={state.myPostPage.user1}/> }/>
                     <Route path={"/messages"} render={ () => <Messages mydialogs={state.dialogsPage.dialogsData} mymessages={state.dialogsPage.messagesData}/> }/>
                     <Route path={"/news"} render={ () => <News/> }/>
                     <Route path={"/music"} render={ () => <Music/> }/>

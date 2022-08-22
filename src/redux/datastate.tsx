@@ -1,16 +1,18 @@
 export type RootDataStateType = {
-    user1: MyPostsItemPropsType
+    myPostPage: MyPostsItemPropsType
     dialogsPage: DialogsPropsType
 }
 
-export type MyPostsItemPropsType = Array<UserMessageType>
+export type MyPostsItemPropsType = {
+    user1: Array<UserMessageType>
+}
 
 export type UserMessageType = {
-  avatar: string
-  nickname: string
-  postMessage: string
-  likes: number
-  dislikes: number
+    avatar: string
+    nickname: string
+    postMessage: string
+    likes: number
+    dislikes: number
 }
 
 export type DialogsPropsType = {
@@ -18,45 +20,47 @@ export type DialogsPropsType = {
     messagesData: Array<MessagesArray>
 }
 export type DialogsArray = {
-  id: number
-  name: string
+    id: number
+    name: string
 }
 
 export type MessagesArray = {
     text: string
 }
 
-const datastate:  RootDataStateType = {
-    user1: [
-        {
-            avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-            nickname: "Ivan",
-            postMessage: "Hello to all Incubator",
-            likes: 15,
-            dislikes: 1
-        },
-        {
-            avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-            nickname: "Ivan",
-            postMessage: "Hello to all programmers",
-            likes: 150,
-            dislikes: 10
-        },
-        {
-            avatar: "https://i.pinimg.com/236x/34/57/50/345750705629b0b7d592036167c5832b.jpg",
-            nickname: "Petr",
-            postMessage: "Hello to all Codewars",
-            likes: 10,
-            dislikes: 0
-        },
-        {
-            avatar: "https://www.mag-russia.ru/f/product/21_merida_e_bikes_mountainbikes_eone_sixty_my2021_gallery_05.jpg",
-            nickname: "Dimych",
-            postMessage: "Hello to all FreeCodeCamp",
-            likes: 105,
-            dislikes: 10
-        }
-    ],
+const datastate: RootDataStateType = {
+    myPostPage: {
+        user1: [
+            {
+                avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
+                nickname: "Ivan",
+                postMessage: "Hello to all Incubator",
+                likes: 15,
+                dislikes: 1
+            },
+            {
+                avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
+                nickname: "Ivan",
+                postMessage: "Hello to all programmers",
+                likes: 150,
+                dislikes: 10
+            },
+            {
+                avatar: "https://i.pinimg.com/236x/34/57/50/345750705629b0b7d592036167c5832b.jpg",
+                nickname: "Petr",
+                postMessage: "Hello to all Codewars",
+                likes: 10,
+                dislikes: 0
+            },
+            {
+                avatar: "https://www.mag-russia.ru/f/product/21_merida_e_bikes_mountainbikes_eone_sixty_my2021_gallery_05.jpg",
+                nickname: "Dimych",
+                postMessage: "Hello to all FreeCodeCamp",
+                likes: 105,
+                dislikes: 10
+            }
+        ]
+    },
     dialogsPage: {
         dialogsData: [
             {id: 1, name: "Neil Tunicliff"},
