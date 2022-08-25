@@ -33,14 +33,14 @@ const datastate: RootDataStateType = {
         user1: [
             {
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-                nickname: "Ivan",
+                nickname: "Dimych",
                 postMessage: "Hello to all Incubator",
                 likes: 15,
                 dislikes: 1
             },
             {
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-                nickname: "Ivan",
+                nickname: "Dimych",
                 postMessage: "Hello to all programmers",
                 likes: 150,
                 dislikes: 10
@@ -54,7 +54,7 @@ const datastate: RootDataStateType = {
             },
             {
                 avatar: "https://www.mag-russia.ru/f/product/21_merida_e_bikes_mountainbikes_eone_sixty_my2021_gallery_05.jpg",
-                nickname: "Dimych",
+                nickname: "Ivan",
                 postMessage: "Hello to all FreeCodeCamp",
                 likes: 105,
                 dislikes: 10
