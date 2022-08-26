@@ -7,13 +7,14 @@ import {UserMessageType} from "../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]
+    addPost: (newPostMessage: string)=>void
 }
 
 export const Profile = (props: ProfileType) => {
   return (
       <div className={classes.right__profile}>
         <MyProfile />
-        <MyPosts myposts={props.myposts}/>
+        <MyPosts myposts={props.myposts} addPost={props.addPost}/>
       </div>
   );
 }

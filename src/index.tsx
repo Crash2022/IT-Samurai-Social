@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from "./App";
 import datastate from './redux/datastate';
+import {addPost} from './redux/datastate';
 
 /* export type AllType = MyPostsItemPropsType & DialogsPropsType & MessagePropsType */
 /* export type AllType = {
@@ -88,6 +89,6 @@ const messagesData = [
 ] */
 
 ReactDOM.render(
-    <App state={datastate}/>,
+    <App state={datastate} addPost={addPost}/>,
   document.getElementById('root')
 );

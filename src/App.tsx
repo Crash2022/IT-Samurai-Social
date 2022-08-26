@@ -25,9 +25,10 @@ import {RootDataStateType} from "./redux/datastate";
 
 type AppPropsType = {
     state: RootDataStateType
+    addPost: (newPostMessage: string)=>void
 }
 
-export const App:FC<AppPropsType> = ({state}) => {
+export const App:FC<AppPropsType> = ({state, addPost}) => {
     return (
         <BrowserRouter>
             <div className="wrapper">
@@ -35,7 +36,7 @@ export const App:FC<AppPropsType> = ({state}) => {
                 <Navbar/>
                 {/* <Profile /> */}
                 <div className="right__main">
-                    <Route path={"/profile"} render={ () => <Profile myposts={state.myPostPage.user1}/> }/>
+                    <Route path={"/profile"} render={ () => <Profile myposts={state.myPostPage.user1} addPost={addPost}/> }/>
                     <Route path={"/messages"} render={ () => <Messages mydialogs={state.dialogsPage.dialogsData} mymessages={state.dialogsPage.messagesData}/> }/>
                     <Route path={"/news"} render={ () => <News/> }/>
                     <Route path={"/music"} render={ () => <Music/> }/>

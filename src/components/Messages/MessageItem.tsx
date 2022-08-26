@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Messages.module.css";
 
 import {DialogsArray, MessagesArray} from '../../redux/datastate';
+import {Textarea} from "../../UI/Textarea";
 
 type MessagesType = {
   mymessages: MessagesArray[]
@@ -15,7 +16,9 @@ export const MessageItem = (props: MessagesType) => {
       {props.mymessages.map(message => {
         return (
             <div>
-              {message.text}
+              {/*{message.text}*/}
+              <textarea></textarea>
+              {/*<Textarea textareaValue={} setTextareaValue={} />*/}
             </div>
         )
       })}

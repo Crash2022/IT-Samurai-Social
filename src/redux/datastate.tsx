@@ -1,3 +1,5 @@
+import {v1} from "uuid";
+
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
     dialogsPage: DialogsPropsType
@@ -8,6 +10,7 @@ export type MyPostsItemPropsType = {
 }
 
 export type UserMessageType = {
+    id: string
     avatar: string
     nickname: string
     postMessage: string
@@ -20,7 +23,7 @@ export type DialogsPropsType = {
     messagesData: Array<MessagesArray>
 }
 export type DialogsArray = {
-    id: number
+    id: string
     name: string
 }
 
@@ -32,6 +35,7 @@ const datastate: RootDataStateType = {
     myPostPage: {
         user1: [
             {
+                id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
                 nickname: "Dimych",
                 postMessage: "Hello to all Incubator",
@@ -39,6 +43,7 @@ const datastate: RootDataStateType = {
                 dislikes: 1
             },
             {
+                id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
                 nickname: "Dimych",
                 postMessage: "Hello to all programmers",
@@ -46,6 +51,7 @@ const datastate: RootDataStateType = {
                 dislikes: 10
             },
             {
+                id: v1(),
                 avatar: "https://i.pinimg.com/236x/34/57/50/345750705629b0b7d592036167c5832b.jpg",
                 nickname: "Petr",
                 postMessage: "Hello to all Codewars",
@@ -53,6 +59,7 @@ const datastate: RootDataStateType = {
                 dislikes: 0
             },
             {
+                id: v1(),
                 avatar: "https://www.mag-russia.ru/f/product/21_merida_e_bikes_mountainbikes_eone_sixty_my2021_gallery_05.jpg",
                 nickname: "Ivan",
                 postMessage: "Hello to all FreeCodeCamp",
@@ -63,11 +70,11 @@ const datastate: RootDataStateType = {
     },
     dialogsPage: {
         dialogsData: [
-            {id: 1, name: "Neil Tunicliff"},
-            {id: 2, name: "Craig Lee Scott"},
-            {id: 3, name: "Ali Clarkson"},
-            {id: 4, name: "Thomas Remvik Aasen"},
-            {id: 5, name: "Damon Watson"}
+            {id: v1(), name: "Neil Tunicliff"},
+            {id: v1(), name: "Craig Lee Scott"},
+            {id: v1(), name: "Ali Clarkson"},
+            {id: v1(), name: "Thomas Remvik Aasen"},
+            {id: v1(), name: "Damon Watson"}
         ],
         messagesData: [
             {text: "Hello, Neil Tunicliff"},
@@ -77,6 +84,18 @@ const datastate: RootDataStateType = {
             {text: "Hello, Damon Watson"}
         ]
     }
+}
+
+export const addPost = (newPostMessage: string) => {
+    let newPost = {
+        id: v1(),
+        avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
+        nickname: "Dimych",
+        postMessage: newPostMessage,
+        likes: 0,
+        dislikes: 0
+    };
+    datastate.myPostPage.user1.push(newPost);
 }
 
 export default datastate;

@@ -8,12 +8,13 @@ import {UserMessageType} from "../../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]
+    addPost: (newPostMessage: string)=>void
 }
 
 export const MyPosts = (props: ProfileType) => {
   return (
       <>
-       <MyPostsAdd />
+       <MyPostsAdd addPost={props.addPost}/>
        <MyPostsList myposts={props.myposts}/>
       </>
   );
