@@ -1,4 +1,5 @@
-import React, {useState}, {ChangeEvent} from "react";
+import React from "react";
+import {useState , ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
 //import {UserMessageType} from "../../../redux/datastate";
@@ -29,7 +30,7 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
           <div className={classes.content__myposts_add}>
             <textarea className={classes.newMessage}
                       value={textareaValue}
-                      onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setTextareaValue(event)}></textarea>
+                      onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setTextareaValue(event.currentTarget.value)}/>
             {/*<Textarea textareaValue={textareaValue} setTextareaValue={setTextareaValue}/>*/}
           </div>
           <div className={classes.sendButton}>

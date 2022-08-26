@@ -64,8 +64,7 @@ export const MyPostsList = (props: ProfileType) => {
       <>
         <div className={classes.content__postlist}>
           <MyPostsItem myposts={props.myposts}/>
-          {/* <MyPostsItem message={user1}/>
-          <MyPostsItem message={user2}/>
+          {/* <MyPostsItem message={user1}/>        <MyPostsItem message={user2}/>
           <MyPostsItem message={user3}/> */}
         </div>
       </>
