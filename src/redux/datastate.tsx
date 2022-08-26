@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {renderEntireTree} from "../render";
 
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
@@ -96,6 +97,7 @@ export const addPost = (newPostMessage: string) => {
         dislikes: 0
     };
     datastate.myPostPage.user1.push(newPost);
+    renderEntireTree(datastate);
 }
 
 export default datastate;
