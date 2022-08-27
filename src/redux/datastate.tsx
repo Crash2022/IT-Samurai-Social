@@ -99,6 +99,7 @@ export const addPost = () => {
         dislikes: 0
     };
     datastate.myPostPage.user1.push(newPost);
+    datastate.newPostText = '';
     renderEntireTree(datastate);
 }
 

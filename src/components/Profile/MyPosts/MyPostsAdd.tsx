@@ -20,7 +20,7 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
       //let textareaValue = newPostElement.current.value;
       props.addPost();
       //textareaValue.current.value = '';
-      props.updateNewPostText('');
+      //props.updateNewPostText('');
       //setTextareaValue('');
   }
   const onChangePostMessage = () => {
