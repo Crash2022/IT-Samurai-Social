@@ -1,8 +1,8 @@
 import React from "react";
-import classes from "./Messages.module.css";
+//import classes from "./Messages.module.css";
 
-import {DialogsArray, MessagesArray} from '../../redux/datastate';
-import {Textarea} from "../../UI/Textarea";
+import {MessagesArray} from '../../redux/datastate';
+//import {Textarea} from "../../UI/Textarea";
 
 type MessagesType = {
   mymessages: MessagesArray[]

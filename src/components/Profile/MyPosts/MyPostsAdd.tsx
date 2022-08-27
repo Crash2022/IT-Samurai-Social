@@ -6,7 +6,7 @@ import {Button} from "../../../UI/Button";
 /*import {Textarea} from "../../../UI/Textarea";*/
 
 type MyPostsAddType = {
-    addPost: (newPostMessage: string)=>void
+    addPost: (newPostMessage: string) => void
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {

@@ -15,7 +15,7 @@ export const MyPostsItem = (props: ProfileType) => {
                     <>
                         <div className={classes.postitem}>
                             <div className={classes.avatar}>
-                                <img src={elem.avatar}></img>
+                                <img src={elem.avatar} alt=""></img>
                             </div>
                             <div className={classes.userinfo}>
                                 <div className={classes.nickname}>

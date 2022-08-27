@@ -1,20 +1,16 @@
-import React, {FC} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from "./App";
 //import datastate from './redux/datastate';
-//import {addPost, RootDataStateType} from './redux/datastate';
+import {RootDataStateType, addPost} from './redux/datastate';
+//import {addPost} from './redux/datastate';
 import {BrowserRouter} from "react-router-dom";
 
-export type RenderPropsType = {
-    state: RootDataStateType
-    addPost: (newPostMessage: string)=>void
-}
-
-export const renderEntireTree: FC<RenderPropsType> = ({state, addPost}) => {
+export const renderEntireTree = (state: RootDataStateType) => {
     ReactDOM.render(
         <BrowserRouter>
-            <App state={datastate} addPost={addPost}/>
+            <App state={state} addPost={addPost}/>
         </BrowserRouter>, document.getElementById('root')
 
     );
