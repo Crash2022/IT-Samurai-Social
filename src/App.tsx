@@ -12,8 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {RootDataStateType} from "./redux/datastate";
-
+import {RootDataStateType, updateNewPostText} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
@@ -26,18 +25,25 @@ import {RootDataStateType} from "./redux/datastate";
 
 export type AppPropsType = {
     state: RootDataStateType
-    addPost: (newPostMessage: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
-export const App:FC<AppPropsType> = ({state, addPost}) => {
+export const App:FC<AppPropsType> = ({state, addPost, updateNewPostText}) => {
     return (
             <div className="wrapper">
                 <Header/>
                 <Navbar/>
                 <div className="right__main">
                     {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
-                    <Route path={"/profile"} render={ () => <Profile myposts={state.myPostPage.user1} addPost={addPost}/> }/>
-                    <Route path={"/messages"} render={ () => <Messages mydialogs={state.dialogsPage.dialogsData} mymessages={state.dialogsPage.messagesData}/> }/>
+                    <Route path={"/profile"} render={ () => <Profile
+                        myposts={state.myPostPage.user1}
+                        addPost={addPost}
+                        newPostText={state.newPostText}
+                        updateNewPostText={updateNewPostText}/> }/>
+                    <Route path={"/messages"} render={ () => <Messages
+                        mydialogs={state.dialogsPage.dialogsData}
+                        mymessages={state.dialogsPage.messagesData}/> }/>
                     <Route path={"/news"} render={ () => <News/> }/>
                     <Route path={"/music"} render={ () => <Music/> }/>
                     <Route path={"/settings"} render={ () => <Settings/> }/>

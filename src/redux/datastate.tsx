@@ -4,6 +4,7 @@ import {renderEntireTree} from "../render";
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
     dialogsPage: DialogsPropsType
+    newPostText: string
 }
 
 export type MyPostsItemPropsType = {
@@ -84,19 +85,25 @@ const datastate: RootDataStateType = {
             {text: "Hello, Thomas Remvik Aasen"},
             {text: "Hello, Damon Watson"}
         ]
-    }
+    },
+    newPostText: 'add post here...'
 }
 
-export const addPost = (newPostMessage: string) => {
+export const addPost = () => {
     let newPost = {
         id: v1(),
         avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
         nickname: "Dimych",
-        postMessage: newPostMessage,
+        postMessage: datastate.newPostText,
         likes: 0,
         dislikes: 0
     };
     datastate.myPostPage.user1.push(newPost);
+    renderEntireTree(datastate);
+}
+
+export const updateNewPostText = (newText: string) => {
+    datastate.newPostText = newText;
     renderEntireTree(datastate);
 }
 

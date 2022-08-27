@@ -2,6 +2,7 @@ import React from "react";
 import classes from './MyPostsItem.module.css';
 
 import {UserMessageType} from "../../../redux/datastate";
+import {v1} from "uuid";
 
 type ProfileType = {
     myposts: UserMessageType[]
@@ -13,7 +14,7 @@ export const MyPostsItem = (props: ProfileType) => {
         {props.myposts.map((elem) => {
                 return (
                     <>
-                        <div className={classes.postitem}>
+                        <div className={classes.postitem} >
                             <div className={classes.avatar}>
                                 <img src={elem.avatar} alt=""></img>
                             </div>
