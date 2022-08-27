@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from "./App";
-//import datastate from './redux/datastate';
 import {RootDataStateType, addPost} from './redux/datastate';
-//import {addPost} from './redux/datastate';
 import {BrowserRouter} from "react-router-dom";
 
 export const renderEntireTree = (state: RootDataStateType) => {

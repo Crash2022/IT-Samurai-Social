@@ -16,7 +16,6 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
   // let newPostElement = React.createRef();
   const addPostMessage = () => {
       // let textareaValue = newPostElement.current.value;
-      //console.log('hey');
       props.addPost(textareaValue);
       setTextareaValue('');
   }
