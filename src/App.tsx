@@ -12,7 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {RootDataStateType, updateNewPostText} from "./redux/datastate";
+import {RootDataStateType} from "./redux/datastate";
 
 {/*<Router>
     <Routes>

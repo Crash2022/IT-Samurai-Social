@@ -2,7 +2,7 @@ import React from "react";
 import classes from './MyPostsItem.module.css';
 
 import {UserMessageType} from "../../../redux/datastate";
-import {v1} from "uuid";
+//import {v1} from "uuid";
 
 type ProfileType = {
     myposts: UserMessageType[]

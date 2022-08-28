@@ -1,5 +1,8 @@
 import {v1} from "uuid";
-import {renderEntireTree} from "../render";
+
+let renderEntireTree = (datastate: RootDataStateType) => {
+
+}
 
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
@@ -98,7 +101,7 @@ export const addPost = () => {
         likes: 0,
         dislikes: 0
     };
-    datastate.myPostPage.user1.push(newPost);
+    datastate.myPostPage.user1.unshift(newPost);
     datastate.newPostText = '';
     renderEntireTree(datastate);
 }
@@ -106,6 +109,10 @@ export const addPost = () => {
 export const updateNewPostText = (newText: string) => {
     datastate.newPostText = newText;
     renderEntireTree(datastate);
+}
+
+export const subscribe = (observer: any) => {
+    renderEntireTree = observer;
 }
 
 export default datastate;
