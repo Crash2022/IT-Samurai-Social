@@ -4,12 +4,13 @@ import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
 //import {UserMessageType} from "../../../redux/datastate";
 import {Textarea} from "../../../UI/Textarea";
+import {ActionType, ActionChangeType} from "../../../redux/datastate";
 
 type MyPostsAddType = {
     /*addPost: () => void
     updateNewPostText: (newText: string) => void*/
     newPostText: string
-    dispatch: any
+    dispatch: (action: ActionType | ActionChangeType) => void
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {

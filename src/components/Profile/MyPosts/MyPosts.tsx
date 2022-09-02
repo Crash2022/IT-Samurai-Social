@@ -1,13 +1,13 @@
 import React from "react";
 import {MyPostsAdd} from "../MyPosts/MyPostsAdd";
 import {MyPostsList} from "./MyPostsList";
-import {UserMessageType} from "../../../redux/datastate";
+import {ActionChangeType, ActionType, UserMessageType} from "../../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]
     /*addPost: ()=>void
     updateNewPostText: (newText: string) => void*/
-    dispatch: any
+    dispatch: (action: ActionType | ActionChangeType) => void
     newPostText: string
 }
 

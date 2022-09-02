@@ -87,8 +87,8 @@ export const store = {
         this._callSubscriber();
     },*/
 
-    dispatch(action: any) {
-        if (action.type === 'ADD-POST') {
+    dispatch(action: ActionType | ActionChangeType) {
+        if (action.type === AddPost) {
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -100,7 +100,7 @@ export const store = {
             this._state.myPostPage.user1.push(newPost);
             this._state.newPostText = '';
             this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UpdateNewPostText) {
             this._state.newPostText = action.newText;
             this._callSubscriber();
         }
@@ -142,6 +142,21 @@ export type DialogsArray = {
 export type MessagesArray = {
     text: string
 }
+
+/*export type DispatchPropsType = {
+    action: ActionType
+}*/
+export const AddPost = 'ADD-POST'
+
+export type ActionType = {
+    type: typeof AddPost
+}
+export const UpdateNewPostText = 'UPDATE-NEW-POST-TEXT'
+
+export type ActionChangeType = ({
+    type: typeof UpdateNewPostText
+    newText: string
+})
 
 // const datastate: RootDataStateType = {
 //     myPostPage: {

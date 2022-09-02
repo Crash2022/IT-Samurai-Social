@@ -12,7 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {RootDataStateType, store} from "./redux/datastate";
+import {ActionType, ActionChangeType, RootDataStateType, store} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
@@ -27,7 +27,7 @@ export type AppPropsType = {
     state: RootDataStateType
     /*addPost: () => void
     updateNewPostText: (newText: string) => void*/
-    dispatch: any
+    dispatch: (action: ActionType | ActionChangeType) => void
 }
 
 export const App:FC<AppPropsType> = ({state, dispatch}) => {
