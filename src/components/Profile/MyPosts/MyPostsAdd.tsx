@@ -2,8 +2,7 @@ import React from "react";
 import {useState , ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
-//import {UserMessageType} from "../../../redux/datastate";
-import {Textarea} from "../../../UI/Textarea";
+//import {Textarea} from "../../../UI/Textarea";
 import {ActionType, ActionChangeType} from "../../../redux/datastate";
 
 type MyPostsAddType = {

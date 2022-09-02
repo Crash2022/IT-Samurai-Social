@@ -143,9 +143,6 @@ export type MessagesArray = {
     text: string
 }
 
-/*export type DispatchPropsType = {
-    action: ActionType
-}*/
 export const AddPost = 'ADD-POST'
 
 export type ActionType = {

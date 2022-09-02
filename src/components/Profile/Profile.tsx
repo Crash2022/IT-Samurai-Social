@@ -2,7 +2,7 @@ import React from "react";
 import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
-import {ActionType, ActionChangeType, store, UserMessageType} from "../../redux/datastate";
+import {ActionType, ActionChangeType, UserMessageType, store} from "../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]
