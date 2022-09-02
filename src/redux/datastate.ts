@@ -58,13 +58,18 @@ const state: RootDataStateType = {
 
 export const store = {
     _state: state,
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {
         return this._state;
     },
-    addPost() {
+
+    getState() {
+        return this._state;
+    },
+    subscribe(observer: any) {
+        this._callSubscriber = observer;
+    },
+
+    /*addPost() {
         let newPost = {
             id: v1(),
             avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -80,9 +85,25 @@ export const store = {
     updateNewPostText(newText: string) {
         this._state.newPostText = newText;
         this._callSubscriber();
-    },
-    subscribe(observer: any) {
-        this._callSubscriber = observer;
+    },*/
+
+    dispatch(action: any) {
+        if (action.type === 'ADD-POST') {
+            let newPost = {
+                id: v1(),
+                avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
+                nickname: "Dimych",
+                postMessage: this._state.newPostText,
+                likes: 0,
+                dislikes: 0
+            };
+            this._state.myPostPage.user1.push(newPost);
+            this._state.newPostText = '';
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.newPostText = action.newText;
+            this._callSubscriber();
+        }
     }
 }
 

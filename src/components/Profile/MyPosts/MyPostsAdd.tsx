@@ -6,9 +6,10 @@ import {Button} from "../../../UI/Button";
 import {Textarea} from "../../../UI/Textarea";
 
 type MyPostsAddType = {
-    addPost: () => void
+    /*addPost: () => void
+    updateNewPostText: (newText: string) => void*/
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: any
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {
@@ -17,16 +18,12 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
 
   let newPostElement: any = React.createRef();
   const addPostMessage = () => {
-      //let textareaValue = newPostElement.current.value;
-      props.addPost();
-      //textareaValue.current.value = '';
-      //props.updateNewPostText('');
-      //setTextareaValue('');
+      props.dispatch({type: 'ADD-POST'});
   }
   const onChangePostMessage = () => {
       let textareaValue = newPostElement.current.value;
-      props.updateNewPostText(textareaValue);
-    }
+      props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});
+  }
 
   return (
       <>

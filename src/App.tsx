@@ -12,7 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {RootDataStateType} from "./redux/datastate";
+import {RootDataStateType, store} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
@@ -25,11 +25,12 @@ import {RootDataStateType} from "./redux/datastate";
 
 export type AppPropsType = {
     state: RootDataStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    /*addPost: () => void
+    updateNewPostText: (newText: string) => void*/
+    dispatch: any
 }
 
-export const App:FC<AppPropsType> = ({state, addPost, updateNewPostText}) => {
+export const App:FC<AppPropsType> = ({state, dispatch}) => {
     return (
             <div className="wrapper">
                 <Header/>
@@ -38,9 +39,10 @@ export const App:FC<AppPropsType> = ({state, addPost, updateNewPostText}) => {
                     {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
                     <Route path={"/profile"} render={ () => <Profile
                         myposts={state.myPostPage.user1}
-                        addPost={addPost}
-                        newPostText={state.newPostText}
-                        updateNewPostText={updateNewPostText}/> }/>
+                        /*addPost={addPost}
+                        updateNewPostText={updateNewPostText}*/
+                        dispatch={dispatch}
+                        newPostText={state.newPostText} /> }/>
                     <Route path={"/messages"} render={ () => <Messages
                         mydialogs={state.dialogsPage.dialogsData}
                         mymessages={state.dialogsPage.messagesData}/> }/>

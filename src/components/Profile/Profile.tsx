@@ -3,13 +3,14 @@ import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
 
-import {UserMessageType} from "../../redux/datastate";
+import {store, UserMessageType} from "../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]
-    addPost: ()=>void
+    /*addPost: ()=>void
+    updateNewPostText: (newText: string) => void*/
+    dispatch: any
     newPostText: string
-    updateNewPostText: (newText: string) => void
 }
 
 export const Profile = (props: ProfileType) => {
@@ -18,9 +19,10 @@ export const Profile = (props: ProfileType) => {
         <MyProfile />
         <MyPosts
             myposts={props.myposts}
-            addPost={props.addPost}
-            newPostText={props.newPostText}
-            updateNewPostText={props.updateNewPostText}/>
+            /*addPost={props.addPost}
+            updateNewPostText={props.updateNewPostText}*/
+            dispatch={props.dispatch}
+            newPostText={props.newPostText}/>
       </div>
   );
 }
