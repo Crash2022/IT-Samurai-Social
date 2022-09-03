@@ -54,7 +54,7 @@ const state: RootDataStateType = {
         ],
         newMessageTextForDialog: ''
     },
-    newPostText: 'Добавьте текст поста...'
+    newPostText: ''
 }
 
 export const store = {
@@ -62,7 +62,6 @@ export const store = {
     _callSubscriber() {
         return this._state;
     },
-
     getState() {
         return this._state;
     },

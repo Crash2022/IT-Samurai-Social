@@ -32,12 +32,13 @@ import {
 
 export type AppPropsType = {
     state: RootDataStateType
+    store: any
     /*addPost: () => void
     updateNewPostText: (newText: string) => void*/
     dispatch: (action: ActionType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType) => void
 }
 
-export const App:FC<AppPropsType> = ({state, dispatch}) => {
+export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
     return (
             <div className="wrapper">
                 <Header/>
@@ -51,6 +52,7 @@ export const App:FC<AppPropsType> = ({state, dispatch}) => {
                         dispatch={dispatch}
                         newPostText={state.newPostText} /> }/>
                     <Route path={"/messages"} render={ () => <Messages
+                        store={store}
                         mydialogs={state.dialogsPage.dialogsData}
                         mymessages={state.dialogsPage.messagesData}
                         newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}

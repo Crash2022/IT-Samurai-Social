@@ -9,6 +9,7 @@ type MessagesType = {
     mymessages: Array<MessagesArray>
     newMessageTextForDialog: string
     dispatch: (action: any) => void
+    store: any
 }
 
 {/* <div>{props.textProps.map((elem) => elem.text)}</div>; */}
@@ -16,6 +17,7 @@ type MessagesType = {
 export const MessageItem = (props: MessagesType) => {
 
     //let messageElements = props.mymessages.map(message => {<div>message.text</div>})
+    let state = props.store.getState().messagesData;
 
     const sendMessageHandler = () => {
         props.dispatch(sendMessageActionCreator());

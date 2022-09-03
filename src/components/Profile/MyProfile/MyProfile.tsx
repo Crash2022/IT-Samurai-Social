@@ -16,11 +16,11 @@ export const MyProfile = () => {
                         alt="my-avatar"></img>
                 </div>
                 <div className={classes.content__info_info}>
-                    <div>My name is ...</div>
-                    <div>Date of birth: ...</div>
-                    <div>City: ...</div>
-                    <div>Education: ...</div>
-                    <div>Web-site: ...</div>
+                    <div>Меня зовут ...</div>
+                    <div>Дата рождения: ...</div>
+                    <div>Город: ...</div>
+                    <div>Хобби: ...</div>
+                    <div>Веб-сайт: ...</div>
                 </div>
             </div>
         </>

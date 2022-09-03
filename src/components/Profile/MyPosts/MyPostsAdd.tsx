@@ -21,8 +21,8 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
   const addPostMessage = () => {
       props.dispatch(addPostActionCreator());
   }
-  const onChangePostMessage = () => {
-      let textareaValue = newPostElement.current.value;
+  const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
+      let textareaValue = event.currentTarget.value;
       /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
       let action = updateNewPostActionCreator(textareaValue);
       props.dispatch(action);
@@ -32,13 +32,13 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
       <>
         <div className={classes.content__myposts}>
           <div className={classes.content__myposts_title}>
-            My Posts
+            Мои записи
           </div>
           <div className={classes.content__myposts_add}>
             <textarea className={classes.newMessage}
+                      placeholder={'Введите текст...'}
                       value={props.newPostText}
                       onChange={onChangePostMessage}
-                      ref={newPostElement}
                       /*onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setTextareaValue(event.currentTarget.value)}*//>
             {/*<Textarea textareaValue={textareaValue} setTextareaValue={setTextareaValue}/>*/}
           </div>
