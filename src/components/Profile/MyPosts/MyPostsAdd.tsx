@@ -3,13 +3,14 @@ import {useState , ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
 //import {Textarea} from "../../../UI/Textarea";
-import {ActionType, ActionChangeType} from "../../../redux/datastate";
+import {ActionType, ActionChangeType, addPostActionCreator, updateNewPostActionCreator} from "../../../redux/datastate";
 
 type MyPostsAddType = {
     /*addPost: () => void
     updateNewPostText: (newText: string) => void*/
     newPostText: string
-    dispatch: (action: ActionType | ActionChangeType) => void
+    /*dispatch: (action: ActionType | ActionChangeType) => void*/
+    dispatch: (action: any) => void
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {
@@ -18,11 +19,13 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
 
   let newPostElement: any = React.createRef();
   const addPostMessage = () => {
-      props.dispatch({type: 'ADD-POST'});
+      props.dispatch(addPostActionCreator());
   }
   const onChangePostMessage = () => {
       let textareaValue = newPostElement.current.value;
-      props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});
+      /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
+      let action = updateNewPostActionCreator(textareaValue);
+      props.dispatch(action);
   }
 
   return (

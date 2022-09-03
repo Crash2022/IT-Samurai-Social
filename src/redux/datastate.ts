@@ -88,7 +88,7 @@ export const store = {
     },*/
 
     dispatch(action: ActionType | ActionChangeType) {
-        if (action.type === AddPost) {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -100,10 +100,22 @@ export const store = {
             this._state.myPostPage.user1.push(newPost);
             this._state.newPostText = '';
             this._callSubscriber();
-        } else if (action.type === UpdateNewPostText) {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.newPostText = action.newText;
             this._callSubscriber();
         }
+    }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+export const updateNewPostActionCreator = (textareaValue: string) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: textareaValue
     }
 }
 
@@ -143,15 +155,15 @@ export type MessagesArray = {
     text: string
 }
 
-export const AddPost = 'ADD-POST'
+export const ADD_POST = 'ADD-POST'
 
 export type ActionType = {
-    type: typeof AddPost
+    type: typeof ADD_POST
 }
-export const UpdateNewPostText = 'UPDATE-NEW-POST-TEXT'
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
 export type ActionChangeType = ({
-    type: typeof UpdateNewPostText
+    type: typeof UPDATE_NEW_POST_TEXT
     newText: string
 })
 
