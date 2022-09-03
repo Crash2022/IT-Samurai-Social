@@ -87,7 +87,7 @@ export const store = {
         this._callSubscriber();
     },*/
 
-    dispatch(action: ActionType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType) {
+    dispatch(action: ActionsType) {
         if (action.type === ADD_POST) {
             let newPost = {
                 id: v1(),
@@ -115,29 +115,21 @@ export const store = {
     }
 }
 
-export const addPostActionCreator = () => {
-    return {
-        type: ADD_POST
-    }
-}
-export const updateNewPostActionCreator = (textareaValue: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: textareaValue
-    }
-}
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+} as const)
+export const updateNewPostActionCreator = (textareaValue: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: textareaValue
+} as const )
 
-export const sendMessageActionCreator = () => {
-    return {
-        type: SEND_DIALOG_TEXT
-    }
-}
-export const updateNewDialogTextActionCreator = (textareaMessage: string) => {
-    return {
-        type: UPDATE_NEW_DIALOG_TEXT,
-        newDialogMessageText: textareaMessage
-    }
-}
+export const sendMessageActionCreator = () => ({
+    type: SEND_DIALOG_TEXT
+} as const)
+export const updateNewDialogTextActionCreator = (textareaMessage: string) => ({
+    type: UPDATE_NEW_DIALOG_TEXT,
+    newDialogMessageText: textareaMessage
+} as const)
 
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
@@ -174,24 +166,16 @@ export type MessagesArray = {
 }
 
 export const ADD_POST = 'ADD-POST'
-export type ActionType = {
-    type: typeof ADD_POST
-}
+export type AddPostACType = ReturnType<typeof addPostActionCreator>
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-export type ActionChangeType = ({
-    type: typeof UPDATE_NEW_POST_TEXT
-    newText: string
-})
+export type ActionChangeType = ReturnType<typeof updateNewPostActionCreator>
 
 export const SEND_DIALOG_TEXT = 'SEND_DIALOG_TEXT'
-export type ActionSendMessageType = ({
-    type: typeof SEND_DIALOG_TEXT
-})
+export type ActionSendMessageType = ReturnType<typeof sendMessageActionCreator>
 export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
-export type ActionUpdateMessageType = ({
-    type: typeof UPDATE_NEW_DIALOG_TEXT
-    newDialogMessageText: string
-})
+export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextActionCreator>
+
+export type ActionsType = AddPostACType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType
 
 // const datastate: RootDataStateType = {
 //     myPostPage: {

@@ -2,13 +2,11 @@ import React from "react";
 import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
-import {ActionType, ActionChangeType, UserMessageType, store} from "../../redux/datastate";
+import {AddPostACType, ActionChangeType, UserMessageType, store, ActionsType} from "../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]
-    /*addPost: ()=>void
-    updateNewPostText: (newText: string) => void*/
-    dispatch: (action: ActionType | ActionChangeType) => void
+    dispatch: (action: ActionsType) => void
     newPostText: string
 }
 
@@ -18,8 +16,6 @@ export const Profile = (props: ProfileType) => {
         <MyProfile />
         <MyPosts
             myposts={props.myposts}
-            /*addPost={props.addPost}
-            updateNewPostText={props.updateNewPostText}*/
             dispatch={props.dispatch}
             newPostText={props.newPostText}/>
       </div>

@@ -16,7 +16,6 @@ type MessagesType = {
 
 export const MessageItem = (props: MessagesType) => {
 
-    //let messageElements = props.mymessages.map(message => {<div>message.text</div>})
     let state = props.store.getState().messagesData;
 
     const sendMessageHandler = () => {

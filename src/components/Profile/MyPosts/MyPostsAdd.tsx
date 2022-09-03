@@ -3,21 +3,21 @@ import {useState , ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
 //import {Textarea} from "../../../UI/Textarea";
-import {ActionType, ActionChangeType, addPostActionCreator, updateNewPostActionCreator} from "../../../redux/datastate";
+import {
+    addPostActionCreator,
+    updateNewPostActionCreator,
+    ActionsType
+} from "../../../redux/datastate";
 
 type MyPostsAddType = {
-    /*addPost: () => void
-    updateNewPostText: (newText: string) => void*/
     newPostText: string
-    /*dispatch: (action: ActionType | ActionChangeType) => void*/
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {
 
   //const [textareaValue, setTextareaValue] = useState('')
 
-  let newPostElement: any = React.createRef();
   const addPostMessage = () => {
       props.dispatch(addPostActionCreator());
   }
@@ -39,7 +39,7 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
                       placeholder={'Введите текст...'}
                       value={props.newPostText}
                       onChange={onChangePostMessage}
-                      /*onChange={(event: ChangeEvent<HTMLTextAreaElement>) => setTextareaValue(event.currentTarget.value)}*//>
+            />
             {/*<Textarea textareaValue={textareaValue} setTextareaValue={setTextareaValue}/>*/}
           </div>
           <div className={classes.sendButton}>

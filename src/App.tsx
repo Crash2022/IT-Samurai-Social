@@ -13,12 +13,12 @@ import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
 import {
-    ActionType,
+    AddPostACType,
     ActionChangeType,
     RootDataStateType,
     store,
     ActionSendMessageType,
-    ActionUpdateMessageType
+    ActionUpdateMessageType, ActionsType
 } from "./redux/datastate";
 
 {/*<Router>
@@ -33,9 +33,7 @@ import {
 export type AppPropsType = {
     state: RootDataStateType
     store: any
-    /*addPost: () => void
-    updateNewPostText: (newText: string) => void*/
-    dispatch: (action: ActionType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType) => void
+    dispatch: (action: ActionsType) => void
 }
 
 export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
@@ -47,8 +45,6 @@ export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
                     {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
                     <Route path={"/profile"} render={ () => <Profile
                         myposts={state.myPostPage.user1}
-                        /*addPost={addPost}
-                        updateNewPostText={updateNewPostText}*/
                         dispatch={dispatch}
                         newPostText={state.newPostText} /> }/>
                     <Route path={"/messages"} render={ () => <Messages
