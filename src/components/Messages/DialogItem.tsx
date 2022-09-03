@@ -5,7 +5,7 @@ import classes from "./Messages.module.css";
 import {DialogsArray} from '../../redux/datastate';
 
 type MessagesType = {
-  mydialogs: DialogsArray[]
+  mydialogs: Array<DialogsArray>
 }
 
 export const DialogItem = (props: MessagesType) => {

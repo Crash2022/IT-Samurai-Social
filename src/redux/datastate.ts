@@ -46,14 +46,15 @@ const state: RootDataStateType = {
             {id: v1(), name: "Damon Watson"}
         ],
         messagesData: [
-            {text: "Hello, Neil Tunicliff"},
-            {text: "Hello, Craig Lee Scott"},
-            {text: "Hello, Ali Clarkson"},
-            {text: "Hello, Thomas Remvik Aasen"},
-            {text: "Hello, Damon Watson"}
-        ]
+            {id: v1(), text: "Hello, Neil Tunicliff"},
+            {id: v1(), text: "Hello, Craig Lee Scott"},
+            {id: v1(), text: "Hello, Ali Clarkson"},
+            {id: v1(), text: "Hello, Thomas Remvik Aasen"},
+            {id: v1(), text: "Hello, Damon Watson"}
+        ],
+        newMessageTextForDialog: ''
     },
-    newPostText: 'add post here...'
+    newPostText: 'Добавьте текст поста...'
 }
 
 export const store = {
@@ -87,7 +88,7 @@ export const store = {
         this._callSubscriber();
     },*/
 
-    dispatch(action: ActionType | ActionChangeType) {
+    dispatch(action: ActionType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType) {
         if (action.type === ADD_POST) {
             let newPost = {
                 id: v1(),
@@ -102,6 +103,14 @@ export const store = {
             this._callSubscriber();
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.newPostText = action.newText;
+            this._callSubscriber();
+        } else if (action.type === SEND_DIALOG_TEXT) {
+            let newDialogMessageText = this._state.dialogsPage.newMessageTextForDialog;
+            this._state.dialogsPage.newMessageTextForDialog = '';
+            this._state.dialogsPage.messagesData.push({id: v1(), text: newDialogMessageText});
+            this._callSubscriber();
+        } else if (action.type === UPDATE_NEW_DIALOG_TEXT) {
+            this._state.dialogsPage.newMessageTextForDialog = action.newDialogMessageText;
             this._callSubscriber();
         }
     }
@@ -119,9 +128,17 @@ export const updateNewPostActionCreator = (textareaValue: string) => {
     }
 }
 
-/*let renderEntireTree = (datastate: RootDataStateType) => {
-    // console.log('datastate changed');
-}*/
+export const sendMessageActionCreator = () => {
+    return {
+        type: SEND_DIALOG_TEXT
+    }
+}
+export const updateNewDialogTextActionCreator = (textareaMessage: string) => {
+    return {
+        type: UPDATE_NEW_DIALOG_TEXT,
+        newDialogMessageText: textareaMessage
+    }
+}
 
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
@@ -145,6 +162,7 @@ export type UserMessageType = {
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
     messagesData: Array<MessagesArray>
+    newMessageTextForDialog: string
 }
 export type DialogsArray = {
     id: string
@@ -152,19 +170,28 @@ export type DialogsArray = {
 }
 
 export type MessagesArray = {
+    id: string
     text: string
 }
 
 export const ADD_POST = 'ADD-POST'
-
 export type ActionType = {
     type: typeof ADD_POST
 }
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-
 export type ActionChangeType = ({
     type: typeof UPDATE_NEW_POST_TEXT
     newText: string
+})
+
+export const SEND_DIALOG_TEXT = 'SEND_DIALOG_TEXT'
+export type ActionSendMessageType = ({
+    type: typeof SEND_DIALOG_TEXT
+})
+export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
+export type ActionUpdateMessageType = ({
+    type: typeof UPDATE_NEW_DIALOG_TEXT
+    newDialogMessageText: string
 })
 
 // const datastate: RootDataStateType = {

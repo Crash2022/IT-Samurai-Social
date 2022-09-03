@@ -44,7 +44,7 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
           </div>
           <div className={classes.sendButton}>
             {/*<button onClick={addPost}>Add post</button>*/}
-            <Button name={'Add post'} callBack={addPostMessage}/>
+            <Button name={'Добавить запись'} callBack={addPostMessage}/>
           </div>
         </div>
       </>

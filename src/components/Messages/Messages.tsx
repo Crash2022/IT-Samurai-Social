@@ -9,6 +9,8 @@ import {DialogsArray, MessagesArray} from '../../redux/datastate';
 type MessagesType = {
   mydialogs: DialogsArray[]
   mymessages: MessagesArray[]
+  newMessageTextForDialog: string
+  dispatch: (action: any) => void
 }
 
 export const Messages = (props: MessagesType) => {
@@ -20,7 +22,9 @@ export const Messages = (props: MessagesType) => {
         </div>
 
         <div className={classes.text}>
-          <MessageItem mymessages={props.mymessages} />
+          <MessageItem mymessages={props.mymessages}
+                       dispatch={props.dispatch}
+                       newMessageTextForDialog={props.newMessageTextForDialog}/>
         </div>
       </div>
     </>

@@ -12,7 +12,14 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {ActionType, ActionChangeType, RootDataStateType, store} from "./redux/datastate";
+import {
+    ActionType,
+    ActionChangeType,
+    RootDataStateType,
+    store,
+    ActionSendMessageType,
+    ActionUpdateMessageType
+} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
@@ -27,7 +34,7 @@ export type AppPropsType = {
     state: RootDataStateType
     /*addPost: () => void
     updateNewPostText: (newText: string) => void*/
-    dispatch: (action: ActionType | ActionChangeType) => void
+    dispatch: (action: ActionType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType) => void
 }
 
 export const App:FC<AppPropsType> = ({state, dispatch}) => {
@@ -45,7 +52,9 @@ export const App:FC<AppPropsType> = ({state, dispatch}) => {
                         newPostText={state.newPostText} /> }/>
                     <Route path={"/messages"} render={ () => <Messages
                         mydialogs={state.dialogsPage.dialogsData}
-                        mymessages={state.dialogsPage.messagesData}/> }/>
+                        mymessages={state.dialogsPage.messagesData}
+                        newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}
+                        dispatch={dispatch}/> }/>
                     <Route path={"/news"} render={ () => <News/> }/>
                     <Route path={"/music"} render={ () => <Music/> }/>
                     <Route path={"/settings"} render={ () => <Settings/> }/>

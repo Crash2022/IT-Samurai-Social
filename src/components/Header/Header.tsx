@@ -12,7 +12,7 @@ export const Header = () => {
         </img>
       </div>
       <div className={classes.header__socialName}>
-        This is NewSocial
+        Социальная сеть для велосипедистов
       </div>
     </header>
   );
