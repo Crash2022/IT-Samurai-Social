@@ -27,8 +27,9 @@
 .content__info_avatar img {
   width: 150px;
   height: 150px;
-  padding: 10px;
+  padding: 5px;
   border-radius: 50%;
+  border: 2px solid green;
 }
 .content__info_info {
   display: flex;

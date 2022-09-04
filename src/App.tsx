@@ -12,14 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {
-    AddPostACType,
-    ActionChangeType,
-    RootDataStateType,
-    store,
-    ActionSendMessageType,
-    ActionUpdateMessageType, ActionsType
-} from "./redux/datastate";
+import {RootDataStateType, ActionsType} from "./redux/datastate";
 
 {/*<Router>
     <Routes>

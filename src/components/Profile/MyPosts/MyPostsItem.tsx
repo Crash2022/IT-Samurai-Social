@@ -10,35 +10,37 @@ type ProfileType = {
 export const MyPostsItem = (props: ProfileType) => {
     return (
         <>
-        {props.myposts.map((elem) => {
+            {props.myposts.map((elem) => {
                 return (
                     <>
-                        <div className={classes.postitem} >
-                            <div className={classes.avatar}>
-                                <img src={elem.avatar} alt=""></img>
-                            </div>
-                            <div className={classes.userinfo}>
-                                <div className={classes.nickname}>
-                                    {elem.nickname}
+                        <div key={elem.id}>
+                            <div className={classes.postitem}>
+                                <div className={classes.avatar}>
+                                    <img src={elem.avatar} alt=""></img>
                                 </div>
-                                <div className={classes.message}>
-                                    {elem.postMessage}
+                                <div className={classes.userinfo}>
+                                    <div className={classes.nickname}>
+                                        {elem.nickname}
+                                    </div>
+                                    <div className={classes.message}>
+                                        {elem.postMessage}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={classes.counter}>
-                            <div className={classes.likes}>
-                                <div>Likes: {elem.likes}</div>
-                            </div>
-                            <div className={classes.dislikes}>
-                                <div>Dislikes: {elem.dislikes}</div>
+                            <div className={classes.counter}>
+                                <div className={classes.likes}>
+                                    <div>Likes: {elem.likes}</div>
+                                </div>
+                                <div className={classes.dislikes}>
+                                    <div>Dislikes: {elem.dislikes}</div>
+                                </div>
                             </div>
                         </div>
                     </>
                 )
             })
-        }
+            }
         </>
     );
 }
