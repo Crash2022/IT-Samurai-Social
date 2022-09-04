@@ -60,7 +60,7 @@ html,body{
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
 }
 input,button,textarea{font-family:inherit;}
 
@@ -81,7 +81,7 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
   min-height: 100vh;
     
   display: grid;
-  grid-template: minmax(100px, auto) 1fr minmax(50px, auto) / 1fr 4fr; /*строки / колонки*/
+  grid-template: minmax(100px, auto) 1fr minmax(50px, auto) / 2fr 7fr; /*строки / колонки*/
   grid-template-areas: 
     "header header"
     "left__navmenu right__main"

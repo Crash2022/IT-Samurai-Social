@@ -8,7 +8,6 @@ type NavbarPropsType = {
 
 export const NavbarFriends = (props: NavbarPropsType) => {
     return (
-        <>
             <div className={classes.friendsWrapper}>
                 {props.friendsList.map(friend => {
                     return (
@@ -21,6 +20,5 @@ export const NavbarFriends = (props: NavbarPropsType) => {
                     )
                 })}
             </div>
-        </>
     );
 }

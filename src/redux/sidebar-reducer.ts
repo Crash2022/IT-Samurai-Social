@@ -1,12 +1,12 @@
 import React from 'react';
-import {ActionsType, RootDataStateType} from "./datastate";
+import {ActionsType, RootDataStateType, SideBarPropsType} from "./datastate";
 
-type sidebarType = {
+export type sidebarType = {
     state: RootDataStateType
     action: ActionsType
 }
 
-const myPostPageReducer = (props: sidebarType) => {
+export const sidebarReducer = ( state: SideBarPropsType, action: ActionsType) => {
 
-    return props.state;
+    return state;
 }

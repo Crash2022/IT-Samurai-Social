@@ -12,7 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 //import {Welcome} from './components/Welcome/Welcome';
 
-import {RootDataStateType, ActionsType} from "./redux/datastate";
+import store, {RootDataStateType, ActionsType} from "./redux/datastate";
 
 {/*<Router>
     <Routes>
@@ -25,7 +25,7 @@ import {RootDataStateType, ActionsType} from "./redux/datastate";
 
 export type AppPropsType = {
     state: RootDataStateType
-    store: any
+    store: typeof store
     dispatch: (action: ActionsType) => void
 }
 

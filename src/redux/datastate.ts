@@ -1,4 +1,7 @@
 import {v1} from "uuid";
+import {myPostPageReducer} from "./myPostPage-reducer";
+import {dialogsPageReducer} from "./dialogsPage-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 const state: RootDataStateType = {
     myPostPage: {
@@ -78,7 +81,14 @@ export const store = {
     },
 
     dispatch(action: ActionsType) {
-        if (action.type === ADD_POST) {
+
+        this._state.myPostPage = myPostPageReducer(this._state.myPostPage, action)
+        this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber();
+
+        /*if (action.type === ADD_POST) {
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -101,7 +111,7 @@ export const store = {
         } else if (action.type === UPDATE_NEW_DIALOG_TEXT) {
             this._state.dialogsPage.newMessageTextForDialog = action.newDialogMessageText;
             this._callSubscriber();
-        }
+        }*/
     }
 }
 
@@ -126,15 +136,6 @@ export type RootDataStateType = {
     dialogsPage: DialogsPropsType
     /*newPostText: string*/
     sidebar: SideBarPropsType
-}
-
-export type SideBarPropsType = {
-    friendsData: Array<SidebarFriendsType>
-}
-export type SidebarFriendsType = {
-    id: string
-    name: string
-    avatar: string
 }
 
 export type MyPostsItemPropsType = {
@@ -162,6 +163,15 @@ export type DialogsArray = {
 export type MessagesArray = {
     id: string
     text: string
+}
+
+export type SideBarPropsType = {
+    friendsData: Array<SidebarFriendsType>
+}
+export type SidebarFriendsType = {
+    id: string
+    name: string
+    avatar: string
 }
 
 export const ADD_POST = 'ADD-POST'

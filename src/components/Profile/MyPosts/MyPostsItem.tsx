@@ -12,7 +12,6 @@ export const MyPostsItem = (props: ProfileType) => {
         <>
             {props.myposts.map((elem) => {
                 return (
-                    <>
                         <div key={elem.id}>
                             <div className={classes.postitem}>
                                 <div className={classes.avatar}>
@@ -37,7 +36,6 @@ export const MyPostsItem = (props: ProfileType) => {
                                 </div>
                             </div>
                         </div>
-                    </>
                 )
             })
             }
