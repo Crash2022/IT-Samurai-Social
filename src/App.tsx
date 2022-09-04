@@ -39,7 +39,7 @@ export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
                     <Route path={"/profile"} render={ () => <Profile
                         myposts={state.myPostPage.user1}
                         dispatch={dispatch}
-                        newPostText={state.newPostText} /> }/>
+                        newPostText={state.myPostPage.newPostText} /> }/>
                     <Route path={"/messages"} render={ () => <Messages
                         store={store}
                         mydialogs={state.dialogsPage.dialogsData}

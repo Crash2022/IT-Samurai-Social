@@ -1,8 +1,9 @@
 import React from 'react';
+import {ActionsType, RootDataStateType} from "./datastate";
 
 type myPostPageReducerType = {
-    state: any
-    action: any
+    state: RootDataStateType
+    action: ActionsType
 }
 
 const myPostPageReducer = (props: myPostPageReducerType) => {
