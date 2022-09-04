@@ -40,7 +40,7 @@ export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
     return (
             <div className="wrapper">
                 <Header/>
-                <Navbar/>
+                <Navbar friendsList={state.sidebar.friendsData}/>
                 <div className="right__main">
                     {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
                     <Route path={"/profile"} render={ () => <Profile

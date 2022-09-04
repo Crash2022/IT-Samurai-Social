@@ -1,5 +1,5 @@
 import React from "react";
-import {useState , ChangeEvent} from "react";
+import {ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
 //import {Textarea} from "../../../UI/Textarea";

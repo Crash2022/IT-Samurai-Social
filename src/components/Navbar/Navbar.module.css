@@ -21,3 +21,31 @@
 .left__navmenu > *:last-child {
     padding-top: 50px;
 }
+
+/*----------------------------------*/
+
+.friendsWrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.friendsItem {
+    /*display: flex;
+    flex-direction: column;
+    justify-content: center;*/
+}
+.friendsName {
+    color: white;
+    text-align: center;
+}
+.friendsAvatar {
+    text-align: center;
+    padding: 5px;
+}
+.friendsAvatar img {
+    width: 50px;
+    height: 50px;
+    /*padding: 5px;*/
+    border-radius: 50%;
+    border: 1px solid white;
+}
