@@ -14,17 +14,46 @@ export type dialogsPageReducerType = {
     action: ActionsType
 }
 
-export const dialogsPageReducer = (state: DialogsPropsType, action: ActionsType) => {
+let initialState = {
+    dialogsData: [
+        {id: v1(), name: "Neil Tunicliff"},
+        {id: v1(), name: "Craig Lee Scott"},
+        {id: v1(), name: "Ali Clarkson"},
+        {id: v1(), name: "Thomas Remvik Aasen"},
+        {id: v1(), name: "Damon Watson"}
+    ],
+    messagesData: [
+        {id: v1(), text: "Hello, Neil Tunicliff"},
+        {id: v1(), text: "Hello, Craig Lee Scott"},
+        {id: v1(), text: "Hello, Ali Clarkson"},
+        {id: v1(), text: "Hello, Thomas Remvik Aasen"},
+        {id: v1(), text: "Hello, Damon Watson"}
+    ],
+    newMessageTextForDialog: ''
+}
 
-    if (action.type === SEND_DIALOG_TEXT) {
+export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionsType) => {
+
+    /*if (action.type === SEND_DIALOG_TEXT) {
         let newDialogMessageText = state.newMessageTextForDialog;
         state.newMessageTextForDialog = '';
         state.messagesData.push({id: v1(), text: newDialogMessageText});
-        /*props._callSubscriber();*/
+        /!*props._callSubscriber();*!/
     } else if (action.type === UPDATE_NEW_DIALOG_TEXT) {
         state.newMessageTextForDialog = action.newDialogMessageText;
-        /*props._callSubscriber();*/
-    }
+        /!*props._callSubscriber();*!/
+    }*/
 
-    return state;
+    switch(action.type) {
+        case SEND_DIALOG_TEXT:
+            let newDialogMessageText = state.newMessageTextForDialog;
+            state.newMessageTextForDialog = '';
+            state.messagesData.push({id: v1(), text: newDialogMessageText});
+            return state;
+        case UPDATE_NEW_DIALOG_TEXT:
+            state.newMessageTextForDialog = action.newDialogMessageText;
+            return state;
+        default:
+            return state;
+    }
 }

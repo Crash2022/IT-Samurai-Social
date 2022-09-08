@@ -11,15 +11,14 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
-import store, {RootDataStateType, ActionsType} from "./redux/store";
+import {RootDataStateType, ActionsType} from "./redux/store";
 
 export type AppPropsType = {
     state: RootDataStateType
-    store: typeof store
     dispatch: (action: ActionsType) => void
 }
 
-export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
+export const App:FC<AppPropsType> = ({state, dispatch}) => {
     return (
             <div className="wrapper">
                 <Header/>
@@ -31,7 +30,6 @@ export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
                         dispatch={dispatch}
                         newPostText={state.myPostPage.newPostText} /> }/>
                     <Route path={"/messages"} render={ () => <Messages
-                        store={store}
                         myDialogs={state.dialogsPage.dialogsData}
                         myMessages={state.dialogsPage.messagesData}
                         newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}

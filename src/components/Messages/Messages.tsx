@@ -11,7 +11,6 @@ type MessagesType = {
   myMessages: MessagesArray[]
   newMessageTextForDialog: string
   dispatch: (action: any) => void
-  store: any
 }
 
 export const Messages = (props: MessagesType) => {
@@ -25,8 +24,7 @@ export const Messages = (props: MessagesType) => {
         <div className={classes.text}>
           <MessageItem myMessages={props.myMessages}
                        dispatch={props.dispatch}
-                       newMessageTextForDialog={props.newMessageTextForDialog}
-                       store={props.store}/>
+                       newMessageTextForDialog={props.newMessageTextForDialog}/>
         </div>
       </div>
     </>
