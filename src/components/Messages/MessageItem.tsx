@@ -6,12 +6,12 @@ import {
     MessagesArray,
     sendMessageActionCreator,
     updateNewDialogTextActionCreator
-} from '../../redux/datastate';
+} from '../../redux/store';
 import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
 import {Button} from "../../UI/Button";
 
 type MessagesType = {
-    mymessages: Array<MessagesArray>
+    myMessages: Array<MessagesArray>
     newMessageTextForDialog: string
     dispatch: (action: ActionsType) => void
     store: any
@@ -35,7 +35,7 @@ export const MessageItem = (props: MessagesType) => {
 
     return (
         <>
-            {props.mymessages.map(message => {
+            {props.myMessages.map(message => {
               return (
                   <div>
                       {message.text}

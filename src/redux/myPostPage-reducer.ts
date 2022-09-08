@@ -6,7 +6,7 @@ import {
     SEND_DIALOG_TEXT,
     UPDATE_NEW_DIALOG_TEXT,
     UPDATE_NEW_POST_TEXT
-} from "./datastate";
+} from "./store";
 import {v1} from "uuid";
 
 export const myPostPageReducer = (state: MyPostsItemPropsType, action: ActionsType) => {

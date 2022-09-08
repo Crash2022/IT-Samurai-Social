@@ -7,7 +7,7 @@ import {
     addPostActionCreator,
     updateNewPostActionCreator,
     ActionsType
-} from "../../../redux/datastate";
+} from "../../../redux/store";
 
 type MyPostsAddType = {
     newPostText: string

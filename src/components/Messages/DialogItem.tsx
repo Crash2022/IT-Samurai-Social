@@ -2,7 +2,7 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import classes from "./Messages.module.css";
 
-import {DialogsArray} from '../../redux/datastate';
+import {DialogsArray} from '../../redux/store';
 
 type MessagesType = {
   mydialogs: Array<DialogsArray>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionsType, RootDataStateType, SideBarPropsType} from "./datastate";
+import {ActionsType, RootDataStateType, SideBarPropsType} from "./store";
 
 export type sidebarType = {
     state: RootDataStateType

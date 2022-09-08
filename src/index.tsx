@@ -2,20 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from "./App";
-import {datastate} from './redux/datastate';
+import {store} from './redux/store';
 import {BrowserRouter} from "react-router-dom";
 
 const renderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-                state={datastate.getState()}
-                dispatch={datastate.dispatch.bind(datastate)}
-                store={datastate}
+                state={store.getState()}
+                dispatch={store.dispatch.bind(store)}
+                store={store}
             />
         </BrowserRouter>, document.getElementById('root')
     );
 }
 
 renderEntireTree();
-datastate.subscribe(renderEntireTree);
+store.subscribe(renderEntireTree);
