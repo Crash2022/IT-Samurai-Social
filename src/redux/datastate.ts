@@ -68,7 +68,7 @@ const state: RootDataStateType = {
     }
 }
 
-export const store = {
+export const datastate = {
     _state: state,
     _callSubscriber() {
         return this._state;
@@ -186,4 +186,4 @@ export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextActio
 
 export type ActionsType = AddPostACType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType
 
-export default store;
+export default datastate;

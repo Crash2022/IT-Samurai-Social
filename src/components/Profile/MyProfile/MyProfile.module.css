@@ -37,6 +37,9 @@
   justify-content: center;
   padding-left: 50px;
 }
+.content__info_info > div {
+  padding: 2px;
+}
 .content__info_info > *:first-child {
   padding-bottom: 20px;
   font-weight: bold;

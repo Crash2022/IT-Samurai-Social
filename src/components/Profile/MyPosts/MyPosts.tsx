@@ -1,7 +1,7 @@
 import React from "react";
 import {MyPostsAdd} from "../MyPosts/MyPostsAdd";
 import {MyPostsList} from "./MyPostsList";
-import {ActionChangeType, ActionsType, AddPostACType, UserMessageType} from "../../../redux/datastate";
+import {ActionsType, UserMessageType} from "../../../redux/datastate";
 
 type ProfileType = {
     myposts: UserMessageType[]

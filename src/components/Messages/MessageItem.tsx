@@ -1,14 +1,19 @@
 import React, {ChangeEvent} from "react";
 //import classes from "./Messages.module.css";
 
-import {MessagesArray, sendMessageActionCreator, updateNewDialogTextActionCreator} from '../../redux/datastate';
+import {
+    ActionsType,
+    MessagesArray,
+    sendMessageActionCreator,
+    updateNewDialogTextActionCreator
+} from '../../redux/datastate';
 import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
 import {Button} from "../../UI/Button";
 
 type MessagesType = {
     mymessages: Array<MessagesArray>
     newMessageTextForDialog: string
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
     store: any
 }
 
