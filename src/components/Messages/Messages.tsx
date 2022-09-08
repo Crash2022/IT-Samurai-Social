@@ -4,13 +4,13 @@ import classes from "./Messages.module.css";
 import {DialogItem} from "./DialogItem";
 import {MessageItem} from "./MessageItem";
 
-import {DialogsArray, MessagesArray} from '../../redux/store';
+import {ActionsType, DialogsArray, MessagesArray} from '../../redux/store';
 
 type MessagesType = {
   myDialogs: DialogsArray[]
   myMessages: MessagesArray[]
   newMessageTextForDialog: string
-  dispatch: (action: any) => void
+  dispatch: (action: ActionsType) => void
 }
 
 export const Messages = (props: MessagesType) => {
