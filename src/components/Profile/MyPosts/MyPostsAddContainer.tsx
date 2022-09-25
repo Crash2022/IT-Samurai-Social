@@ -11,7 +11,7 @@ import {
 type MyPostsAddType = {
     newPostText: string
     dispatch: (action: ActionsType) => void
-    updateNewPostText: any
+    //updateNewPostText: any
     myPosts: UserMessageType[]
 }
 
@@ -28,6 +28,6 @@ export const MyPostsAddContainer = (props: MyPostsAddType) => {
   return (
       <MyPostsAdd updateNewPostText={onChangePostMessage}
                   addPostMessage={addPostMessage}
-                  posts={props.myPosts}/>
+                  posts={props.store.myPosts}/>
   );
 }
