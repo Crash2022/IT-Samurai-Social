@@ -16,16 +16,17 @@ type MyPostsAddType = {
 
 export const MyPostsAdd = (props: MyPostsAddType) => {
 
-  //const [textareaValue, setTextareaValue] = useState('')
-
-  const addPostMessage = () => {
-      props.dispatch(addPostActionCreator());
+  const onAddPostMessage = () => {
+      //props.dispatch(addPostActionCreator());
+      props.addPost();
   }
   const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
       let textareaValue = event.currentTarget.value;
+      props.updateNewPostText(textareaValue);
       /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
-      let action = updateNewPostActionCreator(textareaValue);
-      props.dispatch(action);
+
+      //let action = updateNewPostActionCreator(textareaValue);
+      //props.dispatch(action);
   }
 
   return (
@@ -44,7 +45,7 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
           </div>
           <div className={classes.sendButton}>
             {/*<button onClick={addPost}>Add post</button>*/}
-            <Button name={'Добавить запись'} callBack={addPostMessage}/>
+            <Button name={'Добавить запись'} callBack={onAddPostMessage}/>
           </div>
         </div>
       </>

@@ -2,9 +2,10 @@ import React from "react";
 import {MyPostsAdd} from "../MyPosts/MyPostsAdd";
 import {MyPostsList} from "./MyPostsList";
 import {ActionsType, UserMessageType} from "../../../redux/store";
+import {MyPostsAddContainer} from "./MyPostsAddContainer";
 
 type ProfileType = {
-    myPosts: UserMessageType[]
+    myPцosts: UserMessageType[]
     dispatch: (action: ActionsType) => void
     newPostText: string
 }
@@ -12,10 +13,10 @@ type ProfileType = {
 export const MyPosts = (props: ProfileType) => {
   return (
       <>
-       <MyPostsAdd
+       <MyPostsAddContainer
            dispatch={props.dispatch}
            newPostText={props.newPostText}/>
-       <MyPostsList myposts={props.myPosts}/>
+       <MyPostsList myPosts={props.myPosts}/>
       </>
   );
 }
