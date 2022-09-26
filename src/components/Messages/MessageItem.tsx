@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 //import classes from "./Messages.module.css";
 
 import {
-    ActionsType,
+    ActionsType, addPostActionCreator,
     MessagesArray,
     sendMessageActionCreator, StoreType,
     updateNewDialogTextActionCreator
@@ -13,7 +13,7 @@ import {Button} from "../../UI/Button";
 type MessagesType = {
     myMessages: Array<MessagesArray>
     newMessageTextForDialog: string
-    //dispatch: (action: ActionsType) => void
+    dispatch: (action: ActionsType) => void
     store: StoreType
     //textareaMessage: string
     updateNewDialogText: (textareaMessage: string) => void
@@ -25,12 +25,12 @@ type MessagesType = {
 
 export const MessageItem = (props: MessagesType) => {
 
-    let state = props.dialogsPage.messagesData;
+    //let state = props.dialogsPage.messagesData;
 
     const sendMessageHandler = () => {
         //props.dispatch(sendMessageActionCreator());
 
-        props.sendMessage();
+        props.dispatch(sendMessageActionCreator());
     }
     const onChangeMessageText = (event: ChangeEvent<HTMLTextAreaElement>) => {
         /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
@@ -40,7 +40,7 @@ export const MessageItem = (props: MessagesType) => {
         props.dispatch(action);*/
 
         let textareaMessage = event.currentTarget.value;
-        props.updateNewDialogText(textareaMessage);
+        props.dispatch(updateNewDialogTextActionCreator(textareaMessage));
     }
 
     return (

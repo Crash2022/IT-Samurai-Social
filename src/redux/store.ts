@@ -81,7 +81,6 @@ export const store: StoreType = {
     },
 
     dispatch(action: ActionsType) {
-
         this._state.myPostPage = myPostPageReducer(this._state.myPostPage, action)
         this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)

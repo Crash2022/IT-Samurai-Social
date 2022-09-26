@@ -12,7 +12,7 @@ import {RootStateType} from "../../../redux/redux-store";
 
 type MyPostsAddType = {
     newPostText?: string
-    //dispatch: (action: ActionsType) => void
+    dispatch: (action: ActionsType) => void
     updateNewPostText: (textareaValue: string) => void
     addPostMessage: () => void
     myPosts: UserMessageType[]
@@ -22,12 +22,13 @@ type MyPostsAddType = {
 export const MyPostsAdd = (props: MyPostsAddType) => {
 
     const onAddPostMessage = () => {
-        //props.dispatch(addPostActionCreator());
-        addPostActionCreator();
+        props.dispatch(addPostActionCreator());
+        //addPostActionCreator();
     }
     const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let textareaValue = event.currentTarget.value;
-        updateNewPostActionCreator(textareaValue);
+        props.dispatch(updateNewPostActionCreator(textareaValue));
+
         /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
 
         //let action = updateNewPostActionCreator(textareaValue);

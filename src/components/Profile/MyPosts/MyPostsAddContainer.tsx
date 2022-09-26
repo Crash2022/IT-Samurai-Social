@@ -13,7 +13,7 @@ import {RootStateType} from "../../../redux/redux-store";
 
 type MyPostsAddType = {
     //newPostText: string
-    //dispatch: (action: ActionsType) => void
+    dispatch: (action: ActionsType) => void
     //myPosts: UserMessageType[]
     store: StoreType
 }
@@ -36,6 +36,7 @@ export const MyPostsAddContainer = (props: MyPostsAddType) => {
                   myPosts={state.myPostPage.user1}
                   store={props.store}
                   newPostText={state.myPostPage.newPostText}
+                  dispatch={props.dispatch}
       />
   );
 }

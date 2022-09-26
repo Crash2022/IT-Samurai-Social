@@ -29,6 +29,7 @@ export const Messages = (props: MessagesType) => {
                                  newMessageTextForDialog={props.newMessageTextForDialog}
                     />*/}
                     <MessageItemContainer store={props.store}
+                                          dispatch={props.dispatch}
                                           myMessages={props.myMessages}
                                           newMessageTextForDialog={props.newMessageTextForDialog}
                     />

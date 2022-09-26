@@ -18,7 +18,7 @@ export const MyPosts = (props: ProfileType) => {
             {/* <MyPostsAdd
            dispatch={props.dispatch}
            newPostText={props.newPostText}/>*/}
-            <MyPostsAddContainer store={props.store} />
+            <MyPostsAddContainer store={props.store} dispatch={props.dispatch}/>
             <MyPostsList myPosts={props.myPosts}/>
         </>
     );

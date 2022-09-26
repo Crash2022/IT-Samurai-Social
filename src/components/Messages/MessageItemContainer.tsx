@@ -15,7 +15,7 @@ type MessagesType = {
     myMessages: Array<MessagesArray>
     newMessageTextForDialog: string
     //newMessageTextForDialog: string
-    //dispatch: (action: ActionsType) => void
+    dispatch: (action: ActionsType) => void
     store: StoreType
     //textareaMessage: string
     //updateNewDialogText: (textareaMessage: string) => void
@@ -37,7 +37,7 @@ export const MessageItemContainer = (props: MessagesType) => {
         let action = updateNewDialogTextActionCreator(textareaMessage);
         props.dispatch(action);*/
 
-        props.store.dispatch(updateNewPostActionCreator(textareaMessage));
+        props.store.dispatch(updateNewDialogTextActionCreator(textareaMessage));
     }
 
     return (
@@ -46,6 +46,7 @@ export const MessageItemContainer = (props: MessagesType) => {
                      dialogsPage={state}
                      myMessages={props.myMessages}
                      newMessageTextForDialog={props.newMessageTextForDialog}
+                     dispatch={props.dispatch}
                      store={props.store}
         />
     )
