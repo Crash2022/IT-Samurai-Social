@@ -2,18 +2,13 @@ import React from "react";
 import {ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
-import {ActionsType, StoreType, UserMessageType} from "../../../redux/store";
+import {MyPostAddType} from "./MyPostsAddContainer";
 
-//import {RootStateType} from "../../../redux/redux-store";
+export const MyPostsAdd = (props: MyPostAddType) => {
 
-type MyPostsAddType = {
-    newPostText: string
-    dispatch: (action: ActionsType) => void
-    onAddPostMessage: () => void
-    onChangePostMessage: (event: ChangeEvent<HTMLTextAreaElement>) => void
-}
-
-export const MyPostsAdd = (props: MyPostsAddType) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangePostMessage(e.currentTarget.value)
+    }
 
     return (
         <>
@@ -25,12 +20,10 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
                     <textarea className={classes.newMessage}
                               placeholder={'Введите текст...'}
                               value={props.newPostText}
-                              onChange={props.onChangePostMessage}
+                              onChange={onChangeHandler}
                     />
-                    {/*<Textarea textareaValue={textareaValue} setTextareaValue={setTextareaValue}/>*/}
                 </div>
                 <div className={classes.sendButton}>
-                    {/*<button onClick={addPost}>Add post</button>*/}
                     <Button name={'Добавить запись'} callBack={props.onAddPostMessage}/>
                 </div>
             </div>

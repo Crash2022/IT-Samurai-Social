@@ -1,43 +1,38 @@
-import React, {ChangeEvent} from "react";
-import {
-    ActionsType,
-    MessagesArray,
-    sendMessageActionCreator,
-    updateNewDialogTextActionCreator
-} from '../../redux/store';
-
+import React, {Dispatch} from "react";
+import {ActionsType, MessagesArray, sendMessageActionCreator, updateNewDialogTextActionCreator}
+    from '../../redux/store';
 import {MessageItem} from "./MessageItem";
+import {connect} from "react-redux";
+import {RootStateType} from "../../redux/redux-store";
 
+type MapStatePropsType = {
+    newMessageTextForDialog: string
+}
+type MapDispatchPropsType = {
+    sendMessageHandler: () => void
+    onChangeMessageText: (textareaMessage: string) => void
+}
 type MessagesType = {
     myMessages: Array<MessagesArray>
     newMessageTextForDialog: string
-    dispatch: (action: ActionsType) => void
 }
 
-{/* <div>{props.textProps.map((elem) => elem.text)}</div>; */}
+export type MessageItemType = MapStatePropsType & MapDispatchPropsType & MessagesType
 
-export const MessageItemContainer = (props: MessagesType) => {
-
-    const sendMessageHandler = () => {
-        props.dispatch(sendMessageActionCreator());
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        newMessageTextForDialog: state.dialogsPage.newMessageTextForDialog
     }
-    const onChangeMessageText = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        let textareaMessage = event.currentTarget.value;
-        props.dispatch(updateNewDialogTextActionCreator(textareaMessage));
-
-        /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
-
-        /*let textareaMessage = event.currentTarget.value;
-        let action = updateNewDialogTextActionCreator(textareaMessage);
-        props.dispatch(action);*/
+}
+const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
+    return {
+        sendMessageHandler: () => {
+            dispatch(sendMessageActionCreator());
+        },
+        onChangeMessageText: (textareaMessage: string) => {
+            dispatch(updateNewDialogTextActionCreator(textareaMessage));
+        }
     }
+}
 
-    return (
-        <MessageItem myMessages={props.myMessages}
-                     newMessageTextForDialog={props.newMessageTextForDialog}
-                     dispatch={props.dispatch}
-                     sendMessageHandler={sendMessageHandler}
-                     onChangeMessageText={onChangeMessageText}
-        />
-    )
-};
+export default connect(mapStateToProps, mapDispatchToProps)(MessageItem);

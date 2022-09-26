@@ -1,4 +1,9 @@
-import {ActionsType, MyPostsItemPropsType, ADD_POST, UPDATE_NEW_POST_TEXT} from "./store";
+import {
+    ActionsType,
+    MyPostsItemPropsType,
+    ADD_POST,
+    UPDATE_NEW_POST_TEXT
+} from "./store";
 import {v1} from "uuid";
 
 let initialState = {

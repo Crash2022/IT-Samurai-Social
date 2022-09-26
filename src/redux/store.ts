@@ -87,7 +87,7 @@ export const store: StoreType = {
 
         this._callSubscriber();
 
-        /*if (action.type === ADD_POST) {
+/*        if (action.type === ADD_POST) {
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",

@@ -1,20 +1,14 @@
 import React, {ChangeEvent} from "react";
 import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
-import {ActionsType, MessagesArray} from '../../redux/store';
 import {Button} from "../../UI/Button";
 import {v1} from "uuid";
+import {MessageItemType} from "./MessageItemContainer";
 
-type MessagesType = {
-    myMessages: Array<MessagesArray>
-    newMessageTextForDialog: string
-    dispatch: (action: ActionsType) => void
-    sendMessageHandler: () => void
-    onChangeMessageText: (event: ChangeEvent<HTMLTextAreaElement>) => void
-}
+export const MessageItem = (props: MessageItemType) => {
 
-{/* <div>{props.textProps.map((elem) => elem.text)}</div>; */}
-
-export const MessageItem = (props: MessagesType) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.onChangeMessageText(e.currentTarget.value)
+    }
 
     return (
         <>
@@ -29,7 +23,7 @@ export const MessageItem = (props: MessagesType) => {
                     <textarea className={classes.newMessage}
                               placeholder={'Введите сообщение...'}
                               value={props.newMessageTextForDialog}
-                              onChange={props.onChangeMessageText}
+                              onChange={onChangeHandler}
                     />
             </div>
             <div className={classes.sendButton}>

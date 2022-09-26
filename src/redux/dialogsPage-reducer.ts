@@ -1,18 +1,16 @@
-import React from 'react';
 import {
     ActionsType,
-    ADD_POST, DialogsPropsType,
-    RootDataStateType,
+    DialogsPropsType,
+    //RootDataStateType,
     SEND_DIALOG_TEXT,
-    UPDATE_NEW_DIALOG_TEXT,
-    UPDATE_NEW_POST_TEXT
+    UPDATE_NEW_DIALOG_TEXT
 } from "./store";
 import {v1} from "uuid";
 
-export type dialogsPageReducerType = {
+/*export type dialogsPageReducerType = {
     state: RootDataStateType
     action: ActionsType
-}
+}*/
 
 let initialState = {
     dialogsData: [

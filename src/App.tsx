@@ -11,16 +11,14 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
-import {RootDataStateType, ActionsType, StoreType} from "./redux/store";
-//import {RootStateType} from "./redux/redux-store";
+import {RootDataStateType, ActionsType} from "./redux/store";
 
 export type AppPropsType = {
     state: RootDataStateType
     dispatch: (action: ActionsType) => void
-    store: StoreType
 }
 
-export const App: FC<AppPropsType> = ({state, dispatch, store}) => {
+export const App: FC<AppPropsType> = ({state, dispatch}) => {
     return (
         <div className="wrapper">
             <Header/>
@@ -28,15 +26,14 @@ export const App: FC<AppPropsType> = ({state, dispatch, store}) => {
             <div className="right__main">
                 {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
                 <Route path={"/profile"} render={() => <Profile
-                    store={store}
                     myPosts={state.myPostPage.user1}
-                    dispatch={dispatch}
-                    newPostText={state.myPostPage.newPostText}/>}/>
+                    newPostText={state.myPostPage.newPostText}
+                />}/>
                 <Route path={"/messages"} render={() => <Messages
                     myDialogs={state.dialogsPage.dialogsData}
                     myMessages={state.dialogsPage.messagesData}
                     newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}
-                    dispatch={dispatch}/>}/>
+                />}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>

@@ -1,11 +1,10 @@
-import React from 'react';
 import {ActionsType, RootDataStateType, SideBarPropsType} from "./store";
 import {v1} from "uuid";
 
-export type sidebarType = {
+/*export type sidebarType = {
     state: RootDataStateType
     action: ActionsType
-}
+}*/
 
 let initialState = {
     friendsData: [
@@ -17,6 +16,5 @@ let initialState = {
 }
 
 export const sidebarReducer = ( state: SideBarPropsType = initialState, action: ActionsType) => {
-
     return state;
 }
