@@ -6,23 +6,27 @@ import {Button} from "../../../UI/Button";
 import {
     addPostActionCreator,
     updateNewPostActionCreator,
-    ActionsType
+    ActionsType, UserMessageType, StoreType
 } from "../../../redux/store";
 
 type MyPostsAddType = {
-    newPostText: string
-    dispatch: (action: ActionsType) => void
+    newPostText?: string
+    //dispatch: (action: ActionsType) => void
+    updateNewPostText: (textareaValue: string) => void
+    addPostMessage: () => void
+    myPosts: UserMessageType[]
+    store: StoreType
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {
 
   const onAddPostMessage = () => {
       //props.dispatch(addPostActionCreator());
-      props.addPost();
+      addPostActionCreator();
   }
   const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
       let textareaValue = event.currentTarget.value;
-      props.updateNewPostText(textareaValue);
+      updateNewPostActionCreator(textareaValue);
       /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
 
       //let action = updateNewPostActionCreator(textareaValue);

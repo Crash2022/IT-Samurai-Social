@@ -11,14 +11,15 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
-import {RootDataStateType, ActionsType} from "./redux/store";
+import {RootDataStateType, ActionsType, StoreType} from "./redux/store";
 
 export type AppPropsType = {
     state: RootDataStateType
     dispatch: (action: ActionsType) => void
+    store: StoreType
 }
 
-export const App:FC<AppPropsType> = ({state, dispatch}) => {
+export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
     return (
             <div className="wrapper">
                 <Header/>
@@ -26,6 +27,7 @@ export const App:FC<AppPropsType> = ({state, dispatch}) => {
                 <div className="right__main">
                     {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
                     <Route path={"/profile"} render={ () => <Profile
+                        store={store}
                         myPosts={state.myPostPage.user1}
                         dispatch={dispatch}
                         newPostText={state.myPostPage.newPostText} /> }/>

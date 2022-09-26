@@ -68,7 +68,7 @@ const state: RootDataStateType = {
     }
 }
 
-export const store = {
+export const store: StoreType = {
     _state: state,
     _callSubscriber() {
         return this._state;
@@ -115,6 +115,15 @@ export const store = {
     }
 }
 
+export type StoreType = {
+    _state: RootDataStateType
+    _callSubscriber: () => RootDataStateType
+    getState: () => RootDataStateType
+    //subscribe (observer: () => void) => void
+    subscribe: any
+    dispatch: (action: ActionsType) => void
+}
+
 export const addPostActionCreator = () => ({
     type: ADD_POST
 } as const)
@@ -134,7 +143,6 @@ export const updateNewDialogTextActionCreator = (textareaMessage: string) => ({
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
     dialogsPage: DialogsPropsType
-    /*newPostText: string*/
     sidebar: SideBarPropsType
 }
 
@@ -185,5 +193,3 @@ export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
 export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextActionCreator>
 
 export type ActionsType = AddPostACType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType
-
-export default store;
