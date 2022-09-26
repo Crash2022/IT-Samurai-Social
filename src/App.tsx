@@ -20,28 +20,29 @@ export type AppPropsType = {
     store: StoreType
 }
 
-export const App:FC<AppPropsType> = ({state, dispatch, store}) => {
+export const App: FC<AppPropsType> = ({state, dispatch, store}) => {
     return (
-            <div className="wrapper">
-                <Header/>
-                <Navbar friendsList={state.sidebar.friendsData}/>
-                <div className="right__main">
-                    {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
-                    <Route path={"/profile"} render={ () => <Profile
-                        store={store}
-                        myPosts={state.myPostPage.user1}
-                        dispatch={dispatch}
-                        newPostText={state.myPostPage.newPostText} /> }/>
-                    <Route path={"/messages"} render={ () => <Messages
-                        myDialogs={state.dialogsPage.dialogsData}
-                        myMessages={state.dialogsPage.messagesData}
-                        newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}
-                        dispatch={dispatch}/> }/>
-                    <Route path={"/news"} render={ () => <News/> }/>
-                    <Route path={"/music"} render={ () => <Music/> }/>
-                    <Route path={"/settings"} render={ () => <Settings/> }/>
-                </div>
-                <Footer />
+        <div className="wrapper">
+            <Header/>
+            <Navbar friendsList={state.sidebar.friendsData}/>
+            <div className="right__main">
+                {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
+                <Route path={"/profile"} render={() => <Profile
+                    store={store}
+                    myPosts={state.myPostPage.user1}
+                    dispatch={dispatch}
+                    newPostText={state.myPostPage.newPostText}/>}/>
+                <Route path={"/messages"} render={() => <Messages
+                    store={store}
+                    myDialogs={state.dialogsPage.dialogsData}
+                    myMessages={state.dialogsPage.messagesData}
+                    newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}
+                    dispatch={dispatch}/>}/>
+                <Route path={"/news"} render={() => <News/>}/>
+                <Route path={"/music"} render={() => <Music/>}/>
+                <Route path={"/settings"} render={() => <Settings/>}/>
             </div>
+            <Footer/>
+        </div>
     );
 }

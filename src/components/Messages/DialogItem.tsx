@@ -5,7 +5,7 @@ import classes from "./Messages.module.css";
 import {DialogsArray} from '../../redux/store';
 
 type MessagesType = {
-  mydialogs: Array<DialogsArray>
+  myDialogs: Array<DialogsArray>
 }
 
 export const DialogItem = (props: MessagesType) => {
@@ -13,7 +13,7 @@ export const DialogItem = (props: MessagesType) => {
 
   return (
     <>
-      {props.mydialogs.map(dialog => {
+      {props.myDialogs.map(dialog => {
         return (
           <div>
             <NavLink to={'/messages/' + dialog.id} activeClassName={classes.activeLink}>
