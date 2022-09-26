@@ -2,36 +2,18 @@ import React from "react";
 import {ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
-
-import {
-    addPostActionCreator,
-    updateNewPostActionCreator,
-    ActionsType, StoreType
-} from "../../../redux/store";
+import {ActionsType, StoreType, UserMessageType} from "../../../redux/store";
 
 //import {RootStateType} from "../../../redux/redux-store";
 
 type MyPostsAddType = {
     newPostText: string
     dispatch: (action: ActionsType) => void
-    store: StoreType
+    onAddPostMessage: () => void
+    onChangePostMessage: (event: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 export const MyPostsAdd = (props: MyPostsAddType) => {
-
-    const onAddPostMessage = () => {
-        props.dispatch(addPostActionCreator());
-    }
-
-    const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        let textareaValue = event.currentTarget.value;
-        props.dispatch(updateNewPostActionCreator(textareaValue));
-
-        /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
-
-        //let action = updateNewPostActionCreator(textareaValue);
-        //props.dispatch(action);
-    }
 
     return (
         <>
@@ -40,16 +22,16 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
                     <span>Мои записи</span>
                 </div>
                 <div className={classes.content__myposts_add}>
-            <textarea className={classes.newMessage}
-                      placeholder={'Введите текст...'}
-                      value={props.newPostText}
-                      onChange={onChangePostMessage}
-            />
+                    <textarea className={classes.newMessage}
+                              placeholder={'Введите текст...'}
+                              value={props.newPostText}
+                              onChange={props.onChangePostMessage}
+                    />
                     {/*<Textarea textareaValue={textareaValue} setTextareaValue={setTextareaValue}/>*/}
                 </div>
                 <div className={classes.sendButton}>
                     {/*<button onClick={addPost}>Add post</button>*/}
-                    <Button name={'Добавить запись'} callBack={onAddPostMessage}/>
+                    <Button name={'Добавить запись'} callBack={props.onAddPostMessage}/>
                 </div>
             </div>
         </>

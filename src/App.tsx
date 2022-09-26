@@ -33,7 +33,6 @@ export const App: FC<AppPropsType> = ({state, dispatch, store}) => {
                     dispatch={dispatch}
                     newPostText={state.myPostPage.newPostText}/>}/>
                 <Route path={"/messages"} render={() => <Messages
-                    store={store}
                     myDialogs={state.dialogsPage.dialogsData}
                     myMessages={state.dialogsPage.messagesData}
                     newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}

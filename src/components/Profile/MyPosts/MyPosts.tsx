@@ -6,7 +6,7 @@ import {MyPostsAddContainer} from "./MyPostsAddContainer";
 //import store, {RootStateType} from "../../../redux/redux-store";
 
 type ProfileType = {
-    myPosts: UserMessageType[]
+    myPosts: Array<UserMessageType>
     dispatch: (action: ActionsType) => void
     newPostText: string
     store: StoreType
@@ -18,7 +18,9 @@ export const MyPosts = (props: ProfileType) => {
             {/* <MyPostsAdd
            dispatch={props.dispatch}
            newPostText={props.newPostText}/>*/}
-            <MyPostsAddContainer store={props.store} dispatch={props.dispatch}/>
+            <MyPostsAddContainer dispatch={props.dispatch}
+                                 newPostText={props.newPostText}
+            />
             <MyPostsList myPosts={props.myPosts}/>
         </>
     );

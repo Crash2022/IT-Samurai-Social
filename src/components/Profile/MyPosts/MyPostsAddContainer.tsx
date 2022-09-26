@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 //import {ChangeEvent} from "react";
 import {MyPostsAdd} from "./MyPostsAdd";
 
@@ -13,25 +13,30 @@ import {
 
 type MyPostsAddType = {
     dispatch: (action: ActionsType) => void
-    store: StoreType
+    newPostText: string
 }
 
 export const MyPostsAddContainer = (props: MyPostsAddType) => {
 
-  let state = props.store.getState();
+    const onAddPostMessage = () => {
+        props.dispatch(addPostActionCreator());
+    }
 
-  const addPostMessage = () => {
-      props.store.dispatch(addPostActionCreator());
-  }
-  const onChangePostMessage = (textareaValue: string) => {
-      let action = updateNewPostActionCreator(textareaValue);
-      props.store.dispatch(action);
-  }
+    const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        let textareaValue = event.currentTarget.value;
+        props.dispatch(updateNewPostActionCreator(textareaValue));
 
-  return (
-      <MyPostsAdd store={props.store}
-                  newPostText={state.myPostPage.newPostText}
-                  dispatch={props.dispatch}
-      />
-  );
+        /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: textareaValue});*/
+
+        //let action = updateNewPostActionCreator(textareaValue);
+        //props.dispatch(action);
+    }
+
+    return (
+        <MyPostsAdd newPostText={props.newPostText}
+                    dispatch={props.dispatch}
+                    onAddPostMessage={onAddPostMessage}
+                    onChangePostMessage={onChangePostMessage}
+        />
+    );
 }

@@ -1,16 +1,15 @@
 import React from "react";
 import classes from './MyPostsItem.module.css';
-
 import {UserMessageType} from "../../../redux/store";
 
 type ProfileType = {
-    myposts: UserMessageType[]
+    myPosts: Array<UserMessageType>
 }
 
 export const MyPostsItem = (props: ProfileType) => {
     return (
         <>
-            {props.myposts.map((elem) => {
+            {props.myPosts.map( elem => {
                 return (
                         <div key={elem.id}>
                             <div className={classes.postitem}>
