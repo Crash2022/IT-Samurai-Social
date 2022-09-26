@@ -48,7 +48,7 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
         case SEND_DIALOG_TEXT:
             let newDialogMessageText = state.newMessageTextForDialog;
             state.newMessageTextForDialog = '';
-            state.messagesData.push({id: v1(), text: newDialogMessageText});
+            state.messagesData.unshift({id: v1(), text: newDialogMessageText});
             return state;
         case UPDATE_NEW_DIALOG_TEXT:
             state.newMessageTextForDialog = action.newDialogMessageText;

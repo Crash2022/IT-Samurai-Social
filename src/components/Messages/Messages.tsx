@@ -1,9 +1,7 @@
 import React from "react";
 import classes from "./Messages.module.css";
-
 import {DialogItem} from "./DialogItem";
 import {MessageItem} from "./MessageItem";
-
 import {ActionsType, DialogsArray, MessagesArray, StoreType} from '../../redux/store';
 import {MessageItemContainer} from "./MessageItemContainer";
 

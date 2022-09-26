@@ -2,20 +2,18 @@ import React from "react";
 import {ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
-//import {Textarea} from "../../../UI/Textarea";
+
 import {
     addPostActionCreator,
     updateNewPostActionCreator,
-    ActionsType, UserMessageType, StoreType
+    ActionsType, StoreType
 } from "../../../redux/store";
-import {RootStateType} from "../../../redux/redux-store";
+
+//import {RootStateType} from "../../../redux/redux-store";
 
 type MyPostsAddType = {
-    newPostText?: string
+    newPostText: string
     dispatch: (action: ActionsType) => void
-    updateNewPostText: (textareaValue: string) => void
-    addPostMessage: () => void
-    myPosts: UserMessageType[]
     store: StoreType
 }
 
@@ -23,8 +21,8 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
 
     const onAddPostMessage = () => {
         props.dispatch(addPostActionCreator());
-        //addPostActionCreator();
     }
+
     const onChangePostMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
         let textareaValue = event.currentTarget.value;
         props.dispatch(updateNewPostActionCreator(textareaValue));

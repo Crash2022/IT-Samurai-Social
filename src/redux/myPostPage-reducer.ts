@@ -68,7 +68,7 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
                 likes: 0,
                 dislikes: 0
             };
-            state.user1.push(newPost);
+            state.user1.unshift(newPost);
             state.newPostText = '';
             return state;
         case UPDATE_NEW_POST_TEXT:

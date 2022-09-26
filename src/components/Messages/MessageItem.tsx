@@ -1,12 +1,13 @@
 import React, {ChangeEvent} from "react";
-//import classes from "./Messages.module.css";
 
 import {
-    ActionsType, addPostActionCreator,
+    ActionsType,
     MessagesArray,
-    sendMessageActionCreator, StoreType,
+    StoreType,
+    sendMessageActionCreator,
     updateNewDialogTextActionCreator
 } from '../../redux/store';
+
 import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
 import {Button} from "../../UI/Button";
 
@@ -15,10 +16,6 @@ type MessagesType = {
     newMessageTextForDialog: string
     dispatch: (action: ActionsType) => void
     store: StoreType
-    //textareaMessage: string
-    updateNewDialogText: (textareaMessage: string) => void
-    sendMessage: () => void
-    dialogsPage: any
 }
 
 {/* <div>{props.textProps.map((elem) => elem.text)}</div>; */}
@@ -28,8 +25,6 @@ export const MessageItem = (props: MessagesType) => {
     //let state = props.dialogsPage.messagesData;
 
     const sendMessageHandler = () => {
-        //props.dispatch(sendMessageActionCreator());
-
         props.dispatch(sendMessageActionCreator());
     }
     const onChangeMessageText = (event: ChangeEvent<HTMLTextAreaElement>) => {
