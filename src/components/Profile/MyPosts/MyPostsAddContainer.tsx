@@ -1,12 +1,6 @@
 import React, {ChangeEvent} from "react";
-//import {ChangeEvent} from "react";
 import {MyPostsAdd} from "./MyPostsAdd";
-
-import {
-    addPostActionCreator,
-    updateNewPostActionCreator,
-    ActionsType, StoreType
-} from "../../../redux/store";
+import {addPostActionCreator, updateNewPostActionCreator, ActionsType} from "../../../redux/store";
 
 //import {RootStateType} from "../../../redux/redux-store";
 //import {store} from '../../../redux/redux-store';

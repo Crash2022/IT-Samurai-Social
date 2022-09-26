@@ -25,7 +25,7 @@ export const MessageItem = (props: MessagesType) => {
                   </div>
               )
             })}
-            <div className={classes.content__myposts_add}>
+            <div className={classes.content__myPosts_add}>
                     <textarea className={classes.newMessage}
                               placeholder={'Введите сообщение...'}
                               value={props.newMessageTextForDialog}

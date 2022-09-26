@@ -1,4 +1,4 @@
-.postitem {
+.postItem {
   display: flex;
   /* margin-bottom: 0px; */
   align-items: center;
@@ -11,7 +11,7 @@
   margin-right: 20px;
 }
 
-.userinfo {
+.userInfo {
   display: flex;
   flex-direction: column;
 }

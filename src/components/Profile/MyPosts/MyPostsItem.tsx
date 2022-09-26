@@ -12,11 +12,11 @@ export const MyPostsItem = (props: ProfileType) => {
             {props.myPosts.map( elem => {
                 return (
                         <div key={elem.id}>
-                            <div className={classes.postitem}>
+                            <div className={classes.postItem}>
                                 <div className={classes.avatar}>
                                     <img src={elem.avatar} alt=""></img>
                                 </div>
-                                <div className={classes.userinfo}>
+                                <div className={classes.userInfo}>
                                     <div className={classes.nickname}>
                                         {elem.nickname}
                                     </div>

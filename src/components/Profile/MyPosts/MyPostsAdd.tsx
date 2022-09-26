@@ -17,11 +17,11 @@ export const MyPostsAdd = (props: MyPostsAddType) => {
 
     return (
         <>
-            <div className={classes.content__myposts}>
-                <div className={classes.content__myposts_title}>
+            <div className={classes.content__myPosts}>
+                <div className={classes.content__myPosts_title}>
                     <span>Мои записи</span>
                 </div>
-                <div className={classes.content__myposts_add}>
+                <div className={classes.content__myPosts_add}>
                     <textarea className={classes.newMessage}
                               placeholder={'Введите текст...'}
                               value={props.newPostText}
