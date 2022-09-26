@@ -1,10 +1,5 @@
-import {ActionsType, RootDataStateType, SideBarPropsType} from "./store";
+import {ActionsType, SideBarPropsType} from "./store";
 import {v1} from "uuid";
-
-/*export type sidebarType = {
-    state: RootDataStateType
-    action: ActionsType
-}*/
 
 let initialState = {
     friendsData: [
