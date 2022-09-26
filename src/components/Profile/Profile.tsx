@@ -3,6 +3,7 @@ import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
 import {UserMessageType, ActionsType, StoreType} from "../../redux/store";
+import {RootStateType} from "../../redux/redux-store";
 
 type ProfileType = {
     myPosts: UserMessageType[]

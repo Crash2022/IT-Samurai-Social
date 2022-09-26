@@ -7,13 +7,14 @@ import {
     updateNewPostActionCreator,
     ActionsType, UserMessageType, StoreType
 } from "../../../redux/store";
+import {RootStateType} from "../../../redux/redux-store";
 
 //import {store} from '../../../redux/redux-store';
 
 type MyPostsAddType = {
     //newPostText: string
     //dispatch: (action: ActionsType) => void
-    myPosts: UserMessageType[]
+    //myPosts: UserMessageType[]
     store: StoreType
 }
 

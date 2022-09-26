@@ -3,7 +3,7 @@ import React from "react";
 import {MyPostsList} from "./MyPostsList";
 import {ActionsType, StoreType, UserMessageType} from "../../../redux/store";
 import {MyPostsAddContainer} from "./MyPostsAddContainer";
-import store from "../../../redux/redux-store";
+import store, {RootStateType} from "../../../redux/redux-store";
 
 type ProfileType = {
     myPosts: UserMessageType[]

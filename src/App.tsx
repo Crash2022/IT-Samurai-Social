@@ -12,6 +12,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
 import {RootDataStateType, ActionsType, StoreType} from "./redux/store";
+//import {RootStateType} from "./redux/redux-store";
 
 export type AppPropsType = {
     state: RootDataStateType

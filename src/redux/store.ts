@@ -119,8 +119,7 @@ export type StoreType = {
     _state: RootDataStateType
     _callSubscriber: () => RootDataStateType
     getState: () => RootDataStateType
-    //subscribe (observer: () => void) => void
-    subscribe: any
+    subscribe: (observer: () => void) => void
     dispatch: (action: ActionsType) => void
 }
 

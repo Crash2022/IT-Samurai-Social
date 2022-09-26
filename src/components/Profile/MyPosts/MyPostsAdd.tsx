@@ -8,6 +8,7 @@ import {
     updateNewPostActionCreator,
     ActionsType, UserMessageType, StoreType
 } from "../../../redux/store";
+import {RootStateType} from "../../../redux/redux-store";
 
 type MyPostsAddType = {
     newPostText?: string
