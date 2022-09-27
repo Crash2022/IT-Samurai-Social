@@ -15,7 +15,7 @@ export const Header = () => {
                 </NavLink>
             </div>
             <div className={classes.header__socialName}>
-                Социальная сеть для веломанов
+                Социальная сеть для джедаев
             </div>
         </header>
     );
