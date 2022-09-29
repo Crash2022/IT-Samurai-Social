@@ -3,6 +3,7 @@ import {MyPostsAdd} from "./MyPostsAdd";
 import {ActionsType, addPostAC, updateNewPostAC} from "../../../redux/store";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
+import {MyPostsList} from "./MyPostsList";
 
 type MapStatePropsType = {
     newPostText: string
@@ -30,4 +31,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyPostsAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(MyPostsAdd, MyPostsList);

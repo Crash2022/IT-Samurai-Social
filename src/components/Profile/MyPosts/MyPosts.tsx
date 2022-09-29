@@ -1,7 +1,8 @@
 import React from "react";
 import {MyPostsList} from "./MyPostsList";
 import {UserMessageType} from "../../../redux/store";
-import MyPostsAddContainer from "./MyPostsAddContainer";
+import MyPostsAddContainer from "./MyPostsContainer";
+import {MyPostsAdd} from "./MyPostsAdd";
 
 type ProfileType = {
     myPosts: Array<UserMessageType>
@@ -10,8 +11,9 @@ type ProfileType = {
 export const MyPosts = (props: ProfileType) => {
     return (
         <>
-            <MyPostsAddContainer />
-            <MyPostsList myPosts={props.myPosts}/>
+            <MyPostsAdd/>
+            <MyPostsList/>
+            {/*<MyPostsList myPosts={props.myPosts}/>*/}
         </>
     );
 }

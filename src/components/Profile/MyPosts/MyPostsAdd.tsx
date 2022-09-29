@@ -2,7 +2,7 @@ import React from "react";
 import {ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
-import {MyPostAddType} from "./MyPostsAddContainer";
+import {MyPostAddType} from "./MyPostsContainer";
 
 export const MyPostsAdd = (props: MyPostAddType) => {
 

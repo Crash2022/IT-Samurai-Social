@@ -12,6 +12,7 @@ export const MyPostsList = (props: ProfileType) => {
     return (
         <>
             <div className={classes.content__postList}>
+                {/*<MyPostsItem myPosts={props.myPosts}/>*/}
                 <MyPostsItem myPosts={props.myPosts}/>
             </div>
         </>
