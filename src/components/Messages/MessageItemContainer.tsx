@@ -1,5 +1,6 @@
 import React, {Dispatch} from "react";
-import {ActionsType, MessagesArray, sendMessageActionCreator, updateNewDialogTextActionCreator}
+import {ActionsType, MessagesArray,
+    sendMessageActionCreator, updateNewDialogTextActionCreator}
     from '../../redux/store';
 import {MessageItem} from "./MessageItem";
 import {connect} from "react-redux";

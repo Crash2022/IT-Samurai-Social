@@ -122,22 +122,6 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-export const addPostActionCreator = () => ({
-    type: ADD_POST
-} as const)
-export const updateNewPostActionCreator = (textareaValue: string) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: textareaValue
-} as const )
-
-export const sendMessageActionCreator = () => ({
-    type: SEND_DIALOG_TEXT
-} as const)
-export const updateNewDialogTextActionCreator = (textareaMessage: string) => ({
-    type: UPDATE_NEW_DIALOG_TEXT,
-    newDialogMessageText: textareaMessage
-} as const)
-
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
     dialogsPage: DialogsPropsType
@@ -179,6 +163,22 @@ export type SidebarFriendsType = {
     name: string
     avatar: string
 }
+
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+} as const)
+export const updateNewPostActionCreator = (textareaValue: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: textareaValue
+} as const )
+
+export const sendMessageActionCreator = () => ({
+    type: SEND_DIALOG_TEXT
+} as const)
+export const updateNewDialogTextActionCreator = (textareaMessage: string) => ({
+    type: UPDATE_NEW_DIALOG_TEXT,
+    newDialogMessageText: textareaMessage
+} as const)
 
 export const ADD_POST = 'ADD-POST'
 export type AddPostACType = ReturnType<typeof addPostActionCreator>
