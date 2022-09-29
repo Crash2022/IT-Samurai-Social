@@ -7,6 +7,7 @@ type ProfileType = {
 }
 
 export const MyPostsItem = (props: ProfileType) => {
+    console.log(props.myPosts,"-myPosts")
     return (
         <>
             {props.myPosts.map( elem => {

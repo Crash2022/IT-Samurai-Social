@@ -164,30 +164,30 @@ export type SidebarFriendsType = {
     avatar: string
 }
 
-export const addPostActionCreator = () => ({
+export const addPostAC = () => ({
     type: ADD_POST
 } as const)
-export const updateNewPostActionCreator = (textareaValue: string) => ({
+export const updateNewPostAC = (textareaValue: string) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: textareaValue
 } as const )
 
-export const sendMessageActionCreator = () => ({
+export const sendMessageAC = () => ({
     type: SEND_DIALOG_TEXT
 } as const)
-export const updateNewDialogTextActionCreator = (textareaMessage: string) => ({
+export const updateNewDialogTextAC = (textareaMessage: string) => ({
     type: UPDATE_NEW_DIALOG_TEXT,
     newDialogMessageText: textareaMessage
 } as const)
 
 export const ADD_POST = 'ADD-POST'
-export type AddPostACType = ReturnType<typeof addPostActionCreator>
+export type AddPostACType = ReturnType<typeof addPostAC>
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-export type ActionChangeType = ReturnType<typeof updateNewPostActionCreator>
+export type ActionChangeType = ReturnType<typeof updateNewPostAC>
 
 export const SEND_DIALOG_TEXT = 'SEND_DIALOG_TEXT'
-export type ActionSendMessageType = ReturnType<typeof sendMessageActionCreator>
+export type ActionSendMessageType = ReturnType<typeof sendMessageAC>
 export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
-export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextActionCreator>
+export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>
 
 export type ActionsType = AddPostACType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType

@@ -1,6 +1,6 @@
 import React, {Dispatch} from "react";
 import {ActionsType, MessagesArray,
-    sendMessageActionCreator, updateNewDialogTextActionCreator}
+    sendMessageAC, updateNewDialogTextAC}
     from '../../redux/store';
 import {MessageItem} from "./MessageItem";
 import {connect} from "react-redux";
@@ -28,10 +28,10 @@ const mapStateToProps = (state: RootStateType) => {
 const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     return {
         sendMessageHandler: () => {
-            dispatch(sendMessageActionCreator());
+            dispatch(sendMessageAC());
         },
         onChangeMessageText: (textareaMessage: string) => {
-            dispatch(updateNewDialogTextActionCreator(textareaMessage));
+            dispatch(updateNewDialogTextAC(textareaMessage));
         }
     }
 }

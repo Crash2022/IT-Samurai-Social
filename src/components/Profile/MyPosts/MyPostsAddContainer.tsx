@@ -1,6 +1,6 @@
 import React, {Dispatch} from "react";
 import {MyPostsAdd} from "./MyPostsAdd";
-import {ActionsType, sendMessageActionCreator, updateNewDialogTextActionCreator} from "../../../redux/store";
+import {ActionsType, addPostAC, updateNewPostAC} from "../../../redux/store";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
 
@@ -22,10 +22,10 @@ const mapStateToProps = (state: RootStateType) => {
 const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     return {
         onAddPostMessage: () => {
-            dispatch(sendMessageActionCreator());
+            dispatch(addPostAC());
         },
         onChangePostMessage: (textareaValue: string) => {
-            dispatch(updateNewDialogTextActionCreator(textareaValue));
+            dispatch(updateNewPostAC(textareaValue));
         }
     }
 }

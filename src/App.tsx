@@ -14,26 +14,20 @@ import {Footer} from "./components/Footer/Footer";
 import {RootDataStateType, ActionsType} from "./redux/store";
 
 export type AppPropsType = {
-    state: RootDataStateType
-    dispatch: (action: ActionsType) => void
+    // state: RootDataStateType
+    // dispatch: (action: ActionsType) => void
 }
 
-export const App: FC<AppPropsType> = ({state, dispatch}) => {
+export const App: FC<AppPropsType> = ({}) => {
+
     return (
         <div className="wrapper">
             <Header/>
-            <Navbar friendsList={state.sidebar.friendsData}/>
+            <Navbar/>
             <div className="right__main">
                 {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
-                <Route path={"/profile"} render={() => <Profile
-                    myPosts={state.myPostPage.user1}
-                    newPostText={state.myPostPage.newPostText}
-                />}/>
-                <Route path={"/messages"} render={() => <Messages
-                    myDialogs={state.dialogsPage.dialogsData}
-                    myMessages={state.dialogsPage.messagesData}
-                    newMessageTextForDialog={state.dialogsPage.newMessageTextForDialog}
-                />}/>
+                <Route path={"/profile"} render={() => <Profile/>}/>
+                <Route path={"/messages"} render={() => <Messages/>}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
@@ -42,3 +36,4 @@ export const App: FC<AppPropsType> = ({state, dispatch}) => {
         </div>
     );
 }
+

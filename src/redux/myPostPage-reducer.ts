@@ -64,7 +64,8 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
 }*/
 
     switch(action.type) {
-        case ADD_POST:
+        case ADD_POST: {
+            debugger
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -73,13 +74,18 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
                 likes: 0,
                 dislikes: 0
             };
-            state.user1.unshift(newPost);
-            state.newPostText = '';
-            return state;
-        case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            return state;
+            let stateCopy = {...state, user1: [...state.user1, newPost]};
+            stateCopy.newPostText = '';
+            console.log(state.user1,"- state")
+            console.log(stateCopy.user1,"-new state")
+            return stateCopy;
+        }
+        case UPDATE_NEW_POST_TEXT: {
+            let stateCopy = {...state};
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
         default:
             return state;
-    }
+        }
 }
