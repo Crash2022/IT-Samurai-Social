@@ -7,7 +7,7 @@ import {
 import {v1} from "uuid";
 
 let initialState = {
-    user1: [
+    myPosts: [
         {
             id: v1(),
             avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -74,10 +74,10 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
                 likes: 0,
                 dislikes: 0
             };
-            let stateCopy = {...state, user1: [...state.user1, newPost]};
+            let stateCopy = {...state, myPosts: [...state.myPosts, newPost]};
             stateCopy.newPostText = '';
-            console.log(state.user1,"- state")
-            console.log(stateCopy.user1,"-new state")
+            console.log(state.myPosts,"- state")
+            console.log(stateCopy.myPosts,"-new state")
             return stateCopy;
         }
         case UPDATE_NEW_POST_TEXT: {

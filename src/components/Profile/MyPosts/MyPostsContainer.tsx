@@ -1,12 +1,13 @@
 import React, {Dispatch} from "react";
-import {MyPostsAdd} from "./MyPostsAdd";
-import {ActionsType, addPostAC, updateNewPostAC} from "../../../redux/store";
+//import {MyPostsAdd} from "./MyPostsAdd";
+import {ActionsType, addPostAC, updateNewPostAC, UserMessageType} from "../../../redux/store";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
-import {MyPostsList} from "./MyPostsList";
+import {MyPosts} from "./MyPosts";
 
 type MapStatePropsType = {
     newPostText: string
+    myPosts: Array<UserMessageType>
 }
 type MapDispatchPropsType = {
     onAddPostMessage: () => void
@@ -17,7 +18,8 @@ export type MyPostAddType = MapStatePropsType & MapDispatchPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        newPostText: state.myPostPage.newPostText
+        newPostText: state.myPostPage.newPostText,
+        myPosts: state.myPostPage.myPosts
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
@@ -31,4 +33,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyPostsAdd, MyPostsList);
+export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);

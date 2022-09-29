@@ -2,9 +2,14 @@ import React from "react";
 import {ChangeEvent} from "react";
 import classes from './MyPostsAdd.module.css';
 import {Button} from "../../../UI/Button";
-import {MyPostAddType} from "./MyPostsContainer";
 
-export const MyPostsAdd = (props: MyPostAddType) => {
+type MyPostAddPropsType = {
+    newPostText: string
+    onAddPostMessage: () => void
+    onChangePostMessage: (textareaValue: string) => void
+}
+
+export const MyPostsAdd = (props: MyPostAddPropsType) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onChangePostMessage(e.currentTarget.value)

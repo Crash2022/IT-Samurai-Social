@@ -11,14 +11,7 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 
-import {RootDataStateType, ActionsType} from "./redux/store";
-
-export type AppPropsType = {
-    // state: RootDataStateType
-    // dispatch: (action: ActionsType) => void
-}
-
-export const App: FC<AppPropsType> = ({}) => {
+export const App: FC = () => {
 
     return (
         <div className="wrapper">

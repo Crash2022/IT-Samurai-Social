@@ -2,11 +2,11 @@ import React from "react";
 import classes from './MyPostsItem.module.css';
 import {UserMessageType} from "../../../redux/store";
 
-type ProfileType = {
+type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
 }
 
-export const MyPostsItem = (props: ProfileType) => {
+export const MyPostsItem = (props: MyPostsItemPropsType) => {
     console.log(props.myPosts,"-myPosts")
     return (
         <>

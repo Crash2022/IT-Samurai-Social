@@ -1,21 +1,13 @@
 import React from "react";
 import {MyProfile} from "./MyProfile/MyProfile";
-//import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css';
-import {UserMessageType, ActionsType} from "../../redux/store";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-type ProfileType = {
-    myPosts: UserMessageType[]
-    newPostText: string
-}
-
-export const Profile = (props: ProfileType) => {
+export const Profile = () => {
   return (
       <div className={classes.right__profile}>
-        <MyProfile />
-        {/*<MyPosts myPosts={props.myPosts} />*/}
-        <MyPostsContainer />
+        <MyProfile/>
+        <MyPostsContainer/>
       </div>
   );
 }

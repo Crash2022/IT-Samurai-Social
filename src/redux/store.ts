@@ -5,7 +5,7 @@ import {sidebarReducer} from "./sidebar-reducer";
 
 const state: RootDataStateType = {
     myPostPage: {
-        user1: [
+        myPosts: [
             {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -122,6 +122,8 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
+/*------------------------------------------------*/
+
 export type RootDataStateType = {
     myPostPage: MyPostsItemPropsType
     dialogsPage: DialogsPropsType
@@ -129,7 +131,7 @@ export type RootDataStateType = {
 }
 
 export type MyPostsItemPropsType = {
-    user1: Array<UserMessageType>
+    myPosts: Array<UserMessageType>
     newPostText: string
 }
 export type UserMessageType = {
