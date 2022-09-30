@@ -1,15 +1,16 @@
 import React from "react";
 import classes from './Navbar.module.css';
+import {NavbarFriendsContainerType} from "./NavbarFriendsContainer";
 import {SidebarFriendsType} from "../../redux/store";
 
-type NavbarPropsType = {
-    friendsList: Array<SidebarFriendsType>
+type NavbarFriendsPropsType = {
+    friendsData: Array<SidebarFriendsType>
 }
 
-export const NavbarFriends = (props: NavbarPropsType) => {
+export const NavbarFriends = (props: NavbarFriendsPropsType) => {
     return (
             <div className={classes.friendsWrapper}>
-                {props.friendsList.map(friend => {
+                {props.friendsData.map(friend => {
                     return (
                         <div className={classes.friendsItem} key={friend.id}>
                             <div className={classes.friendsName}>{friend.name}</div>
