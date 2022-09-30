@@ -2,6 +2,7 @@ import {v1} from "uuid";
 import {myPostPageReducer} from "./myPostPage-reducer";
 import {dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
+import {UserFollowACType, UserUnfollowACType} from "./users-reducer";
 
 /*---SELF-MADE REDUX---*/
 
@@ -168,6 +169,10 @@ export type SidebarFriendsType = {
     avatar: string
 }
 
+export type UsersPropsType = {
+    //
+}
+
 export const addPostAC = () => ({
     type: ADD_POST
 } as const)
@@ -194,4 +199,10 @@ export type ActionSendMessageType = ReturnType<typeof sendMessageAC>
 export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
 export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>
 
-export type ActionsType = AddPostACType | ActionChangeType | ActionSendMessageType | ActionUpdateMessageType
+export type ActionsType =
+    AddPostACType |
+    ActionChangeType |
+    ActionSendMessageType |
+    ActionUpdateMessageType |
+    UserFollowACType |
+    UserUnfollowACType

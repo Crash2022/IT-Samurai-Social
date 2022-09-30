@@ -8,18 +8,18 @@ import {v1} from "uuid";
 
 let initialState = {
     dialogsData: [
-        {id: v1(), name: "Neil Tunicliff"},
-        {id: v1(), name: "Craig Lee Scott"},
-        {id: v1(), name: "Ali Clarkson"},
-        {id: v1(), name: "Thomas Remvik Aasen"},
-        {id: v1(), name: "Damon Watson"}
+        {id: v1(), name: 'Neil Tunicliff'},
+        {id: v1(), name: 'Craig Lee Scott'},
+        {id: v1(), name: 'Ali Clarkson'},
+        {id: v1(), name: 'Thomas Remvik Aasen'},
+        {id: v1(), name: 'Damon Watson'}
     ],
     messagesData: [
-        {id: v1(), text: "Hello, Neil Tunicliff"},
-        {id: v1(), text: "Hello, Craig Lee Scott"},
-        {id: v1(), text: "Hello, Ali Clarkson"},
-        {id: v1(), text: "Hello, Thomas Remvik Aasen"},
-        {id: v1(), text: "Hello, Damon Watson"}
+        {id: v1(), text: 'Hello, Neil Tunicliff'},
+        {id: v1(), text: 'Hello, Craig Lee Scott'},
+        {id: v1(), text: 'Hello, Ali Clarkson'},
+        {id: v1(), text: 'Hello, Thomas Remvik Aasen'},
+        {id: v1(), text: 'Hello, Damon Watson'}
     ],
     newMessageTextForDialog: ''
 }

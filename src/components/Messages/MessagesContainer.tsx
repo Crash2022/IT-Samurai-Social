@@ -4,7 +4,7 @@ import { ActionsType, DialogsArray, MessagesArray,
     from '../../redux/store';
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {MessagesComponent} from "./MessagesComponent";
+import {Messages} from "./Messages";
 
 type MapStatePropsType = {
     newMessageTextForDialog: string
@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessagesComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
