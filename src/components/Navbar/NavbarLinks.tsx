@@ -1,13 +1,11 @@
 import React from "react";
-//import {NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import classes from './Navbar.module.css';
-import NavbarFriendsContainer from "./NavbarFriendsContainer";
-import {NavLinks} from "./NavbarLinks";
 
-export const Navbar = () => {
+export const NavLinks = () => {
     return (
         <nav className={classes.left__navMenu}>
-            {/*<div>
+            <div>
                 <NavLink to="/profile" activeClassName={classes.activeLink}>Профиль</NavLink>
             </div>
             <div>
@@ -21,13 +19,6 @@ export const Navbar = () => {
             </div>
             <div>
                 <NavLink to="/settings" activeClassName={classes.activeLink}>Настройки</NavLink>
-            </div>*/}
-
-            <div>
-                <NavLinks/>
-            </div>
-            <div>
-                <NavbarFriendsContainer/>
             </div>
         </nav>
     );

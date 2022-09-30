@@ -1,6 +1,5 @@
 import React from "react";
 import classes from './Navbar.module.css';
-import {NavbarFriendsContainerType} from "./NavbarFriendsContainer";
 import {SidebarFriendsType} from "../../redux/store";
 
 type NavbarFriendsPropsType = {
