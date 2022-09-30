@@ -1,5 +1,4 @@
 import React, {Dispatch} from "react";
-//import {MyPostsAdd} from "./MyPostsAdd";
 import {ActionsType, addPostAC, updateNewPostAC, UserMessageType} from "../../../redux/store";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
@@ -14,7 +13,7 @@ type MapDispatchPropsType = {
     onChangePostMessage: (textareaValue: string) => void
 }
 
-export type MyPostAddType = MapStatePropsType & MapDispatchPropsType
+export type MyPostsType = MapStatePropsType & MapDispatchPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {

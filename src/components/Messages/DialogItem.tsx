@@ -4,11 +4,11 @@ import classes from "./Messages.module.css";
 import {DialogsArray} from '../../redux/store';
 import {v1} from "uuid";
 
-type MessagesType = {
+type DialogItemPropsType = {
     myDialogs: Array<DialogsArray>
 }
 
-export const DialogItem = (props: MessagesType) => {
+export const DialogItem = (props: DialogItemPropsType) => {
     /* let path = '/messages/' + props.id; */
 
     return (

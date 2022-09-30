@@ -1,28 +1,33 @@
 import React, {Dispatch} from "react";
-import {ActionsType, MessagesArray,
-    sendMessageAC, updateNewDialogTextAC}
+import { ActionsType, DialogsArray, MessagesArray,
+    sendMessageAC, updateNewDialogTextAC }
     from '../../redux/store';
-import {MessageItem} from "./MessageItem";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
+import {MessagesComponent} from "./MessagesComponent";
 
 type MapStatePropsType = {
     newMessageTextForDialog: string
+    myDialogs: Array<DialogsArray>
+    myMessages: Array<MessagesArray>
 }
 type MapDispatchPropsType = {
     sendMessageHandler: () => void
     onChangeMessageText: (textareaMessage: string) => void
 }
-type MessagesType = {
-    myMessages: Array<MessagesArray>
-    newMessageTextForDialog: string
-}
+//type MessagesType = {
+    //myDialogs: Array<DialogsArray>
+    //myMessages: Array<MessagesArray>
+    //newMessageTextForDialog: string
+//}
 
-export type MessageItemType = MapStatePropsType & MapDispatchPropsType & MessagesType
+export type MessagesContainerType = MapStatePropsType & MapDispatchPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        newMessageTextForDialog: state.dialogsPage.newMessageTextForDialog
+        newMessageTextForDialog: state.dialogsPage.newMessageTextForDialog,
+        myDialogs: state.dialogsPage.dialogsData,
+        myMessages: state.dialogsPage.messagesData
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
@@ -36,4 +41,4 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageItem);
+export default connect(mapStateToProps, mapDispatchToProps)(MessagesComponent);

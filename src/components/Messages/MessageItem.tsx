@@ -2,9 +2,16 @@ import React, {ChangeEvent} from "react";
 import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
 import {Button} from "../../UI/Button";
 import {v1} from "uuid";
-import {MessageItemType} from "./MessageItemContainer";
+import {MessagesArray} from "../../redux/store";
 
-export const MessageItem = (props: MessageItemType) => {
+type MessageItemPropsType = {
+    myMessages: Array<MessagesArray>
+    onChangeMessageText: (textareaMessage: string) => void
+    newMessageTextForDialog: string
+    sendMessageHandler: () => void
+}
+
+export const MessageItem = (props: MessageItemPropsType) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onChangeMessageText(e.currentTarget.value)

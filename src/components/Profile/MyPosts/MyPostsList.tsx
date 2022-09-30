@@ -3,11 +3,11 @@ import {MyPostsItem} from "./MyPostsItem";
 import classes from './MyPostsList.module.css';
 import {UserMessageType} from "../../../redux/store";
 
-type MyPostsPropsType = {
+type MyPostListPropsType = {
     myPosts: Array<UserMessageType>
 }
 
-export const MyPostsList = (props: MyPostsPropsType) => {
+export const MyPostsList = (props: MyPostListPropsType) => {
     return (
         <>
             <div className={classes.content__postList}>

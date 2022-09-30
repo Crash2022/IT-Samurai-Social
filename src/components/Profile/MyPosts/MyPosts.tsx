@@ -1,9 +1,9 @@
 import React from "react";
 import {MyPostsList} from "./MyPostsList";
-import {MyPostAddType} from "./MyPostsContainer";
 import {MyPostsAdd} from "./MyPostsAdd";
+import {MyPostsType} from "./MyPostsContainer";
 
-export const MyPosts = (props: MyPostAddType) => {
+export const MyPosts = (props: MyPostsType) => {
     return (
         <>
             <MyPostsAdd newPostText={props.newPostText}
