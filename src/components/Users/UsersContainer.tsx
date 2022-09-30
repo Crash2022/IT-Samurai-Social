@@ -5,13 +5,13 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {followAC, setUsersAC, unfollowAC} from "../../redux/users-reducer";
 
-type MapStatePropsType = {
+export type MapStatePropsType = {
     users: Array<UsersArray>
 }
-type MapDispatchPropsType = {
+export type MapDispatchPropsType = {
     onFollow: (userId: string) => void
     onUnfollow: (userId: string) => void
-    onSetUsers: (users: UsersArray) => void
+    onSetUsers: (users: Array<UsersArray>) => void
 }
 
 export type UsersContainerType = MapStatePropsType & MapDispatchPropsType
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
         onUnfollow: (userId: string) => {
             dispatch(unfollowAC(userId));
         },
-        onSetUsers: (users: UsersArray) => {
+        onSetUsers: (users: Array<UsersArray>) => {
             dispatch(setUsersAC(users));
         }
     }

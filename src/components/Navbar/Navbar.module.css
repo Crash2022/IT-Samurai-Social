@@ -18,6 +18,9 @@
 .left__navMenu > div {
     padding-bottom: 15px;
 }
+.left__navMenu > div:nth-child(5) {
+    padding-top: 30px;
+}
 .left__navMenu > *:last-child {
     padding-top: 30px;
 }
