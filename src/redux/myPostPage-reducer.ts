@@ -63,9 +63,10 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
     /!*props._callSubscriber();*!/
 }*/
 
+    let stateCopy;
+
     switch(action.type) {
         case ADD_POST: {
-            debugger
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -74,16 +75,10 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
                 likes: 0,
                 dislikes: 0
             };
-            let stateCopy = {...state, myPosts: [...state.myPosts, newPost]};
-            stateCopy.newPostText = '';
-            console.log(state.myPosts,"- state")
-            console.log(stateCopy.myPosts,"-new state")
-            return stateCopy;
+            return { ...state, myPosts: [...state.myPosts, newPost], newPostText: '' };
         }
         case UPDATE_NEW_POST_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return { ...state, newPostText: action.newText };
         }
         default:
             return state;

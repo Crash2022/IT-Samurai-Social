@@ -38,22 +38,14 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
 
     switch(action.type) {
         case SEND_DIALOG_TEXT: {
-            /*let newDialogMessageText = state.newMessageTextForDialog;
-            state.newMessageTextForDialog = '';
-            state.messagesData.unshift({id: v1(), text: newDialogMessageText});
-            return state;*/
-
-            let stateCopy = {...state, messagesData: [...state.messagesData]};
-            let newDialogMessageText = stateCopy.newMessageTextForDialog;
-            stateCopy.newMessageTextForDialog = '';
-            let newMessage = {id: v1(), text: newDialogMessageText};
-            stateCopy.messagesData.push(newMessage);
-            return stateCopy;
+            let newDialogMessageText = state.newMessageTextForDialog;
+            return {...state,
+                newMessageTextForDialog: '',
+                messagesData: [...state.messagesData, {id: v1(), text: newDialogMessageText}]
+            };
         }
         case UPDATE_NEW_DIALOG_TEXT: {
-            let stateCopy = {...state};
-            stateCopy.newMessageTextForDialog = action.newDialogMessageText;
-            return stateCopy;
+            return { ...state, newMessageTextForDialog: action.newDialogMessageText };
         }
         default:
             return state;

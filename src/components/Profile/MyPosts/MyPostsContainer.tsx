@@ -5,8 +5,8 @@ import {RootStateType} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
 
 type MapStatePropsType = {
-    newPostText: string
     myPosts: Array<UserMessageType>
+    newPostText: string
 }
 type MapDispatchPropsType = {
     onAddPostMessage: () => void
