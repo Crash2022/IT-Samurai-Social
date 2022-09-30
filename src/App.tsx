@@ -10,6 +10,7 @@ import {Settings} from "./components/Settings/Settings";
 import {Footer} from "./components/Footer/Footer";
 import {Users} from "./components/Users/Users";
 import MessagesContainer from "./components/Messages/MessagesContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 export const App = () => {
 
@@ -23,7 +24,7 @@ export const App = () => {
                 <Route path={"/messages"} render={() => <MessagesContainer/>}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
-                <Route path={"/users"} render={() => <Users/>}/>
+                <Route path={"/users"} render={() => <UsersContainer/>}/>
                 <Route path={"/settings"} render={() => <Settings/>}/>
             </div>
             <Footer/>

@@ -1,14 +1,11 @@
 import React from "react";
-import classes from '../Profile/MyPosts/MyPostsItem.module.css';
+//import classes from '../Profile/MyPosts/MyPostsItem.module.css';
+import {UsersContainerType} from "./UsersContainer";
 
-type UsersPropsType = {
-
-}
-
-export const Users = (props: UsersPropsType) => {
+export const Users = (props: UsersContainerType) => {
     return (
         <>
-            1
+            Users
         </>
     );
 }
