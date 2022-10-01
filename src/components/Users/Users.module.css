@@ -69,3 +69,20 @@
     font-size: 16px;
     font-style: italic;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+.pagination > span{
+    padding: 10px;
+    font-size: 20px;
+}
+.pagination:hover > span {
+    cursor: pointer;
+}
+.selectedPage {
+    font-weight: bold;
+    background-color: green;
+    color: white;
+}

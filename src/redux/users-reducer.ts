@@ -56,7 +56,10 @@ let initialState = {
             },
             avatar: 'https://img.redbull.com/images/q_auto,f_auto/redbullcom/2015/12/10/1331764435698_1/danny-nin-%C3%B6zel-yap%C4%B1m-street-trials-bisikleti.jpg',
         }*/
-    ] as Array<UsersArray>
+    ] as Array<UsersArray>,
+    pageSize: 10,
+    totalUsersCount: 45,
+    currentPage: 2
 };
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType) => {
@@ -67,6 +70,8 @@ export const usersReducer = ( state: UsersPropsType = initialState, action: Acti
             return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: false} : user)};
         case SET_USERS:
             return {...state, users:  action.users};
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage};
         default:
             return state;
     }
@@ -78,7 +83,10 @@ const UNFOLLOW = 'UNFOLLOW'
 export type UserUnfollowACType = ReturnType<typeof unfollowAC>
 const SET_USERS = 'SET_USERS'
 export type SetUsersACType = ReturnType<typeof setUsersAC>
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 
 export const followAC = (userId: string) => ({type: FOLLOW, id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: UNFOLLOW, id: userId} as const)
 export const setUsersAC = (users: Array<UsersArray>) => ({type: SET_USERS, users} as const)
+export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)

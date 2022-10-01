@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {myPostPageReducer} from "./myPostPage-reducer";
 import {dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {SetUsersACType, UserFollowACType, UserUnfollowACType} from "./users-reducer";
+import {SetCurrentPageACType, SetUsersACType, UserFollowACType, UserUnfollowACType} from "./users-reducer";
 
 /*---SELF-MADE REDUX---*/
 
@@ -171,6 +171,9 @@ export type SidebarFriendsType = {
 
 export type UsersPropsType = {
     users: Array<UsersArray>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 export type UsersArray = {
     id: string
@@ -214,4 +217,5 @@ export type ActionsType =
     ActionUpdateMessageType |
     UserFollowACType |
     UserUnfollowACType |
-    SetUsersACType
+    SetUsersACType |
+    SetCurrentPageACType
