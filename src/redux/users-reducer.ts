@@ -58,7 +58,7 @@ let initialState = {
         }*/
     ] as Array<UsersArray>,
     pageSize: 10,
-    totalUsersCount: 20,
+    totalUsersCount: 100,
     currentPage: 1
 };
 
