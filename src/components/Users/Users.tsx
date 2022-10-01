@@ -7,9 +7,9 @@ import userPhoto from '../../assets/images/user_avatar.jpg';
 
 export const Users = (props: UsersContainerType) => {
 
-    //useEffect(()=> {
-        const getUsers = () => {
-            if (props.users.length === 1) {
+    useEffect(()=> {
+        //const getUsers = () => {
+            if (props.users.length === 0) {
                 axios
                     .get('https://social-network.samuraijs.com/api/1.0/users')
                     .then(response => {
@@ -64,13 +64,11 @@ export const Users = (props: UsersContainerType) => {
                     ]
                 )*/
             }
-        }
-    //},[props.users])
+        //}
+    },[])
 
     return (
         <div className={classes.usersWrapper}>
-
-            <button onClick={getUsers}>Get Users</button>
 
             {
                 props.users.map(user => {

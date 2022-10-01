@@ -1,21 +1,21 @@
 import {ActionsType, UsersArray, UsersPropsType} from "./store";
-import {v1} from "uuid";
+//import {v1} from "uuid";
 
 let initialState = {
     users: [
-        {   id: v1(),
-            name: 'Craig Lee Scott',
-            followed: true,
-            status: 'Biketrials London UK!',
-            /*location: {
-                country: 'UK',
-                city: 'London'
-            },*/
-            photos: {
-                small: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg',
-                large: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'
-            }
-        }
+        // {   id: v1(),
+        //     name: 'Craig Lee Scott',
+        //     followed: true,
+        //     status: 'Biketrials London UK!',
+        //     /*location: {
+        //         country: 'UK',
+        //         city: 'London'
+        //     },*/
+        //     photos: {
+        //         small: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg',
+        //         large: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'
+        //     }
+        // }
 /*       {id: v1(),
          fullName: 'Neil Tunicliff',
          isFollowed: true,
@@ -56,7 +56,7 @@ let initialState = {
             },
             avatar: 'https://img.redbull.com/images/q_auto,f_auto/redbullcom/2015/12/10/1331764435698_1/danny-nin-%C3%B6zel-yap%C4%B1m-street-trials-bisikleti.jpg',
         }*/
-    ]
+    ] as Array<UsersArray>
 };
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType) => {
