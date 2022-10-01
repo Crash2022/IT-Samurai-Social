@@ -2,7 +2,13 @@ import {v1} from "uuid";
 import {myPostPageReducer} from "./myPostPage-reducer";
 import {dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {SetCurrentPageACType, SetUsersACType, UserFollowACType, UserUnfollowACType} from "./users-reducer";
+import {
+    SetCurrentPageACType,
+    SetUsersACType,
+    //setUsersTotalCountACType,
+    UserFollowACType,
+    UserUnfollowACType
+} from "./users-reducer";
 
 /*---SELF-MADE REDUX---*/
 
@@ -218,4 +224,4 @@ export type ActionsType =
     UserFollowACType |
     UserUnfollowACType |
     SetUsersACType |
-    SetCurrentPageACType
+    SetCurrentPageACType /*| setUsersTotalCountACType*/

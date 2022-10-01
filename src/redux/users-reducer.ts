@@ -58,7 +58,7 @@ let initialState = {
         }*/
     ] as Array<UsersArray>,
     pageSize: 10,
-    totalUsersCount: 45,
+    totalUsersCount: 0,
     currentPage: 2
 };
 
@@ -72,6 +72,8 @@ export const usersReducer = ( state: UsersPropsType = initialState, action: Acti
             return {...state, users:  action.users};
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage};
+        /*case SET_USERS_TOTAL_COUNT:
+            return {...state, totalUsersCount: action.count}; // берём из Action Creator*/
         default:
             return state;
     }
@@ -85,8 +87,11 @@ const SET_USERS = 'SET_USERS'
 export type SetUsersACType = ReturnType<typeof setUsersAC>
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+//const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT'
+//export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
 
 export const followAC = (userId: string) => ({type: FOLLOW, id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: UNFOLLOW, id: userId} as const)
 export const setUsersAC = (users: Array<UsersArray>) => ({type: SET_USERS, users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+//export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, count: totalUsersCount} as const)

@@ -11,6 +11,17 @@ export class UsersClassComponent extends React.Component<UsersContainerType> {
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
+                this.props.onSetUsers(response.data.items);
+                //this.props.setUsersTotalUsersCount(response.data.totalCount);
+            });
+    }
+
+    onChangePageHandler = (pageNumber: number) => {
+        this.props.onChangePage(pageNumber);
+
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(response => {
                 this.props.onSetUsers(response.data.items)
             });
     }
@@ -32,7 +43,7 @@ export class UsersClassComponent extends React.Component<UsersContainerType> {
                             return (
                                 <span className={this.props.currentPage === page ? classes.selectedPage : ''}
                                       key={v1()}
-                                      onClick={()=>this.props.onChangePage(page)}
+                                      onClick={() => {this.onChangePageHandler(page)}}
                                 >
                                     {page}
                                 </span>
@@ -40,13 +51,6 @@ export class UsersClassComponent extends React.Component<UsersContainerType> {
                         })
                     }
                 </div>
-                {/*<div className={classes.pagination}>*/}
-                {/*    <span>1</span>*/}
-                {/*    <span>2</span>*/}
-                {/*    <span className={classes.selectedPage}>3</span>*/}
-                {/*    <span>4</span>*/}
-                {/*    <span>5</span>*/}
-                {/*</div>*/}
                 <div className={classes.usersWrapper}>
                     {
                         this.props.users.map(user => {
