@@ -3,15 +3,19 @@ import {v1} from "uuid";
 
 let initialState = {
     users: [
-        {id: v1(),
-            fullName: 'Craig Lee Scott',
-            isFollowed: true,
+        {   id: v1(),
+            name: 'Craig Lee Scott',
+            followed: true,
             status: 'Biketrials London UK!',
-            location: {
+            /*location: {
                 country: 'UK',
                 city: 'London'
-            },
-            avatar: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'}
+            },*/
+            photos: {
+                small: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg',
+                large: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'
+            }
+        }
 /*       {id: v1(),
          fullName: 'Neil Tunicliff',
          isFollowed: true,
@@ -58,9 +62,9 @@ let initialState = {
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType) => {
     switch(action.type) {
         case FOLLOW:
-            return {...state, users: state.users.map( user => user.id === action.id ? {...user, isFollowed: true} : user)};
+            return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: true} : user)};
         case UNFOLLOW:
-            return {...state, users: state.users.map( user => user.id === action.id ? {...user, isFollowed: false} : user)};
+            return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: false} : user)};
         case SET_USERS:
             return {...state, users:  action.users};
         default:
@@ -77,4 +81,4 @@ export type SetUsersACType = ReturnType<typeof setUsersAC>
 
 export const followAC = (userId: string) => ({type: FOLLOW, id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: UNFOLLOW, id: userId} as const)
-export const setUsersAC = (users: UsersArray[]) => ({type: SET_USERS, users} as const)
+export const setUsersAC = (users: Array<UsersArray>) => ({type: SET_USERS, users} as const)

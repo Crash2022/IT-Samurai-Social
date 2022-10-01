@@ -20,14 +20,14 @@
 }
 .usersAvatar {
     text-align: center;
-    padding: 5px;
+    padding: 7px;
 }
 .usersAvatar img {
     width: 80px;
     height: 80px;
-    /*padding: 5px;*/
+    padding: 2px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 2px solid green;
 }
 .followButton {
 
@@ -39,6 +39,7 @@
     border: none;
     font-size: 18px;
     width: 100px;
+    border-radius: 5px;
 }
 .followButton button:hover {
     opacity: 0.5;

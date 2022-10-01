@@ -174,11 +174,11 @@ export type UsersPropsType = {
 }
 export type UsersArray = {
     id: string
-    fullName: string
-    isFollowed: boolean
+    name: string
+    followed: boolean
     status: string
-    location: {country: string, city: string}
-    avatar: string
+    //location: {country: string, city: string}
+    photos: {small: string, large: string}
 }
 
 export const addPostAC = () => ({

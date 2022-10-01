@@ -1,11 +1,18 @@
 import React from "react";
 import {UsersContainerType} from "./UsersContainer";
 import classes from "./Users.module.css";
-import {v1} from "uuid";
+//import {v1} from "uuid";
+import axios from "axios";
+import userPhoto from '../../assets/images/user_avatar.jpg';
 
 export const Users = (props: UsersContainerType) => {
     if (props.users.length === 1) {
-        props.onSetUsers([
+
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.onSetUsers(response.data.items)
+            });
+
+        /*props.onSetUsers([
                 {
                     id: v1(),
                     fullName: 'Neil Tunicliff',
@@ -51,7 +58,7 @@ export const Users = (props: UsersContainerType) => {
                     avatar: 'https://img.redbull.com/images/q_auto,f_auto/redbullcom/2015/12/10/1331764435698_1/danny-nin-%C3%B6zel-yap%C4%B1m-street-trials-bisikleti.jpg',
                 }
             ]
-        )
+        )*/
     }
 
     return (
@@ -62,11 +69,11 @@ export const Users = (props: UsersContainerType) => {
                         <div className={classes.usersItem} key={user.id}>
                             <div className={classes.users_leftSide}>
                                 <div className={classes.usersAvatar}>
-                                    <img src={user.avatar} alt="userAvatar"/>
+                                    <img src={user.photos.small !== null ? user.photos.small : userPhoto} alt="userAvatar"/>
                                 </div>
                                 <div className={classes.followButton}>
                                     {
-                                        user.isFollowed
+                                        user.followed
                                             ? <button onClick={() => props.onUnfollow(user.id)}>Unfollow</button>
                                             : <button onClick={() => props.onFollow(user.id)}>Follow</button>
                                     }
@@ -75,15 +82,15 @@ export const Users = (props: UsersContainerType) => {
                             <div className={classes.users_rightSide}>
                                 <div className={classes.users_rightSide_info}>
                                     <div className={classes.users_rightSide_name}>
-                                        {user.fullName}
+                                        {user.name}
                                     </div>
                                     <div className={classes.users_rightSide_location}>
-                                        <div>{user.location.country},</div>
-                                        <div>{user.location.city}</div>
+                                        <div>{'user.location.country'},</div>
+                                        <div>{'user.location.city'}</div>
                                     </div>
                                 </div>
                                 <div className={classes.users_rightSide_status}>
-                                    {user.status}
+                                    {user.status !==null ? user.status : 'Here will be your status speech: user.status'}
                                 </div>
                             </div>
 
