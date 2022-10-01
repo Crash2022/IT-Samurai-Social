@@ -58,8 +58,8 @@ let initialState = {
         }*/
     ] as Array<UsersArray>,
     pageSize: 10,
-    totalUsersCount: 0,
-    currentPage: 2
+    totalUsersCount: 20,
+    currentPage: 1
 };
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType) => {
