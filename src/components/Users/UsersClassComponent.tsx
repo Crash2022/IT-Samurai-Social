@@ -7,14 +7,11 @@ import {UsersContainerType} from "./UsersContainer";
 export class UsersClassComponent extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-
-        // if (this.props.users.length === 0) {
             axios
                 .get('https://social-network.samuraijs.com/api/1.0/users')
                 .then(response => {
                     this.props.onSetUsers(response.data.items)
                 });
-        // }
     }
 
     render() {

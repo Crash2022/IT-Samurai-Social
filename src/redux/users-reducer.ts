@@ -3,20 +3,20 @@ import {ActionsType, UsersArray, UsersPropsType} from "./store";
 
 let initialState = {
     users: [
-        // {   id: v1(),
-        //     name: 'Craig Lee Scott',
-        //     followed: true,
-        //     status: 'Biketrials London UK!',
-        //     /*location: {
-        //         country: 'UK',
-        //         city: 'London'
-        //     },*/
-        //     photos: {
-        //         small: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg',
-        //         large: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'
-        //     }
-        // }
-/*       {id: v1(),
+        /*{   id: v1(),
+            name: 'Craig Lee Scott',
+            followed: true,
+            status: 'Biketrials London UK!',
+            /!*location: {
+                country: 'UK',
+                city: 'London'
+            },*!/
+            photos: {
+                small: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg',
+                large: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'
+            }
+        }*/
+        /*{id: v1(),
          fullName: 'Neil Tunicliff',
          isFollowed: true,
          status: 'Biketrials is my Life!',
