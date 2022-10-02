@@ -60,7 +60,8 @@ let initialState = {
     ] as Array<UsersArray>,
     pageSize: 10,
     totalUsersCount: 100,
-    currentPage: 1
+    currentPage: 1,
+    isLoading: false
 };
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType) => {
@@ -75,6 +76,8 @@ export const usersReducer = ( state: UsersPropsType = initialState, action: Acti
             return {...state, currentPage: action.currentPage};
         /*case SET_USERS_TOTAL_COUNT:
             return {...state, totalUsersCount: action.count}; // берём из Action Creator*/
+        case TOGGLE_IS_LOADING:
+            return {...state, isLoading: action.isLoading};
         default:
             return state;
     }
@@ -90,9 +93,12 @@ const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 //const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT'
 //export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
+const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING'
+export type ToggleIsLoadingACType = ReturnType<typeof toggleIsLoadingAC>
 
 export const followAC = (userId: string) => ({type: FOLLOW, id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: UNFOLLOW, id: userId} as const)
 export const setUsersAC = (users: Array<UsersArray>) => ({type: SET_USERS, users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 //export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, count: totalUsersCount} as const)
+export const toggleIsLoadingAC = (isLoading: boolean) => ({type: TOGGLE_IS_LOADING, isLoading} as const)

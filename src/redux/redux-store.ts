@@ -4,7 +4,7 @@ import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from
 import {sidebarReducer} from "./sidebar-reducer";
 import {
     SetCurrentPageACType,
-    SetUsersACType,
+    SetUsersACType, toggleIsLoadingAC, ToggleIsLoadingACType,
     UserFollowACType,
     usersReducer,
     UserUnfollowACType
@@ -29,7 +29,9 @@ export type ActionsType =
     UserFollowACType |
     UserUnfollowACType |
     SetUsersACType |
-    SetCurrentPageACType /*| setUsersTotalCountACType*/
+    SetCurrentPageACType |
+    /*| setUsersTotalCountACType*/
+    ToggleIsLoadingACType
 
 export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
@@ -72,6 +74,7 @@ export type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isLoading: boolean
 }
 export type UsersArray = {
     id: string

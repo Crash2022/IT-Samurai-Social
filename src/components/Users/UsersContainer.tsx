@@ -1,15 +1,17 @@
 import React, {Dispatch} from "react";
 import {ActionsType, RootStateType, UsersArray} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {followAC, unfollowAC, setCurrentPageAC, setUsersAC} from "../../redux/users-reducer";
+import {followAC, unfollowAC, setCurrentPageAC, setUsersAC, toggleIsLoadingAC} from "../../redux/users-reducer";
 import axios from "axios";
 import {Users} from "./Users";
+import {Preloader} from "../../UI/Preloader";
 
 export type MapStatePropsType = {
     users: Array<UsersArray>
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isLoading: boolean
 }
 export type MapDispatchPropsType = {
     onFollow: (userId: string) => void
@@ -17,6 +19,7 @@ export type MapDispatchPropsType = {
     onSetUsers: (users: Array<UsersArray>) => void
     onChangePage: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
+    onToggleIsLoading: (isLoading: boolean) => void
 }
 
 export type UsersContainerType = MapStatePropsType & MapDispatchPropsType
@@ -26,7 +29,8 @@ const mapStateToProps = (state: RootStateType) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isLoading: state.usersPage.isLoading
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
@@ -42,44 +46,58 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
         },
         onChangePage: (currentPage: number) => {
             dispatch(setCurrentPageAC(currentPage));
-        }/*,
+        },/*,
         setUsersTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setUsersTotalCountAC(totalUsersCount));
         }*/
+        onToggleIsLoading: (isLoading: boolean) => {
+            dispatch(toggleIsLoadingAC(isLoading))
+        }
     }
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
+        this.props.onToggleIsLoading(true);
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.onSetUsers(response.data.items);
                 //this.props.setUsersTotalUsersCount(response.data.totalCount);
+                this.props.onToggleIsLoading(false);
             });
     }
 
     onChangePageHandler = (pageNumber: number) => {
         this.props.onChangePage(pageNumber);
-
+        this.props.onToggleIsLoading(true);
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.onSetUsers(response.data.items)
+                this.props.onSetUsers(response.data.items);
+                this.props.onToggleIsLoading(false);
             });
     }
 
     render() {
         return (
-            <Users users={this.props.users}
-                   pageSize={this.props.pageSize}
-                   totalUsersCount={this.props.totalUsersCount}
-                   currentPage={this.props.currentPage}
-                   onFollow={this.props.onFollow}
-                   onUnfollow={this.props.onUnfollow}
-                   onChangePageHandler={this.onChangePageHandler}
-            />
+            <>
+                {
+                    this.props.isLoading
+                        ? <Preloader />
+                        : <Users users={this.props.users}
+                                 pageSize={this.props.pageSize}
+                                 totalUsersCount={this.props.totalUsersCount}
+                                 currentPage={this.props.currentPage}
+                                 onFollow={this.props.onFollow}
+                                 onUnfollow={this.props.onUnfollow}
+                                 onChangePageHandler={this.onChangePageHandler}
+                        />
+                }
+
+
+            </>
         )
     }
 }
