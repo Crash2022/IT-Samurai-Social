@@ -5,6 +5,7 @@ import {followAC, unfollowAC, setCurrentPageAC, setUsersAC, toggleIsLoadingAC} f
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
+import classes from "./Users.module.css";
 
 export type MapStatePropsType = {
     users: Array<UsersArray>
@@ -85,7 +86,9 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
             <>
                 {
                     this.props.isLoading
-                        ? <Preloader />
+                        ? <div className={classes.usersWrapper}>
+                            <Preloader />
+                        </div>
                         : <Users users={this.props.users}
                                  pageSize={this.props.pageSize}
                                  totalUsersCount={this.props.totalUsersCount}
