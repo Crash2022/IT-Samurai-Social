@@ -1,7 +1,6 @@
 import React, {Dispatch} from "react";
-import {SidebarFriendsType} from '../../redux/store';
 import {connect} from "react-redux";
-import {ActionsType, RootStateType} from "../../redux/redux-store";
+import {ActionsType, RootStateType, SidebarFriendsType} from "../../redux/redux-store";
 import {NavbarFriends} from "./NavbarFriends";
 
 type MapStatePropsType = {

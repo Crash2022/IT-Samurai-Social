@@ -1,4 +1,4 @@
-import {MyPostsItemPropsType} from "./store";
+import {MyPostsItemPropsType} from "./redux-store";
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 

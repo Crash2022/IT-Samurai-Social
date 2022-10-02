@@ -1,4 +1,4 @@
-import {DialogsPropsType} from "./store";
+import {DialogsPropsType} from "./redux-store";
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import classes from './MyPostsItem.module.css';
-import {UserMessageType} from "../../../redux/store";
+import {UserMessageType} from "../../../redux/redux-store";
 
 type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>

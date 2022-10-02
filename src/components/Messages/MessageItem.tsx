@@ -2,7 +2,7 @@ import React, {ChangeEvent} from "react";
 import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
 import {Button} from "../../UI/Button";
 import {v1} from "uuid";
-import {MessagesArray} from "../../redux/store";
+import {MessagesArray} from "../../redux/redux-store";
 
 type MessageItemPropsType = {
     myMessages: Array<MessagesArray>

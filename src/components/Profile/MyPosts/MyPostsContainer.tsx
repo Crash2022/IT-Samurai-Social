@@ -1,7 +1,6 @@
 import React, {Dispatch} from "react";
-import {UserMessageType} from "../../../redux/store";
 import {connect} from "react-redux";
-import {ActionsType, RootStateType} from "../../../redux/redux-store";
+import {ActionsType, RootStateType, UserMessageType} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
 import {addPostAC, updateNewPostAC} from "../../../redux/myPostPage-reducer";
 

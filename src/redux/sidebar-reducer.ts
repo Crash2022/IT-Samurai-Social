@@ -1,4 +1,4 @@
-import {SideBarPropsType} from "./store";
+import {SideBarPropsType} from "./redux-store";
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 
