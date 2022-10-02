@@ -15,12 +15,12 @@ export type MapStatePropsType = {
     isLoading: boolean
 }
 export type MapDispatchPropsType = {
-    onFollow: (userId: string) => void
-    onUnfollow: (userId: string) => void
-    onSetUsers: (users: Array<UsersArray>) => void
-    onChangePage: (currentPage: number) => void
+    followAC: (userId: string) => void
+    unfollowAC: (userId: string) => void
+    setUsersAC: (users: Array<UsersArray>) => void
+    setCurrentPageAC: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
-    onToggleIsLoading: (isLoading: boolean) => void
+    toggleIsLoadingAC: (isLoading: boolean) => void
 }
 
 export type UsersContainerType = MapStatePropsType & MapDispatchPropsType
@@ -34,7 +34,7 @@ const mapStateToProps = (state: RootStateType) => {
         isLoading: state.usersPage.isLoading
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
+/*const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     return {
         onFollow: (userId: string) => {
             dispatch(followAC(userId));
@@ -47,37 +47,46 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
         },
         onChangePage: (currentPage: number) => {
             dispatch(setCurrentPageAC(currentPage));
-        },/*,
+        },/!*,
         setUsersTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setUsersTotalCountAC(totalUsersCount));
-        }*/
+        }*!/
         onToggleIsLoading: (isLoading: boolean) => {
             dispatch(toggleIsLoadingAC(isLoading))
         }
     }
+}*/
+
+const DispatchToProps: MapDispatchPropsType = {
+    followAC,
+    unfollowAC,
+    setUsersAC,
+    setCurrentPageAC,
+    //setUsersTotalUsersCountAC,
+    toggleIsLoadingAC
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.onToggleIsLoading(true);
+        this.props.toggleIsLoadingAC(true);
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.onSetUsers(response.data.items);
+                this.props.setUsersAC(response.data.items);
                 //this.props.setUsersTotalUsersCount(response.data.totalCount);
-                this.props.onToggleIsLoading(false);
+                this.props.toggleIsLoadingAC(false);
             });
     }
 
     onChangePageHandler = (pageNumber: number) => {
-        this.props.onChangePage(pageNumber);
-        this.props.onToggleIsLoading(true);
+        this.props.setCurrentPageAC(pageNumber);
+        this.props.toggleIsLoadingAC(true);
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.onSetUsers(response.data.items);
-                this.props.onToggleIsLoading(false);
+                this.props.setUsersAC(response.data.items);
+                this.props.toggleIsLoadingAC(false);
             });
     }
 
@@ -93,8 +102,8 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  pageSize={this.props.pageSize}
                                  totalUsersCount={this.props.totalUsersCount}
                                  currentPage={this.props.currentPage}
-                                 onFollow={this.props.onFollow}
-                                 onUnfollow={this.props.onUnfollow}
+                                 followAC={this.props.followAC}
+                                 unfollowAC={this.props.unfollowAC}
                                  onChangePageHandler={this.onChangePageHandler}
                         />
                 }
@@ -106,4 +115,5 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 }
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Users);
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIClassContainer);
+//export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIClassContainer);
+export default connect(mapStateToProps, DispatchToProps)(UsersAPIClassContainer);
