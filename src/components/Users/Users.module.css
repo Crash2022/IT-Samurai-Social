@@ -94,15 +94,3 @@
     background-color: green;
     color: white;
 }
-
-
-.isLoading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px;
-}
-.isLoading img {
-    width: 120px;
-    height: 120px;
-}
