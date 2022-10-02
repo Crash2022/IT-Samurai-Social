@@ -1,8 +1,14 @@
 import {combineReducers, createStore} from "redux";
-import {myPostPageReducer} from "./myPostPage-reducer";
-import {dialogsPageReducer} from "./dialogsPage-reducer";
+import {ActionChangeType, AddPostACType, myPostPageReducer} from "./myPostPage-reducer";
+import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {usersReducer} from "./users-reducer";
+import {
+    SetCurrentPageACType,
+    SetUsersACType,
+    UserFollowACType,
+    usersReducer,
+    UserUnfollowACType
+} from "./users-reducer";
 
 let reducersBatch = combineReducers({
     myPostPage: myPostPageReducer,
@@ -14,5 +20,15 @@ let reducersBatch = combineReducers({
 export let store = createStore(reducersBatch);
 
 export type RootStateType = ReturnType<typeof reducersBatch>
+
+export type ActionsType =
+    AddPostACType |
+    ActionChangeType |
+    ActionSendMessageType |
+    ActionUpdateMessageType |
+    UserFollowACType |
+    UserUnfollowACType |
+    SetUsersACType |
+    SetCurrentPageACType /*| setUsersTotalCountACType*/
 
 export default store;

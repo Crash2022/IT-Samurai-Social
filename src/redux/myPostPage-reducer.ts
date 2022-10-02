@@ -1,10 +1,6 @@
-import {
-    ActionsType,
-    MyPostsItemPropsType,
-    ADD_POST,
-    UPDATE_NEW_POST_TEXT
-} from "./store";
+import {MyPostsItemPropsType} from "./store";
 import {v1} from "uuid";
+import {ActionsType} from "./redux-store";
 
 let initialState = {
     myPosts: [
@@ -84,3 +80,16 @@ export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, ac
             return state;
         }
 }
+
+export const ADD_POST = 'ADD-POST'
+export type AddPostACType = ReturnType<typeof addPostAC>
+export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+export type ActionChangeType = ReturnType<typeof updateNewPostAC>
+
+export const addPostAC = () => ({
+    type: ADD_POST
+} as const)
+export const updateNewPostAC = (textareaValue: string) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: textareaValue
+} as const )

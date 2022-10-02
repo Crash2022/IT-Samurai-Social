@@ -1,4 +1,5 @@
-import {ActionsType, UsersArray, UsersPropsType} from "./store";
+import {UsersArray, UsersPropsType} from "./store";
+import {ActionsType} from "./redux-store";
 //import {v1} from "uuid";
 
 let initialState = {

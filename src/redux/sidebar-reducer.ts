@@ -1,5 +1,6 @@
-import {ActionsType, SideBarPropsType} from "./store";
+import {SideBarPropsType} from "./store";
 import {v1} from "uuid";
+import {ActionsType} from "./redux-store";
 
 let initialState = {
     friendsData: [

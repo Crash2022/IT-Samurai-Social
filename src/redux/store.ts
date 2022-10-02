@@ -190,7 +190,7 @@ export type UsersArray = {
     photos: {small: string, large: string}
 }
 
-export const addPostAC = () => ({
+/*export const addPostAC = () => ({
     type: ADD_POST
 } as const)
 export const updateNewPostAC = (textareaValue: string) => ({
@@ -214,8 +214,9 @@ export type ActionChangeType = ReturnType<typeof updateNewPostAC>
 export const SEND_DIALOG_TEXT = 'SEND_DIALOG_TEXT'
 export type ActionSendMessageType = ReturnType<typeof sendMessageAC>
 export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
-export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>
+export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>*/
 
+/*
 export type ActionsType =
     AddPostACType |
     ActionChangeType |
@@ -224,4 +225,4 @@ export type ActionsType =
     UserFollowACType |
     UserUnfollowACType |
     SetUsersACType |
-    SetCurrentPageACType /*| setUsersTotalCountACType*/
+    SetCurrentPageACType /!*| setUsersTotalCountACType*!/*/

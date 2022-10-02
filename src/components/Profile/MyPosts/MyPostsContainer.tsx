@@ -1,8 +1,9 @@
 import React, {Dispatch} from "react";
-import {ActionsType, addPostAC, updateNewPostAC, UserMessageType} from "../../../redux/store";
+import {UserMessageType} from "../../../redux/store";
 import {connect} from "react-redux";
-import {RootStateType} from "../../../redux/redux-store";
+import {ActionsType, RootStateType} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
+import {addPostAC, updateNewPostAC} from "../../../redux/myPostPage-reducer";
 
 type MapStatePropsType = {
     myPosts: Array<UserMessageType>

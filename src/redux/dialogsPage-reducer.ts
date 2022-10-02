@@ -1,10 +1,6 @@
-import {
-    ActionsType,
-    DialogsPropsType,
-    SEND_DIALOG_TEXT,
-    UPDATE_NEW_DIALOG_TEXT
-} from "./store";
+import {DialogsPropsType} from "./store";
 import {v1} from "uuid";
+import {ActionsType} from "./redux-store";
 
 let initialState = {
     dialogsData: [
@@ -51,3 +47,16 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
             return state;
     }
 }
+
+export const SEND_DIALOG_TEXT = 'SEND_DIALOG_TEXT'
+export type ActionSendMessageType = ReturnType<typeof sendMessageAC>
+export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
+export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>
+
+export const sendMessageAC = () => ({
+    type: SEND_DIALOG_TEXT
+} as const)
+export const updateNewDialogTextAC = (textareaMessage: string) => ({
+    type: UPDATE_NEW_DIALOG_TEXT,
+    newDialogMessageText: textareaMessage
+} as const)

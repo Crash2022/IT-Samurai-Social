@@ -1,10 +1,10 @@
 import React, {Dispatch} from "react";
-import { ActionsType, DialogsArray, MessagesArray,
-    sendMessageAC, updateNewDialogTextAC }
+import { DialogsArray, MessagesArray }
     from '../../redux/store';
 import {connect} from "react-redux";
-import {RootStateType} from "../../redux/redux-store";
+import {ActionsType, RootStateType} from "../../redux/redux-store";
 import {Messages} from "./Messages";
+import {sendMessageAC, updateNewDialogTextAC} from "../../redux/dialogsPage-reducer";
 
 type MapStatePropsType = {
     newMessageTextForDialog: string
