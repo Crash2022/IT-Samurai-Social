@@ -3,6 +3,7 @@ import classes from "./Users.module.css";
 import userPhoto from "../../assets/images/user_avatar.jpg";
 import {v1} from "uuid";
 import {UsersArray} from "../../redux/redux-store";
+import {NavLink} from "react-router-dom";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -31,7 +32,9 @@ export const Users = (props: UsersPropsType) => {
                         return (
                             <span className={props.currentPage === page ? classes.selectedPage : ''}
                                   key={v1()}
-                                  onClick={() => {props.onChangePageHandler(page)}}
+                                  onClick={() => {
+                                      props.onChangePageHandler(page)
+                                  }}
                             >
                                   {page}
                             </span>
@@ -45,10 +48,12 @@ export const Users = (props: UsersPropsType) => {
                         return (
                             <div className={classes.usersItem} key={user.id}>
                                 <div className={classes.users_leftSide}>
-                                    <div className={classes.usersAvatar}>
-                                        <img src={user.photos.small !== null ? user.photos.small : userPhoto}
-                                             alt="userAvatar"/>
-                                    </div>
+                                    <NavLink to={'/profile/' + user.id}>
+                                        <div className={classes.usersAvatar}>
+                                            <img src={user.photos.small !== null ? user.photos.small : userPhoto}
+                                                 alt="userAvatar"/>
+                                        </div>
+                                    </NavLink>
                                     <div className={classes.followButton}>
                                         {
                                             user.followed
