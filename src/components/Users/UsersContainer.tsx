@@ -1,5 +1,5 @@
-import React, {Dispatch} from "react";
-import {ActionsType, RootStateType, UsersArray} from "../../redux/redux-store";
+import React from "react";
+import {RootStateType, UsersArray} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {followAC, unfollowAC, setCurrentPageAC, setUsersAC, toggleIsLoadingAC} from "../../redux/users-reducer";
 import axios from "axios";
@@ -7,14 +7,14 @@ import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
 import classes from "./Users.module.css";
 
-export type MapStatePropsType = {
+export type MapStateUsersToPropsType = {
     users: Array<UsersArray>
     pageSize: number
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
 }
-export type MapDispatchPropsType = {
+export type DispatchUsersToPropsType = {
     followAC: (userId: string) => void
     unfollowAC: (userId: string) => void
     setUsersAC: (users: Array<UsersArray>) => void
@@ -22,8 +22,7 @@ export type MapDispatchPropsType = {
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoadingAC: (isLoading: boolean) => void
 }
-
-export type UsersContainerType = MapStatePropsType & MapDispatchPropsType
+export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {
@@ -57,7 +56,7 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }*/
 
-const DispatchToProps: MapDispatchPropsType = {
+const DispatchUsersToProps: DispatchUsersToPropsType = {
     followAC,
     unfollowAC,
     setUsersAC,
@@ -107,8 +106,6 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  onChangePageHandler={this.onChangePageHandler}
                         />
                 }
-
-
             </>
         )
     }
@@ -116,4 +113,4 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Users);
 //export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIClassContainer);
-export default connect(mapStateToProps, DispatchToProps)(UsersAPIClassContainer);
+export default connect(mapStateToProps, DispatchUsersToProps)(UsersAPIClassContainer);

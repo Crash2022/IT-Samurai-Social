@@ -4,16 +4,16 @@ import {ActionsType, RootStateType, UserMessageType} from "../../../redux/redux-
 import {MyPosts} from "./MyPosts";
 import {addPostAC, updateNewPostAC} from "../../../redux/myPostPage-reducer";
 
-type MapStatePropsType = {
+type MapStateMyPostsPropsType = {
     myPosts: Array<UserMessageType>
     newPostText: string
 }
-type MapDispatchPropsType = {
+type DispatchMyPostsToPropsType = {
     onAddPostMessage: () => void
     onChangePostMessage: (textareaValue: string) => void
 }
 
-export type MyPostsType = MapStatePropsType & MapDispatchPropsType
+export type MyPostsType = MapStateMyPostsPropsType & DispatchMyPostsToPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {

@@ -1,29 +1,33 @@
 import {combineReducers, createStore} from "redux";
-import {ActionChangeType, AddPostACType, myPostPageReducer} from "./myPostPage-reducer";
+import {
+    myPostPageReducer,
+    AddPostACType, UpdateNewPostACType,
+    SetUserProfileACType
+} from "./myPostPage-reducer";
 import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
     SetCurrentPageACType,
-    SetUsersACType, toggleIsLoadingAC, ToggleIsLoadingACType,
+    SetUsersACType, ToggleIsLoadingACType,
     UserFollowACType,
     usersReducer,
     UserUnfollowACType
 } from "./users-reducer";
 
-let reducersBatch = combineReducers({
+let reducers = combineReducers({
     myPostPage: myPostPageReducer,
     dialogsPage: dialogsPageReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer
 });
 
-export let store = createStore(reducersBatch);
+export let store = createStore(reducers);
 
-export type RootStateType = ReturnType<typeof reducersBatch>
+export type RootStateType = ReturnType<typeof reducers>
 
 export type ActionsType =
     AddPostACType |
-    ActionChangeType |
+    UpdateNewPostACType |
     ActionSendMessageType |
     ActionUpdateMessageType |
     UserFollowACType |
@@ -31,11 +35,13 @@ export type ActionsType =
     SetUsersACType |
     SetCurrentPageACType |
     /*| setUsersTotalCountACType*/
-    ToggleIsLoadingACType
+    ToggleIsLoadingACType |
+    SetUserProfileACType
 
 export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
     newPostText: string
+    profile: null
 }
 export type UserMessageType = {
     id: string
