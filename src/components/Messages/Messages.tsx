@@ -13,9 +13,9 @@ export const Messages = (props: MessagesContainerType) => {
                 </div>
                 <div className={classes.text}>
                     <MessageItem myMessages={props.myMessages}
-                                 onChangeMessageText={props.onChangeMessageText}
+                                 onChangeMessageText={props.updateNewDialogTextAC}
                                  newMessageTextForDialog={props.newMessageTextForDialog}
-                                 sendMessageHandler={props.sendMessageHandler}
+                                 sendMessageHandler={props.sendMessageAC}
                     />
                 </div>
             </div>

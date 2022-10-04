@@ -7,8 +7,8 @@ export const MyPosts = (props: MyPostsType) => {
     return (
         <>
             <MyPostsAdd newPostText={props.newPostText}
-                        onAddPostMessage={props.onAddPostMessage}
-                        onChangePostMessage={props.onChangePostMessage}
+                        onAddPostMessage={props.addPostAC}
+                        onChangePostMessage={props.updateNewPostAC}
             />
             <MyPostsList myPosts={props.myPosts}/>
         </>
