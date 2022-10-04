@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./Users.module.css";
-import userPhoto from "../../assets/images/user_avatar.jpg";
+import userAvatar from "../../assets/images/user_avatar.jpg";
 import {v1} from "uuid";
 import {UsersArray} from "../../redux/redux-store";
 import {NavLink} from "react-router-dom";
@@ -50,7 +50,7 @@ export const Users = (props: UsersPropsType) => {
                                 <div className={classes.users_leftSide}>
                                     <NavLink to={'/profile/' + user.id}>
                                         <div className={classes.usersAvatar}>
-                                            <img src={user.photos.small !== null ? user.photos.small : userPhoto}
+                                            <img src={user.photos.small !== null ? user.photos.small : userAvatar}
                                                  alt="userAvatar"/>
                                         </div>
                                     </NavLink>

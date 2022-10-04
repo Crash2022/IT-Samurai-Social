@@ -7,7 +7,7 @@ import {ProfileContainerPropsType} from "./ProfileContainer";
 export const Profile = (props: ProfileContainerPropsType) => {
   return (
       <div className={classes.right__profile}>
-        <MyProfile/>
+        <MyProfile profile={props.profile}/>
         <MyPostsContainer/>
       </div>
   );
