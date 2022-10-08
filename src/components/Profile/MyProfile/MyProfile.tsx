@@ -1,8 +1,8 @@
 import React from "react";
 import classes from './MyProfile.module.css';
 import {MapStateUserProfileToPropsType} from "../ProfileContainer";
-//import userPhoto from "../../assets/images/user_photo.jpg";
 import {Preloader} from "../../../UI/Preloader";
+import userAvatar from "../../../assets/images/user_avatar.jpg";
 
 export const MyProfile = (props: MapStateUserProfileToPropsType) => {
     /*return (
@@ -45,7 +45,7 @@ export const MyProfile = (props: MapStateUserProfileToPropsType) => {
                 <div className={classes.content__info}>
                     <div className={classes.content__info_avatar}>
                         <img
-                            src={props.profile.photos.small}
+                            src={props.profile.photos.small !== null ? props.profile.photos.small : userAvatar}
                             alt="my-avatar"></img>
                     </div>
                     <div className={classes.content__info_info}>
