@@ -28,7 +28,7 @@ export const MyProfile = (props: MapStateUserProfileToPropsType) => {
             </div>
         </>
     );*/
-
+    console.log('props', props)
     if (!props.profile) {
         return <Preloader/>
     } else {

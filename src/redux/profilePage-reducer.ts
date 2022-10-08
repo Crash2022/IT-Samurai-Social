@@ -5,6 +5,7 @@ export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
     newPostText: string
     profile: null
+    //profile: Array<ProfileType>
 }
 export type UserMessageType = {
     id: string
@@ -13,6 +14,28 @@ export type UserMessageType = {
     postMessage: string
     likes: number
     dislikes: number
+}
+
+export type ProfileType = {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: null
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null
+        github: string
+        mainLink: null
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
 }
 
 let initialState = {

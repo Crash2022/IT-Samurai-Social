@@ -19,7 +19,7 @@ export const App = () => {
             <Navbar/>
             <div className="right__main">
                 {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
-                <Route path={"/profile"} render={() => <ProfileContainer/>}/>
+                <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
                 <Route path={"/messages"} render={() => <MessagesContainer/>}/>
                 <Route path={"/news"} render={() => <News/>}/>
                 <Route path={"/music"} render={() => <Music/>}/>
