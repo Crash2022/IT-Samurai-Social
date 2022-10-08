@@ -4,8 +4,7 @@ import {ActionsType} from "./redux-store";
 export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
     newPostText: string
-    profile: null
-    //profile: Array<ProfileType>
+    profile: null | ProfileType
 }
 export type UserMessageType = {
     id: string
@@ -95,8 +94,6 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
     state.newPostText = action.newText;
     /!*props._callSubscriber();*!/
 }*/
-
-    let stateCopy;
 
     switch(action.type) {
         case ADD_POST: {
