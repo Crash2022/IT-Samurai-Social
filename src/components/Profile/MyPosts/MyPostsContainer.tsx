@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {RootStateType, UserMessageType} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
-import {addPostAC, updateNewPostAC} from "../../../redux/myPostPage-reducer";
+import {addPostAC, updateNewPostAC} from "../../../redux/profilePage-reducer";
 
 type MapStateMyPostsToPropsType = {
     myPosts: Array<UserMessageType>
@@ -17,8 +17,8 @@ export type MyPostsType = MapStateMyPostsToPropsType & DispatchMyPostsToPropsTyp
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        newPostText: state.myPostPage.newPostText,
-        myPosts: state.myPostPage.myPosts
+        newPostText: state.profilePage.newPostText,
+        myPosts: state.profilePage.myPosts
     }
 }
 /*const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {

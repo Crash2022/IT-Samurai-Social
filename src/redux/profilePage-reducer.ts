@@ -41,7 +41,7 @@ let initialState = {
     profile: null
 }
 
-export const myPostPageReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType) => {
+export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType) => {
 
     /*if (action.type === ADD_POST) {
     let newPost = {

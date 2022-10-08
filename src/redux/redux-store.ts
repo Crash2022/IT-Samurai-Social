@@ -1,9 +1,9 @@
 import {combineReducers, createStore} from "redux";
 import {
-    myPostPageReducer,
+    profileReducer,
     AddPostACType, UpdateNewPostACType,
     SetUserProfileACType
-} from "./myPostPage-reducer";
+} from "./profilePage-reducer";
 import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
@@ -14,16 +14,16 @@ import {
     UserUnfollowACType
 } from "./users-reducer";
 
-let reducers = combineReducers({
-    myPostPage: myPostPageReducer,
+let rootReducer = combineReducers({
+    profilePage: profileReducer,
     dialogsPage: dialogsPageReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer
 });
 
-export let store = createStore(reducers);
+export let store = createStore(rootReducer);
 
-export type RootStateType = ReturnType<typeof reducers>
+export type RootStateType = ReturnType<typeof rootReducer>
 
 export type ActionsType =
     AddPostACType |

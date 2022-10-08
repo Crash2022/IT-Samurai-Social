@@ -3,7 +3,7 @@ import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {setUserProfileAC} from "../../redux/myPostPage-reducer";
+import {setUserProfileAC} from "../../redux/profilePage-reducer";
 
 export type MapStateUserProfileToPropsType = {
     profile: null
@@ -15,7 +15,7 @@ export type ProfileContainerPropsType = MapStateUserProfileToPropsType & Dispatc
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        profile: state.myPostPage.profile
+        profile: state.profilePage.profile
     }
 }
 

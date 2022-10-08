@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {myPostPageReducer} from "./myPostPage-reducer";
+import {profileReducer} from "./profilePage-reducer";
 import {dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
