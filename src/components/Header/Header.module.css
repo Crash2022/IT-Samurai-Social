@@ -8,7 +8,7 @@
   display: grid;
   /* grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 1000px) 1fr; */
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr minmax(auto, 200px) / minmax(auto, 1000px) 1fr;
+  grid-template-columns: 1fr minmax(auto, 200px) / minmax(auto, 900px) 1fr / 1fr minmax(auto, 100px);
   align-items: center;
 }
 .header__logo {
@@ -19,4 +19,12 @@
   font-size: 30px;
   color: white;
   padding-right: 50px;
+}
+
+.login_block {
+  grid-column: 4 / 4;
+}
+.login_block a {
+  color: white;
+  font-size: 18px;
 }

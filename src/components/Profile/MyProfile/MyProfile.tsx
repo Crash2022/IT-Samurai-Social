@@ -3,6 +3,7 @@ import classes from './MyProfile.module.css';
 import {MapStateUserProfileToPropsType} from "../ProfileContainer";
 import {Preloader} from "../../../UI/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
+import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 
 export const MyProfile = (props: MapStateUserProfileToPropsType) => {
     /*return (
@@ -37,7 +38,7 @@ export const MyProfile = (props: MapStateUserProfileToPropsType) => {
         return (
             <>
                 <div className={classes.content__avatar}>
-                    <img src="https://twentysix.ru/uploads/images/00/02/33/2021/07/26/94076d_full.jpg"
+                    <img src={avatarPhoto}
                          alt="profile-avatar">
                     </img>
                 </div>

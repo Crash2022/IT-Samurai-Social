@@ -10,12 +10,13 @@ import {Footer} from "./components/Footer/Footer";
 import MessagesContainer from "./components/Messages/MessagesContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 export const App = () => {
 
     return (
         <div className="wrapper">
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className="right__main">
                 {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}

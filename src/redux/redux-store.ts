@@ -13,12 +13,14 @@ import {
     usersReducer,
     UserUnfollowACType
 } from "./users-reducer";
+import {authReducer, SetAuthUserDataACType} from "./auth-reducer";
 
 export const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsPageReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 });
 
 export let store = createStore(rootReducer);
@@ -36,6 +38,7 @@ export type ActionsType =
     SetCurrentPageACType |
     /*| setUsersTotalCountACType*/
     ToggleIsLoadingACType |
-    SetUserProfileACType;
+    SetUserProfileACType |
+    SetAuthUserDataACType;
 
 export default store;
