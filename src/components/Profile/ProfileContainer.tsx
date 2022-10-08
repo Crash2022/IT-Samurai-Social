@@ -13,7 +13,7 @@ export type DispatchUserProfileToPropsType = {
 }
 export type ProfileContainerPropsType = MapStateUserProfileToPropsType & DispatchUserProfileToPropsType
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType => {
     return {
         profile: state.profilePage.profile
     }

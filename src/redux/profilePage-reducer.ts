@@ -1,6 +1,19 @@
-import {MyPostsItemPropsType} from "./redux-store";
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
+
+export type MyPostsItemPropsType = {
+    myPosts: Array<UserMessageType>
+    newPostText: string
+    profile: null
+}
+export type UserMessageType = {
+    id: string
+    avatar: string
+    nickname: string
+    postMessage: string
+    likes: number
+    dislikes: number
+}
 
 let initialState = {
     myPosts: [
@@ -36,12 +49,12 @@ let initialState = {
             likes: 105,
             dislikes: 10
         }
-    ],
+    ] as Array<UserMessageType>,
     newPostText: '',
     profile: null
 }
 
-export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType) => {
+export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType): MyPostsItemPropsType => {
 
     /*if (action.type === ADD_POST) {
     let newPost = {

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './MyProfile.module.css';
 import {MapStateUserProfileToPropsType} from "../ProfileContainer";
-import userPhoto from "../../assets/images/user_photo.jpg";
+//import userPhoto from "../../assets/images/user_photo.jpg";
 import {Preloader} from "../../../UI/Preloader";
 
 export const MyProfile = (props: MapStateUserProfileToPropsType) => {

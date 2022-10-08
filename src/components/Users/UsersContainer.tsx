@@ -1,7 +1,14 @@
 import React from "react";
-import {RootStateType, UsersArray} from "../../redux/redux-store";
+import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {followAC, unfollowAC, setCurrentPageAC, setUsersAC, toggleIsLoadingAC} from "../../redux/users-reducer";
+import {
+    followAC,
+    unfollowAC,
+    setCurrentPageAC,
+    setUsersAC,
+    toggleIsLoadingAC,
+    UsersArray
+} from "../../redux/users-reducer";
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
@@ -24,7 +31,7 @@ export type DispatchUsersToPropsType = {
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

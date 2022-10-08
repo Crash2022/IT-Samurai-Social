@@ -1,6 +1,7 @@
-import React, {Dispatch} from "react";
+import React from "react";
 import {connect} from "react-redux";
-import {ActionsType, RootStateType, SidebarFriendsType} from "../../redux/redux-store";
+import {RootStateType} from "../../redux/redux-store";
+import {SidebarFriendsType} from "../../redux/sidebar-reducer";
 import {NavbarFriends} from "./NavbarFriends";
 
 export type MapStateNavbarToPropsType = {
@@ -11,7 +12,7 @@ export type DispatchNavbarToPropsType = {
 }
 export type NavbarFriendsContainerType = MapStateNavbarToPropsType & DispatchNavbarToPropsType
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: RootStateType): MapStateNavbarToPropsType => {
     return {
         friendsData: state.sidebar.friendsData
     }

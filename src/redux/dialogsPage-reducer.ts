@@ -1,6 +1,19 @@
-import {DialogsPropsType} from "./redux-store";
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
+
+export type DialogsPropsType = {
+    dialogsData: Array<DialogsArray>
+    messagesData: Array<MessagesArray>
+    newMessageTextForDialog: string
+}
+export type DialogsArray = {
+    id: string
+    name: string
+}
+export type MessagesArray = {
+    id: string
+    text: string
+}
 
 let initialState = {
     dialogsData: [
@@ -9,18 +22,18 @@ let initialState = {
         {id: v1(), name: 'Ali Clarkson'},
         {id: v1(), name: 'Thomas Remvik Aasen'},
         {id: v1(), name: 'Damon Watson'}
-    ],
+    ] as Array<DialogsArray>,
     messagesData: [
         {id: v1(), text: 'Hello, Neil Tunicliff'},
         {id: v1(), text: 'Hello, Craig Lee Scott'},
         {id: v1(), text: 'Hello, Ali Clarkson'},
         {id: v1(), text: 'Hello, Thomas Remvik Aasen'},
         {id: v1(), text: 'Hello, Damon Watson'}
-    ],
+    ] as Array<MessagesArray>,
     newMessageTextForDialog: ''
 }
 
-export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionsType) => {
+export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionsType): DialogsPropsType => {
 
     /*if (action.type === SEND_DIALOG_TEXT) {
         let newDialogMessageText = state.newMessageTextForDialog;

@@ -2,8 +2,8 @@ import React from "react";
 import classes from "./Users.module.css";
 import userAvatar from "../../assets/images/user_avatar.jpg";
 import {v1} from "uuid";
-import {UsersArray} from "../../redux/redux-store";
 import {NavLink} from "react-router-dom";
+import {UsersArray} from "../../redux/users-reducer";
 
 export type UsersPropsType = {
     users: Array<UsersArray>

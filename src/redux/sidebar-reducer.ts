@@ -1,6 +1,14 @@
-import {SideBarPropsType} from "./redux-store";
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
+
+export type SideBarPropsType = {
+    friendsData: Array<SidebarFriendsType>
+}
+export type SidebarFriendsType = {
+    id: string
+    name: string
+    avatar: string
+}
 
 let initialState = {
     friendsData: [
@@ -11,6 +19,6 @@ let initialState = {
     ]
 }
 
-export const sidebarReducer = ( state: SideBarPropsType = initialState, action: ActionsType) => {
+export const sidebarReducer = ( state: SideBarPropsType = initialState, action: ActionsType): SideBarPropsType => {
     return state;
 }

@@ -1,5 +1,20 @@
-import {UsersArray, UsersPropsType} from "./redux-store";
 import {ActionsType} from "./redux-store";
+
+export type UsersPropsType = {
+    users: Array<UsersArray>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    isLoading: boolean
+}
+export type UsersArray = {
+    id: string
+    name: string
+    followed: boolean
+    status: string
+    //location: {country: string, city: string}
+    photos: {small: string, large: string}
+}
 
 let initialState = {
     users: [
@@ -63,7 +78,7 @@ let initialState = {
     isLoading: false
 };
 
-export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType) => {
+export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {
     switch(action.type) {
         case FOLLOW:
             return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: true} : user)};
