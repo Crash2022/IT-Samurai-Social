@@ -9,7 +9,7 @@ export type HeaderContainerPropsType = MapStateHeaderToPropsType & DispatchHeade
 
 export type MapStateHeaderToPropsType = {
     isAuth: boolean
-    login: null
+    login: null | string
 }
 
 export type DispatchHeaderToPropsType = {
@@ -35,6 +35,7 @@ export class HeaderContainer extends React.Component<HeaderContainerPropsType> {
                 withCredentials: true
             })
             .then(response => {
+                //debugger
                 if (response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data;
                     this.props.setAuthUserDataAC(id, email, login);

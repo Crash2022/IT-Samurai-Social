@@ -77,7 +77,9 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     componentDidMount() {
         this.props.toggleIsLoadingAC(true);
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+                withCredentials: true
+            })
             .then(response => {
                 this.props.setUsersAC(response.data.items);
                 //this.props.setUsersTotalUsersCount(response.data.totalCount);
@@ -89,7 +91,9 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
         this.props.setCurrentPageAC(pageNumber);
         this.props.toggleIsLoadingAC(true);
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+                withCredentials: true
+            })
             .then(response => {
                 this.props.setUsersAC(response.data.items);
                 this.props.toggleIsLoadingAC(false);

@@ -42,3 +42,6 @@ export type ActionsType =
     SetAuthUserDataACType;
 
 export default store;
+
+// @ts-ignore
+window.store = store

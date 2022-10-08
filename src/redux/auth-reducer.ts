@@ -3,9 +3,8 @@ import {ActionsType} from "./redux-store";
 export type AuthPropsType = {
     userId: null
     email: null
-    login: null
+    login: null | string
     isAuth: boolean
-    //isFetching: true
 }
 
 let initialState = {
@@ -13,7 +12,6 @@ let initialState = {
     email: null,
     login: null,
     isAuth: false
-    //isFetching: true
 };
 
 export const authReducer = ( state: AuthPropsType = initialState, action: ActionsType): AuthPropsType => {
