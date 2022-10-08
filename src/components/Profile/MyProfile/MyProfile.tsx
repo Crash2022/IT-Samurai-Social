@@ -49,12 +49,12 @@ export const MyProfile = (props: MapStateUserProfileToPropsType) => {
                             alt="my-avatar"></img>
                     </div>
                     <div className={classes.content__info_info}>
-                        <div>Имя: {props.profile.fullName}</div>
-                        <div>Дата рождения: ...</div>
-                        <div>Город: ...</div>
-                        <div>Хобби: ...</div>
-                        <div>Работа: {props.profile.lookingForAJobDescription}</div>
-                        <div>Веб-сайт: {props.profile.contacts.vk}</div>
+                        <div><b>Имя:</b> {props.profile.fullName}</div>
+                        <div><b>Дата рождения:</b> ...</div>
+                        <div><b>Город:</b> ...</div>
+                        <div><b>Хобби:</b> ...</div>
+                        <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
+                        <div><b>Веб-сайт:</b> {props.profile.contacts.vk}</div>
                     </div>
                 </div>
             </>
