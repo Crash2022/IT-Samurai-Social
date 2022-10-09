@@ -1,6 +1,5 @@
 import axios from "axios";
 import {UsersContainerType} from "../components/Users/UsersContainer";
-//import {PathParamType} from "../components/Profile/ProfileContainer";
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',

@@ -7,7 +7,7 @@ import {
     setCurrentPageAC,
     setUsersAC,
     toggleIsLoadingAC,
-    UsersArray
+    UsersArray, toggleFollowInProgressAC, FollowingProgress
 } from "../../redux/users-reducer";
 //import axios from "axios";
 import {Users} from "./Users";
@@ -21,6 +21,7 @@ export type MapStateUsersToPropsType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
+    followingInProgress: Array<FollowingProgress>
 }
 export type DispatchUsersToPropsType = {
     followAC: (userId: string) => void
@@ -29,6 +30,7 @@ export type DispatchUsersToPropsType = {
     setCurrentPageAC: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoadingAC: (isLoading: boolean) => void
+    toggleFollowInProgressAC: (followingInProgress: boolean) => void
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
@@ -38,7 +40,8 @@ const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading
+        isLoading: state.usersPage.isLoading,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 /*const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
@@ -70,7 +73,8 @@ const DispatchUsersToProps: DispatchUsersToPropsType = {
     setUsersAC,
     setCurrentPageAC,
     //setUsersTotalUsersCountAC,
-    toggleIsLoadingAC
+    toggleIsLoadingAC,
+    toggleFollowInProgressAC
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
@@ -122,6 +126,8 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  followAC={this.props.followAC}
                                  unfollowAC={this.props.unfollowAC}
                                  onChangePageHandler={this.onChangePageHandler}
+                                 followingInProgress={this.props.followingInProgress}
+                                 toggleFollowInProgressAC={this.props.toggleFollowInProgressAC}
                         />
                 }
             </>

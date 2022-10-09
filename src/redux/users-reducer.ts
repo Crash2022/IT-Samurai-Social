@@ -6,6 +6,7 @@ export type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
+    followingInProgress: Array<FollowingProgress>
 }
 export type UsersArray = {
     id: string
@@ -14,6 +15,10 @@ export type UsersArray = {
     status: string
     //location: {country: string, city: string}
     photos: {small: string, large: string}
+}
+export type FollowingProgress = {
+    userId: string
+    following: boolean
 }
 
 let initialState = {
@@ -75,7 +80,8 @@ let initialState = {
     pageSize: 10,
     totalUsersCount: 100,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
+    followingInProgress: [] as Array<FollowingProgress>
 };
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {
@@ -92,6 +98,13 @@ export const usersReducer = ( state: UsersPropsType = initialState, action: Acti
             return {...state, totalUsersCount: action.count}; // берём из Action Creator*/
         case TOGGLE_IS_LOADING:
             return {...state, isLoading: action.isLoading};
+        case TOGGLE_FOLLOW_IN_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.following
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            };
         default:
             return state;
     }
@@ -109,6 +122,8 @@ export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 //export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
 const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING'
 export type ToggleIsLoadingACType = ReturnType<typeof toggleIsLoadingAC>
+const TOGGLE_FOLLOW_IN_PROGRESS = 'TOGGLE_FOLLOW_IN_PROGRESS'
+export type ToggleFollowInProgressACType = ReturnType<typeof toggleFollowInProgressAC>
 
 export const followAC = (userId: string) => ({type: FOLLOW, id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: UNFOLLOW, id: userId} as const)
@@ -116,3 +131,8 @@ export const setUsersAC = (users: Array<UsersArray>) => ({type: SET_USERS, users
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 //export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, count: totalUsersCount} as const)
 export const toggleIsLoadingAC = (isLoading: boolean) => ({type: TOGGLE_IS_LOADING, isLoading} as const)
+
+export const toggleFollowInProgressAC = (userId: string, following: boolean) => ({
+    type: TOGGLE_FOLLOW_IN_PROGRESS,
+    userId, following
+} as const)

@@ -3,7 +3,7 @@ import classes from "./Users.module.css";
 import userAvatar from "../../assets/images/user_avatar.jpg";
 import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
-import {UsersArray} from "../../redux/users-reducer";
+import {FollowingProgress, UsersArray} from "../../redux/users-reducer";
 //import axios from "axios";
 import {deleteFollow, postFollow} from "../../api/api";
 
@@ -15,6 +15,8 @@ export type UsersPropsType = {
     followAC: (userId: string) => void
     unfollowAC: (userId: string) => void
     onChangePageHandler: (pageNumber: number) => void
+    followingInProgress: Array<FollowingProgress>
+    toggleFollowInProgressAC: (followingInProgress: boolean) => void
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -27,20 +29,24 @@ export const Users = (props: UsersPropsType) => {
     }
 
     const deleteFollowHandler = (userId: string) => {
+        props.toggleFollowInProgressAC(true);
         deleteFollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unfollowAC(userId);
                 }
+                props.toggleFollowInProgressAC(false);
             })
     }
 
     const postFollowHandler = (userId: string) => {
+        props.toggleFollowInProgressAC(true);
         postFollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.followAC(userId);
                 }
+                props.toggleFollowInProgressAC(false);
             })
     }
 
@@ -77,7 +83,8 @@ export const Users = (props: UsersPropsType) => {
                                     <div className={classes.followButton}>
                                         {
                                             user.followed
-                                                ? <button onClick={() => {
+                                                ? <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                                    onClick={() => {
 
                                                         /*axios
                                                             .delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
@@ -93,10 +100,11 @@ export const Users = (props: UsersPropsType) => {
                                                             })*/
 
                                                         deleteFollowHandler(user.id)
-                                                }
+                                                    }
                                                 }>Unfollow</button>
 
-                                                : <button onClick={() => {
+                                                : <button disabled={props.followingInProgress.some(id => id === user.id)}
+                                                    onClick={() => {
 
                                                     /*axios
                                                         .post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {

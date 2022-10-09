@@ -44,6 +44,11 @@
 .followButton button:hover {
     opacity: 0.5;
 }
+.followButton:disabled {
+    background-color: white;
+    border: 1px solid green;
+    color: green;
+}
 
 
 .users_rightSide {

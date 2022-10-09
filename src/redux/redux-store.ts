@@ -8,7 +8,7 @@ import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from
 import {sidebarReducer} from "./sidebar-reducer";
 import {
     SetCurrentPageACType,
-    SetUsersACType, ToggleIsLoadingACType,
+    SetUsersACType, ToggleFollowInProgressACType, ToggleIsLoadingACType,
     UserFollowACType,
     usersReducer,
     UserUnfollowACType
@@ -39,7 +39,8 @@ export type ActionsType =
     /*| setUsersTotalCountACType*/
     ToggleIsLoadingACType |
     SetUserProfileACType |
-    SetAuthUserDataACType;
+    SetAuthUserDataACType |
+    ToggleFollowInProgressACType;
 
 export default store;
 
