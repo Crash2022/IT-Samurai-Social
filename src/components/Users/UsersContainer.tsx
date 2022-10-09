@@ -9,10 +9,11 @@ import {
     toggleIsLoadingAC,
     UsersArray
 } from "../../redux/users-reducer";
-import axios from "axios";
+//import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
 import classes from "./Users.module.css";
+import {getUsers} from "../../api/api";
 
 export type MapStateUsersToPropsType = {
     users: Array<UsersArray>
@@ -76,28 +77,34 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
     componentDidMount() {
         this.props.toggleIsLoadingAC(true);
-        axios
+
+        /*axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
                 withCredentials: true
-            })
-            .then(response => {
-                this.props.setUsersAC(response.data.items);
+            })*/
+            //getUsers(this.props.currentPage, this.props.pageSize)
+            getUsers(this.props)
+            .then(data => {
+                this.props.setUsersAC(data.items);
                 //this.props.setUsersTotalUsersCount(response.data.totalCount);
+                //this.props.setUsersTotalUsersCount(data.totalCount);
                 this.props.toggleIsLoadingAC(false);
-            });
+            })
     }
 
     onChangePageHandler = (pageNumber: number) => {
         this.props.setCurrentPageAC(pageNumber);
         this.props.toggleIsLoadingAC(true);
-        axios
+        /*axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
                 withCredentials: true
-            })
-            .then(response => {
-                this.props.setUsersAC(response.data.items);
+            })*/
+            //getUsers(pageNumber, this.props.pageSize)
+            getUsers(this.props)
+            .then(data => {
+                this.props.setUsersAC(data.items);
                 this.props.toggleIsLoadingAC(false);
-            });
+            })
     }
 
     render() {

@@ -4,7 +4,8 @@ import userAvatar from "../../assets/images/user_avatar.jpg";
 import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
 import {UsersArray} from "../../redux/users-reducer";
-import axios from "axios";
+//import axios from "axios";
+import {deleteFollow, postFollow} from "../../api/api";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -23,6 +24,24 @@ export const Users = (props: UsersPropsType) => {
 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
+    }
+
+    const deleteFollowHandler = (userId: string) => {
+        deleteFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    props.unfollowAC(userId);
+                }
+            })
+    }
+
+    const postFollowHandler = (userId: string) => {
+        postFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    props.followAC(userId);
+                }
+            })
     }
 
     return (
@@ -59,32 +78,40 @@ export const Users = (props: UsersPropsType) => {
                                         {
                                             user.followed
                                                 ? <button onClick={() => {
-                                                    {
-                                                        axios
+
+                                                        /*axios
                                                             .delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
                                                                 withCredentials: true,
                                                                 headers: { 'API-KEY': '74a19bbb-094d-4af5-81dc-fc82431ac8a3' }
-                                                            })
-                                                            .then(response => {
-                                                                if (response.data.resultCode === 0) {
+                                                            })*/
+
+                                                            /*deleteFollow()
+                                                            .then(data => {
+                                                                if (data.resultCode === 0) {
                                                                     props.unfollowAC(user.id);
                                                                 }
-                                                            });
-                                                    }
-                                                }}>Unfollow</button>
+                                                            })*/
+
+                                                        deleteFollowHandler(user.id)
+                                                }
+                                                }>Unfollow</button>
 
                                                 : <button onClick={() => {
 
-                                                    axios
+                                                    /*axios
                                                         .post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
                                                             withCredentials: true,
                                                             headers: { 'API-KEY': '74a19bbb-094d-4af5-81dc-fc82431ac8a3' }
-                                                        })
-                                                        .then(response => {
-                                                            if (response.data.resultCode === 0) {
+                                                        })*/
+
+                                                        /*postFollow()
+                                                        .then(data => {
+                                                            if (data.resultCode === 0) {
                                                                 props.followAC(user.id);
                                                             }
-                                                        });
+                                                        })*/
+
+                                                        postFollowHandler(user.id)
                                                 }
                                                 }>Follow</button>
                                         }
