@@ -23,6 +23,8 @@
 
 .login_block {
   grid-column: 4 / 4;
+  color: white;
+  font-size: 16px;
 }
 .login_block a {
   color: white;
