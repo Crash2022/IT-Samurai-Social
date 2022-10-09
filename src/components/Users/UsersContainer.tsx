@@ -7,7 +7,7 @@ import {
     setCurrentPageAC,
     setUsersAC,
     toggleIsLoadingAC,
-    UsersArray, toggleFollowInProgressAC, FollowingProgress
+    UsersArray, toggleFollowInProgressAC
 } from "../../redux/users-reducer";
 //import axios from "axios";
 import {Users} from "./Users";
@@ -21,7 +21,7 @@ export type MapStateUsersToPropsType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
-    followingInProgress: Array<FollowingProgress>
+    followingInProgress: Array<string>
 }
 export type DispatchUsersToPropsType = {
     followAC: (userId: string) => void
@@ -30,7 +30,7 @@ export type DispatchUsersToPropsType = {
     setCurrentPageAC: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoadingAC: (isLoading: boolean) => void
-    toggleFollowInProgressAC: (followingInProgress: boolean) => void
+    toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 

@@ -6,7 +6,7 @@ export type UsersPropsType = {
     totalUsersCount: number
     currentPage: number
     isLoading: boolean
-    followingInProgress: Array<FollowingProgress>
+    followingInProgress: Array<string>
 }
 export type UsersArray = {
     id: string
@@ -15,10 +15,6 @@ export type UsersArray = {
     status: string
     //location: {country: string, city: string}
     photos: {small: string, large: string}
-}
-export type FollowingProgress = {
-    userId: string
-    following: boolean
 }
 
 let initialState = {
@@ -81,7 +77,7 @@ let initialState = {
     totalUsersCount: 100,
     currentPage: 1,
     isLoading: false,
-    followingInProgress: [] as Array<FollowingProgress>
+    followingInProgress: []
 };
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {

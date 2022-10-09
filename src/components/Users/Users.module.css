@@ -44,7 +44,7 @@
 .followButton button:hover {
     opacity: 0.5;
 }
-.followButton:disabled {
+.followButton button:disabled {
     background-color: white;
     border: 1px solid green;
     color: green;
