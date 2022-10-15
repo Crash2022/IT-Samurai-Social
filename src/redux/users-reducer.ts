@@ -111,6 +111,8 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Actio
     }
 }
 
+/*-------------------------ACTION CREATOR-------------------------*/
+
 export type UserFollowACType = ReturnType<typeof followAC>
 export type UserUnfollowACType = ReturnType<typeof unfollowAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
@@ -144,5 +146,35 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
             dispatch(setUsersAC(data.items));
             //dispatch(setUsersTotalUsersCount(data.totalCount));
         })
+    }
+}
+
+export const deleteFollowThunkCreator = (userId: string) => {
+
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowInProgressAC(userId,true));
+
+        usersAPI.deleteFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowAC(userId));
+                }
+                dispatch(toggleFollowInProgressAC(userId,false));
+            })
+    }
+}
+
+export const postFollowThunkCreator = (userId: string) => {
+
+    return (dispatch: Dispatch) => {
+        dispatch(toggleFollowInProgressAC(userId,true));
+
+        usersAPI.postFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(userId));
+                }
+                dispatch(toggleFollowInProgressAC(userId,false));
+            })
     }
 }

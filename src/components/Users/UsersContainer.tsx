@@ -2,9 +2,9 @@ import React from "react";
 import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {UsersArray, followAC, unfollowAC,
-    setCurrentPageAC, setUsersAC, toggleIsLoadingAC,
-    toggleFollowInProgressAC, getUsersThunkCreator}
-    from "../../redux/users-reducer";
+    setCurrentPageAC, //setUsersAC, toggleIsLoadingAC,
+    toggleFollowInProgressAC, getUsersThunkCreator,
+    deleteFollowThunkCreator, postFollowThunkCreator} from "../../redux/users-reducer";
 //import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
@@ -22,12 +22,14 @@ export type MapStateUsersToPropsType = {
 export type DispatchUsersToPropsType = {
     followAC: (userId: string) => void
     unfollowAC: (userId: string) => void
-    setUsersAC: (users: Array<UsersArray>) => void
+    //setUsersAC: (users: Array<UsersArray>) => void
     setCurrentPageAC: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
-    toggleIsLoadingAC: (isLoading: boolean) => void
+    //toggleIsLoadingAC: (isLoading: boolean) => void
     toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
     getUsers: (currentPage: number, pageSize: number) => void
+    deleteFollow: (userId: string) => void
+    postFollow: (userId: string) => void
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
@@ -67,12 +69,14 @@ const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
 const DispatchUsersToProps: DispatchUsersToPropsType = {
     followAC,
     unfollowAC,
-    setUsersAC,
+    //setUsersAC, // больше не нужны тут, берутся из Thunk
     setCurrentPageAC,
-    //setUsersTotalUsersCountAC,
-    toggleIsLoadingAC,
+    //setUsersTotalUsersCountAC, // !!!нужно для вывода всех страниц с юзерами!!!
+    //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
     toggleFollowInProgressAC,
-    getUsers: getUsersThunkCreator
+    getUsers: getUsersThunkCreator, // можно сократить до getUsers
+    deleteFollow: deleteFollowThunkCreator,
+    postFollow: postFollowThunkCreator
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
@@ -134,6 +138,8 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  onChangePageHandler={this.onChangePageHandler}
                                  followingInProgress={this.props.followingInProgress}
                                  toggleFollowInProgressAC={this.props.toggleFollowInProgressAC}
+                                 deleteFollow={this.props.deleteFollow}
+                                 postFollow={this.props.postFollow}
                         />
                 }
             </>

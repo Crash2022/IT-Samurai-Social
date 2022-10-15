@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
@@ -118,6 +120,8 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
         }
 }
 
+/*-------------------------ACTION CREATOR-------------------------*/
+
 export type AddPostACType = ReturnType<typeof addPostAC>
 export type UpdateNewPostACType = ReturnType<typeof updateNewPostAC>
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
@@ -133,3 +137,16 @@ export const setUserProfileAC = (profile: null) => ({
     type: 'SET_USER_PROFILE',
     profile
 } as const )
+
+/*-------------------------THUNK-------------------------*/
+
+export const getProfileThunkCreator = (userId: number) => {
+
+    return (dispatch: Dispatch) => {
+
+        usersAPI.getProfile(userId)
+            .then(data => {
+                dispatch(setUserProfileAC(data));
+            })
+    }
+}

@@ -6,6 +6,7 @@ import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 
 export const MyProfile = (props: MapStateUserProfileToPropsType) => {
+
     /*return (
         <>
             <div className={classes.content__avatar}>

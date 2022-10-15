@@ -5,7 +5,7 @@ import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
 import {UsersArray} from "../../redux/users-reducer";
 //import axios from "axios";
-import {usersAPI} from "../../api/api";
+//import {usersAPI} from "../../api/api";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -17,6 +17,8 @@ export type UsersPropsType = {
     onChangePageHandler: (pageNumber: number) => void
     followingInProgress: Array<string>
     toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
+    deleteFollow: (userId: string) => void
+    postFollow: (userId: string) => void
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -29,25 +31,29 @@ export const Users = (props: UsersPropsType) => {
     }
 
     const deleteFollowHandler = (userId: string) => {
-        props.toggleFollowInProgressAC(userId,true);
+        /*props.toggleFollowInProgressAC(userId,true);
         usersAPI.deleteFollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unfollowAC(userId);
                 }
                 props.toggleFollowInProgressAC(userId,false);
-            })
+            })*/
+
+        props.deleteFollow(userId);
     }
 
     const postFollowHandler = (userId: string) => {
-        props.toggleFollowInProgressAC(userId, true);
+        /*props.toggleFollowInProgressAC(userId, true);
         usersAPI.postFollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.followAC(userId);
                 }
                 props.toggleFollowInProgressAC(userId, false);
-            })
+            })*/
+
+        props.postFollow(userId);
     }
 
     return (

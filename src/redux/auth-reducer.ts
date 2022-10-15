@@ -1,4 +1,6 @@
 import {ActionsType} from "./redux-store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export type AuthPropsType = {
     userId: null
@@ -23,8 +25,9 @@ export const authReducer = ( state: AuthPropsType = initialState, action: Action
     }
 }
 
-export type SetAuthUserDataACType = ReturnType<typeof setAuthUserDataAC>
+/*-------------------------ACTION CREATOR-------------------------*/
 
+export type SetAuthUserDataACType = ReturnType<typeof setAuthUserDataAC>
 export const setAuthUserDataAC = (userId: string, email: null, login: null) => ({
     type: 'SET_USER_DATA',
     data: {
@@ -33,3 +36,19 @@ export const setAuthUserDataAC = (userId: string, email: null, login: null) => (
         login
     }
 } as const)
+
+/*-------------------------THUNK-------------------------*/
+
+export const getAuthThunkCreator = () => {
+
+    return (dispatch: Dispatch) => {
+
+        usersAPI.getAuth()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    let {id, email, login} = data.data;
+                    dispatch(setAuthUserDataAC(id, email, login));
+                }
+            })
+    }
+}
