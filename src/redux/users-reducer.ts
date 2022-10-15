@@ -1,4 +1,7 @@
 import {ActionsType} from "./redux-store";
+import {getUsers} from "../api/api";
+import {Dispatch} from "redux";
+//import {UsersContainerType} from "../components/Users/UsersContainer";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -14,7 +17,7 @@ export type UsersArray = {
     followed: boolean
     status: string
     //location: {country: string, city: string}
-    photos: {small: string, large: string}
+    photos: { small: string, large: string }
 }
 
 let initialState = {
@@ -80,14 +83,17 @@ let initialState = {
     followingInProgress: []
 };
 
-export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {
-    switch(action.type) {
+export const usersReducer = (state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {
+    switch (action.type) {
         case 'FOLLOW':
-            return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: true} : user)};
+            return {...state, users: state.users.map(user => user.id === action.id ? {...user, followed: true} : user)};
         case 'UNFOLLOW':
-            return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: false} : user)};
+            return {
+                ...state,
+                users: state.users.map(user => user.id === action.id ? {...user, followed: false} : user)
+            };
         case 'SET_USERS':
-            return {...state, users:  action.users};
+            return {...state, users: action.users};
         case 'SET_CURRENT_PAGE':
             return {...state, currentPage: action.currentPage};
         /*case 'SET_USERS_TOTAL_COUNT':
@@ -125,3 +131,24 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
     type: 'TOGGLE_FOLLOW_IN_PROGRESS',
     userId, following
 } as const)
+
+/*-------------------------THUNK-------------------------*/
+
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+
+    return (dispatch: Dispatch) => {
+    dispatch(toggleIsLoadingAC(true));
+
+    /*axios
+        .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true
+        })*/
+    //getUsers(this.props.currentPage, this.props.pageSize)
+    getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(toggleIsLoadingAC(false));
+            dispatch(setUsersAC(data.items));
+            //dispatch(setUsersTotalUsersCount(data.totalCount));
+        })
+    }
+}

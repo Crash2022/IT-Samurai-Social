@@ -1,19 +1,13 @@
-import {combineReducers, createStore} from "redux";
-import {
-    profileReducer,
-    AddPostACType, UpdateNewPostACType,
-    SetUserProfileACType
-} from "./profilePage-reducer";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import {profileReducer, AddPostACType, UpdateNewPostACType,
+    SetUserProfileACType} from "./profilePage-reducer";
 import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {
-    SetCurrentPageACType,
-    SetUsersACType, ToggleFollowInProgressACType, ToggleIsLoadingACType,
-    UserFollowACType,
-    usersReducer,
-    UserUnfollowACType
-} from "./users-reducer";
+import {usersReducer, SetCurrentPageACType, SetUsersACType,
+    ToggleFollowInProgressACType, ToggleIsLoadingACType,
+    UserFollowACType, UserUnfollowACType} from "./users-reducer";
 import {authReducer, SetAuthUserDataACType} from "./auth-reducer";
+import thunkMiddleware from 'redux-thunk';
 
 export const rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -23,7 +17,7 @@ export const rootReducer = combineReducers({
     auth: authReducer
 });
 
-export let store = createStore(rootReducer);
+export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type RootStateType = ReturnType<typeof rootReducer>
 

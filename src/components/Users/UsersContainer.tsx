@@ -1,14 +1,10 @@
 import React from "react";
-import {RootStateType} from "../../redux/redux-store";
+import {ActionsType, RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {
-    followAC,
-    unfollowAC,
-    setCurrentPageAC,
-    setUsersAC,
-    toggleIsLoadingAC,
-    UsersArray, toggleFollowInProgressAC
-} from "../../redux/users-reducer";
+import {UsersArray, followAC, unfollowAC,
+    setCurrentPageAC, setUsersAC, toggleIsLoadingAC,
+    toggleFollowInProgressAC, getUsersThunkCreator}
+    from "../../redux/users-reducer";
 //import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
@@ -31,6 +27,7 @@ export type DispatchUsersToPropsType = {
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoadingAC: (isLoading: boolean) => void
     toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => Dispatch<ActionsType>
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
@@ -74,26 +71,31 @@ const DispatchUsersToProps: DispatchUsersToPropsType = {
     setCurrentPageAC,
     //setUsersTotalUsersCountAC,
     toggleIsLoadingAC,
-    toggleFollowInProgressAC
+    toggleFollowInProgressAC,
+    getUsersThunkCreator
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.toggleIsLoadingAC(true);
 
-        /*axios
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+
+        // видео 63, минута 22 (userAPI объект)
+        /*this.props.toggleIsLoadingAC(true);
+
+        /!*axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
                 withCredentials: true
-            })*/
+            })*!/
             //getUsers(this.props.currentPage, this.props.pageSize)
             getUsers(this.props)
             .then(data => {
+                this.props.toggleIsLoadingAC(false);
                 this.props.setUsersAC(data.items);
                 //this.props.setUsersTotalUsersCount(response.data.totalCount);
                 //this.props.setUsersTotalUsersCount(data.totalCount);
-                this.props.toggleIsLoadingAC(false);
-            })
+            })*/
     }
 
     onChangePageHandler = (pageNumber: number) => {
