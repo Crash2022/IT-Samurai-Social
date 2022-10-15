@@ -46,14 +46,14 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
     }*/
 
     switch(action.type) {
-        case SEND_DIALOG_TEXT: {
+        case 'SEND_DIALOG_TEXT': {
             let newDialogMessageText = state.newMessageTextForDialog;
             return {...state,
                 newMessageTextForDialog: '',
                 messagesData: [...state.messagesData, {id: v1(), text: newDialogMessageText}]
             };
         }
-        case UPDATE_NEW_DIALOG_TEXT: {
+        case 'UPDATE_NEW_DIALOG_TEXT': {
             return { ...state, newMessageTextForDialog: action.newDialogMessageText };
         }
         default:
@@ -61,15 +61,13 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
     }
 }
 
-export const SEND_DIALOG_TEXT = 'SEND_DIALOG_TEXT'
 export type ActionSendMessageType = ReturnType<typeof sendMessageAC>
-export const UPDATE_NEW_DIALOG_TEXT = 'UPDATE-NEW-DIALOG-TEXT'
 export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>
 
 export const sendMessageAC = () => ({
-    type: SEND_DIALOG_TEXT
+    type: 'SEND_DIALOG_TEXT'
 } as const)
 export const updateNewDialogTextAC = (textareaMessage: string) => ({
-    type: UPDATE_NEW_DIALOG_TEXT,
+    type: 'UPDATE_NEW_DIALOG_TEXT',
     newDialogMessageText: textareaMessage
 } as const)

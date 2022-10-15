@@ -82,19 +82,19 @@ let initialState = {
 
 export const usersReducer = ( state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {
     switch(action.type) {
-        case FOLLOW:
+        case 'FOLLOW':
             return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: true} : user)};
-        case UNFOLLOW:
+        case 'UNFOLLOW':
             return {...state, users: state.users.map( user => user.id === action.id ? {...user, followed: false} : user)};
-        case SET_USERS:
+        case 'SET_USERS':
             return {...state, users:  action.users};
-        case SET_CURRENT_PAGE:
+        case 'SET_CURRENT_PAGE':
             return {...state, currentPage: action.currentPage};
-        /*case SET_USERS_TOTAL_COUNT:
+        /*case 'SET_USERS_TOTAL_COUNT':
             return {...state, totalUsersCount: action.count}; // берём из Action Creator*/
-        case TOGGLE_IS_LOADING:
+        case 'TOGGLE_IS_LOADING':
             return {...state, isLoading: action.isLoading};
-        case TOGGLE_FOLLOW_IN_PROGRESS:
+        case 'TOGGLE_FOLLOW_IN_PROGRESS':
             return {
                 ...state,
                 followingInProgress: action.following
@@ -106,29 +106,22 @@ export const usersReducer = ( state: UsersPropsType = initialState, action: Acti
     }
 }
 
-const FOLLOW = 'FOLLOW'
 export type UserFollowACType = ReturnType<typeof followAC>
-const UNFOLLOW = 'UNFOLLOW'
 export type UserUnfollowACType = ReturnType<typeof unfollowAC>
-const SET_USERS = 'SET_USERS'
 export type SetUsersACType = ReturnType<typeof setUsersAC>
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-//const SET_USERS_TOTAL_COUNT = 'SET_USERS_TOTAL_COUNT'
 //export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
-const TOGGLE_IS_LOADING = 'TOGGLE_IS_LOADING'
 export type ToggleIsLoadingACType = ReturnType<typeof toggleIsLoadingAC>
-const TOGGLE_FOLLOW_IN_PROGRESS = 'TOGGLE_FOLLOW_IN_PROGRESS'
 export type ToggleFollowInProgressACType = ReturnType<typeof toggleFollowInProgressAC>
 
-export const followAC = (userId: string) => ({type: FOLLOW, id: userId} as const)
-export const unfollowAC = (userId: string) => ({type: UNFOLLOW, id: userId} as const)
-export const setUsersAC = (users: Array<UsersArray>) => ({type: SET_USERS, users} as const)
-export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
-//export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: SET_USERS_TOTAL_COUNT, count: totalUsersCount} as const)
-export const toggleIsLoadingAC = (isLoading: boolean) => ({type: TOGGLE_IS_LOADING, isLoading} as const)
+export const followAC = (userId: string) => ({type: 'FOLLOW', id: userId} as const)
+export const unfollowAC = (userId: string) => ({type: 'UNFOLLOW', id: userId} as const)
+export const setUsersAC = (users: Array<UsersArray>) => ({type: 'SET_USERS', users} as const)
+export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const)
+//export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: 'SET_USERS_TOTAL_COUNT', count: totalUsersCount} as const)
+export const toggleIsLoadingAC = (isLoading: boolean) => ({type: 'TOGGLE_IS_LOADING', isLoading} as const)
 
 export const toggleFollowInProgressAC = (userId: string, following: boolean) => ({
-    type: TOGGLE_FOLLOW_IN_PROGRESS,
+    type: 'TOGGLE_FOLLOW_IN_PROGRESS',
     userId, following
 } as const)

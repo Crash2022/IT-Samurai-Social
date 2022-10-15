@@ -96,7 +96,7 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
 }*/
 
     switch(action.type) {
-        case ADD_POST: {
+        case 'ADD_POST': {
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
@@ -107,10 +107,10 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
             };
             return { ...state, myPosts: [...state.myPosts, newPost], newPostText: '' };
         }
-        case UPDATE_NEW_POST_TEXT: {
+        case 'UPDATE_NEW_POST_TEXT': {
             return { ...state, newPostText: action.newText };
         }
-        case SET_USER_PROFILE: {
+        case 'SET_USER_PROFILE': {
             return { ...state, profile: action.profile };
         }
         default:
@@ -118,21 +118,18 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
         }
 }
 
-export const ADD_POST = 'ADD-POST'
 export type AddPostACType = ReturnType<typeof addPostAC>
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export type UpdateNewPostACType = ReturnType<typeof updateNewPostAC>
-export const SET_USER_PROFILE = 'SET_USER_PROFILE'
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
 
 export const addPostAC = () => ({
-    type: ADD_POST
+    type: 'ADD_POST'
 } as const)
 export const updateNewPostAC = (textareaValue: string) => ({
-    type: UPDATE_NEW_POST_TEXT,
+    type: 'UPDATE_NEW_POST_TEXT',
     newText: textareaValue
 } as const )
 export const setUserProfileAC = (profile: null) => ({
-    type: SET_USER_PROFILE,
+    type: 'SET_USER_PROFILE',
     profile
 } as const )
