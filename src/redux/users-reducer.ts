@@ -1,7 +1,6 @@
 import {ActionsType} from "./redux-store";
-import {getUsers} from "../api/api";
+import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
-//import {UsersContainerType} from "../components/Users/UsersContainer";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -139,12 +138,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
     dispatch(toggleIsLoadingAC(true));
 
-    /*axios
-        .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })*/
-    //getUsers(this.props.currentPage, this.props.pageSize)
-    getUsers(currentPage, pageSize)
+        usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));

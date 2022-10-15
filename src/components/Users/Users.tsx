@@ -5,7 +5,7 @@ import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
 import {UsersArray} from "../../redux/users-reducer";
 //import axios from "axios";
-import {deleteFollow, postFollow} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -30,7 +30,7 @@ export const Users = (props: UsersPropsType) => {
 
     const deleteFollowHandler = (userId: string) => {
         props.toggleFollowInProgressAC(userId,true);
-        deleteFollow(userId)
+        usersAPI.deleteFollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unfollowAC(userId);
@@ -41,7 +41,7 @@ export const Users = (props: UsersPropsType) => {
 
     const postFollowHandler = (userId: string) => {
         props.toggleFollowInProgressAC(userId, true);
-        postFollow(userId)
+        usersAPI.postFollow(userId)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.followAC(userId);

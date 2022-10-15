@@ -1,5 +1,5 @@
 import React from "react";
-import {ActionsType, RootStateType} from "../../redux/redux-store";
+import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
 import {UsersArray, followAC, unfollowAC,
     setCurrentPageAC, setUsersAC, toggleIsLoadingAC,
@@ -9,7 +9,7 @@ import {UsersArray, followAC, unfollowAC,
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
 import classes from "./Users.module.css";
-import {getUsers} from "../../api/api";
+//import {getUsers} from "../../api/api";
 
 export type MapStateUsersToPropsType = {
     users: Array<UsersArray>
@@ -27,7 +27,7 @@ export type DispatchUsersToPropsType = {
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoadingAC: (isLoading: boolean) => void
     toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
-    getUsers: (currentPage: number, pageSize: number) => dispatch
+    getUsers: (currentPage: number, pageSize: number) => void
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
@@ -89,7 +89,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                 withCredentials: true
             })*!/
             //getUsers(this.props.currentPage, this.props.pageSize)
-            getUsers(this.props)
+            usersAPI.getUsers(this.props)
             .then(data => {
                 this.props.toggleIsLoadingAC(false);
                 this.props.setUsersAC(data.items);
@@ -99,18 +99,22 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     }
 
     onChangePageHandler = (pageNumber: number) => {
-        this.props.setCurrentPageAC(pageNumber);
-        this.props.toggleIsLoadingAC(true);
+       /* this.props.setCurrentPageAC(pageNumber);
+        this.props.toggleIsLoadingAC(true);*/
+
         /*axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
                 withCredentials: true
             })*/
             //getUsers(pageNumber, this.props.pageSize)
-            getUsers(this.props)
+
+            /*usersAPI.getUsers(this.props)
             .then(data => {
                 this.props.setUsersAC(data.items);
                 this.props.toggleIsLoadingAC(false);
-            })
+            })*/
+
+        this.props.getUsers(pageNumber, this.props.pageSize);
     }
 
     render() {
