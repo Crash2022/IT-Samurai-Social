@@ -20,13 +20,13 @@ export type MapStateUsersToPropsType = {
     followingInProgress: Array<string>
 }
 export type DispatchUsersToPropsType = {
-    followAC: (userId: string) => void
-    unfollowAC: (userId: string) => void
+    //followAC: (userId: string) => void
+    //unfollowAC: (userId: string) => void
     //setUsersAC: (users: Array<UsersArray>) => void
     setCurrentPageAC: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     //toggleIsLoadingAC: (isLoading: boolean) => void
-    toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
+    //toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
     getUsers: (currentPage: number, pageSize: number) => void
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
@@ -67,13 +67,13 @@ const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
 }*/
 
 const DispatchUsersToProps: DispatchUsersToPropsType = {
-    followAC,
-    unfollowAC,
+    //followAC, // больше не нужны тут, берутся из Thunk
+    //unfollowAC, // больше не нужны тут, берутся из Thunk
     //setUsersAC, // больше не нужны тут, берутся из Thunk
     setCurrentPageAC,
     //setUsersTotalUsersCountAC, // !!!нужно для вывода всех страниц с юзерами!!!
     //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
-    toggleFollowInProgressAC,
+    //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk
     getUsers: getUsersThunkCreator, // можно сократить до getUsers
     deleteFollow: deleteFollowThunkCreator,
     postFollow: postFollowThunkCreator
@@ -133,11 +133,11 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  pageSize={this.props.pageSize}
                                  totalUsersCount={this.props.totalUsersCount}
                                  currentPage={this.props.currentPage}
-                                 followAC={this.props.followAC}
-                                 unfollowAC={this.props.unfollowAC}
+                                 //followAC={this.props.followAC}
+                                 //unfollowAC={this.props.unfollowAC}
                                  onChangePageHandler={this.onChangePageHandler}
                                  followingInProgress={this.props.followingInProgress}
-                                 toggleFollowInProgressAC={this.props.toggleFollowInProgressAC}
+                                 //toggleFollowInProgressAC={this.props.toggleFollowInProgressAC}
                                  deleteFollow={this.props.deleteFollow}
                                  postFollow={this.props.postFollow}
                         />

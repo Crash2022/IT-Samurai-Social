@@ -12,11 +12,11 @@ export type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
-    followAC: (userId: string) => void
-    unfollowAC: (userId: string) => void
+    //followAC: (userId: string) => void
+    //unfollowAC: (userId: string) => void
     onChangePageHandler: (pageNumber: number) => void
     followingInProgress: Array<string>
-    toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
+    //toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
 }
