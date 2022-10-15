@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 //import axios from "axios";
 import {getAuthThunkCreator, setAuthUserDataAC} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/redux-store";
-//import {usersAPI} from "../../api/api";
+//import {authAPI} from "../../api/api";
 
 export type HeaderContainerPropsType = MapStateHeaderToPropsType & DispatchHeaderToPropsType;
 
@@ -14,7 +14,7 @@ export type MapStateHeaderToPropsType = {
 }
 
 export type DispatchHeaderToPropsType = {
-    setAuthUserDataAC: (userId: string, email: null, login: null) => void
+    //setAuthUserDataAC: (userId: string, email: null, login: null) => void
     getAuth: () => void
 }
 
@@ -26,7 +26,7 @@ const mapStateToProps = (state: RootStateType): MapStateHeaderToPropsType => {
 }
 
 const DispatchHeaderToProps: DispatchHeaderToPropsType = {
-    setAuthUserDataAC,
+    //setAuthUserDataAC,
     getAuth: getAuthThunkCreator
 }
 
@@ -38,7 +38,7 @@ export class HeaderContainer extends React.Component<HeaderContainerPropsType> {
                 withCredentials: true
             })*/
 
-            /*usersAPI.getAuth()
+            /*authAPI.getAuth()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data;

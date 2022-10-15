@@ -11,7 +11,7 @@ export type MapStateUserProfileToPropsType = {
     profile: null | ProfileType
 }
 export type DispatchUserProfileToPropsType = {
-    setUserProfileAC: (profile: null) => void
+    //setUserProfileAC: (profile: null) => void
     getProfile: (userId: number) => void
 }
 
@@ -31,7 +31,7 @@ const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType =
 }
 
 const DispatchUserProfileToProps: DispatchUserProfileToPropsType = {
-    setUserProfileAC,
+    //setUserProfileAC,
     getProfile: getProfileThunkCreator
 }
 

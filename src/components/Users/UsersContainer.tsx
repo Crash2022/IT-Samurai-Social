@@ -22,7 +22,7 @@ export type DispatchUsersToPropsType = {
     //followAC: (userId: string) => void
     //unfollowAC: (userId: string) => void
     //setUsersAC: (users: Array<UsersArray>) => void
-    setCurrentPageAC: (currentPage: number) => void
+    //setCurrentPageAC: (currentPage: number) => void
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     //toggleIsLoadingAC: (isLoading: boolean) => void
     //toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
@@ -69,7 +69,7 @@ const DispatchUsersToProps: DispatchUsersToPropsType = {
     //followAC, // больше не нужны тут, берутся из Thunk
     //unfollowAC, // больше не нужны тут, берутся из Thunk
     //setUsersAC, // больше не нужны тут, берутся из Thunk
-    setCurrentPageAC,
+    //setCurrentPageAC,
     //setUsersTotalUsersCountAC, // !!!нужно для вывода всех страниц с юзерами!!!
     //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
     //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk

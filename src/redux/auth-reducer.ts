@@ -1,6 +1,6 @@
 import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {authAPI} from "../api/api";
 
 export type AuthPropsType = {
     userId: null
@@ -43,7 +43,7 @@ export const getAuthThunkCreator = () => {
 
     return (dispatch: Dispatch) => {
 
-        usersAPI.getAuth()
+        authAPI.getAuth()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data;
