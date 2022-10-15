@@ -27,7 +27,7 @@ export type DispatchUsersToPropsType = {
     //setUsersTotalUsersCount: (totalUsersCount: number) => void
     toggleIsLoadingAC: (isLoading: boolean) => void
     toggleFollowInProgressAC: (userId: string, followingInProgress: boolean) => void
-    getUsersThunkCreator: (currentPage: number, pageSize: number) => Dispatch<ActionsType>
+    getUsers: (currentPage: number, pageSize: number) => dispatch
 }
 export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
@@ -72,16 +72,16 @@ const DispatchUsersToProps: DispatchUsersToPropsType = {
     //setUsersTotalUsersCountAC,
     toggleIsLoadingAC,
     toggleFollowInProgressAC,
-    getUsersThunkCreator
+    getUsers: getUsersThunkCreator
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
 
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
 
-        // видео 63, минута 22 (userAPI объект)
+        // видео №63, минута 22 (userAPI объект)
         /*this.props.toggleIsLoadingAC(true);
 
         /!*axios
