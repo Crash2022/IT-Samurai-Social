@@ -3,12 +3,15 @@ import {Profile} from "./Profile";
 //import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {getProfileThunkCreator, ProfileType, setUserProfileAC} from "../../redux/profilePage-reducer";
+import {getProfileThunkCreator, ProfileType} from "../../redux/profilePage-reducer";
 import {withRouter, RouteComponentProps} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 //import {usersAPI} from "../../api/api";
 
 export type MapStateUserProfileToPropsType = {
     profile: null | ProfileType
+    //isAuth: boolean
 }
 export type DispatchUserProfileToPropsType = {
     //setUserProfileAC: (profile: null) => void
@@ -26,7 +29,8 @@ export type ProfileContainerPropsType =
 
 const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        //isAuth: state.auth.isAuth
     }
 }
 
@@ -35,31 +39,31 @@ const DispatchUserProfileToProps: DispatchUserProfileToPropsType = {
     getProfile: getProfileThunkCreator
 }
 
-export class ProfileContainer extends React.Component<ProfileContainerPropsType> {
+export class ProfileContainerCompose extends React.Component<ProfileContainerPropsType> {
 
     componentDidMount() {
         let userId = +this.props.match.params.userId;
 
-        if(!userId) {
+        if (!userId) {
             userId = 2;
         }
 
         /*axios
             .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)*/
 
-            /*usersAPI.getProfile(userId)
-            .then(data => {
-                this.props.setUserProfileAC(data);
-            })*/
-            this.props.getProfile(userId);
+        /*usersAPI.getProfile(userId)
+        .then(data => {
+            this.props.setUserProfileAC(data);
+        })*/
+        this.props.getProfile(userId);
     }
 
     render() {
         return (
-                <Profile {...this.props} profile={this.props.profile}/>
+            <Profile {...this.props} profile={this.props.profile}/>
         )
     }
 }
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
-export default connect(mapStateToProps, DispatchUserProfileToProps)(WithUrlDataContainerComponent);
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchUserProfileToProps),
+    withAuthRedirect, withRouter)(ProfileContainerCompose);

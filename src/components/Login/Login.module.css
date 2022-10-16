@@ -1,0 +1,7 @@
+.login {
+    /* display: flex; */
+    display: grid;
+    grid-template: 1fr/ 3fr 9fr; /*строки / колонки*/
+    grid-template-areas: 
+        "dialogs text";
+}

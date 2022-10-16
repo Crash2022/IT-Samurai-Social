@@ -5,6 +5,7 @@ import {MessageItem} from "./MessageItem";
 import {MessagesContainerType} from "./MessagesContainer";
 
 export const Messages = (props: MessagesContainerType) => {
+
     return (
         <>
             <div className={classes.messages}>

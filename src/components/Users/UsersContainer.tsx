@@ -1,9 +1,8 @@
 import React from "react";
 import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {UsersArray, followAC, unfollowAC,
-    setCurrentPageAC, //setUsersAC, toggleIsLoadingAC, toggleFollowInProgressAC,
-    getUsersThunkCreator, deleteFollowThunkCreator, postFollowThunkCreator} from "../../redux/users-reducer";
+import {UsersArray, getUsersThunkCreator, deleteFollowThunkCreator, postFollowThunkCreator}
+    from "../../redux/users-reducer";
 //import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
@@ -17,6 +16,7 @@ export type MapStateUsersToPropsType = {
     currentPage: number
     isLoading: boolean
     followingInProgress: Array<string>
+    isAuth: boolean
 }
 export type DispatchUsersToPropsType = {
     //followAC: (userId: string) => void
@@ -39,7 +39,8 @@ const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isLoading: state.usersPage.isLoading,
-        followingInProgress: state.usersPage.followingInProgress
+        followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth
     }
 }
 /*const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {

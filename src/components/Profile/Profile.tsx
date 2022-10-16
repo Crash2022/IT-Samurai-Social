@@ -5,10 +5,11 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileContainerPropsType} from "./ProfileContainer";
 
 export const Profile = (props: ProfileContainerPropsType) => {
-  return (
-      <div className={classes.right__profile}>
-        <MyProfile profile={props.profile}/>
-        <MyPostsContainer/>
-      </div>
-  );
+
+    return (
+        <div className={classes.right__profile}>
+            <MyProfile profile={props.profile}/>
+            <MyPostsContainer/>
+        </div>
+    );
 }
