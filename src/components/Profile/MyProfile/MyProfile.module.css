@@ -44,3 +44,10 @@
   padding-bottom: 20px;
   /*font-weight: bold;*/
 }
+
+.content__status_text {
+  margin-top: 20px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 18px;
+}

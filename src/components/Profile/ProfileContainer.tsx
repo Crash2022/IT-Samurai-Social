@@ -71,4 +71,6 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerPro
 // export default connect(mapStateToProps, DispatchUserProfileToProps)(WithUrlDataContainerComponent);
 
 export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchUserProfileToProps),
-    withAuthRedirect, withRouter)(ProfileContainerCompose);
+    //withAuthRedirect,
+    withRouter)
+(ProfileContainerCompose);

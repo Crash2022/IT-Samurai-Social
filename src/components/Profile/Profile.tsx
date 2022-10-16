@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Profile.module.css';
 import {MyProfile} from "./MyProfile/MyProfile";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {ProfileContainerPropsType} from "./ProfileContainer";
 
 export const Profile = (props: ProfileContainerPropsType) => {

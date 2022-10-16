@@ -4,6 +4,7 @@ import {MapStateUserProfileToPropsType} from "../ProfileContainer";
 import {Preloader} from "../../../UI/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
+import {ProfileStatus} from "./ProfileStatus";
 
 export const MyProfile = (props: MapStateUserProfileToPropsType) => {
 
@@ -57,6 +58,7 @@ export const MyProfile = (props: MapStateUserProfileToPropsType) => {
                         <div><b>Хобби:</b> ...</div>
                         <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
                         <div><b>Веб-сайт:</b> {props.profile.contacts.vk}</div>
+                        <ProfileStatus title={'This is my status text'}/>
                     </div>
                 </div>
             </>
