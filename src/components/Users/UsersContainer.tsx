@@ -84,7 +84,6 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
 
-        // видео №63, минута 22 (userAPI объект)
         /*this.props.toggleIsLoadingAC(true);
 
         /!*axios
