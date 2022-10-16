@@ -5,6 +5,7 @@ import {DialogsArray, MessagesArray} from "../../redux/dialogsPage-reducer";
 import {Messages} from "./Messages";
 import {sendMessageAC, updateNewDialogTextAC} from "../../redux/dialogsPage-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 export type MapStateMessagesToPropsType = {
     newMessageTextForDialog: string
@@ -41,6 +42,9 @@ const mapDispatchToProps: DispatchMessagesToPropsType = {
     sendMessageAC, updateNewDialogTextAC
 }
 
-let AuthRedirectComponent = withAuthRedirect(Messages);
+// Пошаговая запись без compose
+// let AuthRedirectComponent = withAuthRedirect(Messages);
+// export default connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+export const MessagesContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect)(Messages);

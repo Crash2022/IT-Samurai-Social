@@ -65,5 +65,10 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerPro
     }
 }
 
+// Пошаговая запись без compose (типизация не сделана)
+// let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+// let WithAuthRedirectComponent = withAuthRedirect(WithUrlDataContainerComponent);
+// export default connect(mapStateToProps, DispatchUserProfileToProps)(WithUrlDataContainerComponent);
+
 export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchUserProfileToProps),
     withAuthRedirect, withRouter)(ProfileContainerCompose);

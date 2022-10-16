@@ -7,6 +7,8 @@ import {UsersArray, getUsersThunkCreator, deleteFollowThunkCreator, postFollowTh
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader";
 import classes from "./Users.module.css";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 //import {getUsers} from "../../api/api";
 
 export type MapStateUsersToPropsType = {
@@ -148,4 +150,9 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
 //export default connect(mapStateToProps, mapDispatchToProps)(Users);
 //export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIClassContainer);
-export default connect(mapStateToProps, DispatchUsersToProps)(UsersAPIClassContainer);
+
+// Пошаговая запись без compose
+//export default connect(mapStateToProps, DispatchUsersToProps)(UsersAPIClassContainer);
+
+export const UsersContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchUsersToProps),
+    withAuthRedirect)(UsersAPIClassContainer);
