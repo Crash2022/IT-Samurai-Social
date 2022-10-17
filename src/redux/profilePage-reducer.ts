@@ -142,6 +142,20 @@ export const setUserProfileAC = (profile: null) => ({
     profile
 } as const )
 
+//*Иная запись типизации actions
+//*type ActionsType = ReturnType<PropertiesType<typeof actions>>
+//*type PropertiesType<T> = T extends {[key: string]: infer U ? U : never}
+
+/*const actions = {
+    addPostAC: () => ({type: 'ADD_POST'} as const),
+    updateNewPostAC: (textareaValue: string) => ({
+        type: 'UPDATE_NEW_POST_TEXT',
+        newText: textareaValue
+    } as const ),
+    setUserProfileAC: (profile: null) => ({
+        type: 'SET_USER_PROFILE', profile} as const )
+}*/
+
 /*-------------------------THUNK-------------------------*/
 
 export const getProfileThunkCreator = (userId: number) => {
