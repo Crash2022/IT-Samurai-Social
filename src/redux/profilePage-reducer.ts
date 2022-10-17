@@ -3,10 +3,14 @@ import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
 import {usersAPI} from "../api/api";
 
+//иная запись типа null | другой тип
+//export type Nullable<T> = null | T
+
 export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
     newPostText: string
     profile: null | ProfileType
+    // profile: null as Nullable<ProfileType>
 }
 export type UserMessageType = {
     id: string
