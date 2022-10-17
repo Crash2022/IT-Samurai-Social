@@ -41,7 +41,7 @@ export const setAuthUserDataAC = (userId: string, email: null, login: null) => (
 
 export const getAuthThunkCreator = () => {
 
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<ActionsType>) => {
 
         authAPI.getAuth()
             .then(data => {

@@ -160,7 +160,7 @@ export const setUserProfileAC = (profile: null) => ({
 
 export const getProfileThunkCreator = (userId: number) => {
 
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<ActionsType>) => {
 
         usersAPI.getProfile(userId)
             .then(data => {

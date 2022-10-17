@@ -137,7 +137,7 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<ActionsType>) => {
     dispatch(toggleIsLoadingAC(true));
 
         usersAPI.getUsers(currentPage, pageSize)
@@ -151,7 +151,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
 export const deleteFollowThunkCreator = (userId: string) => {
 
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<ActionsType>) => {
         dispatch(toggleFollowInProgressAC(userId,true));
 
         usersAPI.deleteFollow(userId)
@@ -166,7 +166,7 @@ export const deleteFollowThunkCreator = (userId: string) => {
 
 export const postFollowThunkCreator = (userId: string) => {
 
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<ActionsType>) => {
         dispatch(toggleFollowInProgressAC(userId,true));
 
         usersAPI.postFollow(userId)
