@@ -11,11 +11,13 @@ import {compose} from "redux";
 
 export type MapStateUserProfileToPropsType = {
     profile: null | ProfileType
+    status: any
     //isAuth: boolean
 }
 export type DispatchUserProfileToPropsType = {
     //setUserProfileAC: (profile: null) => void
     getProfile: (userId: number) => void
+    getStatus: (userId: number) => void
 }
 
 export type PathParamType = {
@@ -30,13 +32,15 @@ export type ProfileContainerPropsType =
 const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType => {
     return {
         profile: state.profilePage.profile,
+        status: state.profilePage.status
         //isAuth: state.auth.isAuth
     }
 }
 
 const DispatchUserProfileToProps: DispatchUserProfileToPropsType = {
     //setUserProfileAC,
-    getProfile: getProfileThunkCreator
+    getProfile: getProfileThunkCreator,
+    getStatus: //
 }
 
 export class ProfileContainerCompose extends React.Component<ProfileContainerPropsType> {
@@ -56,6 +60,7 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerPro
             this.props.setUserProfileAC(data);
         })*/
         this.props.getProfile(userId);
+        this.props.getStatus(userId);
     }
 
     render() {

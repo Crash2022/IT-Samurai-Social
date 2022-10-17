@@ -14,12 +14,10 @@ export const usersAPI = {
                 .then(response => response.data)
         )
     },
+    // можно написать так на всякий случай
     getProfile(userId: number) {
-        return (
-            instance
-                .get(`profile/${userId}`)
-                .then(response => response.data)
-        )
+        console.log('Please, use new object');
+        return profileAPI.getProfile(userId)
     },
     deleteFollow(userId: string) {
         return (
@@ -42,6 +40,30 @@ export const authAPI = {
         return (
             instance
                 .get(`auth/me`, { })
+                .then(response => response.data)
+        )
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId: number) {
+        return (
+            instance
+                .get(`profile/${userId}`)
+                .then(response => response.data)
+        )
+    },
+    getStatus(userId: number) {
+        return (
+            instance
+                .get(`status/${userId}`)
+                .then(response => response.data)
+        )
+    },
+    updateStatus(status: string) {
+        return (
+            instance
+                .put(`status`, {status: status})
                 .then(response => response.data)
         )
     }

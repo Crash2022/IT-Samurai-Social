@@ -1,7 +1,7 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T
@@ -11,6 +11,7 @@ export type MyPostsItemPropsType = {
     newPostText: string
     profile: null | ProfileType
     // profile: null as Nullable<ProfileType>
+    status: string
 }
 export type UserMessageType = {
     id: string
@@ -79,7 +80,8 @@ let initialState = {
         }
     ] as Array<UserMessageType>,
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType): MyPostsItemPropsType => {
@@ -119,6 +121,9 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
         case 'SET_USER_PROFILE': {
             return { ...state, profile: action.profile };
         }
+        case 'SET_USER_STATUS': {
+            return { ...state, status: action.status };
+        }
         default:
             return state;
         }
@@ -129,6 +134,7 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
 export type AddPostACType = ReturnType<typeof addPostAC>
 export type UpdateNewPostACType = ReturnType<typeof updateNewPostAC>
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
+export type SetUserStatusACType = ReturnType<typeof setUserStatusAC>
 
 export const addPostAC = () => ({
     type: 'ADD_POST'
@@ -140,6 +146,10 @@ export const updateNewPostAC = (textareaValue: string) => ({
 export const setUserProfileAC = (profile: null) => ({
     type: 'SET_USER_PROFILE',
     profile
+} as const )
+export const setUserStatusAC = (status: string) => ({
+    type: 'SET_USER_STATUS',
+    status
 } as const )
 
 //*Иная запись типизации actions
@@ -162,7 +172,7 @@ export const getProfileThunkCreator = (userId: number) => {
 
     return (dispatch: Dispatch<ActionsType>) => {
 
-        usersAPI.getProfile(userId)
+        profileAPI.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfileAC(data));
             })
