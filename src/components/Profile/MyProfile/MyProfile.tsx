@@ -7,13 +7,13 @@ import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 import {ProfileStatus} from "./ProfileStatus";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 
-type PropsType = {
+type MyProfilePropsType = {
     profile: null | ProfileType
     status: string
     updateUserStatus: (userId: number, status: string) => void
 }
 
-export const MyProfile = (props: PropsType) => {
+export const MyProfile = (props: MyProfilePropsType) => {
 
     /*return (
         <>

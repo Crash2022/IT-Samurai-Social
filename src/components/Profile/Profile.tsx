@@ -2,7 +2,6 @@ import React from "react";
 import classes from './Profile.module.css';
 import {MyProfile} from "./MyProfile/MyProfile";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {MapStateUserProfileToPropsType, ProfileContainerPropsType} from "./ProfileContainer";
 import {ProfileType} from "../../redux/profilePage-reducer";
 
 type ProfilePropsType = {
