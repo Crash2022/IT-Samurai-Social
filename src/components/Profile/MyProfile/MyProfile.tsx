@@ -1,12 +1,19 @@
 import React from "react";
 import classes from './MyProfile.module.css';
-import {MapStateUserProfileToPropsType} from "../ProfileContainer";
+import {MapStateUserProfileToPropsType, ProfileContainerPropsType} from "../ProfileContainer";
 import {Preloader} from "../../../UI/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 import {ProfileStatus} from "./ProfileStatus";
+import {ProfileType} from "../../../redux/profilePage-reducer";
 
-export const MyProfile = (props: MapStateUserProfileToPropsType) => {
+type PropsType = {
+    profile: null | ProfileType
+    status: string
+    updateUserStatus: (userId: number, status: string) => void
+}
+
+export const MyProfile = (props: PropsType) => {
 
     /*return (
         <>
@@ -58,7 +65,7 @@ export const MyProfile = (props: MapStateUserProfileToPropsType) => {
                         <div><b>Хобби:</b> ...</div>
                         <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
                         <div><b>Веб-сайт:</b> {props.profile.contacts.vk}</div>
-                        <ProfileStatus title={'This is my status text'}/>
+                        <ProfileStatus userId={props.profile.userId} status={props.status} updateUserStatus={props.updateUserStatus}/>
                     </div>
                 </div>
             </>

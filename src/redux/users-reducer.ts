@@ -138,12 +138,13 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
     return (dispatch: Dispatch<ActionsType>) => {
-    dispatch(toggleIsLoadingAC(true));
+        dispatch(toggleIsLoadingAC(true));
 
         usersAPI.getUsers(currentPage, pageSize)
         .then(data => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));
+            dispatch(setCurrentPageAC(currentPage));
             //dispatch(setUsersTotalUsersCount(data.totalCount));
         })
     }

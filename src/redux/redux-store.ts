@@ -1,8 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {
-    profileReducer, AddPostACType, UpdateNewPostACType,
-    SetUserProfileACType, SetUserStatusACType
-} from "./profilePage-reducer";
+import {profileReducer, AddPostACType, UpdateNewPostACType,
+    SetUserProfileACType, SetUserStatusACType} from "./profilePage-reducer";
 import {ActionSendMessageType, ActionUpdateMessageType, dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {usersReducer, SetCurrentPageACType, SetUsersACType,

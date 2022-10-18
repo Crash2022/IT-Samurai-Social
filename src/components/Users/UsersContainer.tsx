@@ -76,6 +76,7 @@ const DispatchUsersToProps: DispatchUsersToPropsType = {
     //setUsersTotalUsersCountAC, // !!!нужно для вывода всех страниц с юзерами!!!
     //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
     //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk
+
     getUsers: getUsersThunkCreator, // можно сократить до getUsers
     deleteFollow: deleteFollowThunkCreator,
     postFollow: postFollowThunkCreator

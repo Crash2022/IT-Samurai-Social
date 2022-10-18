@@ -1,7 +1,8 @@
 import {v1} from "uuid";
-import {ActionsType} from "./redux-store";
+import {ActionsType, RootStateType} from "./redux-store";
 import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
+import {ThunkAction} from "redux-thunk";
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T
@@ -10,7 +11,7 @@ export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
     newPostText: string
     profile: null | ProfileType
-    // profile: null as Nullable<ProfileType>
+    // profile: null as Nullable<ProfileType> // иной вид типизации
     status: string
 }
 export type UserMessageType = {
@@ -152,11 +153,11 @@ export const setUserStatusAC = (status: string) => ({
     status
 } as const )
 
-//*Иная запись типизации actions
-//*type ActionsType = ReturnType<PropertiesType<typeof actions>>
-//*type PropertiesType<T> = T extends {[key: string]: infer U ? U : never}
+// Иная запись типизации actions
+/*type ActionsType = ReturnType<PropertiesType<typeof actions>>
+type PropertiesType<T> = T extends {[key: string]: infer U ? U : never}
 
-/*const actions = {
+const actions = {
     addPostAC: () => ({type: 'ADD_POST'} as const),
     updateNewPostAC: (textareaValue: string) => ({
         type: 'UPDATE_NEW_POST_TEXT',
@@ -175,6 +176,31 @@ export const getProfileThunkCreator = (userId: number) => {
         profileAPI.getProfile(userId)
             .then(data => {
                 dispatch(setUserProfileAC(data));
+            })
+    }
+}
+
+export const getUserStatusThunkCreator = (userId: number) => {
+
+    return (dispatch: Dispatch<ActionsType>) => {
+
+        profileAPI.getUserStatus(userId)
+            .then(data => {
+                dispatch(setUserStatusAC(data));
+            })
+    }
+}
+
+export const updateUserStatusThunkCreator = (userId: number, status: string):
+    ThunkAction<void, RootStateType, { }, ActionsType> => {
+
+    return (dispatch) => {
+
+        profileAPI.updateUserStatus(status)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(getUserStatusThunkCreator(userId));
+                }
             })
     }
 }

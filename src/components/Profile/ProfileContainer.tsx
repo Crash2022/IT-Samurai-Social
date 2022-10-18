@@ -3,21 +3,24 @@ import {Profile} from "./Profile";
 //import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {getProfileThunkCreator, ProfileType} from "../../redux/profilePage-reducer";
+import {ProfileType, getProfileThunkCreator,
+    getUserStatusThunkCreator, updateUserStatusThunkCreator}
+    from "../../redux/profilePage-reducer";
 import {withRouter, RouteComponentProps} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+//import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 //import {usersAPI} from "../../api/api";
 
 export type MapStateUserProfileToPropsType = {
     profile: null | ProfileType
-    status: any
+    status: string
     //isAuth: boolean
 }
 export type DispatchUserProfileToPropsType = {
     //setUserProfileAC: (profile: null) => void
     getProfile: (userId: number) => void
-    getStatus: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (userId: number, status: string) => void
 }
 
 export type PathParamType = {
@@ -32,7 +35,7 @@ export type ProfileContainerPropsType =
 const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
         //isAuth: state.auth.isAuth
     }
 }
@@ -40,7 +43,8 @@ const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType =
 const DispatchUserProfileToProps: DispatchUserProfileToPropsType = {
     //setUserProfileAC,
     getProfile: getProfileThunkCreator,
-    getStatus: //
+    getUserStatus: getUserStatusThunkCreator,
+    updateUserStatus: updateUserStatusThunkCreator
 }
 
 export class ProfileContainerCompose extends React.Component<ProfileContainerPropsType> {
@@ -49,7 +53,7 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerPro
         let userId = +this.props.match.params.userId;
 
         if (!userId) {
-            userId = 2;
+            userId = 26141;
         }
 
         /*axios
@@ -60,12 +64,16 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerPro
             this.props.setUserProfileAC(data);
         })*/
         this.props.getProfile(userId);
-        this.props.getStatus(userId);
+        this.props.getUserStatus(userId);
     }
 
     render() {
         return (
-            <Profile {...this.props} profile={this.props.profile}/>
+            <Profile {...this.props}
+                     profile={this.props.profile}
+                     status={this.props.status}
+                     updateUserStatus={this.props.updateUserStatus}
+            />
         )
     }
 }

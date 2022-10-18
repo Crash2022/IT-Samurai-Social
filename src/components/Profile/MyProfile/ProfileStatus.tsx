@@ -1,26 +1,44 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import classes from './MyProfile.module.css';
 
 export type ProfileStatusPropsType = {
-    title: string
+    userId: number
+    status: string
+    updateUserStatus: (userId: number, status: string) => void
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
-    activateEditModeHandler() {
+    activateEditModeHandler = () => {
         this.setState({
             editMode: true
         });
     }
 
-    deactivateEditModeHandler() {
+    deactivateEditModeHandler = () => {
         this.setState({
             editMode: false
         });
+        this.props.updateUserStatus(this.props.userId, this.state.status);
+    }
+
+    onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
+        this.setState({
+            status: event.currentTarget.value
+        });
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
     }
 
     render() {
@@ -30,14 +48,18 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
                     this.state.editMode
                         ?
                         <div>
-                            <input type="text" value={this.props.title}
-                                   onBlur={this.deactivateEditModeHandler.bind(this)}
-                                    autoFocus={true}
+                            <input type="text"
+                                   value={this.state.status}
+                                   onChange={this.onStatusChange}
+                                   onBlur={this.deactivateEditModeHandler}
+                                   autoFocus={true}
                             />
                         </div>
                         :
                         <div>
-                            <span onDoubleClick={this.activateEditModeHandler.bind(this)}>{this.props.title}</span>
+                            <span onDoubleClick={this.activateEditModeHandler}>
+                                {this.props.status || 'Тут будет твой статус'}
+                            </span>
                         </div>
                 }
             </div>
