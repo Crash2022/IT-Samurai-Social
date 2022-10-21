@@ -1,5 +1,8 @@
 .login {
-
+    border: 2px solid green;
+    width: 300px;
+    margin: 0 auto;
+    padding: 5px;
 }
 .login h2 {
     font-size: 20px;
@@ -10,7 +13,7 @@
     text-align: center;
 }
 .login form > div {
-    margin: 5px;
+    padding: 5px;
 }
 .login button {
     background-color: green;

@@ -1,6 +1,7 @@
-import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
+
+type ActionsType = SetAuthUserDataACType; // | SetLoginDataACType;
 
 export type AuthPropsType = {
     userId: null
@@ -16,7 +17,7 @@ let initialState = {
     isAuth: false
 };
 
-export const authReducer = ( state: AuthPropsType = initialState, action: ActionsType): AuthPropsType => {
+export const authReducer = (state: AuthPropsType = initialState, action: ActionsType): AuthPropsType => {
     switch(action.type) {
         case 'SET_USER_DATA':
             return {...state, ...action.data, isAuth: true};
@@ -37,6 +38,17 @@ export const setAuthUserDataAC = (userId: string, email: null, login: null) => (
     }
 } as const)
 
+// export type SetLoginDataACType = ReturnType<typeof setLoginDataAC>
+// export const setLoginDataAC = (userId: string, email: null, password: null,
+//                                rememberMe: boolean, captcha: boolean) => ({
+//     type: 'SET_LOGIN_DATA',
+//     data: {
+//         id: userId,
+//         email, password,
+//         rememberMe, captcha
+//     }
+// } as const)
+
 /*-------------------------THUNK-------------------------*/
 
 export const getAuthThunkCreator = () => {
@@ -52,3 +64,17 @@ export const getAuthThunkCreator = () => {
             })
     }
 }
+
+// export const postLoginThunkCreator = () => {
+//
+//     return (dispatch: Dispatch<ActionsType>) => {
+//
+//         loginAPI.postLogin()
+//             .then(data => {
+//                 if (data.resultCode === 0) {
+//                     let {id, login, password, rememberMe, captcha} = data.data;
+//                     dispatch(setLoginDataAC(id, login, password, rememberMe, captcha));
+//                 }
+//             })
+//     }
+// }

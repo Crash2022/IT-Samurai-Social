@@ -1,6 +1,14 @@
-import {ActionsType} from "./redux-store";
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
+
+type ActionsType =
+    UserFollowACType |
+    UserUnfollowACType |
+    SetUsersACType |
+    SetCurrentPageACType |
+    //setUsersTotalCountACType |
+    ToggleIsLoadingACType |
+    ToggleFollowInProgressACType;
 
 export type UsersPropsType = {
     users: Array<UsersArray>

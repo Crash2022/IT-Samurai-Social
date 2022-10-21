@@ -69,42 +69,12 @@ export const profileAPI = {
     }
 }
 
-/*
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return (
-        instance
-            .get(`users?page=${currentPage}&count=${pageSize}`, { })
-            .then(response => response.data)
-    )
-}
-
-export const getAuth = () => {
-    return (
-        instance
-            .get(`auth/me`, { })
-            .then(response => response.data)
-    )
-}
-
-export const getProfile = (userId: number) => {
-    return (
-        instance
-            .get(`profile/${userId}`)
-            .then(response => response.data)
-    )
-}
-
-export const deleteFollow = (userId: string) => {
-    return (
-        instance
-            .delete(`follow/${userId}`, { })
-            .then(response => response.data)
-    )
-}
-export const postFollow = (userId: string) => {
-    return (
-        instance
-            .post(`follow/${userId}`, { }, { })
-            .then(response => response.data)
-    )
-}*/
+// export const loginAPI = {
+//     postLogin() {
+//         return (
+//             instance
+//                 .post(`auth/login`, { }, { })
+//                 .then(response => response.data)
+//         )
+//     }
+// }

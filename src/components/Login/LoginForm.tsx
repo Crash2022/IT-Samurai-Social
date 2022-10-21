@@ -1,16 +1,18 @@
 import React from "react";
-import {Field} from "redux-form";
+import {Field, InjectedFormProps} from "redux-form";
 //import classes from './Login.module.css';
 
-type LoginFormPropsType = {
-    handleSubmit: any
+export type LoginFormValuesType = {
+    email: string
+    password: string
+    rememberMe: boolean
 }
 
-export const LoginForm = (props: LoginFormPropsType) => {
+export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit }) => {
     return (
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <Field placeholder={'Логин'} name={'login'} component={'input'}/>
+                    <Field placeholder={'Логин'} name={'email'} component={'input'}/>
                 </div>
                 <div>
                     <Field placeholder={'Пароль'} name={'password'} component={'input'}/>

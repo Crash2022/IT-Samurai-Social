@@ -1,8 +1,14 @@
 import {v1} from "uuid";
-import {ActionsType, RootStateType} from "./redux-store";
+import {RootStateType} from "./redux-store";
 import {Dispatch} from "redux";
 import {profileAPI} from "../api/api";
 import {ThunkAction} from "redux-thunk";
+
+type ActionsType =
+    AddPostACType |
+    UpdateNewPostACType |
+    SetUserProfileACType |
+    SetUserStatusACType;
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T

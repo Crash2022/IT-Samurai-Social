@@ -1,5 +1,6 @@
 import {v1} from "uuid";
-import {ActionsType} from "./redux-store";
+
+type ActionsType = SendMessageACType | UpdateMessageACType;
 
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
@@ -61,8 +62,8 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
     }
 }
 
-export type ActionSendMessageType = ReturnType<typeof sendMessageAC>
-export type ActionUpdateMessageType = ReturnType<typeof updateNewDialogTextAC>
+export type SendMessageACType = ReturnType<typeof sendMessageAC>
+export type UpdateMessageACType = ReturnType<typeof updateNewDialogTextAC>
 
 export const sendMessageAC = () => ({
     type: 'SEND_DIALOG_TEXT'
