@@ -1,3 +1,23 @@
 .login {
 
 }
+.login h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+.login form {
+    text-align: center;
+}
+.login form > div {
+    margin: 5px;
+}
+.login button {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 18px;
+    margin: 5px;
+    min-width: 150px;
+}

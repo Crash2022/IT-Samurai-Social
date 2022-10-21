@@ -8,13 +8,15 @@ import {usersReducer, SetCurrentPageACType, SetUsersACType,
     UserFollowACType, UserUnfollowACType} from "./users-reducer";
 import {authReducer, SetAuthUserDataACType} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 export const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsPageReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 });
 
 export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
