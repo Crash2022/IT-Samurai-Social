@@ -19,3 +19,16 @@
 .sendButton {
   align-self: flex-end;
 }
+
+.sendButton button {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 14px;
+  margin: 5px;
+  min-width: 150px;
+}
+.sendButton button:hover {
+  opacity: 0.7;
+}
