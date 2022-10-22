@@ -1,6 +1,6 @@
 import React from "react";
 import {MyPostsItem} from "./MyPostsItem";
-import classes from './MyPostsList.module.css';
+import styles from './MyPostsList.module.css';
 import {UserMessageType} from "../../../redux/profilePage-reducer";
 
 type MyPostListPropsType = {
@@ -9,10 +9,8 @@ type MyPostListPropsType = {
 
 export const MyPostsList = (props: MyPostListPropsType) => {
     return (
-        <>
-            <div className={classes.content__postList}>
+            <div className={styles.content__postList}>
                 <MyPostsItem myPosts={props.myPosts}/>
             </div>
-        </>
     );
 }

@@ -2,10 +2,10 @@ import React from "react";
 import {Profile} from "./Profile";
 //import axios from "axios";
 import {connect} from "react-redux";
-import {RootStateType} from "../../redux/redux-store";
+import {RootStateType} from "../../../redux/redux-store";
 import {ProfileType, getProfileThunkCreator,
     getUserStatusThunkCreator, updateUserStatusThunkCreator}
-    from "../../redux/profilePage-reducer";
+    from "../../../redux/profilePage-reducer";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 //import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";

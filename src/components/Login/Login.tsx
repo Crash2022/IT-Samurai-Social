@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './Login.module.css';
+import styles from './Login.module.css';
 import {reduxForm} from "redux-form";
 import {LoginForm, LoginFormValuesType} from "./LoginForm";
 
@@ -10,7 +10,7 @@ export const Login = () => {
     }
 
     return (
-        <div className={classes.login}>
+        <div className={styles.login}>
             <h2>Вход</h2>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>

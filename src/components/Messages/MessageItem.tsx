@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Messages.module.css";
+import styles from "./Messages.module.css";
 import {v1} from "uuid";
 import {MessagesArray} from "../../redux/dialogsPage-reducer";
 import {MessageForm, MessageFormType} from "./MessageForm";
@@ -26,7 +26,7 @@ export const MessageItem = (props: MessageItemPropsType) => {
                     </div>
                 )
             })}
-            <div className={classes.sendMessageForm}>
+            <div className={styles.sendMessageForm}>
                 <MessageReduxForm onSubmit={onSubmit}/>
             </div>
         </>

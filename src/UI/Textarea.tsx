@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import classes from './Textarea.module.css';
+import styles from './Textarea.module.css';
 
 type TextareaPropsType = {
     value: string
@@ -15,7 +15,7 @@ export const Textarea = (props: TextareaPropsType) => {
 
     return (
         <textarea
-            className={classes.newMessage}
+            className={styles.newMessage}
             onChange={onChangeTextAreaHandler}>
                 {props.textareaValue}
         </textarea>

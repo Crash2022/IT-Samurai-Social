@@ -1,6 +1,5 @@
 import React from "react";
-import classes from './MyProfile.module.css';
-import {MapStateUserProfileToPropsType, ProfileContainerPropsType} from "../ProfileContainer";
+import styles from './MyProfile.module.css';
 import {Preloader} from "../../../UI/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
@@ -46,19 +45,19 @@ export const MyProfile = (props: MyProfilePropsType) => {
     } else {
         return (
             <>
-                <div className={classes.content__avatar}>
+                <div className={styles.content__avatar}>
                     <img src={avatarPhoto}
                          alt="profile-avatar">
                     </img>
                 </div>
 
-                <div className={classes.content__info}>
-                    <div className={classes.content__info_avatar}>
+                <div className={styles.content__info}>
+                    <div className={styles.content__info_avatar}>
                         <img
                             src={props.profile.photos.small !== null ? props.profile.photos.small : userAvatar}
                             alt="my-avatar"></img>
                     </div>
-                    <div className={classes.content__info_info}>
+                    <div className={styles.content__info_info}>
                         <div><b>Имя:</b> {props.profile.fullName}</div>
                         <div><b>Дата рождения:</b> ...</div>
                         <div><b>Город:</b> ...</div>

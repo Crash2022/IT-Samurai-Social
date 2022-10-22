@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import classes from './MyProfile.module.css';
+import styles from './MyProfile.module.css';
 
 export type ProfileStatusPropsType = {
     userId: number
@@ -43,7 +43,7 @@ export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
 
     render() {
         return (
-            <div className={classes.content__status_text}>
+            <div className={styles.content__status_text}>
                 {
                     this.state.editMode
                         ?

@@ -1,9 +1,9 @@
 import React from "react";
-import classes from './Welcome.module.css';
+import styles from './Welcome.module.css';
 
 export const Welcome = () => {
   return (
-    <div className={classes.welcome}>
+    <div className={styles.welcome}>
       <div>Welcome</div>
     </div>
   );

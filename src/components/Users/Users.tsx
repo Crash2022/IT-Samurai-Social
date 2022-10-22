@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Users.module.css";
+import styles from "./Users.module.css";
 import userAvatar from "../../assets/images/user_avatar.jpg";
 import {v1} from "uuid";
 import {NavLink} from "react-router-dom";
@@ -58,11 +58,11 @@ export const Users = (props: UsersPropsType) => {
 
     return (
         <>
-            <div className={classes.pagination}>
+            <div className={styles.pagination}>
                 {
                     pages.map(page => {
                         return (
-                            <span className={props.currentPage === page ? classes.selectedPage : ''}
+                            <span className={props.currentPage === page ? styles.selectedPage : ''}
                                   key={v1()}
                                   onClick={() => {
                                       props.onChangePageHandler(page)
@@ -74,19 +74,19 @@ export const Users = (props: UsersPropsType) => {
                     })
                 }
             </div>
-            <div className={classes.usersWrapper}>
+            <div className={styles.usersWrapper}>
                 {
                     props.users.map(user => {
                         return (
-                            <div className={classes.usersItem} key={user.id}>
-                                <div className={classes.users_leftSide}>
+                            <div className={styles.usersItem} key={user.id}>
+                                <div className={styles.users_leftSide}>
                                     <NavLink to={'/profile/' + user.id}>
-                                        <div className={classes.usersAvatar}>
+                                        <div className={styles.usersAvatar}>
                                             <img src={user.photos.small !== null ? user.photos.small : userAvatar}
                                                  alt="userAvatar"/>
                                         </div>
                                     </NavLink>
-                                    <div className={classes.followButton}>
+                                    <div className={styles.followButton}>
                                         {
                                             user.followed
                                                 ? <button disabled={props.followingInProgress.some(id => id === user.id)}
@@ -131,17 +131,17 @@ export const Users = (props: UsersPropsType) => {
                                         }
                                     </div>
                                 </div>
-                                <div className={classes.users_rightSide}>
-                                    <div className={classes.users_rightSide_info}>
-                                        <div className={classes.users_rightSide_name}>
+                                <div className={styles.users_rightSide}>
+                                    <div className={styles.users_rightSide_info}>
+                                        <div className={styles.users_rightSide_name}>
                                             {user.name}
                                         </div>
-                                        <div className={classes.users_rightSide_location}>
+                                        <div className={styles.users_rightSide_location}>
                                             <div>{'user.location.country'},</div>
                                             <div>{'user.location.city'}</div>
                                         </div>
                                     </div>
-                                    <div className={classes.users_rightSide_status}>
+                                    <div className={styles.users_rightSide_status}>
                                         {user.status !== null ? user.status : 'Here will be your status speech: user.status'}
                                     </div>
                                 </div>

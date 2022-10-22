@@ -1,13 +1,13 @@
 import React from "react";
-import classes from './Header.module.css';
+import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import socialLogo from "../../assets/images/social_logo.png";
 import {HeaderContainerPropsType} from "./HeaderContainer";
 
 export const Header = (props: HeaderContainerPropsType) => {
     return (
-        <header className={classes.header}>
-            <div className={classes.header__logo}>
+        <header className={styles.header}>
+            <div className={styles.header__logo}>
                 <NavLink to="/">
                     <img
                         src={socialLogo}
@@ -16,10 +16,10 @@ export const Header = (props: HeaderContainerPropsType) => {
                     </img>
                 </NavLink>
             </div>
-            <div className={classes.header__socialName}>
+            <div className={styles.header__socialName}>
                 Социальная сеть для джедаев
             </div>
-            <div className={classes.login_block}>
+            <div className={styles.login_block}>
                 {
                     props.isAuth
                         ? props.login

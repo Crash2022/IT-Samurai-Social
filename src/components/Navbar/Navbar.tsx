@@ -1,12 +1,12 @@
 import React from "react";
 //import {NavLink} from "react-router-dom";
-import classes from './Navbar.module.css';
+import styles from './Navbar.module.css';
 import NavbarFriendsContainer from "./NavbarFriendsContainer";
 import {NavLinks} from "./NavbarLinks";
 
 export const Navbar = () => {
     return (
-        <nav className={classes.left__navMenu}>
+        <nav className={styles.left__navMenu}>
             {/*<div>
                 <NavLink to="/profile" activeClassName={classes.activeLink}>Профиль</NavLink>
             </div>

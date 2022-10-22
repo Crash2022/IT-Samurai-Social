@@ -9,7 +9,7 @@ import {Login} from "./components/Login/Login";
 import {Footer} from "./components/Footer/Footer";
 import {MessagesContainer} from "./components/Messages/MessagesContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
-import {ProfileContainer} from "./components/Profile/ProfileContainer";
+import {ProfileContainer} from "./components/Profile/ProfileMain/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 
 export const App = () => {

@@ -1,8 +1,8 @@
 import React from "react";
-import classes from './Profile.module.css';
-import {MyProfile} from "./MyProfile/MyProfile";
-import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {ProfileType} from "../../redux/profilePage-reducer";
+import styles from './Profile.module.css';
+import {MyProfile} from "../MyProfile/MyProfile";
+import {MyPostsContainer} from "../MyPosts/MyPostsContainer";
+import {ProfileType} from "../../../redux/profilePage-reducer";
 
 type ProfilePropsType = {
     profile: null | ProfileType
@@ -13,7 +13,7 @@ type ProfilePropsType = {
 export const Profile = (props: ProfilePropsType) => {
 
     return (
-        <div className={classes.right__profile}>
+        <div className={styles.right__profile}>
             <MyProfile
                 profile={props.profile}
                 status={props.status}

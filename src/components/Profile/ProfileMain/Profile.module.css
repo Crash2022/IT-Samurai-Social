@@ -1,0 +1,11 @@
+.right__profile {
+  display: grid;
+  grid-template-rows: 200px; /*высота первой строки*/
+  grid-auto-rows: minmax(min-content, max-content); /*высота строки в зависимости от контента*/
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "content__avatar"
+    "content__info"
+    "content__myposts"
+    "content__postlist";
+}
