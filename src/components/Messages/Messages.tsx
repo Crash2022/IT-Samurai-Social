@@ -14,10 +14,7 @@ export const Messages = (props: MessagesContainerType) => {
                 </div>
                 <div className={classes.text}>
                     <MessageItem myMessages={props.myMessages}
-                                 onChangeMessageText={props.updateNewDialogTextAC}
-                                 //newMessageTextForDialog={props.newMessageTextForDialog}
                                  sendMessageHandler={props.sendMessageAC}
-                                 //onSubmit={onSubmit}
                     />
                 </div>
             </div>

@@ -31,10 +31,7 @@
 }
 
 .sendMessageForm {
-    /*display: flex;
-    flex-direction: column;*/
     width: 98%;
-    /*margin: 0 20px 0px 20px;*/
 }
 
 .sendMessage textarea {
@@ -58,7 +55,7 @@
     padding: 10px;
     border: none;
     font-size: 14px;
-    margin: 5px;
+    /*margin: 5px;*/
     min-width: 150px;
 }
 .sendButton button:hover {

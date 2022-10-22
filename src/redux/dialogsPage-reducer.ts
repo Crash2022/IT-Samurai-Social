@@ -1,11 +1,10 @@
 import {v1} from "uuid";
 
-type ActionsType = SendMessageACType | UpdateMessageACType;
+type ActionsType = SendMessageACType;
 
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
     messagesData: Array<MessagesArray>
-    //newMessageTextForDialog: string
 }
 export type DialogsArray = {
     id: string
@@ -30,8 +29,7 @@ let initialState = {
         {id: v1(), text: 'Hello, Ali Clarkson'},
         {id: v1(), text: 'Hello, Thomas Remvik Aasen'},
         {id: v1(), text: 'Hello, Damon Watson'}
-    ] as Array<MessagesArray>/*,
-    newMessageTextForDialog: ''*/
+    ] as Array<MessagesArray>
 }
 
 export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionsType): DialogsPropsType => {
@@ -40,13 +38,8 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
         case 'SEND_DIALOG_TEXT': {
             let newDialogMessageText = action.newMessageTextForDialog;
             return {...state,
-                //newMessageTextForDialog: '',
                 messagesData: [...state.messagesData, {id: v1(), text: newDialogMessageText}]
             };
-        }
-        case 'UPDATE_NEW_DIALOG_TEXT': {
-            //return { ...state, newMessageTextForDialog: action.newDialogMessageText};
-            return { ...state};
         }
         default:
             return state;
@@ -54,12 +47,7 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
 }
 
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
-export type UpdateMessageACType = ReturnType<typeof updateNewDialogTextAC>
 
 export const sendMessageAC = (newMessageTextForDialog: string) => ({
     type: 'SEND_DIALOG_TEXT', newMessageTextForDialog
-} as const)
-export const updateNewDialogTextAC = (/*textareaMessage: string*/) => ({
-    type: 'UPDATE_NEW_DIALOG_TEXT'/*,
-    newDialogMessageText: textareaMessage*/
 } as const)

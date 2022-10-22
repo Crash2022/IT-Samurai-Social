@@ -6,7 +6,6 @@ import {ThunkAction} from "redux-thunk";
 
 type ActionsType =
     AddPostACType |
-    UpdateNewPostACType |
     SetUserProfileACType |
     SetUserStatusACType;
 
@@ -15,7 +14,6 @@ type ActionsType =
 
 export type MyPostsItemPropsType = {
     myPosts: Array<UserMessageType>
-    newPostText: string
     profile: null | ProfileType
     // profile: null as Nullable<ProfileType> // иной вид типизации
     status: string
@@ -86,29 +84,11 @@ let initialState = {
             dislikes: 10
         }
     ] as Array<UserMessageType>,
-    newPostText: '',
     profile: null,
     status: ''
 }
 
 export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType): MyPostsItemPropsType => {
-
-    /*if (action.type === ADD_POST) {
-    let newPost = {
-        id: v1(),
-        avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-        nickname: "Dimych",
-        postMessage: state.newPostText,
-        likes: 0,
-        dislikes: 0
-    };
-    state.user1.push(newPost);
-    state.newPostText = '';
-    /!*props._callSubscriber();*!/
-} else if (action.type === UPDATE_NEW_POST_TEXT) {
-    state.newPostText = action.newText;
-    /!*props._callSubscriber();*!/
-}*/
 
     switch(action.type) {
         case 'ADD_POST': {
@@ -116,14 +96,11 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
                 nickname: "Dimych",
-                postMessage: state.newPostText,
+                postMessage: action.newPostText,
                 likes: 0,
                 dislikes: 0
             };
-            return { ...state, myPosts: [...state.myPosts, newPost], newPostText: '' };
-        }
-        case 'UPDATE_NEW_POST_TEXT': {
-            return { ...state, newPostText: action.newText };
+            return { ...state, myPosts: [newPost, ...state.myPosts] };
         }
         case 'SET_USER_PROFILE': {
             return { ...state, profile: action.profile };
@@ -139,17 +116,12 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
 /*-------------------------ACTION CREATOR-------------------------*/
 
 export type AddPostACType = ReturnType<typeof addPostAC>
-export type UpdateNewPostACType = ReturnType<typeof updateNewPostAC>
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
 export type SetUserStatusACType = ReturnType<typeof setUserStatusAC>
 
-export const addPostAC = () => ({
-    type: 'ADD_POST'
+export const addPostAC = (newPostText: string) => ({
+    type: 'ADD_POST', newPostText
 } as const)
-export const updateNewPostAC = (textareaValue: string) => ({
-    type: 'UPDATE_NEW_POST_TEXT',
-    newText: textareaValue
-} as const )
 export const setUserProfileAC = (profile: null) => ({
     type: 'SET_USER_PROFILE',
     profile

@@ -6,10 +6,7 @@ import {MyPostsType} from "./MyPostsContainer";
 export const MyPosts = (props: MyPostsType) => {
     return (
         <>
-            <MyPostsAdd newPostText={props.newPostText}
-                        onAddPostMessage={props.addPostAC}
-                        onChangePostMessage={props.updateNewPostAC}
-            />
+            <MyPostsAdd onAddPostMessage={props.addPostAC}/>
             <MyPostsList myPosts={props.myPosts}/>
         </>
     );
