@@ -1,7 +1,11 @@
-import React from "react";
+import React, {DetailedHTMLFactory, InputHTMLAttributes, MetaHTMLAttributes, useState} from "react";
 import {Field, InjectedFormProps} from "redux-form";
 import styles from './MyPostsAdd.module.css';
 import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
+import SuperButton from "../../../UI/Button/SuperButton";
+import {SuperTextArea} from "../../../UI/Textarea/SuperTextArea";
+import inputStyles from "../../../UI/Textarea/SuperTextArea.module.css";
+import {WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 
 export type MyPostsFormType = {
     newPostText: string
@@ -13,16 +17,15 @@ export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormType>> = ({handl
 
     return (
             <form onSubmit={handleSubmit}>
-                <div className={styles.sendMessage}>
-                    <Field className={styles.newMessage}
-                           placeholder={'Введите текст...'}
+                <div className={styles.sendMessageArea}>
+                    <Field placeholder={'Введите текст...'}
                            name={'newPostText'}
-                           component={'textarea'}
+                           component={SuperTextArea}
                            validate={[requiredField, maxLengthCreator20]}
                     />
                 </div>
                 <div className={styles.sendButton}>
-                    <button>Добавить запись</button>
+                    <SuperButton>Добавить запись</SuperButton>
                 </div>
             </form>
     );

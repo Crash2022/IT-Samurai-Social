@@ -2,7 +2,7 @@
     /* display: flex; */
     display: grid;
     grid-template: 1fr/ 3fr 9fr; /*строки / колонки*/
-    grid-template-areas: 
+    grid-template-areas:
         "dialogs text";
 }
 
@@ -36,26 +36,10 @@
 .sendMessageForm {
     width: 98%;
 }
-.newMessage {
-    min-width: 100%;
-    height: 70px;
-    resize: none;
-}
-.sendMessage textarea {
+.sendMessageArea {
     margin-bottom: 10px;
 }
 .sendButton {
     display: flex;
     justify-content: flex-end;
-}
-.sendButton button {
-    background-color: green;
-    color: white;
-    padding: 10px;
-    border: none;
-    font-size: 14px;
-    min-width: 150px;
-}
-.sendButton button:hover {
-    opacity: 0.7;
 }

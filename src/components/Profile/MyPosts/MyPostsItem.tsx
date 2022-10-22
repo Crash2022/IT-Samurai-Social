@@ -7,7 +7,7 @@ type MyPostsItemPropsType = {
 }
 
 export const MyPostsItem = (props: MyPostsItemPropsType) => {
-    console.log(props.myPosts)
+
     return (
         <>
             {props.myPosts.map( elem => {

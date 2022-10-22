@@ -54,7 +54,7 @@ let initialState = {
         {
             id: v1(),
             avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
-            nickname: 'Dimych',
+            nickname: 'Crash555',
             postMessage: 'Hello to all MTB Community',
             likes: 15,
             dislikes: 1
@@ -62,7 +62,7 @@ let initialState = {
         {
             id: v1(),
             avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
-            nickname: 'Dimych',
+            nickname: 'Crash555',
             postMessage: 'Hello to all Codewars',
             likes: 10,
             dislikes: 0
@@ -70,7 +70,7 @@ let initialState = {
         {
             id: v1(),
             avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
-            nickname: 'Dimych',
+            nickname: 'Crash555',
             postMessage: 'Hello to all FreeCodeCamp',
             likes: 105,
             dislikes: 10
@@ -78,7 +78,7 @@ let initialState = {
         {
             id: v1(),
             avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
-            nickname: 'Dimych',
+            nickname: 'Crash555',
             postMessage: 'Hello to all Incubators',
             likes: 105,
             dislikes: 10
@@ -95,7 +95,7 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
             let newPost = {
                 id: v1(),
                 avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-                nickname: "Dimych",
+                nickname: "Crash555",
                 postMessage: action.newPostText,
                 likes: 0,
                 dislikes: 0

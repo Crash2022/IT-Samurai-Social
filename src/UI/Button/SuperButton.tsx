@@ -1,7 +1,7 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react'
 import s from './SuperButton.module.css'
 
-// тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
+// тип пропсов обычной кнопки, children в котором хранится, название кнопки там уже описан
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
@@ -19,7 +19,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
     return (
         <button
             className={finalClassName}
-            {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
+            {...restProps} // отдаём кнопке остальные пропсы, если они есть (children там внутри)
         />
     )
 }

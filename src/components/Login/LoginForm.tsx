@@ -1,6 +1,9 @@
 import React from "react";
 import {Field, InjectedFormProps} from "redux-form";
-//import classes from './Login.module.css';
+import SuperButton from "../../UI/Button/SuperButton";
+import styles from './Login.module.css';
+import {SuperInputText} from "../../UI/Input/SuperInputText";
+import SuperCheckbox from "../../UI/Checkbox/SuperCheckbox";
 
 export type LoginFormValuesType = {
     email: string
@@ -12,16 +15,16 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
     return (
             <form onSubmit={handleSubmit}>
                 <div>
-                    <Field placeholder={'Логин'} name={'email'} component={'input'}/>
+                    <Field placeholder={'Логин'} name={'email'} component={SuperInputText}/>
                 </div>
                 <div>
-                    <Field placeholder={'Пароль'} name={'password'} component={'input'}/>
+                    <Field placeholder={'Пароль'} name={'password'} component={SuperInputText}/>
                 </div>
                 <div>
-                    <Field type="checkbox" name={'rememberMe'} component={'input'}/>Запомнить меня
+                    <Field name={'rememberMe'} component={SuperCheckbox}/>Запомнить меня
                 </div>
                 <div>
-                    <button>Войти</button>
+                    <SuperButton className={styles.loginButton}>Войти</SuperButton>
                 </div>
             </form>
     );

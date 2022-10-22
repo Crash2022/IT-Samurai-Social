@@ -1,4 +1,11 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
+import React, {
+    ChangeEvent,
+    DetailedHTMLFactory,
+    DetailedHTMLProps,
+    InputHTMLAttributes,
+    KeyboardEvent,
+    MetaHTMLAttributes
+} from 'react'
 import s from './SuperInputText.module.css'
 
 // тип пропсов обычного инпута
@@ -11,6 +18,8 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     onEnter?: () => void
     error?: string
     spanClassName?: string
+    input: DetailedHTMLFactory<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+    meta: DetailedHTMLFactory<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement>
 }
 
 export const SuperInputText: React.FC<SuperInputTextPropsType> = (
@@ -20,7 +29,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = (
         onKeyPress, onEnter,
         error,
         className, spanClassName,
-
+        input, meta,
         ...restProps// все остальные пропсы попадут в объект restProps
     }
 ) => {
@@ -38,9 +47,8 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = (
         && onEnter() // то вызвать его
     }
 
-    //const finalSpanClassName = `${s.error}`
     const finalSpanClassName = `${error ? s.error : ''} ${spanClassName ? spanClassName : ''}`
-    const finalInputClassName = `${error ? s.errorInput : ''} ${className ? className : s.superInputDone}` // need to fix with (?:) and s.superInput
+    const finalInputClassName = `${error ? s.errorInput : ''} ${className ? className : s.superInputDone}`
 
     return (
         <>
@@ -49,7 +57,7 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = (
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
-
+                {...input}
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
             <div>{error && <span className={finalSpanClassName}>{error}</span>}</div>

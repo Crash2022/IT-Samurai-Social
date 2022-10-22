@@ -1,6 +1,7 @@
 import React from "react";
 
 export const requiredField = (value: string) => {
+    console.log('value', value)
     if(value) {
         return undefined;
     } else {
@@ -20,7 +21,7 @@ export const requiredField = (value: string) => {
 export const maxLengthCreator = (maxLength: number) => {
     return (value: string) => {
         if(value && value.length > maxLength) {
-            return `Введено ${maxLength} символов`;
+            return `Введено больше ${maxLength} символов`;
         } else {
             return undefined;
         }

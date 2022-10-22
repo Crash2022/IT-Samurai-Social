@@ -14,7 +14,7 @@ export const MessageItem = (props: MessageItemPropsType) => {
 
     const onSubmit = (formData: MessageFormType) => {
         //console.log(formData);
-        props.sendMessageHandler(formData.message);
+        props.sendMessageHandler(formData.newMessage);
     }
 
     return (

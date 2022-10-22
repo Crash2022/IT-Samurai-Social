@@ -1,5 +1,8 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
+import React, {ChangeEvent, KeyboardEvent,
+    DetailedHTMLFactory, DetailedHTMLProps,
+    InputHTMLAttributes, MetaHTMLAttributes} from 'react'
 import s from './SuperTextArea.module.css'
+import {WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
@@ -9,50 +12,58 @@ type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaE
 type SuperTextAreaPropsType = DefaultInputPropsType & { // и + ещё пропсы которых нет в стандартном инпуте
     onChangeText?: (value: string) => void
     onEnter?: () => void
-    error?: string
+    customError?: string
     spanClassName?: string
+    input: WrappedFieldProps
+    meta: WrappedFieldMetaProps
 }
 
 export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
     {
-        //type, // достаём и игнорируем, чтобы нельзя было задать другой тип инпута
-        onChange, onChangeText,
-        onKeyPress, onEnter,
-        error,
+        // onChange,
+        // onChangeText,
+        // onKeyPress, onEnter,
+        customError,
         className, spanClassName,
-
+        input, meta,
         ...restProps// все остальные пропсы попадут в объект restProps
     }
 ) => {
-    const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        onChange // если есть пропс onChange
-        && onChange(e) // то передать ему е (поскольку onChange не обязателен)
+    console.log('meta', meta)
+    console.log('input', input)
 
-        onChangeText && onChangeText(e.currentTarget.value)
-    }
-    const onKeyPressCallback = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        onKeyPress && onKeyPress(e);
+    // const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     onChange // если есть пропс onChange
+    //     && onChange(e) // то передать ему е (поскольку onChange не обязателен)
+    //
+    //     onChangeText && onChangeText(e.currentTarget.value)
+    // }
+    // const onKeyPressCallback = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    //     onKeyPress && onKeyPress(e);
+    //
+    //     onEnter // если есть пропс onEnter
+    //     && e.key === 'Enter' // и если нажата кнопка Enter
+    //     && onEnter() // то вызвать его
+    // }
 
-        onEnter // если есть пропс onEnter
-        && e.key === 'Enter' // и если нажата кнопка Enter
-        && onEnter() // то вызвать его
-    }
+    const finalSpanClassName = `${meta.error ? s.error : ''} ${spanClassName ? spanClassName : ''}`
+    const finalInputClassName = `${meta.error ? s.errorTextArea : ''} ${className ? className : s.superTextArea}`
 
-    //const finalSpanClassName = `${s.error}`
-    const finalSpanClassName = `${error ? s.error : ''} ${spanClassName ? spanClassName : ''}`
-    const finalInputClassName = `${error ? s.errorInput : ''} ${className ? className : s.superInputDone}` // need to fix with (?:) and s.superInput
+    const validateError = meta.touched && meta.error /*? '' : 'Поле обязательно для заполнения'*/
 
     return (
         <>
             <textarea
-                //type={'textarea'}
-                onChange={onChangeCallback}
-                onKeyPress={onKeyPressCallback}
+                {...input}
+                // onChange={onChangeCallback}
+                // onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}
-
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
-            <div>{error && <span className={finalSpanClassName}>{error}</span>}</div>
+            <div>
+                {customError && <span className={finalSpanClassName}>{customError}</span>}
+                {validateError && <span className={finalSpanClassName}>{meta.error}</span>}
+            </div>
         </>
     )
 }
