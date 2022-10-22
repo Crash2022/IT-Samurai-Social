@@ -5,7 +5,7 @@ type ActionsType = SendMessageACType | UpdateMessageACType;
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
     messagesData: Array<MessagesArray>
-    newMessageTextForDialog: string
+    //newMessageTextForDialog: string
 }
 export type DialogsArray = {
     id: string
@@ -30,32 +30,23 @@ let initialState = {
         {id: v1(), text: 'Hello, Ali Clarkson'},
         {id: v1(), text: 'Hello, Thomas Remvik Aasen'},
         {id: v1(), text: 'Hello, Damon Watson'}
-    ] as Array<MessagesArray>,
-    newMessageTextForDialog: ''
+    ] as Array<MessagesArray>/*,
+    newMessageTextForDialog: ''*/
 }
 
 export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionsType): DialogsPropsType => {
 
-    /*if (action.type === SEND_DIALOG_TEXT) {
-        let newDialogMessageText = state.newMessageTextForDialog;
-        state.newMessageTextForDialog = '';
-        state.messagesData.push({id: v1(), text: newDialogMessageText});
-        /!*props._callSubscriber();*!/
-    } else if (action.type === UPDATE_NEW_DIALOG_TEXT) {
-        state.newMessageTextForDialog = action.newDialogMessageText;
-        /!*props._callSubscriber();*!/
-    }*/
-
     switch(action.type) {
         case 'SEND_DIALOG_TEXT': {
-            let newDialogMessageText = state.newMessageTextForDialog;
+            let newDialogMessageText = action.newMessageTextForDialog;
             return {...state,
-                newMessageTextForDialog: '',
+                //newMessageTextForDialog: '',
                 messagesData: [...state.messagesData, {id: v1(), text: newDialogMessageText}]
             };
         }
         case 'UPDATE_NEW_DIALOG_TEXT': {
-            return { ...state, newMessageTextForDialog: action.newDialogMessageText };
+            //return { ...state, newMessageTextForDialog: action.newDialogMessageText};
+            return { ...state};
         }
         default:
             return state;
@@ -65,10 +56,10 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
 export type UpdateMessageACType = ReturnType<typeof updateNewDialogTextAC>
 
-export const sendMessageAC = () => ({
-    type: 'SEND_DIALOG_TEXT'
+export const sendMessageAC = (newMessageTextForDialog: string) => ({
+    type: 'SEND_DIALOG_TEXT', newMessageTextForDialog
 } as const)
-export const updateNewDialogTextAC = (textareaMessage: string) => ({
-    type: 'UPDATE_NEW_DIALOG_TEXT',
-    newDialogMessageText: textareaMessage
+export const updateNewDialogTextAC = (/*textareaMessage: string*/) => ({
+    type: 'UPDATE_NEW_DIALOG_TEXT'/*,
+    newDialogMessageText: textareaMessage*/
 } as const)

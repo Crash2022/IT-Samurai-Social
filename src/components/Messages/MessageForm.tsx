@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "../Profile/MyPosts/MyPostsAdd.module.css";
+import classes from "./Messages.module.css";
 import {Field, InjectedFormProps} from "redux-form";
 
 export type MessageFormType = {
@@ -10,8 +10,8 @@ export const MessageForm: React.FC<InjectedFormProps<MessageFormType>> = ({ hand
 
     return (
             <form onSubmit={handleSubmit}>
-                <div className={classes.content__myPosts_add}>
-                    <Field placeholder={'Введите сообщение...'} name={'message'} component={'textarea'}/>
+                <div className={classes.sendMessage}>
+                    <Field className={classes.newMessage} placeholder={'Введите сообщение...'} name={'message'} component={'textarea'}/>
                 </div>
                 <div className={classes.sendButton}>
                     <button>Отправить сообщение</button>

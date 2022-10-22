@@ -8,20 +8,20 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 export type MapStateMessagesToPropsType = {
-    newMessageTextForDialog: string
+    //newMessageTextForDialog: string
     myDialogs: Array<DialogsArray>
     myMessages: Array<MessagesArray>
     //isAuth: boolean
 }
 export type DispatchMessagesToPropsType = {
-    sendMessageAC: () => void
+    sendMessageAC: (newMessageTextForDialog: string) => void
     updateNewDialogTextAC: (textareaMessage: string) => void
 }
 export type MessagesContainerType = MapStateMessagesToPropsType & DispatchMessagesToPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        newMessageTextForDialog: state.dialogsPage.newMessageTextForDialog,
+        //newMessageTextForDialog: state.dialogsPage.newMessageTextForDialog,
         myDialogs: state.dialogsPage.dialogsData,
         myMessages: state.dialogsPage.messagesData,
         //isAuth: state.auth.isAuth
