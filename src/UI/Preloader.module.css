@@ -3,6 +3,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 150px;
+    margin-bottom: 150px;
 }
 .isLoading img {
     width: 120px;

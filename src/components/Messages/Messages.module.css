@@ -6,6 +6,7 @@
         "dialogs text";
 }
 
+
 .dialogs {
     grid-area: dialogs;
     display: flex;
@@ -21,6 +22,7 @@
     text-decoration: none;
 }
 
+
 .text {
     grid-area: text;
     display: flex;
@@ -30,32 +32,28 @@
     padding: 7px;
 }
 
+
 .sendMessageForm {
     width: 98%;
 }
-
-.sendMessage textarea {
-    margin-bottom: 10px;
-}
-
 .newMessage {
     min-width: 100%;
     height: 70px;
     resize: none;
 }
-
+.sendMessage textarea {
+    margin-bottom: 10px;
+}
 .sendButton {
     display: flex;
     justify-content: flex-end;
 }
-
 .sendButton button {
     background-color: green;
     color: white;
     padding: 10px;
     border: none;
     font-size: 14px;
-    /*margin: 5px;*/
     min-width: 150px;
 }
 .sendButton button:hover {
