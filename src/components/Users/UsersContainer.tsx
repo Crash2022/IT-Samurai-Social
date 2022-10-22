@@ -5,7 +5,7 @@ import {UsersArray, getUsersThunkCreator, deleteFollowThunkCreator, postFollowTh
     from "../../redux/users-reducer";
 //import axios from "axios";
 import {Users} from "./Users";
-import {Preloader} from "../../UI/Preloader";
+import {Preloader} from "../../UI/Preloader/Preloader";
 import classes from "./Users.module.css";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";

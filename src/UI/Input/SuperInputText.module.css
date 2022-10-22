@@ -1,0 +1,17 @@
+.superInputDone {
+    border: 2px solid gray;
+}
+.superInputDone:focus-visible {
+    border: 2px solid black;
+    outline: none;
+}
+
+.errorInput {
+    border: 3px solid red;
+    outline: none;
+}
+.error {
+    color: red;
+    height: 20px;
+}
+

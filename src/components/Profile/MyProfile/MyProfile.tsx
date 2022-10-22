@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './MyProfile.module.css';
-import {Preloader} from "../../../UI/Preloader";
+import {Preloader} from "../../../UI/Preloader/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 import {ProfileStatus} from "./ProfileStatus";
