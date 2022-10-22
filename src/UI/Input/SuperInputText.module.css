@@ -1,5 +1,9 @@
+.inputBlock {
+
+}
+
 .superInputDone {
-    border: 1px solid green;
+    border: 2px solid green;
     padding: 5px;
 }
 .superInputDone:focus-visible {
@@ -7,6 +11,10 @@
     outline: none;
 }
 
+.errorBlock {
+    height: 15px;
+    margin-top: 5px;
+}
 .errorInput {
     border: 2px solid red;
     outline: none;

@@ -1,7 +1,6 @@
 import React from "react";
 
 export const requiredField = (value: string) => {
-    console.log('value', value)
     if(value) {
         return undefined;
     } else {

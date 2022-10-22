@@ -2,14 +2,14 @@ import React from "react";
 import {Field, InjectedFormProps} from "redux-form";
 import styles from './MyPostsAdd.module.css';
 import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
-import SuperButton from "../../../UI/Button/SuperButton";
+import {SuperButton} from "../../../UI/Button/SuperButton";
 import {SuperTextArea} from "../../../UI/Textarea/SuperTextArea";
 
 export type MyPostsFormType = {
     newPostText: string
 }
 
-const maxLengthCreator20 = maxLengthCreator(20);
+const maxLengthCreator100 = maxLengthCreator(100);
 
 export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormType>> = ({handleSubmit}) => {
 
@@ -19,7 +19,7 @@ export const MyPostsForm: React.FC<InjectedFormProps<MyPostsFormType>> = ({handl
                     <Field placeholder={'Введите текст...'}
                            name={'newPostText'}
                            component={SuperTextArea}
-                           validate={[requiredField, maxLengthCreator20]}
+                           validate={[requiredField, maxLengthCreator100]}
                     />
                 </div>
                 <div className={styles.sendButton}>

@@ -6,9 +6,10 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
+    className?: string
 }
 
-const SuperButton: React.FC<SuperButtonPropsType> = (
+export const SuperButton: React.FC<SuperButtonPropsType> = (
     {
         red, className,
         ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
@@ -23,5 +24,3 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
         />
     )
 }
-
-export default SuperButton

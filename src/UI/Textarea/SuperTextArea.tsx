@@ -1,6 +1,8 @@
-import React, {ChangeEvent, KeyboardEvent,
+import React, {
+    ChangeEvent, KeyboardEvent,
     DetailedHTMLFactory, DetailedHTMLProps,
-    InputHTMLAttributes, MetaHTMLAttributes} from 'react'
+    InputHTMLAttributes, MetaHTMLAttributes
+} from 'react'
 import s from './SuperTextArea.module.css'
 import {WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 
@@ -29,8 +31,8 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
         ...restProps// все остальные пропсы попадут в объект restProps
     }
 ) => {
-    console.log('meta', meta)
-    console.log('input', input)
+    //console.log('meta', meta)
+    //console.log('input', input)
 
     // const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
     //     onChange // если есть пропс onChange
@@ -49,18 +51,20 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
     const validateError = meta.touched && meta.error;
 
     const finalInputClassName = `${s.superTextArea} ${validateError ? s.errorTextArea : ''}`
-    const finalSpanClassName = `${meta.error ? s.error : ''}`
+    const finalSpanClassName = `${s.error}`
 
     return (
         <>
-            <textarea
-                {...input}
-                // onChange={onChangeCallback}
-                // onKeyPress={onKeyPressCallback}
-                className={finalInputClassName}
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
-            />
-            <div>
+            <div className={s.textareaBlock}>
+                <textarea
+                    {...input}
+                    // onChange={onChangeCallback}
+                    // onKeyPress={onKeyPressCallback}
+                    className={finalInputClassName}
+                    {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
+                />
+            </div>
+            <div className={s.errorBlock}>
                 {/*{customError && <span className={finalSpanClassName}>{customError}</span>}*/}
                 {validateError && <span className={finalSpanClassName}>{meta.error}</span>}
             </div>

@@ -7,6 +7,7 @@ import React, {
     MetaHTMLAttributes
 } from 'react'
 import s from './SuperInputText.module.css'
+import {WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
@@ -18,8 +19,8 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     onEnter?: () => void
     error?: string
     spanClassName?: string
-    input: DetailedHTMLFactory<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-    meta: DetailedHTMLFactory<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement>
+    input: WrappedFieldProps
+    meta: WrappedFieldMetaProps
 }
 
 export const SuperInputText: React.FC<SuperInputTextPropsType> = (
@@ -47,20 +48,30 @@ export const SuperInputText: React.FC<SuperInputTextPropsType> = (
         && onEnter() // то вызвать его
     }
 
-    const finalSpanClassName = `${error ? s.error : ''} ${spanClassName ? spanClassName : ''}`
-    const finalInputClassName = `${error ? s.errorInput : ''} ${className ? className : s.superInputDone}`
+    //const finalSpanClassName = `${error ? s.error : ''} ${spanClassName ? spanClassName : ''}`
+    //const finalInputClassName = `${error ? s.errorInput : ''} ${className ? className : s.superInputDone}`
+
+    const validateError = meta.touched && meta.error;
+
+    const finalInputClassName = `${s.superInputDone} ${validateError ? s.errorInput : ''}`
+    const finalSpanClassName = `${s.error}`
 
     return (
         <>
-            <input
-                type={'text'}
-                onChange={onChangeCallback}
-                onKeyPress={onKeyPressCallback}
-                className={finalInputClassName}
-                {...input}
-                {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
-            />
-            <div>{error && <span className={finalSpanClassName}>{error}</span>}</div>
+            <div className={s.inputBlock}>
+                <input
+                    type={'text'}
+                    onChange={onChangeCallback}
+                    onKeyPress={onKeyPressCallback}
+                    className={finalInputClassName}
+                    {...input}
+                    {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
+                />
+            </div>
+            {/*<div>{error && <span className={finalSpanClassName}>{error}</span>}</div>*/}
+            <div className={s.errorBlock}>
+                {validateError && <span className={finalSpanClassName}>{meta.error}</span>}
+            </div>
         </>
     )
 }

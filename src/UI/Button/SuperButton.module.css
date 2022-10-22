@@ -1,16 +1,18 @@
-.default {
+.superButton {
     background-color: green;
     color: white;
     padding: 10px;
     border: none;
     font-size: 14px;
     min-width: 150px;
+}
+
+.default {
     /*margin: 10px;*/
     /*padding: 15px;*/
     /*min-width: 150px;*/
     /*cursor: pointer;*/
 }
-
 .default:hover {
     opacity: 0.7;
     /*box-shadow:0px -5px 0 #088 inset;*/
@@ -29,8 +31,4 @@
 }
 .red:hover {
     /*opacity: 0.5;*/
-}
-
-.superButton {
-    /*padding: 5px;*/
 }

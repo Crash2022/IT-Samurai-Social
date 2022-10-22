@@ -1,7 +1,7 @@
 .login {
     border: 2px solid green;
     width: 300px;
-    margin: 0 auto;
+    margin: 100px auto 0 auto;
     padding: 5px;
 }
 .login h2 {
@@ -16,6 +16,11 @@
     padding: 5px;
 }
 .loginButton {
-    font-size: 20px;
     margin: 5px;
+    background-color: green;
+    color: white;
+    padding: 5px;
+    border: none;
+    min-width: 150px;
+    font-size: 20px;
 }
