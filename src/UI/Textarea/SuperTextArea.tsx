@@ -23,8 +23,8 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
         // onChange,
         // onChangeText,
         // onKeyPress, onEnter,
-        customError,
-        className, spanClassName,
+        // customError,
+        //className, spanClassName,
         input, meta,
         ...restProps// все остальные пропсы попадут в объект restProps
     }
@@ -46,10 +46,10 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
     //     && onEnter() // то вызвать его
     // }
 
-    const finalSpanClassName = `${meta.error ? s.error : ''} ${spanClassName ? spanClassName : ''}`
-    const finalInputClassName = `${meta.error ? s.errorTextArea : ''} ${className ? className : s.superTextArea}`
+    const validateError = meta.touched && meta.error;
 
-    const validateError = meta.touched && meta.error /*? '' : 'Поле обязательно для заполнения'*/
+    const finalInputClassName = `${s.superTextArea} ${validateError ? s.errorTextArea : ''}`
+    const finalSpanClassName = `${meta.error ? s.error : ''}`
 
     return (
         <>
@@ -61,7 +61,7 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
             <div>
-                {customError && <span className={finalSpanClassName}>{customError}</span>}
+                {/*{customError && <span className={finalSpanClassName}>{customError}</span>}*/}
                 {validateError && <span className={finalSpanClassName}>{meta.error}</span>}
             </div>
         </>
