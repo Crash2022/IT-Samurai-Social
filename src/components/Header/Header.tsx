@@ -3,6 +3,7 @@ import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import socialLogo from "../../assets/images/social_logo.png";
 import {HeaderContainerPropsType} from "./HeaderContainer";
+import {SuperButton} from "../../UI/Button/SuperButton";
 
 export const Header = (props: HeaderContainerPropsType) => {
     return (
@@ -16,18 +17,32 @@ export const Header = (props: HeaderContainerPropsType) => {
                     </img>
                 </NavLink>
             </div>
+
             <div className={styles.header__socialName}>
                 Социальная сеть для джедаев
             </div>
+
             <div className={styles.login_block}>
                 {
                     props.isAuth
-                        ? <div>
-                            <div>{props.login}</div>
-                            <div><button onClick={props.deleteLogin}>LogOut</button></div>
+                        ? <div className={styles.loginBlock}>
+                            <div className={styles.loginSpan}>
+                                {props.login}
+                            </div>
+                            <div>
+                                <SuperButton className={styles.logoutButton}
+                                              onClick={props.deleteLogin}
+                                >
+                                    Выход
+                                </SuperButton>
+                            </div>
                         </div>
                         : <NavLink to="/login">
-                            <span>LOG IN</span>
+                            <div className={styles.loginBlock}>
+                                <SuperButton className={styles.loginButton}>
+                                    Вход
+                                </SuperButton>
+                            </div>
                         </NavLink>
                 }
             </div>

@@ -1,34 +1,68 @@
 .header {
-  grid-area: header;
-  background-color: green;
-  /* display: flex;
-    justify-content: space-around;
-    align-items: center; */
-
-  display: grid;
-  /* grid-template: 1fr / 1fr minmax(auto, 200px) minmax(auto, 1000px) 1fr; */
-  grid-template-rows: 1fr;
-  grid-template-columns: 1fr minmax(auto, 200px) / minmax(auto, 900px) 1fr / 1fr minmax(auto, 100px);
-  align-items: center;
+    grid-area: header;
+    background-color: green;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr minmax(auto, 200px) / minmax(auto, 900px) 1fr / 1fr minmax(auto, 100px);
+    align-items: center;
 }
 .header__logo {
-  grid-column: 2 / 3;
+    grid-column: 2 / 3;
 }
 .header__socialName {
-  grid-column: 3 / 4;
-  font-size: 30px;
-  color: white;
-  padding-right: 50px;
+    grid-column: 3 / 4;
+    font-size: 30px;
+    color: white;
+    padding-right: 50px;
 }
-
 .login_block {
-  grid-column: 4 / 4;
-  color: white;
-  font-size: 16px;
+    grid-column: 4 / 4;
+    color: white;
+    font-size: 16px;
 }
 .login_block a {
-  color: white;
-  font-size: 18px;
-  border: 2px solid white;
-  padding: 5px;
+    color: white;
+    font-size: 18px;
+    /*border: 2px solid white;*/
+    padding: 5px;
 }
+
+.loginBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loginSpan {
+
+}
+.loginButton {
+    background-color: white;
+    color: green;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 100px;
+    margin: 10px;
+}
+.loginButton:hover {
+    opacity: 1;
+    background-color: green;
+    color: white;
+    border: 1px solid white;
+}
+.logoutButton {
+    background-color: white;
+    color: green;
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 100px;
+    margin: 10px;
+}
+.logoutButton:hover {
+    background-color: red;
+    color: white;
+    opacity: 1;
+}
+

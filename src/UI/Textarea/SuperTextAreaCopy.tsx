@@ -1,7 +1,10 @@
-import React, {ChangeEvent, KeyboardEvent,
-    DetailedHTMLProps, InputHTMLAttributes} from 'react';
-import s from './SuperTextArea.module.css';
-import {WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
+import React, {
+    ChangeEvent, KeyboardEvent,
+    DetailedHTMLFactory, DetailedHTMLProps,
+    InputHTMLAttributes, MetaHTMLAttributes
+} from 'react'
+import s from './SuperTextArea.module.css'
+import {WrappedFieldInputProps, WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
@@ -19,11 +22,11 @@ type SuperTextAreaPropsType = DefaultInputPropsType & { // и + ещё проп�
 
 export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
     {
-        onChange,
-        onChangeText,
-        onKeyPress, onEnter,
-        customError,
-        className, spanClassName,
+        // onChange,
+        // onChangeText,
+        // onKeyPress, onEnter,
+        // customError,
+        //className, spanClassName,
         input, meta,
         ...restProps// все остальные пропсы попадут в объект restProps
     }
@@ -31,19 +34,19 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
     //console.log('meta', meta)
     //console.log('input', input)
 
-    const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        onChange // если есть пропс onChange
-        && onChange(e) // то передать ему е (поскольку onChange не обязателен)
-
-        onChangeText && onChangeText(e.currentTarget.value)
-    }
-    const onKeyPressCallback = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        onKeyPress && onKeyPress(e);
-
-        onEnter // если есть пропс onEnter
-        && e.key === 'Enter' // и если нажата кнопка Enter
-        && onEnter() // то вызвать его
-    }
+    // const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     onChange // если есть пропс onChange
+    //     && onChange(e) // то передать ему е (поскольку onChange не обязателен)
+    //
+    //     onChangeText && onChangeText(e.currentTarget.value)
+    // }
+    // const onKeyPressCallback = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    //     onKeyPress && onKeyPress(e);
+    //
+    //     onEnter // если есть пропс onEnter
+    //     && e.key === 'Enter' // и если нажата кнопка Enter
+    //     && onEnter() // то вызвать его
+    // }
 
     const validateError = meta.touched && meta.error;
 
@@ -54,15 +57,15 @@ export const SuperTextArea: React.FC<SuperTextAreaPropsType> = (
         <>
             <div className={s.textareaBlock}>
                 <textarea
-                    onChange={onChangeCallback}
-                    onKeyPress={onKeyPressCallback}
-                    className={finalInputClassName}
                     {...input}
+                    // onChange={onChangeCallback}
+                    // onKeyPress={onKeyPressCallback}
+                    className={finalInputClassName}
                     {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
                 />
             </div>
             <div className={s.errorBlock}>
-                {customError && <span className={finalSpanClassName}>{customError}</span>}
+                {/*{customError && <span className={finalSpanClassName}>{customError}</span>}*/}
                 {validateError && <span className={finalSpanClassName}>{meta.error}</span>}
             </div>
         </>

@@ -16,6 +16,7 @@
     padding: 5px;
 }
 .loginButton {
-    /*чтобы перезаписать пересекающиеся свойства из SuperButton*/
+    /*чтобы перезаписать пересекающиеся свойства из SuperButton для ReduxForm*/
     font-size: 20px !important;
+    margin-bottom: 10px;
 }
