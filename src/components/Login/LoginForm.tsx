@@ -19,7 +19,7 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
             <form onSubmit={handleSubmit}>
                 <div>
                     <Field
-                        placeholder={'Логин'}
+                        placeholder={'E-Mail'}
                         name={'email'}
                         component={SuperInputText}
                         validate={[requiredField, maxLengthCreator20]}
@@ -29,6 +29,7 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                     <Field
                         placeholder={'Пароль'}
                         name={'password'}
+                        type={'password'}
                         component={SuperInputText}
                         validate={[requiredField, maxLengthCreator20]}
                     />

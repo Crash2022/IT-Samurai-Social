@@ -2,7 +2,7 @@ import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
 //import axios from "axios";
-import {getAuthThunkCreator} from "../../redux/auth-reducer";
+import {deleteLoginThunkCreator, getAuthThunkCreator} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/redux-store";
 //import {authAPI} from "../../api/api";
 
@@ -12,10 +12,10 @@ export type MapStateHeaderToPropsType = {
     isAuth: boolean
     login: null | string
 }
-
 export type DispatchHeaderToPropsType = {
     //setAuthUserDataAC: (userId: string, email: null, login: null) => void
     getAuth: () => void
+    deleteLogin: () => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateHeaderToPropsType => {
@@ -27,7 +27,8 @@ const mapStateToProps = (state: RootStateType): MapStateHeaderToPropsType => {
 
 const DispatchHeaderToProps: DispatchHeaderToPropsType = {
     //setAuthUserDataAC,
-    getAuth: getAuthThunkCreator
+    getAuth: getAuthThunkCreator,
+    deleteLogin: deleteLoginThunkCreator
 }
 
 export class HeaderContainer extends React.Component<HeaderContainerPropsType> {

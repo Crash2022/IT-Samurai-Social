@@ -11,22 +11,20 @@ import {withRouter, RouteComponentProps} from "react-router-dom";
 import {compose} from "redux";
 //import {usersAPI} from "../../api/api";
 
-export type MapStateUserProfileToPropsType = {
+type MapStateUserProfileToPropsType = {
     profile: null | ProfileType
     status: string
     //isAuth: boolean
 }
-export type DispatchUserProfileToPropsType = {
+type DispatchUserProfileToPropsType = {
     //setUserProfileAC: (profile: null) => void
     getProfile: (userId: number) => void
     getUserStatus: (userId: number) => void
     updateUserStatus: (userId: number, status: string) => void
 }
-
 export type PathParamType = {
     userId: string
 }
-
 export type ProfileContainerPropsType =
     MapStateUserProfileToPropsType &
     DispatchUserProfileToPropsType &
@@ -39,7 +37,6 @@ const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType =
         //isAuth: state.auth.isAuth
     }
 }
-
 const DispatchUserProfileToProps: DispatchUserProfileToPropsType = {
     //setUserProfileAC,
     getProfile: getProfileThunkCreator,
