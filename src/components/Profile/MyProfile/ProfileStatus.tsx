@@ -2,9 +2,9 @@ import React, {ChangeEvent} from "react";
 import styles from './MyProfile.module.css';
 
 export type ProfileStatusPropsType = {
-    userId: number
+    userId: string
     status: string
-    updateUserStatus: (userId: number, status: string) => void
+    updateUserStatus: (userId: string, status: string) => void
 }
 
 export class ProfileStatus extends React.Component<ProfileStatusPropsType> {

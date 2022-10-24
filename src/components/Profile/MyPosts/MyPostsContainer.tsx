@@ -6,16 +6,16 @@ import {MyPosts} from "./MyPosts";
 import {addPostAC} from "../../../redux/profilePage-reducer";
 import {compose} from "redux";
 
-type MapStateMyPostsToPropsType = {
+export type MyPostsContainerType = MapStateToPropsMyPostsType & MapDispatchToPropsMyPostsType;
+
+type MapStateToPropsMyPostsType = {
     myPosts: Array<UserMessageType>
 }
-type DispatchMyPostsToPropsType = {
+type MapDispatchToPropsMyPostsType = {
     addPostAC: (newPostText: string) => void
 }
 
-export type MyPostsType = MapStateMyPostsToPropsType & DispatchMyPostsToPropsType
-
-const mapStateToProps = (state: RootStateType): MapStateMyPostsToPropsType => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsMyPostsType => {
     return {
         myPosts: state.profilePage.myPosts
     }
@@ -31,9 +31,9 @@ const mapStateToProps = (state: RootStateType): MapStateMyPostsToPropsType => {
     }
 }*/
 
-const DispatchMyPostsToProps: DispatchMyPostsToPropsType = {
+const mapDispatchToProps: MapDispatchToPropsMyPostsType = {
     addPostAC
 }
 
 //export default connect(mapStateToProps, DispatchMyPostsToProps)(MyPosts);
-export const MyPostsContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchMyPostsToProps))(MyPosts);
+export const MyPostsContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps))(MyPosts);

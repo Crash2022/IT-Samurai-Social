@@ -9,7 +9,7 @@ import {ProfileType} from "../../../redux/profilePage-reducer";
 type MyProfilePropsType = {
     profile: null | ProfileType
     status: string
-    updateUserStatus: (userId: number, status: string) => void
+    updateUserStatus: (userId: string, status: string) => void
 }
 
 export const MyProfile = (props: MyProfilePropsType) => {

@@ -37,12 +37,14 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                 <div>
                     <Field name={'rememberMe'} component={SuperCheckbox}/>Запомнить меня
                 </div>
-                {
-                    error &&
-                    <div className={styles.formError}>
-                        {error}
-                    </div>
-                }
+                <div className={styles.formErrorBlock}>
+                    {
+                        error &&
+                        <div className={styles.formError}>
+                            {error}
+                        </div>
+                    }
+                </div>
                 <div>
                     <SuperButton className={styles.loginButton}>Войти</SuperButton>
                 </div>

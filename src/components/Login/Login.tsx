@@ -7,22 +7,22 @@ import {postLoginThunkCreator} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 
-type LoginPropsType = MapStateLoginToPropsType & DispatchLoginToPropsType
+export type LoginPropsType = MapStateToPropsLoginType & MapDispatchToPropsLoginType;
 
-export type MapStateLoginToPropsType = {
+export type MapStateToPropsLoginType = {
     isAuth: boolean
 }
-export type DispatchLoginToPropsType = {
+export type MapDispatchToPropsLoginType = {
     setAuthUserData: (email: string,
                       password: string, rememberMe: boolean) => void
 }
 
-const mapStateToProps = (state: RootStateType): MapStateLoginToPropsType => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsLoginType => {
     return {
         isAuth: state.auth.isAuth
     }
 }
-const mapDispatchToProps: DispatchLoginToPropsType = {
+const mapDispatchToProps: MapDispatchToPropsLoginType = {
     setAuthUserData: postLoginThunkCreator
 }
 
@@ -39,8 +39,12 @@ export const Login = (props: LoginPropsType) => {
 
     return (
         <div className={styles.login}>
-            <h2>Вход</h2>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <div>
+                <h2>Вход</h2>
+            </div>
+            <div>
+                <LoginReduxForm onSubmit={onSubmit}/>
+            </div>
         </div>
     );
 }

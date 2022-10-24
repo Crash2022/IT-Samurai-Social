@@ -7,14 +7,15 @@ import {sendMessageAC} from "../../redux/dialogsPage-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
-export type MapStateMessagesToPropsType = {
+export type MessagesContainerType = MapStateToPropsMessagesType & MapDispatchToPropsMessagesType;
+
+type MapStateToPropsMessagesType = {
     myDialogs: Array<DialogsArray>
     myMessages: Array<MessagesArray>
 }
-export type DispatchMessagesToPropsType = {
+type MapDispatchToPropsMessagesType = {
     sendMessageAC: (newMessageTextForDialog: string) => void
 }
-export type MessagesContainerType = MapStateMessagesToPropsType & DispatchMessagesToPropsType
 
 const mapStateToProps = (state: RootStateType) => {
     return {
@@ -33,7 +34,7 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }*/
 
-const mapDispatchToProps: DispatchMessagesToPropsType = {
+const mapDispatchToProps: MapDispatchToPropsMessagesType = {
     sendMessageAC
 }
 

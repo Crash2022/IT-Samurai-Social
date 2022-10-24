@@ -1,9 +1,9 @@
 import React from "react";
 import {MyPostsList} from "./MyPostsList";
 import {MyPostsAdd} from "./MyPostsAdd";
-import {MyPostsType} from "./MyPostsContainer";
+import {MyPostsContainerType} from "./MyPostsContainer";
 
-export const MyPosts = (props: MyPostsType) => {
+export const MyPosts = (props: MyPostsContainerType) => {
     return (
         <>
             <MyPostsAdd onAddPostMessage={props.addPostAC}/>

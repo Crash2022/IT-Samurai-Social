@@ -2,10 +2,11 @@ import React from "react";
 import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import socialLogo from "../../assets/images/social_logo.png";
-import {HeaderContainerPropsType} from "./HeaderContainer";
+import {HeaderContainerType} from "./HeaderContainer";
 import {SuperButton} from "../../UI/Button/SuperButton";
 
-export const Header = (props: HeaderContainerPropsType) => {
+export const Header = (props: HeaderContainerType) => {
+
     return (
         <header className={styles.header}>
             <div className={styles.header__logo}>
@@ -31,7 +32,7 @@ export const Header = (props: HeaderContainerPropsType) => {
                             </div>
                             <div>
                                 <SuperButton className={styles.logoutButton}
-                                              onClick={props.deleteLogin}
+                                             onClick={props.deleteLogin}
                                 >
                                     Выход
                                 </SuperButton>

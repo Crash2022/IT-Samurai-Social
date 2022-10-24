@@ -1,6 +1,5 @@
 import React from "react";
 import {Profile} from "./Profile";
-//import axios from "axios";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
 import {ProfileType, getProfileThunkCreator,
@@ -9,59 +8,65 @@ import {ProfileType, getProfileThunkCreator,
 import {withRouter, RouteComponentProps} from "react-router-dom";
 //import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
-//import {usersAPI} from "../../api/api";
 
-type MapStateUserProfileToPropsType = {
+export type ProfileContainerType =
+    MapStateToPropsUserProfileType &
+    MapDispatchToPropsUserProfileType &
+    RouteComponentProps<PathParamType>;
+
+type MapStateToPropsUserProfileType = {
     profile: null | ProfileType
     status: string
-    //isAuth: boolean
+    authorizedUserId: null | string
+    isAuth: boolean
 }
-type DispatchUserProfileToPropsType = {
+type MapDispatchToPropsUserProfileType = {
     //setUserProfileAC: (profile: null) => void
-    getProfile: (userId: number) => void
-    getUserStatus: (userId: number) => void
-    updateUserStatus: (userId: number, status: string) => void
+    getProfile: (userId: string) => void
+    getUserStatus: (userId: string) => void
+    updateUserStatus: (userId: string, status: string) => void
 }
 export type PathParamType = {
     userId: string
 }
-export type ProfileContainerPropsType =
-    MapStateUserProfileToPropsType &
-    DispatchUserProfileToPropsType &
-    RouteComponentProps<PathParamType>;
 
-const mapStateToProps = (state: RootStateType): MapStateUserProfileToPropsType => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsUserProfileType => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
-        //isAuth: state.auth.isAuth
+        authorizedUserId: state.auth.userId,
+        isAuth: state.auth.isAuth
     }
 }
-const DispatchUserProfileToProps: DispatchUserProfileToPropsType = {
+const mapDispatchToProps: MapDispatchToPropsUserProfileType = {
     //setUserProfileAC,
     getProfile: getProfileThunkCreator,
     getUserStatus: getUserStatusThunkCreator,
     updateUserStatus: updateUserStatusThunkCreator
 }
 
-export class ProfileContainerCompose extends React.Component<ProfileContainerPropsType> {
+export class ProfileContainerCompose extends React.Component<ProfileContainerType> {
 
     componentDidMount() {
-        let userId = +this.props.match.params.userId;
-
-        if (!userId) {
-            userId = 26141;
+        const getUserData = (userId: string) => {
+            this.props.getProfile(userId);
+            this.props.getUserStatus(userId);
         }
 
-        /*axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)*/
+        let userIdFromParams = this.props.match.params.userId;
+        let userIdFromState = this.props.authorizedUserId;
 
-        /*usersAPI.getProfile(userId)
-        .then(data => {
-            this.props.setUserProfileAC(data);
-        })*/
-        this.props.getProfile(userId);
-        this.props.getUserStatus(userId);
+        if(userIdFromParams) {
+            getUserData(userIdFromParams);
+            return;
+        }
+
+        if(userIdFromState) {
+            getUserData(userIdFromState);
+            return;
+        }
+
+        this.props.history.push('/login'); // метод для редиректа на нужную страницу
     }
 
     render() {
@@ -80,7 +85,7 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerPro
 // let WithAuthRedirectComponent = withAuthRedirect(WithUrlDataContainerComponent);
 // export default connect(mapStateToProps, DispatchUserProfileToProps)(WithUrlDataContainerComponent);
 
-export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchUserProfileToProps),
+export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps),
     //withAuthRedirect,
     withRouter)
 (ProfileContainerCompose);

@@ -42,7 +42,7 @@ export type ProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    userId: number
+    userId: string
     photos: {
         small: string
         large: string
@@ -147,7 +147,7 @@ const actions = {
 
 /*-------------------------THUNK-------------------------*/
 
-export const getProfileThunkCreator = (userId: number) => {
+export const getProfileThunkCreator = (userId: string) => {
 
     return (dispatch: Dispatch<ActionsType>) => {
 
@@ -158,7 +158,7 @@ export const getProfileThunkCreator = (userId: number) => {
     }
 }
 
-export const getUserStatusThunkCreator = (userId: number) => {
+export const getUserStatusThunkCreator = (userId: string) => {
 
     return (dispatch: Dispatch<ActionsType>) => {
 
@@ -169,7 +169,7 @@ export const getUserStatusThunkCreator = (userId: number) => {
     }
 }
 
-export const updateUserStatusThunkCreator = (userId: number, status: string):
+export const updateUserStatusThunkCreator = (userId: string, status: string):
     ThunkAction<void, RootStateType, { }, ActionsType> => {
 
     return (dispatch) => {

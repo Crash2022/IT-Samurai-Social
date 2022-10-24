@@ -4,7 +4,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {RootStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
-type ActionsType = SetAuthUserDataACType | ReturnType<typeof stopSubmit>;
+type ActionsType = SetAuthUserDataACType | LogoutUserDataACType;
 
 export type AuthPropsType = {
     userId: null | string
@@ -22,8 +22,11 @@ let initialState = {
 
 export const authReducer = (state: AuthPropsType = initialState, action: ActionsType): AuthPropsType => {
     switch(action.type) {
-        case 'SET_USER_DATA':
-            return {...state, ...action.payload};
+        case 'SET_USER_DATA': {
+            return {...state, ...action.payload, userId: action.payload.userId.toString()};
+        }
+        case 'LOGOUT_USER_DATA':
+            return initialState;
         default:
             return state;
     }
@@ -32,12 +35,22 @@ export const authReducer = (state: AuthPropsType = initialState, action: Actions
 /*-------------------------ACTION CREATOR-------------------------*/
 
 export type SetAuthUserDataACType = ReturnType<typeof setAuthUserDataAC>
-export const setAuthUserDataAC = (userId: string | null, email: string | null,
-                                  login: null, isAuth: boolean) => ({
+export const setAuthUserDataAC = (userId: number, email: string,
+                                  login: string, isAuth: boolean) => ({
     type: 'SET_USER_DATA',
     payload: {
-        id: userId,
-        email, login, isAuth
+        userId, email,
+        login, isAuth
+    }
+} as const)
+
+export type LogoutUserDataACType = ReturnType<typeof logoutUserDataAC>
+export const logoutUserDataAC = (userId: null, email: null,
+                                 login: null, isAuth: boolean) => ({
+    type: 'LOGOUT_USER_DATA',
+    payload: {
+        userId, email,
+        login, isAuth
     }
 } as const)
 
@@ -57,7 +70,7 @@ export const getAuthThunkCreator = () => {
 }
 
 export const postLoginThunkCreator = (email: string, password: string, rememberMe: boolean) => {
-    return (dispatch: ThunkDispatch<RootStateType, unknown, ActionsType>) => {
+    return (dispatch: ThunkDispatch<RootStateType, unknown, ReturnType<typeof stopSubmit>>) => {
 
         authAPI.postLogin(email, password, rememberMe)
             .then(data => {
@@ -77,7 +90,7 @@ export const deleteLoginThunkCreator = () => {
         authAPI.deleteLogin()
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(setAuthUserDataAC(null, null, null, false));
+                    dispatch(logoutUserDataAC(null, null, null, false));
                 }
             })
     }

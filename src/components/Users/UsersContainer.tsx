@@ -11,7 +11,9 @@ import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 //import {getUsers} from "../../api/api";
 
-export type MapStateUsersToPropsType = {
+export type UsersContainerType = MapStateToPropsUsersType & MapDispatchToPropsUsersType;
+
+type MapStateToPropsUsersType = {
     users: Array<UsersArray>
     pageSize: number
     totalUsersCount: number
@@ -20,7 +22,7 @@ export type MapStateUsersToPropsType = {
     followingInProgress: Array<string>
     isAuth: boolean
 }
-export type DispatchUsersToPropsType = {
+type MapDispatchToPropsUsersType = {
     //followAC: (userId: string) => void
     //unfollowAC: (userId: string) => void
     //setUsersAC: (users: Array<UsersArray>) => void
@@ -32,9 +34,8 @@ export type DispatchUsersToPropsType = {
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
 }
-export type UsersContainerType = MapStateUsersToPropsType & DispatchUsersToPropsType
 
-const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -68,7 +69,7 @@ const mapStateToProps = (state: RootStateType): MapStateUsersToPropsType => {
     }
 }*/
 
-const DispatchUsersToProps: DispatchUsersToPropsType = {
+const mapDispatchToProps: MapDispatchToPropsUsersType = {
     //followAC, // больше не нужны тут, берутся из Thunk
     //unfollowAC, // больше не нужны тут, берутся из Thunk
     //setUsersAC, // больше не нужны тут, берутся из Thunk
@@ -155,5 +156,5 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 // Пошаговая запись без compose
 //export default connect(mapStateToProps, DispatchUsersToProps)(UsersAPIClassContainer);
 
-export const UsersContainer = compose<React.ComponentType>(connect(mapStateToProps, DispatchUsersToProps),
+export const UsersContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect)(UsersAPIClassContainer);

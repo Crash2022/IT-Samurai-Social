@@ -1,5 +1,14 @@
 import axios from "axios";
 
+export type authMeType = {
+    resultCode: number
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+}
+
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
@@ -15,7 +24,7 @@ export const usersAPI = {
         )
     },
     // можно написать так на всякий случай
-    getProfile(userId: number) {
+    getProfile(userId: string) {
         console.log('Please, use new object');
         return profileAPI.getProfile(userId)
     },
@@ -39,7 +48,7 @@ export const authAPI = {
     getAuth() {
         return (
             instance
-                .get(`auth/me`, { })
+                .get<authMeType>(`auth/me`, { })
                 .then(response => response.data)
         )
     },
@@ -60,14 +69,14 @@ export const authAPI = {
 }
 
 export const profileAPI = {
-    getProfile(userId: number) {
+    getProfile(userId: string) {
         return (
             instance
                 .get(`profile/${userId}`)
                 .then(response => response.data)
         )
     },
-    getUserStatus(userId: number) {
+    getUserStatus(userId: string) {
         return (
             instance
                 .get(`profile/status/${userId}`)
