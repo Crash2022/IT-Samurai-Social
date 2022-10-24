@@ -1,11 +1,8 @@
 import React, {
     ChangeEvent,
-    DetailedHTMLFactory,
     DetailedHTMLProps,
     InputHTMLAttributes,
-    KeyboardEvent,
-    MetaHTMLAttributes
-} from 'react'
+    KeyboardEvent} from 'react'
 import s from './SuperInputText.module.css'
 import {WrappedFieldMetaProps, WrappedFieldProps} from "redux-form/lib/Field";
 

@@ -12,9 +12,9 @@ export type LoginFormValuesType = {
     rememberMe: boolean
 }
 
-const maxLengthCreator20 = maxLengthCreator(20);
+//const maxLengthCreator20 = maxLengthCreator(20);
 
-export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit }) => {
+export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit , error}) => {
     return (
             <form onSubmit={handleSubmit}>
                 <div>
@@ -22,7 +22,7 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                         placeholder={'E-Mail'}
                         name={'email'}
                         component={SuperInputText}
-                        validate={[requiredField, maxLengthCreator20]}
+                        validate={[requiredField]}
                     />
                 </div>
                 <div>
@@ -31,12 +31,18 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                         name={'password'}
                         type={'password'}
                         component={SuperInputText}
-                        validate={[requiredField, maxLengthCreator20]}
+                        validate={[requiredField]}
                     />
                 </div>
                 <div>
                     <Field name={'rememberMe'} component={SuperCheckbox}/>Запомнить меня
                 </div>
+                {
+                    error &&
+                    <div className={styles.formError}>
+                        {error}
+                    </div>
+                }
                 <div>
                     <SuperButton className={styles.loginButton}>Войти</SuperButton>
                 </div>

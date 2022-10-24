@@ -2,8 +2,9 @@ import {Dispatch} from "redux";
 import {authAPI} from "../api/api";
 import {ThunkDispatch} from "redux-thunk";
 import {RootStateType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
-type ActionsType = SetAuthUserDataACType;
+type ActionsType = SetAuthUserDataACType | ReturnType<typeof stopSubmit>;
 
 export type AuthPropsType = {
     userId: null | string
@@ -62,6 +63,9 @@ export const postLoginThunkCreator = (email: string, password: string, rememberM
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(getAuthThunkCreator());
+                } else {
+                    let message = data.messages.length > 0 ? data.messages[0] : 'Some error';
+                    dispatch(stopSubmit('login', {_error: message}));
                 }
             })
     }
