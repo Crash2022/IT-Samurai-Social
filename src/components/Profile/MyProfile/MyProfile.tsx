@@ -3,8 +3,9 @@ import styles from './MyProfile.module.css';
 import {Preloader} from "../../../UI/Preloader/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
-import {ProfileStatus} from "./ProfileStatus";
+//import {ProfileStatus} from "./ProfileStatus";
 import {ProfileType} from "../../../redux/profilePage-reducer";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type MyProfilePropsType = {
     profile: null | ProfileType
@@ -38,7 +39,16 @@ export const MyProfile = (props: MyProfilePropsType) => {
                         <div><b>Хобби:</b> ...</div>
                         <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
                         <div><b>Веб-сайт:</b> {props.profile.contacts.vk}</div>
-                        <ProfileStatus userId={props.profile.userId} status={props.status} updateUserStatus={props.updateUserStatus}/>
+
+                        {/*<ProfileStatus userId={props.profile.userId}
+                                       status={props.status}
+                                       updateUserStatus={props.updateUserStatus}
+                        />*/}
+
+                        <ProfileStatusWithHooks userId={props.profile.userId}
+                                                status={props.status}
+                                                updateUserStatus={props.updateUserStatus}
+                        />
                     </div>
                 </div>
             </>
