@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import styles from './MyProfile.module.css';
 
 export type ProfileStatusPropsType = {
@@ -23,17 +23,12 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
     }
 
     const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
-        //props.updateUserStatus(props.userId, event.currentTarget.value);
         setStatus(event.currentTarget.value);
     }
 
-    // componentDidUpdate(prevProps: Readonly<ProfileStatusPropsType>, prevState: Readonly<{}>, snapshot?: any) {
-    //     if (prevProps.status !== this.props.status) {
-    //         this.setState({
-    //             status: this.props.status
-    //         })
-    //     }
-    // }
+    // useEffect(() => {
+    //     setStatus(props.status);
+    // },[props.status])
 
     return (
         <div className={styles.content__status_text}>
