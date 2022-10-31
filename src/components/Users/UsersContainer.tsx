@@ -9,6 +9,7 @@ import {Preloader} from "../../UI/Preloader/Preloader";
 import classes from "./Users.module.css";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+//import {getUsers} from "../../redux/users-selectors";
 //import {getUsers} from "../../api/api";
 
 export type UsersContainerType = MapStateToPropsUsersType & MapDispatchToPropsUsersType;
@@ -38,6 +39,7 @@ type MapDispatchToPropsUsersType = {
 const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
     return {
         users: state.usersPage.users,
+        // users: getUsers(state),
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
@@ -125,6 +127,9 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     }
 
     render() {
+
+        console.log('users')
+
         return (
             <>
                 {
