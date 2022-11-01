@@ -1,4 +1,6 @@
-import {addPostAC, MyPostsItemPropsType, profileReducer, setUserStatusAC, UserMessageType} from "./profilePage-reducer";
+import {addPostAC, deletePostAC,
+    profileReducer, setUserStatusAC,
+    UserMessageType, MyPostsItemPropsType} from "./profilePage-reducer";
 import {v1} from "uuid";
 
 let startState: MyPostsItemPropsType;
@@ -7,7 +9,7 @@ beforeEach(() => {
     startState = {
         myPosts: [
             {
-                id: v1(),
+                id: '1',
                 avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
                 nickname: 'Crash555',
                 postMessage: 'Hello to all MTB Community',
@@ -15,7 +17,7 @@ beforeEach(() => {
                 dislikes: 1
             },
             {
-                id: v1(),
+                id: '2',
                 avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
                 nickname: 'Crash555',
                 postMessage: 'Hello to all Codewars',
@@ -23,7 +25,7 @@ beforeEach(() => {
                 dislikes: 0
             },
             {
-                id: v1(),
+                id: '3',
                 avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
                 nickname: 'Crash555',
                 postMessage: 'Hello to all FreeCodeCamp',
@@ -31,7 +33,7 @@ beforeEach(() => {
                 dislikes: 10
             },
             {
-                id: v1(),
+                id: '4',
                 avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
                 nickname: 'Crash555',
                 postMessage: 'Hello to all Incubators',
@@ -60,6 +62,15 @@ test('new post should be added', () => {
     expect(endState.myPosts[0].postMessage).toBe('new post message');
     expect(endState.myPosts[0].postMessage.length).toBe(16);
     expect(endState.myPosts[0].likes).toBe(0);
+})
+
+test('new post should be deleted', () => {
+
+    const endState = profileReducer(startState, deletePostAC('1'));
+
+    expect(startState.myPosts.length).toBe(4);
+    expect(endState.myPosts.length).toBe(3);
+    expect(endState.myPosts[0].id).toBe('2');
 })
 
 test('new status should be added', () => {

@@ -7,7 +7,8 @@ import {ThunkAction} from "redux-thunk";
 type ActionsType =
     AddPostACType |
     SetUserProfileACType |
-    SetUserStatusACType;
+    SetUserStatusACType |
+    DeletePostACType;
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T
@@ -102,6 +103,9 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
             };
             return { ...state, myPosts: [newPost, ...state.myPosts] };
         }
+        case 'DELETE_POST': {
+            return { ...state, myPosts: state.myPosts.filter(post => post.id !== action.postId) };
+        }
         case 'SET_USER_PROFILE': {
             return { ...state, profile: action.profile };
         }
@@ -116,11 +120,15 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
 /*-------------------------ACTION CREATOR-------------------------*/
 
 export type AddPostACType = ReturnType<typeof addPostAC>
+export type DeletePostACType = ReturnType<typeof deletePostAC>
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
 export type SetUserStatusACType = ReturnType<typeof setUserStatusAC>
 
 export const addPostAC = (newPostText: string) => ({
     type: 'ADD_POST', newPostText
+} as const)
+export const deletePostAC = (postId: string) => ({
+    type: 'DELETE_POST', postId
 } as const)
 export const setUserProfileAC = (profile: null) => ({
     type: 'SET_USER_PROFILE',
