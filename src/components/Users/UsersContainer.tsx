@@ -128,8 +128,6 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
     render() {
 
-        console.log('users')
-
         return (
             <>
                 {

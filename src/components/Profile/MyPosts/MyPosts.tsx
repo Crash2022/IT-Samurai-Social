@@ -4,6 +4,7 @@ import {MyPostsAdd} from "./MyPostsAdd";
 import {MyPostsContainerType} from "./MyPostsContainer";
 
 export const MyPosts = (props: MyPostsContainerType) => {
+
     return (
         <>
             <MyPostsAdd onAddPostMessage={props.addPostAC}/>

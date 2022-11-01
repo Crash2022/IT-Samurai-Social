@@ -8,6 +8,13 @@ type MyPostAddPropsType = {
 }
 
 export const MyPostsAdd = (props: MyPostAddPropsType) => {
+// или наследуемся от PureComponent или shouldComponentUpdate()
+// export class MyPostAdd extends React.PureComponent<> {}
+
+    // аналог useMemo для классовой компоненты (урок 87)
+    // shouldComponentUpdate() {
+    //     return next.props !== this.props || next.state !== this.state;
+    // }
 
     const onSubmit = (formData: MyPostsFormType) => {
         //console.log(formData);
