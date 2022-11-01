@@ -23,7 +23,6 @@ type MapStateToPropsUsersType = {
     isAuth: boolean
 }
 type MapDispatchToPropsUsersType = {
-    //setUsersTotalUsersCount: (totalUsersCount: number) => void // для вывода всех пользователей
     getUsers: (currentPage: number, pageSize: number) => void
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
@@ -46,7 +45,6 @@ const mapDispatchToProps: MapDispatchToPropsUsersType = {
     //followAC, // больше не нужны тут, берутся из Thunk
     //unfollowAC, // больше не нужны тут, берутся из Thunk
     //setUsersAC, // больше не нужны тут, берутся из Thunk
-    //setUsersTotalUsersCountAC, // !!!нужно для вывода всех страниц с юзерами!!!
     //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
     //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk
 

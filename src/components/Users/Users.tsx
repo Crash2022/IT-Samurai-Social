@@ -1,8 +1,5 @@
 import React from "react";
 import styles from "./Users.module.css";
-//import userAvatar from "../../assets/images/user_avatar.jpg";
-//import {v1} from "uuid";
-//import {NavLink} from "react-router-dom";
 import {UsersArray} from "../../redux/users-reducer";
 import {Paginator} from "../../UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
@@ -19,21 +16,6 @@ export type UsersPropsType = {
 }
 
 export const Users = (props: UsersPropsType) => {
-
-    // const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    // const pages = [];
-    //
-    // for (let i = 1; i <= pagesCount; i++) {
-    //     pages.push(i);
-    // }
-
-    const deleteFollowHandler = (userId: string) => {
-        props.deleteFollow(userId);
-    }
-
-    const postFollowHandler = (userId: string) => {
-        props.postFollow(userId);
-    }
 
     return (
         <>

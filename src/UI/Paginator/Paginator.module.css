@@ -1,6 +1,7 @@
 .pagination {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .pagination > span {
     padding: 10px;

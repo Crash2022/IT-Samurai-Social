@@ -6,7 +6,7 @@ type ActionsType =
     UserUnfollowACType |
     SetUsersACType |
     SetCurrentPageACType |
-    //setUsersTotalCountACType |
+    setUsersTotalCountACType | // весь список пользователей
     ToggleIsLoadingACType |
     ToggleFollowInProgressACType;
 
@@ -103,8 +103,8 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Actio
             return {...state, users: action.users};
         case 'SET_CURRENT_PAGE':
             return {...state, currentPage: action.currentPage};
-        /*case 'SET_USERS_TOTAL_COUNT':
-            return {...state, totalUsersCount: action.count}; // берём из Action Creator*/
+        case 'SET_USERS_TOTAL_COUNT':
+            return {...state, totalUsersCount: action.count}; // берём из Action Creator
         case 'TOGGLE_IS_LOADING':
             return {...state, isLoading: action.isLoading};
         case 'TOGGLE_FOLLOW_IN_PROGRESS':
@@ -125,7 +125,7 @@ export type UserFollowACType = ReturnType<typeof followAC>
 export type UserUnfollowACType = ReturnType<typeof unfollowAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
 export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-//export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
+export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
 export type ToggleIsLoadingACType = ReturnType<typeof toggleIsLoadingAC>
 export type ToggleFollowInProgressACType = ReturnType<typeof toggleFollowInProgressAC>
 
@@ -133,7 +133,7 @@ export const followAC = (userId: string) => ({type: 'FOLLOW', id: userId} as con
 export const unfollowAC = (userId: string) => ({type: 'UNFOLLOW', id: userId} as const)
 export const setUsersAC = (users: Array<UsersArray>) => ({type: 'SET_USERS', users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const)
-//export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: 'SET_USERS_TOTAL_COUNT', count: totalUsersCount} as const)
+export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: 'SET_USERS_TOTAL_COUNT', count: totalUsersCount} as const)
 export const toggleIsLoadingAC = (isLoading: boolean) => ({type: 'TOGGLE_IS_LOADING', isLoading} as const)
 
 export const toggleFollowInProgressAC = (userId: string, following: boolean) => ({
@@ -153,7 +153,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));
             dispatch(setCurrentPageAC(currentPage));
-            //dispatch(setUsersTotalUsersCount(data.totalCount));
+            dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
         })
     }
 }
