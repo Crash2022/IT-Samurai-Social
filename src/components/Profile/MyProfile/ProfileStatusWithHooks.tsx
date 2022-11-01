@@ -19,13 +19,13 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
     const deactivateEditModeHandler = () => {
         setEditMode(false);
         props.updateUserStatus(props.userId, status);
-
     }
 
     const onStatusChange = (event: ChangeEvent<HTMLInputElement>) => {
         setStatus(event.currentTarget.value);
     }
 
+    // из-за того, что вышестоящие компоненты перерисовываются, нет необходиомсти в useEffect здесь
     // useEffect(() => {
     //     setStatus(props.status);
     // },[props.status])

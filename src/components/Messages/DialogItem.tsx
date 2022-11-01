@@ -9,7 +9,6 @@ type DialogItemPropsType = {
 }
 
 export const DialogItem = (props: DialogItemPropsType) => {
-    /* let path = '/messages/' + props.id; */
 
     return (
         <>

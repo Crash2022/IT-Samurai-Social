@@ -11,8 +11,6 @@ type MapStateToPropsHeaderType = {
     login: null | string
 }
 type MapDispatchToPropsHeaderType = {
-    //setAuthUserDataAC: (userId: string, email: null, login: null) => void
-    //getAuth: () => void
     deleteLogin: () => void
 }
 
@@ -23,8 +21,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsHeaderType => {
     }
 }
 const mapDispatchToProps: MapDispatchToPropsHeaderType = {
-    //setAuthUserDataAC,
-    //getAuth: getAuthThunkCreator,
     deleteLogin: deleteLoginThunkCreator
 }
 

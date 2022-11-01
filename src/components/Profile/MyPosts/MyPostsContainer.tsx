@@ -20,16 +20,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsMyPostsType => {
         myPosts: state.profilePage.myPosts
     }
 }
-/*const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
-    return {
-        onAddPostMessage: () => {
-            dispatch(addPostAC());
-        },
-        onChangePostMessage: (textareaValue: string) => {
-            dispatch(updateNewPostAC(textareaValue));
-        }
-    }
-}*/
 
 const mapDispatchToProps: MapDispatchToPropsMyPostsType = {
     addPostAC

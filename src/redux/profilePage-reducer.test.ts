@@ -48,14 +48,6 @@ beforeEach(() => {
 
 test('new post should be added', () => {
     const newPostMessage = 'new post message';
-    // const newPost = {
-    //     id: v1(),
-    //     avatar: "https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg",
-    //     nickname: "Crash555",
-    //     postMessage: newPostMessage,
-    //     likes: 0,
-    //     dislikes: 0
-    // };
     const endState = profileReducer(startState, addPostAC(newPostMessage));
 
     expect(endState.myPosts.length).toBe(5);
