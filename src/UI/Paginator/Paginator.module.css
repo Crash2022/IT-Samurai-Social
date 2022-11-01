@@ -1,0 +1,22 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+.pagination > span {
+    padding: 10px;
+    font-size: 20px;
+}
+.pagination:hover > span {
+
+}
+.pagination span:hover {
+    background-color: green;
+    color: white;
+    /*opacity: 0.7;*/
+    cursor: pointer;
+}
+.selectedPage {
+    font-weight: bold;
+    background-color: green;
+    color: white;
+}

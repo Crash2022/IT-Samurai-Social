@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Users.module.css";
-import userAvatar from "../../assets/images/user_avatar.jpg";
-import {v1} from "uuid";
-import {NavLink} from "react-router-dom";
+//import userAvatar from "../../assets/images/user_avatar.jpg";
+//import {v1} from "uuid";
+//import {NavLink} from "react-router-dom";
 import {UsersArray} from "../../redux/users-reducer";
+import {Paginator} from "../../UI/Paginator/Paginator";
+import {UserItem} from "./UserItem";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -18,12 +20,12 @@ export type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const pages = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
+    // const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    // const pages = [];
+    //
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i);
+    // }
 
     const deleteFollowHandler = (userId: string) => {
         props.deleteFollow(userId);
@@ -35,7 +37,7 @@ export const Users = (props: UsersPropsType) => {
 
     return (
         <>
-            <div className={styles.pagination}>
+            {/*<div className={styles.pagination}>
                 {
                     pages.map(page => {
                         return (
@@ -48,9 +50,30 @@ export const Users = (props: UsersPropsType) => {
                         )
                     })
                 }
-            </div>
+            </div>*/}
+
+            <Paginator
+                pageSize={props.pageSize}
+                totalUsersCount={props.totalUsersCount}
+                currentPage={props.currentPage}
+                onChangePageHandler={props.onChangePageHandler}
+            />
+
             <div className={styles.usersWrapper}>
                 {
+                    props.users.map(u => {
+                        return (
+                            <UserItem key={u.id}
+                                      user={u}
+                                      followingInProgress={props.followingInProgress}
+                                      deleteFollow={props.deleteFollow}
+                                      postFollow={props.postFollow}
+                            />
+                        )
+                    })
+                }
+
+                {/*{
                     props.users.map(user => {
                         return (
                             <div className={styles.usersItem} key={user.id}>
@@ -89,9 +112,8 @@ export const Users = (props: UsersPropsType) => {
                             </div>
                         )
                     })
-                }
+                }*/}
             </div>
         </>
     );
-
 }
