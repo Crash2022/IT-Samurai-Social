@@ -9,11 +9,15 @@
 .paginationButtonNext {
     padding-left: 20px;
 }
+.paginationWrapper button {
+    margin: 5px;
+}
 
 .pagination {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    min-width: 550px;
 }
 .pagination > span {
     padding: 10px;

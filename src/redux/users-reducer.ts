@@ -83,8 +83,8 @@ let initialState = {
             avatar: 'https://img.redbull.com/images/q_auto,f_auto/redbullcom/2015/12/10/1331764435698_1/danny-nin-%C3%B6zel-yap%C4%B1m-street-trials-bisikleti.jpg',
         }*/
     ] as Array<UsersArray>,
-    pageSize: 10,
-    totalUsersCount: 100,
+    pageSize: 20, // количество пользователей на одной странице
+    totalUsersCount: 100, // количество пользователей приходит с сервера, теперь цифра не влияет
     currentPage: 1,
     isLoading: false,
     followingInProgress: []

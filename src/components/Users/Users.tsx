@@ -19,26 +19,12 @@ export const Users = (props: UsersPropsType) => {
 
     return (
         <>
-            {/*<div className={styles.pagination}>
-                {
-                    pages.map(page => {
-                        return (
-                            <span className={props.currentPage === page ? styles.selectedPage : ''}
-                                  key={v1()}
-                                  onClick={() => {props.onChangePageHandler(page)}}
-                            >
-                                  {page}
-                            </span>
-                        )
-                    })
-                }
-            </div>*/}
-
             <Paginator
                 pageSize={props.pageSize}
                 totalUsersCount={props.totalUsersCount}
                 currentPage={props.currentPage}
                 onChangePageHandler={props.onChangePageHandler}
+                numberOfPagesInBlock={10}
             />
 
             <div className={styles.usersWrapper}>
@@ -55,6 +41,7 @@ export const Users = (props: UsersPropsType) => {
                     })
                 }
 
+                {/*перенесли в компоненту UserItem*/}
                 {/*{
                     props.users.map(user => {
                         return (
