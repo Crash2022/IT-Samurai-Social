@@ -23,6 +23,8 @@ const mapStateToProps = (state: RootStateType) => {
         myMessages: state.dialogsPage.messagesData,
     }
 }
+
+// первоначально было так
 /*const mapDispatchToProps = (dispatch: Dispatch<ActionsType>) => {
     return {
         sendMessageHandler: () => {

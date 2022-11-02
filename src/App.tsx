@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import {Route, withRouter} from 'react-router-dom';
 import {Navbar} from "./components/Navbar/Navbar";
@@ -7,40 +7,45 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {LoginContainer} from "./components/Login/Login";
 import {Footer} from "./components/Footer/Footer";
-import {MessagesContainer} from "./components/Messages/MessagesContainer";
+//import {MessagesContainer} from "./components/Messages/MessagesContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import {ProfileContainer} from "./components/Profile/ProfileMain/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {RootStateType} from "./redux/redux-store";
-//import {deleteLoginThunkCreator, getAuthThunkCreator} from "./redux/auth-reducer";
 import {compose} from "redux";
 import {initializeAppThunkCreator} from "./redux/app-reducer";
 import {Preloader} from "./UI/Preloader/Preloader";
 
+// loadable не работает
+/*import {loadable} from 'react-lazily/loadable';
+const { MessagesContainer } = loadable(() => import('./components/Messages/MessagesContainer'),
+    {fallback: <>Загрузка...</>,})*/
+
+// lazily не работает
+/*import {lazily} from 'react-lazily';
+const {MessagesContainer} = lazily(() => import ("./components/Messages/MessagesContainer"));*/
+
+// реализация lazy loading вместо обычного импорта
+const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer')
+    .then( (module) => ({ default: module.MessagesContainer }) ) );
+
+
 export type AppPropsType = MapStateToPropsAppType & MapDispatchToPropsAppType;
 
 type MapStateToPropsAppType = {
-    //isAuth: boolean
-    //login: null | string
     initialized: boolean
 }
 type MapDispatchToPropsAppType = {
-    //getAuth: () => void
-    //deleteLogin: () => void
     initializeApp: () => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsAppType => {
     return {
-        //isAuth: state.auth.isAuth,
-        //login: state.auth.login
         initialized: state.app.initialized
     }
 }
 const mapDispatchToProps: MapDispatchToPropsAppType = {
-    //getAuth: getAuthThunkCreator,
-    //deleteLogin: deleteLoginThunkCreator,
     initializeApp: initializeAppThunkCreator
 }
 
@@ -63,7 +68,13 @@ export class App extends React.Component<AppPropsType> {
                     <div className="right__main">
                         {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
                         <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                        <Route path={"/messages"} render={() => <MessagesContainer/>}/>
+                        <Route path={"/messages"}
+                               render={() => {
+                                   return <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
+                                       <MessagesContainer/>
+                                   </Suspense>
+                               }}
+                        />
                         <Route path={"/news"} render={() => <News/>}/>
                         <Route path={"/music"} render={() => <Music/>}/>
                         <Route path={"/users"} render={() => <UsersContainer/>}/>
@@ -78,5 +89,4 @@ export class App extends React.Component<AppPropsType> {
 }
 
 export const AppContainer = compose<React.ComponentType>
-    (connect(mapStateToProps, mapDispatchToProps), withRouter)(App);
-
+(connect(mapStateToProps, mapDispatchToProps), withRouter)(App);
