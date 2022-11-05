@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import {profileReducer} from "./profilePage-reducer";
 import {dialogsPageReducer} from "./dialogsPage-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
@@ -18,7 +18,7 @@ export const rootReducer = combineReducers({
     form: formReducer
 });
 
-export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type RootStateType = ReturnType<typeof rootReducer>
 

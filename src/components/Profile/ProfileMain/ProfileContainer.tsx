@@ -2,9 +2,8 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
-import {ProfileType, getProfileThunkCreator,
-    getUserStatusThunkCreator, updateUserStatusThunkCreator}
-    from "../../../redux/profilePage-reducer";
+import {ProfileType, getProfileTC, getUserStatusTC,
+    updateUserStatusTC, updateUserPhotoTC} from "../../../redux/profilePage-reducer";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 //import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -25,6 +24,7 @@ type MapDispatchToPropsUserProfileType = {
     getProfile: (userId: string) => void
     getUserStatus: (userId: string) => void
     updateUserStatus: (userId: string, status: string) => void
+    updatePhoto: (photoFile: any) => void
 }
 export type PathParamType = {
     userId: string
@@ -40,14 +40,15 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsUserProfileType =
 }
 const mapDispatchToProps: MapDispatchToPropsUserProfileType = {
     //setUserProfileAC,
-    getProfile: getProfileThunkCreator,
-    getUserStatus: getUserStatusThunkCreator,
-    updateUserStatus: updateUserStatusThunkCreator
+    getProfile: getProfileTC,
+    getUserStatus: getUserStatusTC,
+    updateUserStatus: updateUserStatusTC,
+    updatePhoto: updateUserPhotoTC
 }
 
 export class ProfileContainerCompose extends React.Component<ProfileContainerType> {
 
-    componentDidMount() {
+    refreshProfile() {
         const getUserData = (userId: string) => {
             this.props.getProfile(userId);
             this.props.getUserStatus(userId);
@@ -69,12 +70,25 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerTyp
         this.props.history.push('/login'); // метод для редиректа на нужную страницу
     }
 
+    componentDidMount() {
+        this.refreshProfile();
+    }
+
+    // аналог useEffect
+    componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile();
+        }
+    }
+
     render() {
         return (
             <Profile {...this.props}
                      profile={this.props.profile}
                      status={this.props.status}
+                     isOwner={!this.props.match.params.userId}
                      updateUserStatus={this.props.updateUserStatus}
+                     updatePhoto={this.props.updatePhoto}
             />
         )
     }

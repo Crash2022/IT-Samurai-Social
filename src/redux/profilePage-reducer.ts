@@ -8,7 +8,8 @@ type ActionsType =
     AddPostACType |
     SetUserProfileACType |
     SetUserStatusACType |
-    DeletePostACType;
+    DeletePostACType |
+    UpdateUserPhotoACType;
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T
@@ -112,6 +113,11 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
         case 'SET_USER_STATUS': {
             return { ...state, status: action.status };
         }
+        case 'UPDATE_USER_PHOTO': {
+            return state;
+            //return { ...state, profile: {...state.profile, photos: {...state.profile.photos, small: action.photoFile}} }
+            //return { ...state, profile: {...state.profile, photos: action.photoFile} }
+        }
         default:
             return state;
         }
@@ -123,6 +129,7 @@ export type AddPostACType = ReturnType<typeof addPostAC>
 export type DeletePostACType = ReturnType<typeof deletePostAC>
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
 export type SetUserStatusACType = ReturnType<typeof setUserStatusAC>
+export type UpdateUserPhotoACType = ReturnType<typeof updateUserPhotoAC>
 
 export const addPostAC = (newPostText: string) => ({
     type: 'ADD_POST', newPostText
@@ -137,6 +144,10 @@ export const setUserProfileAC = (profile: null) => ({
 export const setUserStatusAC = (status: string) => ({
     type: 'SET_USER_STATUS',
     status
+} as const )
+export const updateUserPhotoAC = (photoFile: any) => ({
+    type: 'UPDATE_USER_PHOTO',
+    photoFile
 } as const )
 
 // Иная запись типизации actions
@@ -155,8 +166,7 @@ const actions = {
 
 /*-------------------------THUNK-------------------------*/
 
-export const getProfileThunkCreator = (userId: string) => {
-
+export const getProfileTC = (userId: string) => {
     return (dispatch: Dispatch<ActionsType>) => {
 
         profileAPI.getProfile(userId)
@@ -166,8 +176,7 @@ export const getProfileThunkCreator = (userId: string) => {
     }
 }
 
-export const getUserStatusThunkCreator = (userId: string) => {
-
+export const getUserStatusTC = (userId: string) => {
     return (dispatch: Dispatch<ActionsType>) => {
 
         profileAPI.getUserStatus(userId)
@@ -177,7 +186,7 @@ export const getUserStatusThunkCreator = (userId: string) => {
     }
 }
 
-export const updateUserStatusThunkCreator = (userId: string, status: string):
+export const updateUserStatusTC = (userId: string, status: string):
     ThunkAction<void, RootStateType, { }, ActionsType> => {
 
     return (dispatch) => {
@@ -185,7 +194,19 @@ export const updateUserStatusThunkCreator = (userId: string, status: string):
         profileAPI.updateUserStatus(status)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(getUserStatusThunkCreator(userId));
+                    dispatch(getUserStatusTC(userId));
+                }
+            })
+    }
+}
+
+export const updateUserPhotoTC = (photoFile: any) => {
+    return (dispatch: Dispatch<ActionsType>) => {
+
+        profileAPI.updateUserPhoto(photoFile)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(updateUserPhotoAC(photoFile));
                 }
             })
     }

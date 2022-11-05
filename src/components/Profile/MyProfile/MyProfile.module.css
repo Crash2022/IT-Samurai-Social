@@ -36,6 +36,10 @@
     border: 2px solid green;
 }
 
+.content__info_avatarUpload {
+    margin-top: 10px;
+}
+
 .content__info_info {
     display: flex;
     flex-direction: column;
