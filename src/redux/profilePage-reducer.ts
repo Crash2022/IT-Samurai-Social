@@ -86,7 +86,7 @@ let initialState = {
             dislikes: 10
         }
     ] as Array<UserMessageType>,
-    profile: null,
+    profile: null as null | ProfileType,
     status: ''
 }
 
@@ -114,9 +114,9 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
             return { ...state, status: action.status };
         }
         case 'UPDATE_USER_PHOTO': {
-            return state;
-            //return { ...state, profile: {...state.profile, photos: {...state.profile.photos, small: action.photoFile}} }
-            //return { ...state, profile: {...state.profile, photos: action.photoFile} }
+            console.log(action.photoFile)
+            // return { ...state, profile: {...state.profile!, photos: {...state.profile!.photos, small: action.photoFile}} };
+            return { ...state, profile: {...state.profile!, photos: action.photoFile} }
         }
         default:
             return state;
@@ -145,7 +145,7 @@ export const setUserStatusAC = (status: string) => ({
     type: 'SET_USER_STATUS',
     status
 } as const )
-export const updateUserPhotoAC = (photoFile: any) => ({
+export const updateUserPhotoAC = (photoFile: { small: string, large: string }) => ({
     type: 'UPDATE_USER_PHOTO',
     photoFile
 } as const )
@@ -200,13 +200,13 @@ export const updateUserStatusTC = (userId: string, status: string):
     }
 }
 
-export const updateUserPhotoTC = (photoFile: any) => {
+export const updateUserPhotoTC = (photoFile: File) => {
     return (dispatch: Dispatch<ActionsType>) => {
 
         profileAPI.updateUserPhoto(photoFile)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(updateUserPhotoAC(photoFile));
+                    dispatch(updateUserPhotoAC(data.data.photos));
                 }
             })
     }

@@ -90,7 +90,7 @@ export const profileAPI = {
                 .then(response => response.data)
         )
     },
-    updateUserPhoto(photoFile: any) {
+    updateUserPhoto(photoFile: File) {
         const formData = new FormData;
         formData.append('image', photoFile);
 
@@ -101,7 +101,7 @@ export const profileAPI = {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
-                .then(response => response.data.data.photos)
+                .then(response => response.data)
         )
     }
 }

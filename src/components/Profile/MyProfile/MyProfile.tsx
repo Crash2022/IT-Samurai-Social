@@ -17,8 +17,8 @@ type MyProfilePropsType = {
 
 export const MyProfile = (props: MyProfilePropsType) => {
 
-    const onAvatarSelected = (event: any) => {
-        if (event.target.files.length) {
+    const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files?.length) {
             props.updatePhoto(event.target.files[0]);
         }
     }
@@ -42,11 +42,10 @@ export const MyProfile = (props: MyProfilePropsType) => {
                             // src={props.profile.photos.small || userAvatar}
                             src={props.profile.photos.small !== null ? props.profile.photos.small : userAvatar}
                             alt="my-avatar">
-                            onChange={onAvatarSelected}
                         </img>
                         </div>
                         <div className={styles.content__info_avatarUpload}>
-                            {props.isOwner ? <input type="file"/> : ''}
+                            {props.isOwner ? <input type="file" onChange={onAvatarSelected}/> : ''}
                         </div>
                     </div>
 
