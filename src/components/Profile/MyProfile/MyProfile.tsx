@@ -6,7 +6,11 @@ import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileData} from "./ProfileData";
-import {ProfileDataForm} from "./ProfileDataForm";
+import {ProfileDataReduxForm} from "./ProfileDataReduxForm";
+import {Contacts} from "./Contacts";
+import {reduxForm} from "redux-form";
+import {LoginFormValuesType} from "../../Login/LoginForm";
+import {connect} from "react-redux";
 
 type MyProfilePropsType = {
     profile: null | ProfileType
@@ -20,7 +24,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
 
     const [editMode, setEditMode] = useState<boolean>(false);
 
-    const activateEditMode = () => {
+    const changeEditMode = () => {
         setEditMode(!editMode);
     }
 
@@ -30,7 +34,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         }
     }
 
-    /*const showProfileContacts = () => {
+    const showProfileContacts = () => {
         // проверяем есть ли такие поля в стейте
         if (props.profile && props.profile.contacts) {
 
@@ -43,7 +47,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         } else {
             return <> </>;
         }
-    }*/
+    }
 
     if (!props.profile) {
         return <Preloader/>
@@ -75,8 +79,21 @@ export const MyProfile = (props: MyProfilePropsType) => {
 
                         {
                             editMode
-                            ? <ProfileDataForm profile={props.profile} activateEditMode={activateEditMode}/>
-                            : <ProfileData profile={props.profile} isOwner={props.isOwner} activateEditMode={activateEditMode}/>
+                            ?
+                                /*<ProfileDataForm profile={props.profile}
+                                               changeEditMode={changeEditMode}
+                                               showProfileContacts={showProfileContacts}
+                                />*/
+                                <ProfileDataReduxForm profile={props.profile}
+                                                 changeEditMode={changeEditMode}
+                                                 showProfileContacts={showProfileContacts}
+                                />
+                            :
+                                <ProfileData profile={props.profile}
+                                           isOwner={props.isOwner}
+                                           changeEditMode={changeEditMode}
+                                           showProfileContacts={showProfileContacts}
+                                />
                         }
 
                         {/*<div><b>Имя:</b> {props.profile.fullName}</div>
@@ -107,3 +124,9 @@ export const MyProfile = (props: MyProfilePropsType) => {
         );
     }
 }
+
+export const ProfileDataReduxForm = reduxForm<LoginFormValuesType>({
+    form: 'profileData' // уникальное строковое имя для каждой формы
+})(ProfileDataForm)
+
+export const MyProfileContainer = connect(mapStateToProps, mapDispatchToProps)(MyProfile)
