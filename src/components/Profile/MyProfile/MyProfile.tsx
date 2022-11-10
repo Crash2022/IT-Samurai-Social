@@ -3,10 +3,9 @@ import styles from './MyProfile.module.css';
 import {Preloader} from "../../../UI/Preloader/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
 import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
-//import {ProfileStatus} from "./ProfileStatus";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {Contacts} from "./Contacts";
+import {ProfileData} from "./ProfileData";
 
 type MyProfilePropsType = {
     profile: null | ProfileType
@@ -24,7 +23,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         }
     }
 
-    const showProfileContacts = () => {
+    /*const showProfileContacts = () => {
         // проверяем есть ли такие поля в стейте
         if (props.profile && props.profile.contacts) {
 
@@ -37,7 +36,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         } else {
             return <> </>;
         }
-    }
+    }*/
 
     if (!props.profile) {
         return <Preloader/>
@@ -53,20 +52,24 @@ export const MyProfile = (props: MyProfilePropsType) => {
                 <div className={styles.content__info}>
                     <div className={styles.content__info_avatar}>
                         <div>
-                        <img
-                            // можно написать так через псевдо истину-псевдо ложь
-                            // src={props.profile.photos.small || userAvatar}
-                            src={props.profile.photos.small !== null ? props.profile.photos.small : userAvatar}
-                            alt="my-avatar">
-                        </img>
+                            <img
+                                // можно написать так через псевдо истину-псевдо ложь
+                                // src={props.profile.photos.small || userAvatar}
+                                src={props.profile.photos.small !== null ? props.profile.photos.small : userAvatar}
+                                alt="my-avatar">
+                            </img>
                         </div>
                         <div className={styles.content__info_avatarUpload}>
                             {props.isOwner ? <input type="file" onChange={onAvatarSelected}/> : ''}
                         </div>
                     </div>
 
+
                     <div className={styles.content__info_info}>
-                        <div><b>Имя:</b> {props.profile.fullName}</div>
+
+                        <ProfileData profile={props.profile}/>
+
+                        {/*<div><b>Имя:</b> {props.profile.fullName}</div>
                         <div><b>Дата рождения:</b> ...</div>
                         <div><b>Город:</b> ...</div>
                         <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
@@ -76,7 +79,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                 <b>Контакты:</b>
                             </div>
                             {showProfileContacts()}
-                        </div>
+                        </div>*/}
 
                         {/*<ProfileStatus userId={props.profile.userId}
                                        status={props.status}
@@ -87,6 +90,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                                 status={props.status}
                                                 updateUserStatus={props.updateUserStatus}
                         />
+
                     </div>
                 </div>
             </>
