@@ -72,7 +72,10 @@ export const MyProfile = (props: MyProfilePropsType) => {
                         <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
                         <div><b>Обо мне:</b> {props.profile.aboutMe}</div>
                         <div className={styles.content__info_info_contacts}>
-                            <span><b>Контакты:</b></span> {showProfileContacts()}
+                            <div className={styles.content__info_info_contacts_title}>
+                                <b>Контакты:</b>
+                            </div>
+                            {showProfileContacts()}
                         </div>
 
                         {/*<ProfileStatus userId={props.profile.userId}

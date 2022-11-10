@@ -51,15 +51,14 @@
     padding-bottom: 15px;
 }
 
-.content__info_info_contacts span {
-    text-decoration: underline;
-}
 .content__info_info_contacts > * {
     padding-bottom: 5px;
 }
+.content__info_info_contacts_title {
+    text-decoration: underline;
+}
 
 .content__status_text {
-    /*margin-top: 20px;*/
     font-style: italic;
     font-weight: bold;
     font-size: 18px;
