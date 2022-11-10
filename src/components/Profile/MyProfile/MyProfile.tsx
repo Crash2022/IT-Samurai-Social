@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from './MyProfile.module.css';
 import {Preloader} from "../../../UI/Preloader/Preloader";
 import userAvatar from "../../../assets/images/user_avatar.jpg";
@@ -6,6 +6,7 @@ import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileData} from "./ProfileData";
+import {ProfileDataForm} from "./ProfileDataForm";
 
 type MyProfilePropsType = {
     profile: null | ProfileType
@@ -16,6 +17,12 @@ type MyProfilePropsType = {
 }
 
 export const MyProfile = (props: MyProfilePropsType) => {
+
+    const [editMode, setEditMode] = useState<boolean>(false);
+
+    const activateEditMode = () => {
+        setEditMode(!editMode);
+    }
 
     const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
@@ -64,10 +71,13 @@ export const MyProfile = (props: MyProfilePropsType) => {
                         </div>
                     </div>
 
-
                     <div className={styles.content__info_info}>
 
-                        <ProfileData profile={props.profile}/>
+                        {
+                            editMode
+                            ? <ProfileDataForm profile={props.profile} activateEditMode={activateEditMode}/>
+                            : <ProfileData profile={props.profile} isOwner={props.isOwner} activateEditMode={activateEditMode}/>
+                        }
 
                         {/*<div><b>Имя:</b> {props.profile.fullName}</div>
                         <div><b>Дата рождения:</b> ...</div>
