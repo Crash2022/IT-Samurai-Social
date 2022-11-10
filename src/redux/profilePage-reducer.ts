@@ -32,14 +32,15 @@ export type UserMessageType = {
 export type ProfileType = {
     aboutMe: string
     contacts: {
-        facebook: string
-        website: null
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: null
-        github: string
-        mainLink: null
+        [key:string] : string | null
+        // facebook: string
+        // website: string | null
+        // vk: string
+        // twitter: string
+        // instagram: string | null
+        // youtube: string | null
+        // github: string
+        // mainLink: string | null
     }
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -87,7 +88,7 @@ let initialState = {
         }
     ] as Array<UserMessageType>,
     profile: null as null | ProfileType,
-    status: ''
+    status: '',
 }
 
 export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType): MyPostsItemPropsType => {

@@ -6,6 +6,7 @@ import avatarPhoto from "../../../assets/images/avatar_photo.jpg";
 //import {ProfileStatus} from "./ProfileStatus";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
+import {Contacts} from "./Contacts";
 
 type MyProfilePropsType = {
     profile: null | ProfileType
@@ -20,6 +21,21 @@ export const MyProfile = (props: MyProfilePropsType) => {
     const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files?.length) {
             props.updatePhoto(event.target.files[0]);
+        }
+    }
+
+    const showProfileContacts = () => {
+        // проверяем есть ли такие поля в стейте
+        if (props.profile && props.profile.contacts) {
+
+            return Object.keys(props.profile.contacts).map(key => {
+                return <Contacts key={key}
+                                 contactsTitle={key}
+                                 contactsValue={props.profile?.contacts[key]}
+                />
+            })
+        } else {
+            return <> </>;
         }
     }
 
@@ -53,9 +69,11 @@ export const MyProfile = (props: MyProfilePropsType) => {
                         <div><b>Имя:</b> {props.profile.fullName}</div>
                         <div><b>Дата рождения:</b> ...</div>
                         <div><b>Город:</b> ...</div>
-                        <div><b>Хобби:</b> ...</div>
                         <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
-                        <div><b>Веб-сайт:</b> {props.profile.contacts.vk}</div>
+                        <div><b>Обо мне:</b> {props.profile.aboutMe}</div>
+                        <div className={styles.content__info_info_contacts}>
+                            <span><b>Контакты:</b></span> {showProfileContacts()}
+                        </div>
 
                         {/*<ProfileStatus userId={props.profile.userId}
                                        status={props.status}
