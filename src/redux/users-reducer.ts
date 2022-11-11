@@ -1,7 +1,7 @@
 import {usersAPI} from "../api/api";
 import {Dispatch} from "redux";
 
-type ActionsType =
+type UsersActionsType =
     UserFollowACType |
     UserUnfollowACType |
     SetUsersACType |
@@ -90,7 +90,7 @@ let initialState = {
     followingInProgress: []
 };
 
-export const usersReducer = (state: UsersPropsType = initialState, action: ActionsType): UsersPropsType => {
+export const usersReducer = (state: UsersPropsType = initialState, action: UsersActionsType): UsersPropsType => {
     switch (action.type) {
         case 'FOLLOW':
             return {...state, users: state.users.map(user => user.id === action.id ? {...user, followed: true} : user)};
@@ -145,7 +145,7 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleIsLoadingAC(true));
 
         usersAPI.getUsers(currentPage, pageSize)
@@ -160,7 +160,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
 
 export const deleteFollowThunkCreator = (userId: string) => {
 
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleFollowInProgressAC(userId,true));
 
         usersAPI.deleteFollow(userId)
@@ -175,7 +175,7 @@ export const deleteFollowThunkCreator = (userId: string) => {
 
 export const postFollowThunkCreator = (userId: string) => {
 
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleFollowInProgressAC(userId,true));
 
         usersAPI.postFollow(userId)

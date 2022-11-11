@@ -35,10 +35,8 @@ export const MyProfile = (props: MyProfilePropsType) => {
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
         console.log(formData);
-
         const {aboutMe, lookingForAJobDescription, fullName} = formData;
-
-        const data = {aboutMe, lookingForAJobDescription, fullName}
+        const data = {aboutMe, lookingForAJobDescription, fullName};
 
         if(props.profile) {
             props.updateUserProfile(data);
@@ -103,7 +101,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                                showProfileContacts={showProfileContacts}
                                 />*/
                                 <ProfileDataReduxForm initialValues={{
-                                                      //profile: props.profile,
+                                                      profile: props.profile,
                                                       showProfileContacts: showProfileContacts
                                                       }}
                                                       onSubmit={onSubmit}

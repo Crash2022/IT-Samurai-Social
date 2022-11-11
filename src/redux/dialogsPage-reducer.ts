@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 
-type ActionsType = SendMessageACType;
+type DialogsActionsType = SendMessageACType;
 
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
@@ -32,7 +32,7 @@ let initialState = {
     ] as Array<MessagesArray>
 }
 
-export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionsType): DialogsPropsType => {
+export const dialogsPageReducer = (state: DialogsPropsType = initialState, action: DialogsActionsType): DialogsPropsType => {
 
     switch(action.type) {
         case 'SEND_DIALOG_TEXT': {

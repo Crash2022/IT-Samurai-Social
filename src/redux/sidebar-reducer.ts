@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 
-//type ActionsType = ;
+//type SidebarActionsType = ;
 
 export type SideBarPropsType = {
     friendsData: Array<SidebarFriendsType>

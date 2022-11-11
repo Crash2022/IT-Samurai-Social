@@ -5,7 +5,7 @@ import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 import {RootStateType} from "./redux-store";
 
-type ActionsType =
+type ProfileActionsType =
     AddPostACType |
     SetUserProfileACType |
     SetUserStatusACType |
@@ -92,7 +92,7 @@ let initialState = {
     status: '',
 }
 
-export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ActionsType): MyPostsItemPropsType => {
+export const profileReducer = (state: MyPostsItemPropsType = initialState, action: ProfileActionsType): MyPostsItemPropsType => {
 
     switch(action.type) {
         case 'ADD_POST': {
@@ -169,7 +169,7 @@ const actions = {
 /*-------------------------THUNK-------------------------*/
 
 export const getProfileTC = (userId: string) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<ProfileActionsType>) => {
 
         profileAPI.getProfile(userId)
             .then(data => {
@@ -179,7 +179,7 @@ export const getProfileTC = (userId: string) => {
 }
 
 export const getUserStatusTC = (userId: string) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<ProfileActionsType>) => {
 
         profileAPI.getUserStatus(userId)
             .then(data => {
@@ -189,7 +189,7 @@ export const getUserStatusTC = (userId: string) => {
 }
 
 export const updateUserStatusTC = (userId: string, status: string):
-    ThunkAction<void, RootStateType, { }, ActionsType> => {
+    ThunkAction<void, RootStateType, { }, ProfileActionsType> => {
 
     return (dispatch) => {
 
@@ -203,7 +203,7 @@ export const updateUserStatusTC = (userId: string, status: string):
 }
 
 export const updateUserPhotoTC = (photoFile: File) => {
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<ProfileActionsType>) => {
 
         profileAPI.updateUserPhoto(photoFile)
             .then(data => {
@@ -216,8 +216,9 @@ export const updateUserPhotoTC = (photoFile: File) => {
 
 export const updateUserProfileTC = (profile: FormDataType) => {
 
-    return (dispatch: ThunkDispatch<RootStateType, unknown, ActionsType>,
+    return (dispatch: ThunkDispatch<RootStateType, unknown, ProfileActionsType>,
             getState: () => CombinedState<RootStateType>) => {
+
         const userId = getState().auth.userId;
         profileAPI.updateUserProfile(profile)
             .then(data => {
