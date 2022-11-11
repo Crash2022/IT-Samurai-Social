@@ -39,6 +39,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                     </div>
                     {/*<div><b>Имя:</b> {profile.fullName}</div>*/}
                     <div style={{height: '55px'}}>
+                        <span><b>Имя:</b></span>
                         <Field
                             placeholder={'Имя'}
                             name={'fullName'}
@@ -48,6 +49,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                     </div>
                     {/*<div><b>Работа:</b> {profile.lookingForAJobDescription}</div>*/}
                     <div style={{height: '55px'}}>
+                        <span><b>Работа:</b></span>
                         <Field
                             placeholder={'Работа'}
                             name={'lookingForAJobDescription'}
@@ -57,6 +59,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                     </div>
                     {/*<div><b>Обо мне:</b> {profile.aboutMe}</div>*/}
                     <div style={{height: '55px'}}>
+                        <span><b>Обо мне:</b></span>
                         <Field
                             placeholder={'Обо мне'}
                             name={'aboutMe'}
