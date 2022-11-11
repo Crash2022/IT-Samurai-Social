@@ -14,7 +14,6 @@ type ProfileDataPropsType = {
 export const ProfileData: React.FC<ProfileDataPropsType> =
     ({profile, isOwner, changeEditMode, showProfileContacts}) => {
 
-
         return (
             <>
                 {
@@ -42,5 +41,4 @@ export const ProfileData: React.FC<ProfileDataPropsType> =
                 </div>
             </>
         );
-
 }

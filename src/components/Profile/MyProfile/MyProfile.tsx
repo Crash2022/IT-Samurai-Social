@@ -101,8 +101,8 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                                showProfileContacts={showProfileContacts}
                                 />*/
                                 <ProfileDataReduxForm initialValues={{
-                                                      profile: props.profile,
-                                                      showProfileContacts: showProfileContacts
+                                                      ...props.profile
+                                                      //showProfileContacts: showProfileContacts
                                                       }}
                                                       onSubmit={onSubmit}
                                 />
