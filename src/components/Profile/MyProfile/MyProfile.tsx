@@ -16,7 +16,7 @@ type MyProfilePropsType = {
     isOwner: boolean
     updateUserStatus: (userId: string, status: string) => void
     updatePhoto: (photoFile: any) => void
-    updateUserProfile: (data: FormDataType) => void
+    updateUserProfile: (data: FormDataType) => any // ???
 }
 
 export type FormDataType = {
@@ -31,11 +31,14 @@ export const MyProfile = (props: MyProfilePropsType) => {
 
     const changeEditMode = () => {
         setEditMode(!editMode);
+        //setEditMode(true);
     }
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
-        props.updateUserProfile(formData);
-        changeEditMode();
+        props.updateUserProfile(formData).then(() => {
+            //setEditMode(false);
+            changeEditMode();
+        })
     }
 
     const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {

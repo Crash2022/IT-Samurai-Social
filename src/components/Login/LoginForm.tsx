@@ -14,7 +14,7 @@ export type LoginFormValuesType = {
 
 //const maxLengthCreator20 = maxLengthCreator(20);
 
-export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit , error}) => {
+export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error}) => {
     return (
             <form onSubmit={handleSubmit}>
                 <div>

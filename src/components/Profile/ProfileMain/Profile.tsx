@@ -10,7 +10,7 @@ type ProfilePropsType = {
     isOwner: boolean
     updateUserStatus: (userId: string, status: string) => void
     updatePhoto: (photoFile: any) => void
-    updateUserProfile: (profile: FormDataType) => void
+    updateUserProfile: (profile: FormDataType) => any // ???
 }
 
 export const Profile = (props: ProfilePropsType) => {

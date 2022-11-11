@@ -4,6 +4,7 @@ import {profileAPI} from "../api/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 import {RootStateType} from "./redux-store";
+import {stopSubmit} from "redux-form";
 
 type ProfileActionsType =
     AddPostACType |
@@ -216,7 +217,7 @@ export const updateUserPhotoTC = (photoFile: File) => {
 
 export const updateUserProfileTC = (profile: FormDataType) => {
 
-    return (dispatch: ThunkDispatch<RootStateType, unknown, ProfileActionsType>,
+    return (dispatch: ThunkDispatch<RootStateType, unknown, /*ProfileActionsType*/ReturnType<typeof stopSubmit>>,
             getState: () => CombinedState<RootStateType>) => {
 
         const userId = getState().auth.userId;
@@ -224,6 +225,9 @@ export const updateUserProfileTC = (profile: FormDataType) => {
             .then(data => {
                 if (data.resultCode === 0 && userId) {
                     dispatch(getProfileTC(userId));
+                } else {
+                    dispatch(stopSubmit('profileDataForm', {_error: data.messages[0]}));
+                    return Promise.reject(data.messages[0]);
                 }
             })
     }

@@ -1,6 +1,7 @@
 import React from "react";
 import {SuperButton} from "../../../UI/Button/SuperButton";
 import styles from "./MyProfile.module.css";
+import style from "../../Login/Login.module.css";
 import {Field, InjectedFormProps} from "redux-form";
 import {SuperInputText} from "../../../UI/Input/SuperInputText";
 import {requiredField} from "../../../utils/validators/validators";
@@ -17,7 +18,7 @@ export type ProfileDataFormPropsType = {
 }
 
 export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> =
-    ({initialValues, handleSubmit}) => {
+    ({initialValues, handleSubmit, error}) => {
 
         // деструктуризация пропсов, чтобы не было конфликтов с redux-form
         // const {showProfileContacts} = initialValues;
@@ -29,6 +30,15 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                         <SuperButton type={'submit'} className={styles.saveButton}>
                             Сохранить
                         </SuperButton>
+                    </div>
+
+                    <div className={style.formErrorBlock}>
+                        {
+                            error &&
+                            <div className={style.formError}>
+                                {error}
+                            </div>
+                        }
                     </div>
 
                     {/*<div><b>Имя:</b> {profile.fullName}</div>*/}
@@ -75,10 +85,11 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                         Object.entries(initialValues.contacts).map(([key]) => {
                             return (
                                 <Field
-                                    placeholder={`contacts.${key}`}
+                                    key={key}
+                                    placeholder={`${key}`}
                                     name={`contacts.${key}`}
                                     component={SuperInputText}
-                                    //validate={[requiredField]}
+                                    validate={[requiredField]}
                                 />
                             )
                         })

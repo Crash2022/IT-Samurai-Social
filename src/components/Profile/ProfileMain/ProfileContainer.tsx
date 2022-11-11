@@ -27,7 +27,7 @@ type MapDispatchToPropsUserProfileType = {
     getUserStatus: (userId: string) => void
     updateUserStatus: (userId: string, status: string) => void
     updatePhoto: (photoFile: any) => void
-    updateUserProfile: (profile: FormDataType) => void
+    updateUserProfile: (profile: FormDataType) => any // ???
 }
 export type PathParamType = {
     userId: string
