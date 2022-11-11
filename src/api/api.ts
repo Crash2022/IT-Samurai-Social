@@ -1,5 +1,4 @@
 import axios from "axios";
-import {ProfileType} from "../redux/profilePage-reducer";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 
 export type authMeType = {

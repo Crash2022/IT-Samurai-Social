@@ -96,10 +96,6 @@ export const MyProfile = (props: MyProfilePropsType) => {
                         {
                             editMode
                             ?
-                                /*<ProfileDataForm profile={props.profile}
-                                               changeEditMode={changeEditMode}
-                                               showProfileContacts={showProfileContacts}
-                                />*/
                                 <ProfileDataReduxForm initialValues={{
                                                       ...props.profile
                                                       //showProfileContacts: showProfileContacts
@@ -113,23 +109,6 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                              showProfileContacts={showProfileContacts}
                                 />
                         }
-
-                        {/*<div><b>Имя:</b> {props.profile.fullName}</div>
-                        <div><b>Дата рождения:</b> ...</div>
-                        <div><b>Город:</b> ...</div>
-                        <div><b>Работа:</b> {props.profile.lookingForAJobDescription}</div>
-                        <div><b>Обо мне:</b> {props.profile.aboutMe}</div>
-                        <div className={styles.content__info_info_contacts}>
-                            <div className={styles.content__info_info_contacts_title}>
-                                <b>Контакты:</b>
-                            </div>
-                            {showProfileContacts()}
-                        </div>*/}
-
-                        {/*<ProfileStatus userId={props.profile.userId}
-                                       status={props.status}
-                                       updateUserStatus={props.updateUserStatus}
-                        />*/}
 
                         <ProfileStatusWithHooks userId={props.profile.userId}
                                                 status={props.status}
