@@ -34,13 +34,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
     }
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
-        console.log(formData);
-        const {aboutMe, lookingForAJobDescription, fullName} = formData;
-        const data = {aboutMe, lookingForAJobDescription, fullName};
-
-        if(props.profile) {
-            props.updateUserProfile(data);
-        }
+        props.updateUserProfile(formData);
         changeEditMode();
     }
 
@@ -50,7 +44,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         }
     }
 
-    const showProfileContacts = () => {
+    /*const showProfileContacts = () => {
         // проверяем есть ли такие поля в стейте
         if (props.profile && props.profile.contacts) {
 
@@ -63,7 +57,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         } else {
             return <> </>;
         }
-    }
+    }*/
 
     if (!props.profile) {
         return <Preloader/>
@@ -96,17 +90,14 @@ export const MyProfile = (props: MyProfilePropsType) => {
                         {
                             editMode
                             ?
-                                <ProfileDataReduxForm initialValues={{
-                                                      ...props.profile
-                                                      //showProfileContacts: showProfileContacts
-                                                      }}
+                                <ProfileDataReduxForm initialValues={{...props.profile}}
                                                       onSubmit={onSubmit}
                                 />
                             :
                                 <ProfileData profile={props.profile}
                                              isOwner={props.isOwner}
                                              changeEditMode={changeEditMode}
-                                             showProfileContacts={showProfileContacts}
+                                             //showProfileContacts={showProfileContacts}
                                 />
                         }
 

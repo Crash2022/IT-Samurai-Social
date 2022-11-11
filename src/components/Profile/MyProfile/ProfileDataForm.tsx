@@ -13,10 +13,11 @@ export type ProfileDataFormPropsType = {
     aboutMe: string
     lookingForAJobDescription: string
     fullName: string
+    contacts: any;
 }
 
 export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> =
-    ({handleSubmit}) => {
+    ({initialValues, handleSubmit}) => {
 
         // деструктуризация пропсов, чтобы не было конфликтов с redux-form
         // const {showProfileContacts} = initialValues;
@@ -29,6 +30,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                             Сохранить
                         </SuperButton>
                     </div>
+
                     {/*<div><b>Имя:</b> {profile.fullName}</div>*/}
                     <div style={{height: '55px'}}>
                         <span><b>Имя:</b></span>
@@ -39,6 +41,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                             validate={[requiredField]}
                         />
                     </div>
+
                     {/*<div><b>Работа:</b> {profile.lookingForAJobDescription}</div>*/}
                     <div style={{height: '55px'}}>
                         <span><b>Работа:</b></span>
@@ -49,6 +52,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                             validate={[requiredField]}
                         />
                     </div>
+
                     {/*<div><b>Обо мне:</b> {profile.aboutMe}</div>*/}
                     <div style={{height: '55px'}}>
                         <span><b>Обо мне:</b></span>
@@ -60,23 +64,26 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                         />
                     </div>
 
-                    {/*<div>
-                        <Field
-                            placeholder={'Контакты'}
-                            name={'contacts'}
-                            //name={`contacts.${contact}`} entries
-                            component={SuperInputText}
-                            validate={[requiredField]}
-                        />
-                    </div>*/}
-
-
                    {/* <div className={styles.content__info_info_contacts}>
                         <div className={styles.content__info_info_contacts_title}>
                             <b>Контакты:</b>
                         </div>
                         {showProfileContacts && showProfileContacts()}
                     </div>*/}
+
+                    {
+                        Object.entries(initialValues.contacts).map(([key]) => {
+                            return (
+                                <Field
+                                    placeholder={`contacts.${key}`}
+                                    name={`contacts.${key}`}
+                                    component={SuperInputText}
+                                    //validate={[requiredField]}
+                                />
+                            )
+                        })
+                    }
+
                 </form>
             </>
         );

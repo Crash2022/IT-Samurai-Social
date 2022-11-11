@@ -9,7 +9,7 @@ export const Contacts: React.FC<ContactsPropsType> = ({contactsTitle, contactsVa
 
     return (
         <div>
-            <b>{contactsTitle}:</b>{contactsValue}
+            <b>{contactsTitle}: </b>{contactsValue}
         </div>
     );
 }
