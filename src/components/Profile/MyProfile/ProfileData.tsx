@@ -20,16 +20,20 @@ export const ProfileData: React.FC<ProfileDataPropsType> =
                 {
                     isOwner &&
                     <div>
-                        <SuperButton onClick={changeEditMode}>
+                        <SuperButton onClick={changeEditMode} style={{width: '165px'}}>
                             Редактировать
                         </SuperButton>
                     </div>
                 }
-                <div><b>Имя:</b> {profile.fullName}</div>
-                {/*<div><b>Дата рождения:</b> ...</div>*/}
-                {/*<div><b>Город:</b> ...</div>*/}
-                <div><b>Работа:</b> {profile.lookingForAJobDescription}</div>
-                <div><b>Обо мне:</b> {profile.aboutMe}</div>
+                <div style={{marginTop: '10px'}}>
+                    <b>Имя:</b> {profile.fullName}
+                </div>
+                <div>
+                    <b>Работа:</b> {profile.lookingForAJobDescription}
+                </div>
+                <div>
+                    <b>Обо мне:</b> {profile.aboutMe}
+                </div>
                 <div className={styles.content__info_info_contacts}>
                     <div className={styles.content__info_info_contacts_title}>
                         <b>Контакты:</b>

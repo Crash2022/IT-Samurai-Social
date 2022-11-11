@@ -26,12 +26,12 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
             <>
                 <form onSubmit={handleSubmit}>
                     <div>
-                        <SuperButton type={'submit'}>
+                        <SuperButton type={'submit'} className={styles.saveButton}>
                             Сохранить
                         </SuperButton>
                     </div>
                     {/*<div><b>Имя:</b> {profile.fullName}</div>*/}
-                    <div>
+                    <div style={{height: '35px'}}>
                         <Field
                             placeholder={'Имя'}
                             name={'fullName'}
@@ -42,7 +42,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                     {/*<div><b>Дата рождения:</b> ...</div>*/}
                     {/*<div><b>Город:</b> ...</div>*/}
                     {/*<div><b>Работа:</b> {profile.lookingForAJobDescription}</div>*/}
-                    <div>
+                    <div style={{height: '35px'}}>
                         <Field
                             placeholder={'Работа'}
                             name={'lookingForAJobDescription'}
@@ -51,7 +51,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                         />
                     </div>
                     {/*<div><b>Обо мне:</b> {profile.aboutMe}</div>*/}
-                    <div>
+                    <div style={{height: '35px'}}>
                         <Field
                             placeholder={'Обо мне'}
                             name={'aboutMe'}
