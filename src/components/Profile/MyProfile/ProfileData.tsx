@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import styles from './MyProfile.module.css';
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {Preloader} from "../../../UI/Preloader/Preloader";
@@ -8,7 +8,7 @@ type ProfileDataPropsType = {
     profile: null | ProfileType
     isOwner: boolean
     changeEditMode: () => void
-    showProfileContacts: () => void
+    showProfileContacts: () => ReactNode
 }
 
 export const ProfileData: React.FC<ProfileDataPropsType> =
@@ -28,8 +28,8 @@ export const ProfileData: React.FC<ProfileDataPropsType> =
                     </div>
                 }
                 <div><b>Имя:</b> {profile.fullName}</div>
-                <div><b>Дата рождения:</b> ...</div>
-                <div><b>Город:</b> ...</div>
+                {/*<div><b>Дата рождения:</b> ...</div>*/}
+                {/*<div><b>Город:</b> ...</div>*/}
                 <div><b>Работа:</b> {profile.lookingForAJobDescription}</div>
                 <div><b>Обо мне:</b> {profile.aboutMe}</div>
                 <div className={styles.content__info_info_contacts}>

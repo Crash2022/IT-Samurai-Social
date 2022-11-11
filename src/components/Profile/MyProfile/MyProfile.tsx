@@ -20,14 +20,15 @@ type MyProfilePropsType = {
 
 export const MyProfile = (props: MyProfilePropsType) => {
 
-    const onSubmit = (formData: ProfileDataFormPropsType) => {
-        console.log(formData);
-    }
-
     const [editMode, setEditMode] = useState<boolean>(false);
 
     const changeEditMode = () => {
         setEditMode(!editMode);
+    }
+
+    const onSubmit = (formData: ProfileDataFormPropsType) => {
+        console.log(formData);
+        changeEditMode();
     }
 
     const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,9 +87,14 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                                changeEditMode={changeEditMode}
                                                showProfileContacts={showProfileContacts}
                                 />*/
-                                <ProfileDataReduxForm profile={props.profile}
-                                                      changeEditMode={changeEditMode}
-                                                      showProfileContacts={showProfileContacts}
+                                <ProfileDataReduxForm initialValues={{
+                                    profile: props.profile,
+                                    // changeEditMode: changeEditMode,
+                                    showProfileContacts: showProfileContacts,
+                                }}
+                                                      // profile={props.profile}
+                                                      // changeEditMode={changeEditMode}
+                                                      // showProfileContacts={showProfileContacts}
                                                       onSubmit={onSubmit}
                                 />
                             :

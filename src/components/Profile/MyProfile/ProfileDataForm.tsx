@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {SuperButton} from "../../../UI/Button/SuperButton";
 import styles from "./MyProfile.module.css";
@@ -9,12 +9,15 @@ import {requiredField} from "../../../utils/validators/validators";
 
 export type ProfileDataFormPropsType = {
     profile: null | ProfileType
-    changeEditMode: () => void
-    showProfileContacts: () => void
+    // ReactNode - так как возвращается какая-то логика
+    showProfileContacts: () => ReactNode
 }
 
 export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> =
-    ({profile, changeEditMode, showProfileContacts, handleSubmit}) => {
+    ({initialValues, handleSubmit}) => {
+
+        // деструктуризация пропсов, чтобы не было конфликтов с redux-form
+        const {profile, showProfileContacts} = initialValues
 
         if (!profile) {
             return <Preloader/>
@@ -23,7 +26,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                 <>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <SuperButton onClick={changeEditMode}>
+                            <SuperButton type={'submit'}>
                                 Сохранить
                             </SuperButton>
                         </div>
@@ -61,7 +64,7 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                             <div className={styles.content__info_info_contacts_title}>
                                 <b>Контакты:</b>
                             </div>
-                            {showProfileContacts()}
+                            {showProfileContacts!()}
                         </div>
                     </form>
                 </>
