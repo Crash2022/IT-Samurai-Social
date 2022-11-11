@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './Profile.module.css';
-import {MyProfile} from "../MyProfile/MyProfile";
+import {FormDataType, MyProfile} from "../MyProfile/MyProfile";
 import {MyPostsContainer} from "../MyPosts/MyPostsContainer";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 
@@ -10,6 +10,7 @@ type ProfilePropsType = {
     isOwner: boolean
     updateUserStatus: (userId: string, status: string) => void
     updatePhoto: (photoFile: any) => void
+    updateUserProfile: (profile: FormDataType) => void
 }
 
 export const Profile = (props: ProfilePropsType) => {
@@ -22,6 +23,7 @@ export const Profile = (props: ProfilePropsType) => {
                 isOwner={props.isOwner}
                 updateUserStatus={props.updateUserStatus}
                 updatePhoto={props.updatePhoto}
+                updateUserProfile={props.updateUserProfile}
             />
             <MyPostsContainer/>
         </div>

@@ -1,8 +1,9 @@
 import {v1} from "uuid";
-import {RootStateType} from "./redux-store";
-import {Dispatch} from "redux";
+import {CombinedState, Dispatch} from "redux";
 import {profileAPI} from "../api/api";
-import {ThunkAction} from "redux-thunk";
+import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
+import {RootStateType} from "./redux-store";
 
 type ActionsType =
     AddPostACType |
@@ -208,6 +209,20 @@ export const updateUserPhotoTC = (photoFile: File) => {
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(updateUserPhotoAC(data.data.photos));
+                }
+            })
+    }
+}
+
+export const updateUserProfileTC = (profile: FormDataType) => {
+
+    return (dispatch: ThunkDispatch<RootStateType, unknown, ActionsType>,
+            getState: () => CombinedState<RootStateType>) => {
+        const userId = getState().auth.userId;
+        profileAPI.updateUserProfile(profile)
+            .then(data => {
+                if (data.resultCode === 0 && userId) {
+                    dispatch(getProfileTC(userId));
                 }
             })
     }

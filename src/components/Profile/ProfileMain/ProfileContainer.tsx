@@ -3,10 +3,12 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {RootStateType} from "../../../redux/redux-store";
 import {ProfileType, getProfileTC, getUserStatusTC,
-    updateUserStatusTC, updateUserPhotoTC} from "../../../redux/profilePage-reducer";
+    updateUserStatusTC, updateUserPhotoTC, updateUserProfileTC}
+    from "../../../redux/profilePage-reducer";
 import {withRouter, RouteComponentProps} from "react-router-dom";
 //import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {FormDataType} from "../MyProfile/MyProfile";
 
 export type ProfileContainerType =
     MapStateToPropsUserProfileType &
@@ -25,6 +27,7 @@ type MapDispatchToPropsUserProfileType = {
     getUserStatus: (userId: string) => void
     updateUserStatus: (userId: string, status: string) => void
     updatePhoto: (photoFile: any) => void
+    updateUserProfile: (profile: FormDataType) => void
 }
 export type PathParamType = {
     userId: string
@@ -43,7 +46,8 @@ const mapDispatchToProps: MapDispatchToPropsUserProfileType = {
     getProfile: getProfileTC,
     getUserStatus: getUserStatusTC,
     updateUserStatus: updateUserStatusTC,
-    updatePhoto: updateUserPhotoTC
+    updatePhoto: updateUserPhotoTC,
+    updateUserProfile: updateUserProfileTC
 }
 
 export class ProfileContainerCompose extends React.Component<ProfileContainerType> {
@@ -89,6 +93,7 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerTyp
                      isOwner={!this.props.match.params.userId}
                      updateUserStatus={this.props.updateUserStatus}
                      updatePhoto={this.props.updatePhoto}
+                     updateUserProfile={this.props.updateUserProfile}
             />
         )
     }

@@ -5,7 +5,7 @@ import {Preloader} from "../../../UI/Preloader/Preloader";
 import {SuperButton} from "../../../UI/Button/SuperButton";
 
 type ProfileDataPropsType = {
-    profile: null | ProfileType
+    profile: ProfileType
     isOwner: boolean
     changeEditMode: () => void
     showProfileContacts: () => ReactNode
@@ -14,9 +14,7 @@ type ProfileDataPropsType = {
 export const ProfileData: React.FC<ProfileDataPropsType> =
     ({profile, isOwner, changeEditMode, showProfileContacts}) => {
 
-    if (!profile) {
-        return <Preloader/>
-    } else {
+
         return (
             <>
                 {
@@ -40,5 +38,5 @@ export const ProfileData: React.FC<ProfileDataPropsType> =
                 </div>
             </>
         );
-    }
+
 }

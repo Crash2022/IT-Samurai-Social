@@ -8,20 +8,22 @@ import {SuperInputText} from "../../../UI/Input/SuperInputText";
 import {requiredField} from "../../../utils/validators/validators";
 
 export type ProfileDataFormPropsType = {
-    profile: null | ProfileType
+    //profile: ProfileType
     // ReactNode - так как возвращается какая-то логика
     showProfileContacts: () => ReactNode
+    // свойства для изменения профайла
+    aboutMe: string;
+    lookingForAJobDescription: string
+    fullName: string
 }
 
 export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsType>> =
     ({initialValues, handleSubmit}) => {
 
         // деструктуризация пропсов, чтобы не было конфликтов с redux-form
-        const {profile, showProfileContacts} = initialValues
+        const {/*profile,*/ showProfileContacts} = initialValues
 
-        if (!profile) {
-            return <Preloader/>
-        } else {
+
             return (
                 <>
                     <form onSubmit={handleSubmit}>
@@ -69,5 +71,5 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                     </form>
                 </>
             );
-        }
+
     }

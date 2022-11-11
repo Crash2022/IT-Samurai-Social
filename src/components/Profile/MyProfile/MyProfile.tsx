@@ -16,6 +16,13 @@ type MyProfilePropsType = {
     isOwner: boolean
     updateUserStatus: (userId: string, status: string) => void
     updatePhoto: (photoFile: any) => void
+    updateUserProfile: (data: FormDataType) => void
+}
+
+export type FormDataType = {
+    aboutMe: string;
+    lookingForAJobDescription: string
+    fullName: string
 }
 
 export const MyProfile = (props: MyProfilePropsType) => {
@@ -28,6 +35,14 @@ export const MyProfile = (props: MyProfilePropsType) => {
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
         console.log(formData);
+
+        const {aboutMe, lookingForAJobDescription, fullName} = formData;
+
+        const data = {aboutMe, lookingForAJobDescription, fullName}
+
+        if(props.profile) {
+            props.updateUserProfile(data);
+        }
         changeEditMode();
     }
 
@@ -88,13 +103,9 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                                showProfileContacts={showProfileContacts}
                                 />*/
                                 <ProfileDataReduxForm initialValues={{
-                                    profile: props.profile,
-                                    // changeEditMode: changeEditMode,
-                                    showProfileContacts: showProfileContacts,
-                                }}
-                                                      // profile={props.profile}
-                                                      // changeEditMode={changeEditMode}
-                                                      // showProfileContacts={showProfileContacts}
+                                                      //profile: props.profile,
+                                                      showProfileContacts: showProfileContacts
+                                                      }}
                                                       onSubmit={onSubmit}
                                 />
                             :

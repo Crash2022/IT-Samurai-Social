@@ -1,4 +1,6 @@
 import axios from "axios";
+import {ProfileType} from "../redux/profilePage-reducer";
+import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 
 export type authMeType = {
     resultCode: number
@@ -101,6 +103,13 @@ export const profileAPI = {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
+                .then(response => response.data)
+        )
+    },
+    updateUserProfile(profile: FormDataType) {
+        return (
+            instance
+                .put(`profile`, profile)
                 .then(response => response.data)
         )
     }

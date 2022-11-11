@@ -20,6 +20,8 @@ export const rootReducer = combineReducers({
 
 export let store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
+//export type ReduxStoreType = typeof store
+
 export type RootStateType = ReturnType<typeof rootReducer>
 
 export default store;

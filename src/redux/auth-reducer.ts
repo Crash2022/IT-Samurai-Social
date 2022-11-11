@@ -4,7 +4,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {RootStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 
-type ActionsType = SetAuthUserDataACType | LogoutUserDataACType;
+export type AuthActionsType = SetAuthUserDataACType | LogoutUserDataACType;
 
 export type AuthPropsType = {
     userId: null | string
@@ -20,7 +20,7 @@ let initialState = {
     isAuth: false
 };
 
-export const authReducer = (state: AuthPropsType = initialState, action: ActionsType): AuthPropsType => {
+export const authReducer = (state: AuthPropsType = initialState, action: AuthActionsType): AuthPropsType => {
     switch(action.type) {
         case 'SET_USER_DATA': {
             return {...state, ...action.payload, userId: action.payload.userId.toString()};
@@ -57,7 +57,7 @@ export const logoutUserDataAC = (userId: null, email: null,
 /*-------------------------THUNK-------------------------*/
 
 export const getAuthThunkCreator = () => {
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<AuthActionsType>) => {
 
         authAPI.getAuth()
             .then(data => {
@@ -85,7 +85,7 @@ export const postLoginThunkCreator = (email: string, password: string, rememberM
 }
 
 export const deleteLoginThunkCreator = () => {
-    return (dispatch: Dispatch<ActionsType>) => {
+    return (dispatch: Dispatch<AuthActionsType>) => {
 
         authAPI.deleteLogin()
             .then(data => {
