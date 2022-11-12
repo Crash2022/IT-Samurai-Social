@@ -198,8 +198,11 @@ export const updateUserStatusTC = (userId: string, status: string):
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(getUserStatusTC(userId));
+                } else {
+                    alert(data.messages[0]);
                 }
             })
+            .catch(error => console.log(error))
     }
 }
 
