@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Users.module.css";
-import userAvatar from "../../assets/images/user_avatar.jpg";
+import userAvatar from "../../assets/images/avatars/user_avatar.jpg";
 import {NavLink} from "react-router-dom";
 import {UsersArray} from "../../redux/users-reducer";
 

@@ -68,7 +68,7 @@ export const getCaptchaAC = (captchaUrl: string) => ({
 
 /*-------------------------THUNK-------------------------*/
 
-export const getAuthThunkCreator = () => {
+export const getAuthTC = () => {
     return (dispatch: Dispatch<AuthActionsType>) => {
         authAPI.getAuth()
             .then(data => {
@@ -80,17 +80,17 @@ export const getAuthThunkCreator = () => {
     }
 }
 
-export const postLoginThunkCreator = (email: string, password: string,
+export const postLoginTC = (email: string, password: string,
                                       rememberMe: boolean, captchaUrl: string | null) => {
     return (dispatch: ThunkDispatch<RootStateType, unknown, ReturnType<typeof stopSubmit>>) => {
 
         authAPI.postLogin(email, password, rememberMe, captchaUrl)
             .then(data => {
                 if (data.resultCode === 0) {
-                    dispatch(getAuthThunkCreator());
+                    dispatch(getAuthTC());
                 } else {
                     if (data.resultCode === 10) {
-                        dispatch(getCaptchaThunkCreator());
+                        dispatch(getCaptchaTC());
                     }
 
                     let message = data.messages.length > 0 ? data.messages[0] : 'Some error';
@@ -100,7 +100,7 @@ export const postLoginThunkCreator = (email: string, password: string,
     }
 }
 
-export const deleteLoginThunkCreator = () => {
+export const deleteLoginTC = () => {
     return (dispatch: Dispatch<AuthActionsType>) => {
         authAPI.deleteLogin()
             .then(data => {
@@ -111,7 +111,7 @@ export const deleteLoginThunkCreator = () => {
     }
 }
 
-export const getCaptchaThunkCreator = () => {
+export const getCaptchaTC = () => {
     return (dispatch: Dispatch) => {
         securityAPI.getCaptcha()
             .then(data => {

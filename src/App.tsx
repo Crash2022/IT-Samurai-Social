@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import {Navbar} from "./components/Navbar/Navbar";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
@@ -14,8 +14,10 @@ import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {RootStateType} from "./redux/redux-store";
 import {compose} from "redux";
-import {initializeAppThunkCreator} from "./redux/app-reducer";
+import {initializeAppTC} from "./redux/app-reducer";
 import {Preloader} from "./UI/Preloader/Preloader";
+import {NotFound} from "./components/NotFound/NotFound";
+import {Welcome} from "./components/Welcome/Welcome";
 
 // loadable не работает
 /*import {loadable} from 'react-lazily/loadable';
@@ -28,7 +30,7 @@ const {MessagesContainer} = lazily(() => import ("./components/Messages/Messages
 
 // реализация lazy loading вместо обычного импорта
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer')
-    .then( (module) => ({ default: module.MessagesContainer }) ) );
+    .then((module) => ({default: module.MessagesContainer})));
 
 
 export type AppPropsType = MapStateToPropsAppType & MapDispatchToPropsAppType;
@@ -46,7 +48,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsAppType => {
     }
 }
 const mapDispatchToProps: MapDispatchToPropsAppType = {
-    initializeApp: initializeAppThunkCreator
+    initializeApp: initializeAppTC
 }
 
 export class App extends React.Component<AppPropsType> {
@@ -66,20 +68,23 @@ export class App extends React.Component<AppPropsType> {
                     <HeaderContainer/>
                     <Navbar/>
                     <div className="right__main">
-                        {/*<Route path={"/"} render={ () => <Welcome /> }/>*/}
-                        <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>}/>
-                        <Route path={"/messages"}
-                               render={() => {
-                                   return <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
-                                       <MessagesContainer/>
-                                   </Suspense>
-                               }}
-                        />
-                        <Route path={"/news"} render={() => <News/>}/>
-                        <Route path={"/music"} render={() => <Music/>}/>
-                        <Route path={"/users"} render={() => <UsersContainer/>}/>
-                        <Route path={"/settings"} render={() => <Settings/>}/>
-                        <Route path={"/login"} render={() => <LoginContainer/>}/>
+                        <Switch>
+                            <Route exact path={"/"} render={() => <Welcome/>} />
+                            <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>} />
+                            <Route path={"/messages"}
+                                   render={() => {
+                                       return <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
+                                           <MessagesContainer/>
+                                       </Suspense>
+                                   }}
+                            />
+                            <Route path={"/news"} render={() => <News/>} />
+                            <Route path={"/music"} render={() => <Music/>} />
+                            <Route path={"/users"} render={() => <UsersContainer/>} />
+                            <Route path={"/settings"} render={() => <Settings/>} />
+                            <Route path={"/login"} render={() => <LoginContainer/>} />
+                            <Route path="*" render={() => <NotFound/>} />
+                        </Switch>
                     </div>
                     <Footer/>
                 </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {UsersArray, getUsersThunkCreator, deleteFollowThunkCreator, postFollowThunkCreator}
+import {UsersArray, getUsersTC, deleteFollowTC, postFollowTC}
     from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../../UI/Preloader/Preloader";
@@ -48,9 +48,9 @@ const mapDispatchToProps: MapDispatchToPropsUsersType = {
     //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
     //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk
 
-    getUsers: getUsersThunkCreator, // можно сократить до getUsers
-    deleteFollow: deleteFollowThunkCreator,
-    postFollow: postFollowThunkCreator
+    getUsers: getUsersTC, // можно сократить до getUsers
+    deleteFollow: deleteFollowTC,
+    postFollow: postFollowTC
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {

@@ -81,19 +81,30 @@ export const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormPropsTyp
                         {showProfileContacts && showProfileContacts()}
                     </div>*/}
 
+                    <div className={styles.content__info_info_contacts}>
+                        <div className={styles.content__info_info_contacts_title}>
+                            <b>Контакты:</b>
+                        </div>
                     {
                         Object.entries(initialValues.contacts).map(([key]) => {
                             return (
-                                <Field
-                                    key={key}
-                                    placeholder={`${key}`}
-                                    name={`contacts.${key}`}
-                                    component={SuperInputText}
-                                    validate={[requiredField]}
-                                />
+                                <>
+                                    <div>
+                                        {key}
+                                    </div>
+                                    <Field
+                                        key={key}
+                                        placeholder={`${key}`}
+                                        name={`contacts.${key}`}
+                                        component={SuperInputText}
+                                        validate={[requiredField]}
+                                        style={{height: '20px'}}
+                                    />
+                                </>
                             )
                         })
                     }
+                    </div>
 
                 </form>
             </>

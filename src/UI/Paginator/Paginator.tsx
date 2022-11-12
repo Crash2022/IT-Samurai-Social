@@ -2,6 +2,10 @@ import React, {useEffect, useState} from "react";
 import styles from "./Paginator.module.css";
 import {v1} from "uuid";
 
+// позволяет писать классы стилей через запятую, добавлять лоигку
+// import cn from 'classnames';
+// className={cn(styles.myClassName1, myClassName2)}
+
 export type PaginatorPropsType = {
     pageSize: number
     totalUsersCount: number

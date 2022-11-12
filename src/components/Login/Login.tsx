@@ -3,7 +3,7 @@ import styles from './Login.module.css';
 import {reduxForm} from "redux-form";
 import {LoginForm, LoginFormOwnProps, LoginFormValuesType} from "./LoginForm";
 import {connect} from "react-redux";
-import {postLoginThunkCreator} from "../../redux/auth-reducer";
+import {postLoginTC} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 
@@ -25,7 +25,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsLoginType => {
     }
 }
 const mapDispatchToProps: MapDispatchToPropsLoginType = {
-    setAuthUserData: postLoginThunkCreator
+    setAuthUserData: postLoginTC
 }
 
 export const Login = (props: LoginPropsType) => {

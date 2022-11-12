@@ -143,7 +143,7 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 
 /*-------------------------THUNK-------------------------*/
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsersTC = (currentPage: number, pageSize: number) => {
 
     return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleIsLoadingAC(true));
@@ -158,7 +158,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     }
 }
 
-export const deleteFollowThunkCreator = (userId: string) => {
+export const deleteFollowTC = (userId: string) => {
 
     return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleFollowInProgressAC(userId,true));
@@ -173,7 +173,7 @@ export const deleteFollowThunkCreator = (userId: string) => {
     }
 }
 
-export const postFollowThunkCreator = (userId: string) => {
+export const postFollowTC = (userId: string) => {
 
     return (dispatch: Dispatch<UsersActionsType>) => {
         dispatch(toggleFollowInProgressAC(userId,true));

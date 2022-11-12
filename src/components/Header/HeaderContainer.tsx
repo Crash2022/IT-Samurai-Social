@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {deleteLoginThunkCreator, getAuthThunkCreator} from "../../redux/auth-reducer";
+import {deleteLoginTC} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/redux-store";
 
 export type HeaderContainerType = MapStateToPropsHeaderType & MapDispatchToPropsHeaderType;
@@ -21,7 +21,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsHeaderType => {
     }
 }
 const mapDispatchToProps: MapDispatchToPropsHeaderType = {
-    deleteLogin: deleteLoginThunkCreator
+    deleteLogin: deleteLoginTC
 }
 
 export class HeaderContainerConnect extends React.Component<HeaderContainerType> {

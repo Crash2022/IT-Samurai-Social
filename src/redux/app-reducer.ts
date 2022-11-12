@@ -1,4 +1,4 @@
-import {getAuthThunkCreator} from "./auth-reducer";
+import {getAuthTC} from "./auth-reducer";
 import {ThunkDispatch} from "redux-thunk";
 import {RootStateType} from "./redux-store";
 
@@ -30,9 +30,9 @@ export const setInitializedAC = () => ({
 
 /*-------------------------THUNK-------------------------*/
 
-export const initializeAppThunkCreator = () => {
+export const initializeAppTC = () => {
     return (dispatch: ThunkDispatch<RootStateType, unknown, ActionsType>) => {
-        let promise = dispatch(getAuthThunkCreator());
+        let promise = dispatch(getAuthTC());
 
         Promise.all([promise])
             .then( () => {
