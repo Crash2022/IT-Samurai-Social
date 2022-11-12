@@ -53,8 +53,21 @@ const mapDispatchToProps: MapDispatchToPropsAppType = {
 
 export class App extends React.Component<AppPropsType> {
 
+    // обработка всех rejected промисов
+    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+        // alert('Произошла ошибка');
+    }
+
+    // аналог useEffect
     componentDidMount() {
         this.props.initializeApp();
+
+        // обработка всех rejected промисов
+        window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
+    }
+    // аналог clearup в useEffect
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchAllUnhandledErrors);
     }
 
     render() {

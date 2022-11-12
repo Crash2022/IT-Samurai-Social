@@ -1,11 +1,14 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import styles from './MyProfile.module.css';
+// import {maxLengthCreator} from "../../../utils/validators/validators";
 
 export type ProfileStatusPropsType = {
     userId: string
     status: string
     updateUserStatus: (userId: string, status: string) => void
 }
+
+// const maxLengthCreator20 = maxLengthCreator(20);
 
 export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
 
@@ -41,6 +44,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
                                onChange={onStatusChange}
                                onBlur={deactivateEditModeHandler}
                                autoFocus={true}
+                               // validate={[maxLengthCreator20]}
                         />
                     </div>
                     :
