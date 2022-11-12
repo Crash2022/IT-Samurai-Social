@@ -10,12 +10,17 @@ export type LoginFormValuesType = {
     email: string
     password: string
     rememberMe: boolean
-    captcha: null | string
+    captchaUrl: string
 }
 
 //const maxLengthCreator20 = maxLengthCreator(20);
 
-export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error, captcha}) => {
+export type LoginFormOwnProps = {
+    captchaUrl: null | string
+}
+
+export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> =
+    ({ handleSubmit, error, captchaUrl}) => {
     return (
             <form onSubmit={handleSubmit}>
                 <div>
@@ -40,15 +45,11 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                 </div>
                 <div className={styles.formErrorBlock}>
 
-                    {captcha && <img src={captcha} alt='captcha'/>}
-
-                    {captcha &&
-                        <Field
-                            placeholder={'Введите символы'}
-                            name={'captcha'}
-                            component={SuperInputText}
-                            validate={[requiredField]}
-                        />
+                    {
+                        captchaUrl &&
+                        <div style={{marginTop: '100px'}}>
+                            <img src={captchaUrl} alt='captcha'/>
+                        </div>
                     }
 
                     {
@@ -57,6 +58,17 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                             {error}
                         </div>
                     }
+
+                    {/*надо починить*/}
+                    {/*{captchaUrl &&
+                        <Field
+                            placeholder={'Введите символы'}
+                            name={'captchaUrl'}
+                            component={SuperInputText}
+                            validate={[requiredField]}
+                        />
+                    }*/}
+
                 </div>
                 <div>
                     <SuperButton className={styles.loginButton}>Войти</SuperButton>

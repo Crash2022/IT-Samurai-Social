@@ -80,15 +80,17 @@ export const getAuthThunkCreator = () => {
     }
 }
 
-export const postLoginThunkCreator = (email: string, password: string, rememberMe: boolean) => {
+export const postLoginThunkCreator = (email: string, password: string,
+                                      rememberMe: boolean, captchaUrl: string | null) => {
     return (dispatch: ThunkDispatch<RootStateType, unknown, ReturnType<typeof stopSubmit>>) => {
-        authAPI.postLogin(email, password, rememberMe)
+
+        authAPI.postLogin(email, password, rememberMe, captchaUrl)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(getAuthThunkCreator());
                 } else {
                     if (data.resultCode === 10) {
-                        dispatch(getCaptchaAC(data.captchaUrl));
+                        dispatch(getCaptchaThunkCreator());
                     }
 
                     let message = data.messages.length > 0 ? data.messages[0] : 'Some error';
@@ -112,7 +114,7 @@ export const deleteLoginThunkCreator = () => {
 export const getCaptchaThunkCreator = () => {
     return (dispatch: Dispatch) => {
         securityAPI.getCaptcha()
-            .then( data => {
+            .then(data => {
                 dispatch(getCaptchaAC(data.url));
             })
     }

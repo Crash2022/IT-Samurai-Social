@@ -215,13 +215,12 @@ export const updateUserPhotoTC = (photoFile: File) => {
     }
 }
 
-export const updateUserProfileTC = (profile: FormDataType) => {
-
-    return (dispatch: ThunkDispatch<RootStateType, unknown, /*ProfileActionsType*/ReturnType<typeof stopSubmit>>,
-            getState: () => CombinedState<RootStateType>) => {
+export const updateUserProfileTC = (profile: FormDataType) =>
+    (dispatch: ThunkDispatch<RootStateType, unknown, ReturnType<typeof stopSubmit>>,
+     getState: () => CombinedState<RootStateType>) => {
 
         const userId = getState().auth.userId;
-        profileAPI.updateUserProfile(profile)
+        return profileAPI.updateUserProfile(profile)
             .then(data => {
                 if (data.resultCode === 0 && userId) {
                     dispatch(getProfileTC(userId));
@@ -231,4 +230,3 @@ export const updateUserProfileTC = (profile: FormDataType) => {
                 }
             })
     }
-}

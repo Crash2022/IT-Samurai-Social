@@ -1,9 +1,9 @@
 import React from "react";
 import styles from './Login.module.css';
 import {reduxForm} from "redux-form";
-import {LoginForm, LoginFormValuesType} from "./LoginForm";
+import {LoginForm, LoginFormOwnProps, LoginFormValuesType} from "./LoginForm";
 import {connect} from "react-redux";
-import {getCaptchaThunkCreator, postLoginThunkCreator} from "../../redux/auth-reducer";
+import {postLoginThunkCreator} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 
@@ -11,30 +11,29 @@ export type LoginPropsType = MapStateToPropsLoginType & MapDispatchToPropsLoginT
 
 export type MapStateToPropsLoginType = {
     isAuth: boolean
-    captcha: null | string
+    captchaUrl: null | string
 }
 export type MapDispatchToPropsLoginType = {
-    setAuthUserData: (email: string,
-                      password: string, rememberMe: boolean) => void
-    //getCaptcha: () => void
+    setAuthUserData: (email: string, password: string,
+                      rememberMe: boolean, captchaUrl: null | string) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsLoginType => {
     return {
         isAuth: state.auth.isAuth,
-        captcha: state.auth.captchaUrl
+        captchaUrl: state.auth.captchaUrl
     }
 }
 const mapDispatchToProps: MapDispatchToPropsLoginType = {
     setAuthUserData: postLoginThunkCreator
-    //getCaptcha: getCaptchaThunkCreator
 }
 
 export const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: LoginFormValuesType) => {
         //console.log(formData);
-        props.setAuthUserData(formData.email, formData.password, formData.rememberMe, formData.captcha);
+        props.setAuthUserData(formData.email, formData.password,
+            formData.rememberMe, formData.captchaUrl);
     }
 
     if (props.isAuth) {
@@ -47,13 +46,14 @@ export const Login = (props: LoginPropsType) => {
                 <h2>Вход</h2>
             </div>
             <div>
-                <LoginReduxForm onSubmit={onSubmit} initialValues={props.captcha}/>
+
+                <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
             </div>
         </div>
     );
 }
 
-export const LoginReduxForm = reduxForm<LoginFormValuesType>({
+export const LoginReduxForm = reduxForm<LoginFormValuesType, LoginFormOwnProps>({
     form: 'login' // уникальное строковое имя для каждой формы
 })(LoginForm)
 
