@@ -1,21 +1,23 @@
 {
   "files": {
-    "main.css": "/IT-Samurai-Social/static/css/main.b504ca92.css",
-    "main.js": "/IT-Samurai-Social/static/js/main.976d19d7.js",
+    "main.css": "/IT-Samurai-Social/static/css/main.ee18f8a0.css",
+    "main.js": "/IT-Samurai-Social/static/js/main.5f18e801.js",
     "static/css/964.873cf1ea.chunk.css": "/IT-Samurai-Social/static/css/964.873cf1ea.chunk.css",
     "static/js/964.30fe5f0f.chunk.js": "/IT-Samurai-Social/static/js/964.30fe5f0f.chunk.js",
     "static/media/avatar_photo.jpg": "/IT-Samurai-Social/static/media/avatar_photo.03e71ff18e72e540389b.jpg",
+    "static/media/Welcome_01.jpg": "/IT-Samurai-Social/static/media/Welcome_01.64cb3ae10d100177a4fe.jpg",
     "static/media/isLoadingBike_02.gif": "/IT-Samurai-Social/static/media/isLoadingBike_02.01d0f9f02ab558f6d464.gif",
     "static/media/user_avatar.jpg": "/IT-Samurai-Social/static/media/user_avatar.1c9706d318334dd4dc3c.jpg",
+    "static/media/NotFound_01-2.jpg": "/IT-Samurai-Social/static/media/NotFound_01-2.75937b36113e2d02dc5c.jpg",
     "static/media/social_logo.png": "/IT-Samurai-Social/static/media/social_logo.67592705d22d6d4d076f.png",
     "index.html": "/IT-Samurai-Social/index.html",
-    "main.b504ca92.css.map": "/IT-Samurai-Social/static/css/main.b504ca92.css.map",
-    "main.976d19d7.js.map": "/IT-Samurai-Social/static/js/main.976d19d7.js.map",
+    "main.ee18f8a0.css.map": "/IT-Samurai-Social/static/css/main.ee18f8a0.css.map",
+    "main.5f18e801.js.map": "/IT-Samurai-Social/static/js/main.5f18e801.js.map",
     "964.873cf1ea.chunk.css.map": "/IT-Samurai-Social/static/css/964.873cf1ea.chunk.css.map",
     "964.30fe5f0f.chunk.js.map": "/IT-Samurai-Social/static/js/964.30fe5f0f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b504ca92.css",
-    "static/js/main.976d19d7.js"
+    "static/css/main.ee18f8a0.css",
+    "static/js/main.5f18e801.js"
   ]
 }
