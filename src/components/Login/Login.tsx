@@ -3,7 +3,7 @@ import styles from './Login.module.css';
 import {reduxForm} from "redux-form";
 import {LoginForm, LoginFormValuesType} from "./LoginForm";
 import {connect} from "react-redux";
-import {postLoginThunkCreator} from "../../redux/auth-reducer";
+import {getCaptchaThunkCreator, postLoginThunkCreator} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 
@@ -11,26 +11,30 @@ export type LoginPropsType = MapStateToPropsLoginType & MapDispatchToPropsLoginT
 
 export type MapStateToPropsLoginType = {
     isAuth: boolean
+    captcha: null | string
 }
 export type MapDispatchToPropsLoginType = {
     setAuthUserData: (email: string,
                       password: string, rememberMe: boolean) => void
+    //getCaptcha: () => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsLoginType => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captcha: state.auth.captchaUrl
     }
 }
 const mapDispatchToProps: MapDispatchToPropsLoginType = {
     setAuthUserData: postLoginThunkCreator
+    //getCaptcha: getCaptchaThunkCreator
 }
 
 export const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: LoginFormValuesType) => {
         //console.log(formData);
-        props.setAuthUserData(formData.email, formData.password, formData.rememberMe);
+        props.setAuthUserData(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
 
     if (props.isAuth) {
@@ -43,7 +47,7 @@ export const Login = (props: LoginPropsType) => {
                 <h2>Вход</h2>
             </div>
             <div>
-                <LoginReduxForm onSubmit={onSubmit}/>
+                <LoginReduxForm onSubmit={onSubmit} initialValues={props.captcha}/>
             </div>
         </div>
     );

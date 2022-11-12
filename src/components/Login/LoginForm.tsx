@@ -10,11 +10,12 @@ export type LoginFormValuesType = {
     email: string
     password: string
     rememberMe: boolean
+    captcha: null | string
 }
 
 //const maxLengthCreator20 = maxLengthCreator(20);
 
-export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error}) => {
+export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ handleSubmit, error, captcha}) => {
     return (
             <form onSubmit={handleSubmit}>
                 <div>
@@ -38,6 +39,18 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType>> = ({ ha
                     <Field name={'rememberMe'} component={SuperCheckbox}/>Запомнить меня
                 </div>
                 <div className={styles.formErrorBlock}>
+
+                    {captcha && <img src={captcha} alt='captcha'/>}
+
+                    {captcha &&
+                        <Field
+                            placeholder={'Введите символы'}
+                            name={'captcha'}
+                            component={SuperInputText}
+                            validate={[requiredField]}
+                        />
+                    }
+
                     {
                         error &&
                         <div className={styles.formError}>
