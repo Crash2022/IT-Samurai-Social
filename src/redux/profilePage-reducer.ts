@@ -140,7 +140,7 @@ export const addPostAC = (newPostText: string) => ({
 export const deletePostAC = (postId: string) => ({
     type: 'DELETE_POST', postId
 } as const)
-export const setUserProfileAC = (profile: null) => ({
+export const setUserProfileAC = (profile: null | ProfileType) => ({
     type: 'SET_USER_PROFILE',
     profile
 } as const )

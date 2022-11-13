@@ -23,7 +23,6 @@ export type UsersArray = {
     name: string
     followed: boolean
     status: string
-    //location: {country: string, city: string}
     photos: { small: string, large: string }
 }
 
