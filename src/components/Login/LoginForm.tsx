@@ -59,7 +59,7 @@ export const LoginForm: React.FC<InjectedFormProps<LoginFormValuesType, LoginFor
                         </div>
                     }
 
-                    {/*надо починить*/}
+                    {/*пока что отключу captchaUrl*/}
                     {/*{captchaUrl &&
                         <Field
                             placeholder={'Введите символы'}
