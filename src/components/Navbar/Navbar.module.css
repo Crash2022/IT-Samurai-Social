@@ -2,7 +2,6 @@
     grid-area: left__navmenu;
     background-color: green;
     padding: 20px;
-    /* margin-right: 10px; */
 }
 .left__navMenu a {
     color: white;
@@ -33,9 +32,6 @@
     flex-wrap: wrap;
 }
 .friendsItem {
-    /*display: flex;
-    flex-direction: column;
-    justify-content: center;*/
     padding: 5px;
 }
 .friendsName {
@@ -49,7 +45,6 @@
 .friendsAvatar img {
     width: 70px;
     height: 70px;
-    /*padding: 5px;*/
     border-radius: 50%;
     border: 1px solid white;
 }
