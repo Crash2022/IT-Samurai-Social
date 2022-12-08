@@ -21,8 +21,8 @@ const result: PutResponseType = {
 
 userAPIMock.postFollow.mockReturnValue(Promise.resolve(result));
 
-test('test follow thunk', async () => {
-    const thunk = postFollowTC('1');
-    await thunk(dispatchMock, getStateMock, {});
-    expect(dispatchMock).toBeCalledTimes(3);
-})
+// test('test follow thunk', async () => {
+//     const thunk = postFollowTC('1');
+//     await thunk(dispatchMock, getStateMock, {});
+//     expect(dispatchMock).toBeCalledTimes(3);
+// })
