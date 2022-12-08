@@ -1,6 +1,15 @@
 import axios from "axios";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 
+export enum ResultCodesEnum {
+    Success = 0,
+    Error = 1
+}
+
+export enum ResultCodeForCaptcha {
+    CaptchaIsRequired = 10
+}
+
 type GetUsersResponseType = {
     items: Array<UsersResponseType>
     totalCount: number
@@ -19,19 +28,27 @@ type UsersResponseType = {
     followed: boolean
 }
 
-type PutResponseType<D = { }> = {
-    resultCode: number
+export type PutResponseType<D = { }> = {
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
     messages: Array<string>
     data: D
 }
 
-export type authMeType = {
-    resultCode: number
+export type authMeResponseType = {
+    resultCode: ResultCodesEnum
     data: {
         id: number
         email: string
         login: string
     }
+}
+
+type LoginResponseType = {
+    data: {
+        userId: number
+    }
+    resultCode: ResultCodesEnum | ResultCodeForCaptcha
+    messages: Array<string>
 }
 
 type GetCaptchaResponseType = {
@@ -107,7 +124,7 @@ export const authAPI = {
     getAuth() {
         return (
             instance
-                .get<authMeType>(`auth/me`, {})
+                .get<authMeResponseType>(`auth/me`, {})
                 .then(response => response.data)
         )
     },
