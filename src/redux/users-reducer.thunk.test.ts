@@ -25,7 +25,7 @@ userAPIMock.deleteFollow.mockReturnValue(Promise.resolve(result));
 
 test('success follow thunk', async () => {
     const thunk = postFollowTC('1');
-    await thunk(dispatchMock, getStateMock, {});
+    await thunk(dispatchMock/*, getStateMock, {}*/);
 
     expect(dispatchMock).toBeCalledTimes(3);
     expect(dispatchMock).toHaveBeenCalledWith(1, toggleFollowInProgressAC('1',true));
