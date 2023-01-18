@@ -12,6 +12,14 @@
     border: 2px solid green;
 }
 
+.searchSelect {
+    margin-left: 10px;
+}
+.searchSelect select {
+    height: 35px;
+    border: 2px solid green;
+}
+
 .clearInput {
     display: flex;
     justify-content: center;

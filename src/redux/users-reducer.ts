@@ -8,9 +8,7 @@ export type UsersPropsType = {
     currentPage: number
     isLoading: boolean
     followingInProgress: Array<string>
-    filter: {
-        term: string
-    }
+    filter: UsersSearchFilterType
 }
 export type UsersArray = {
     id: string
@@ -19,8 +17,12 @@ export type UsersArray = {
     status: string
     photos: { small: string, large: string }
 }
+export type UsersSearchFilterType = {
+    term: string
+    friend: null | boolean
+}
 
-let initialState = {
+const initialState = {
     users: [] as Array<UsersArray>,
     pageSize: 20, // количество пользователей на одной странице
     totalUsersCount: 100, // количество пользователей приходит с сервера, теперь цифра не влияет
@@ -28,7 +30,8 @@ let initialState = {
     isLoading: false,
     followingInProgress: [],
     filter: {
-        term: ''
+        term: '',
+        friend: null as null | boolean
     }
 };
 
@@ -87,7 +90,7 @@ export type ToggleFollowInProgressACType = ReturnType<typeof toggleFollowInProgr
 
 export const followAC = (userId: string) => ({type: 'FOLLOW', id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: 'UNFOLLOW', id: userId} as const)
-export const setFilterAC = (term: string) => ({type: 'SET_FILTER', payload: {term}} as const)
+export const setFilterAC = (payload: UsersSearchFilterType) => ({type: 'SET_FILTER', payload} as const)
 export const setUsersAC = (users: Array<UsersArray>) => ({type: 'SET_USERS', users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const)
 export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: 'SET_USERS_TOTAL_COUNT', count: totalUsersCount} as const)
@@ -100,16 +103,16 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 
 /*-------------------------THUNK-------------------------*/
 
-export const getUsersTC = (currentPage: number, pageSize: number, term: string): AppThunkType => {
+export const getUsersTC = (currentPage: number, pageSize: number, filterPayload: UsersSearchFilterType): AppThunkType => {
 
     return (dispatch) => {
         dispatch(toggleIsLoadingAC(true));
 
-        usersAPI.getUsers(currentPage, pageSize, term)
+        usersAPI.getUsers(currentPage, pageSize, filterPayload.term, filterPayload.friend)
         .then(data => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));
-            dispatch(setFilterAC(term));
+            dispatch(setFilterAC(filterPayload));
             dispatch(setCurrentPageAC(currentPage));
             dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
         })

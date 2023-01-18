@@ -24,9 +24,15 @@ export const followingInProgressSelector = (state: RootStateType) => {
     return state.usersPage.followingInProgress;
 }
 
-export const filterUserNameSelector = (state: RootStateType) => {
-    return state.usersPage.filter.term;
+export const filterUserSelector = (state: RootStateType) => {
+    return state.usersPage.filter;
 }
+// export const filterUserNameSelector = (state: RootStateType) => {
+//     return state.usersPage.filter.term;
+// }
+// export const filterIsUserFriendSelector = (state: RootStateType) => {
+//     return state.usersPage.filter.friend;
+// }
 
 // пример reselect (аналог useMemo)
 // внутри вычисления, принимает обычный селектор и зависимость

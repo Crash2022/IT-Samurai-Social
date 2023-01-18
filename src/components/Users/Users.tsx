@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
 import styles from "./Users.module.css";
-import {UsersArray} from '../../redux/users-reducer';
+import {UsersArray, UsersSearchFilterType} from '../../redux/users-reducer';
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 import {Search} from "../../common/components/Seacrh/Search";
@@ -17,7 +17,8 @@ export type UsersPropsType = {
     filterValue: string
     setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
     clearInput: () => void
-    findFilteredUserHandler: (filter: string) => void
+    findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    setUserFilter: (filter: UsersSearchFilterType) => void
 }
 
 // const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
@@ -52,6 +53,7 @@ export const Users = (props: UsersPropsType) => {
                 setSearchValue={props.setSearchValue}
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
+                setUserFilter={props.setUserFilter}
             />
             <Paginator
                 pageSize={props.pageSize}

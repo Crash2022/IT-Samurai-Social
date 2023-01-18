@@ -1,48 +1,94 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from 'react';
 import styles from './Search.module.css'
 import {SuperButton} from '../../UI/Button/SuperButton';
 import {DebounceInput} from 'react-debounce-input';
+import SuperSelect from '../../UI/SuperSelect/SuperSelect';
+import {UsersSearchFilterType} from '../../../redux/users-reducer';
 
 type SearchPropsType = {
     searchValue: string
     setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
     clearInput: () => void
-    findFilteredUserHandler: (filter: string) => void
+    findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    setUserFilter: (filter: UsersSearchFilterType) => void
 }
 
-export const Search: React.FC<SearchPropsType> = React.memo(({searchValue, setSearchValue, clearInput, findFilteredUserHandler}) => {
+type SearchSelectType = {
+    term: string
+    friend: 'null' | 'true' | 'false'
+}
 
-    const buttonOnClickHandler = () => {
-        findFilteredUserHandler(searchValue);
-    }
+export const Search: React.FC<SearchPropsType> = React.memo(
+    ({searchValue, setSearchValue, clearInput, findFilteredUserHandler, setUserFilter}) => {
 
-    return (
-        <div className={styles.searchMain}>
-            <div>
-                {/*<input
-                    value={searchValue}
-                    onChange={setSearchValue}
-                    className={styles.searchInput}
-                    placeholder={'Поиск джедаев'}
-                />*/}
-                <DebounceInput
+        const convertStringToBoolean = (values: SearchSelectType) => {
+            const friendFilter: UsersSearchFilterType = {
+                term: searchValue,
+                friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+            }
+            return friendFilter.friend;
+        }
+
+        const buttonOnClickHandler = (e: ChangeEvent<HTMLSelectElement>/*, values: SearchSelectType*/) => {
+            // const friendFilter: UsersSearchFilterType = {
+            //     term: searchValue,
+            //     friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+            // }
+
+            findFilteredUserHandler({term: searchValue, friend: convertStringToBoolean({term: '', friend: 'true'})});
+        }
+
+        const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
+            // @ts-ignore
+            setUserFilter({term: searchValue, friend: e.currentTarget.value})
+            console.log(searchValue, e.currentTarget.value)
+        }
+
+        return (
+            <div className={styles.searchMain}>
+                <div>
+                    <input
+                        value={searchValue}
+                        onChange={setSearchValue}
+                        className={styles.searchInput}
+                        placeholder={'Поиск джедаев'}
+                    />
+                    {/*<DebounceInput
                     className={styles.searchInput}
                     placeholder={'Поиск джедаев'}
                     minLength={2}
                     debounceTimeout={1000}
                     value={searchValue}
                     onChange={e => findFilteredUserHandler(e.target.value)}
-                />
-            </div>
-            {/*<div>
-                <SuperButton onClick={buttonOnClickHandler} className={styles.findButton}>
-                    Найти
-                </SuperButton>
-            </div>*/}
-            <div className={styles.clearInput} onClick={clearInput}>
-                X
-            </div>
+                />*/}
+                </div>
+                <div className={styles.searchSelect}>
+                    <select onChange={onChangeCallback}>
+                        <option value={'null'}>All users</option>
+                        <option value={'true'}>Friends</option>
+                        <option value={'false'}>Not friends</option>
+                    </select>
+                    {/*<SuperSelect options={valueArray}
+                             value={value}
+                             onChangeOption={onChangeOption}
+                >
 
-        </div>
-    );
-})
+                </SuperSelect>*/}
+                </div>
+                <div>
+                    <SuperButton onClick={buttonOnClickHandler} className={styles.findButton}>
+                        Найти
+                    </SuperButton>
+                </div>
+                {/*<div>
+                    <SuperButton onClick={buttonOnClickHandler} className={styles.findButton}>
+                        Найти
+                    </SuperButton>
+                </div>*/}
+                <div className={styles.clearInput} onClick={clearInput}>
+                    X
+                </div>
+
+            </div>
+        );
+    })

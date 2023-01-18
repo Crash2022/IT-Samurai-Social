@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {UsersArray, getUsersTC, deleteFollowTC, postFollowTC, setFilterAC}
+import {UsersArray, getUsersTC, deleteFollowTC, postFollowTC, setFilterAC, UsersSearchFilterType}
     from '../../redux/users-reducer';
 import {Users} from "./Users";
 import {Preloader} from "../../common/UI/Preloader/Preloader";
@@ -9,8 +9,11 @@ import classes from "./Users.module.css";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
 import {
-    currentPageSelector, filterUserNameSelector, followingInProgressSelector,
-    getUsersSelector, isLoadingSelector,
+    currentPageSelector,
+    filterUserSelector,
+    followingInProgressSelector,
+    getUsersSelector,
+    isLoadingSelector,
     pageSizeSelector,
     totalUsersCountSelector
 } from '../../redux/users-selectors';
@@ -26,13 +29,15 @@ type MapStateToPropsUsersType = {
     isLoading: boolean
     followingInProgress: Array<string>
     isAuth: boolean
-    filter: string
+    filter: UsersSearchFilterType
+    // filterName: string
+    // filterIsFriend: null | boolean
 }
 type MapDispatchToPropsUsersType = {
-    getUsers: (currentPage: number, pageSize: number, term: string) => void
+    getUsers: (currentPage: number, pageSize: number, filter: UsersSearchFilterType) => void
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
-    setUserFilter: (term: string) => void
+    setUserFilter: (filter: UsersSearchFilterType) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
@@ -44,7 +49,9 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
         isLoading: isLoadingSelector(state),
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
-        filter: filterUserNameSelector(state)
+        filter: filterUserSelector(state)
+        // filterName: filterUserNameSelector(state),
+        // filterIsFriend: filterIsUserFriendSelector(state)
     }
 }
 
@@ -68,17 +75,17 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     }
 
     onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        this.props.setUserFilter(e.currentTarget.value);
+        this.props.setUserFilter({term: e.currentTarget.value, friend: null});
     }
 
     clearInput = () => {
-        this.props.setUserFilter('');
-        this.props.getUsers(1, this.props.pageSize, '');
+        this.props.setUserFilter({term: '', friend: null});
+        this.props.getUsers(1, this.props.pageSize, {term: '', friend: null});
     }
 
-    findFilteredUserHandler = (filter: string) => {
+    findFilteredUserHandler = (filter: UsersSearchFilterType) => {
         const {currentPage, pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize, filter);
+        this.props.getUsers(currentPage, pageSize, {term: filter.term, friend: filter.friend});
     }
 
     render() {
@@ -98,10 +105,11 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  followingInProgress={this.props.followingInProgress}
                                  deleteFollow={this.props.deleteFollow}
                                  postFollow={this.props.postFollow}
-                                 filterValue={this.props.filter}
+                                 filterValue={this.props.filter.term}
                                  setSearchValue={this.onChangeSearchInputValue}
                                  clearInput={this.clearInput}
                                  findFilteredUserHandler={this.findFilteredUserHandler}
+                                 setUserFilter={this.props.setUserFilter}
                         />
                 }
             </>
