@@ -1,11 +1,13 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
 import styles from "./Users.module.css";
-import {getUsersTC, UsersArray} from "../../redux/users-reducer";
+import {getUsersTC, setFilterAC, UsersArray} from '../../redux/users-reducer';
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 import {Search} from "../../common/components/Seacrh/Search";
 import {useDebounce} from "../../common/hooks/useDebounce";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
+import {useAppSelector} from '../../common/hooks/useAppSelector';
+import {RootStateType} from '../../redux/redux-store';
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -18,31 +20,35 @@ export type UsersPropsType = {
     postFollow: (userId: string) => void
 }
 
+const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
+
 export const Users = (props: UsersPropsType) => {
 
     const dispatch = useAppDispatch()
-    const [searchValue, setSearchValue] = useState<string>('')
-    const debouncedSearchValue = useDebounce<string>(searchValue, 1000)
+    const filterValue = useAppSelector(selectedFilterValue)
+    // const [searchValue, setSearchValue] = useState<string>('')
+    const debouncedSearchValue = useDebounce<string>(filterValue, 1000)
 
-    const searchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(e.currentTarget.value);
-        // return props.users.filter((user: UsersArray) => user.name.toLowerCase().includes(searchValue.toLowerCase()))
+    // let filteredUsers = props.users.filter((user: UsersArray) =>
+    //     user.name.toLowerCase().includes(searchValue.toLowerCase()))
+
+    const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(setFilterAC(e.currentTarget.value));
     }
 
     const clearInput = () => {
-        setSearchValue('');
+        dispatch(setFilterAC(''));
     }
 
     // useEffect(() => {
-    //     // dispatch(getUsersTC(props.currentPage, props.pageSize))
-    //     props.users.filter((user: UsersArray) => user.name.toLowerCase().includes(debouncedSearchValue.toLowerCase()))
-    // }, [props.users])
+    //     dispatch(getUsersTC(props.currentPage, props.pageSize, debouncedSearchValue))
+    // }, [debouncedSearchValue])
 
     return (
         <>
             <Search
-                searchValue={searchValue}
-                setSearchValue={searchInputValue}
+                searchValue={filterValue}
+                setSearchValue={onChangeSearchInputValue}
                 clearInput={clearInput}
             />
             <Paginator

@@ -8,6 +8,9 @@ export type UsersPropsType = {
     currentPage: number
     isLoading: boolean
     followingInProgress: Array<string>
+    filter: {
+        term: string
+    }
 }
 export type UsersArray = {
     id: string
@@ -23,7 +26,10 @@ let initialState = {
     totalUsersCount: 100, // количество пользователей приходит с сервера, теперь цифра не влияет
     currentPage: 1,
     isLoading: false,
-    followingInProgress: []
+    followingInProgress: [],
+    filter: {
+        term: ''
+    }
 };
 
 export const usersReducer = (state: UsersPropsType = initialState, action: UsersActionsType): UsersPropsType => {
@@ -35,6 +41,9 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Users
                 ...state,
                 users: state.users.map(user => user.id === action.id ? {...user, followed: false} : user)
             };
+        case 'SET_FILTER':
+            return {...state, filter: action.payload };
+            // return {...state, filter: {...state.filter, term: action.term} };
         case 'SET_USERS':
             return {...state, users: action.users};
         case 'SET_CURRENT_PAGE':
@@ -60,6 +69,7 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Users
 export type UsersActionsType =
     UserFollowACType |
     UserUnfollowACType |
+    SetFilterACType |
     SetUsersACType |
     SetCurrentPageACType |
     setUsersTotalCountACType | // весь список пользователей
@@ -68,6 +78,7 @@ export type UsersActionsType =
 
 export type UserFollowACType = ReturnType<typeof followAC>
 export type UserUnfollowACType = ReturnType<typeof unfollowAC>
+export type SetFilterACType = ReturnType<typeof setFilterAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
 export type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 export type setUsersTotalCountACType = ReturnType<typeof setUsersTotalCountAC>
@@ -76,6 +87,7 @@ export type ToggleFollowInProgressACType = ReturnType<typeof toggleFollowInProgr
 
 export const followAC = (userId: string) => ({type: 'FOLLOW', id: userId} as const)
 export const unfollowAC = (userId: string) => ({type: 'UNFOLLOW', id: userId} as const)
+export const setFilterAC = (term: string) => ({type: 'SET_FILTER', payload: {term}} as const)
 export const setUsersAC = (users: Array<UsersArray>) => ({type: 'SET_USERS', users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const)
 export const setUsersTotalCountAC = (totalUsersCount: number) => ({type: 'SET_USERS_TOTAL_COUNT', count: totalUsersCount} as const)
@@ -88,15 +100,16 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 
 /*-------------------------THUNK-------------------------*/
 
-export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType => {
+export const getUsersTC = (currentPage: number, pageSize: number, term: string): AppThunkType => {
 
     return (dispatch) => {
         dispatch(toggleIsLoadingAC(true));
 
-        usersAPI.getUsers(currentPage, pageSize)
+        usersAPI.getUsers(currentPage, pageSize, term)
         .then(data => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));
+            dispatch(setFilterAC(term));
             dispatch(setCurrentPageAC(currentPage));
             dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
         })

@@ -38,7 +38,10 @@ beforeEach(() => {
         totalUsersCount: 100, // количество пользователей приходит с сервера, теперь цифра не влияет
         currentPage: 1,
         isLoading: false,
-        followingInProgress: []
+        followingInProgress: [],
+        filter: {
+            term: ''
+        }
     }
 })
 

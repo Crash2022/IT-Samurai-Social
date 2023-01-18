@@ -21,9 +21,10 @@ type MapStateToPropsUsersType = {
     isLoading: boolean
     followingInProgress: Array<string>
     isAuth: boolean
+    filter: string
 }
 type MapDispatchToPropsUsersType = {
-    getUsers: (currentPage: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number, term: string) => void
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
 }
@@ -37,7 +38,8 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
         currentPage: state.usersPage.currentPage,
         isLoading: state.usersPage.isLoading,
         followingInProgress: state.usersPage.followingInProgress,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        filter: state.usersPage.filter.term
     }
 }
 
@@ -48,7 +50,7 @@ const mapDispatchToProps: MapDispatchToPropsUsersType = {
     //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
     //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk
 
-    getUsers: getUsersTC, // можно сократить до getUsers
+    getUsers: getUsersTC,
     deleteFollow: deleteFollowTC,
     postFollow: postFollowTC
 }
@@ -56,11 +58,12 @@ const mapDispatchToProps: MapDispatchToPropsUsersType = {
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize, filter} = this.props;
+        this.props.getUsers(currentPage, pageSize, filter);
     }
 
     onChangePageHandler = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsers(pageNumber, this.props.pageSize, '');
     }
 
     render() {
