@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Users.module.css";
 import {UsersArray} from "../../redux/users-reducer";
-import {Paginator} from "../../UI/Paginator/Paginator";
+import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 
 export type UsersPropsType = {

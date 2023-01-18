@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {usersAPI} from "../common/api/api";
 import {Dispatch} from "redux";
 
 type UsersActionsType =

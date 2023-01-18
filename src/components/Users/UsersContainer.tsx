@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {UsersArray, getUsersTC, deleteFollowTC, postFollowTC}
     from "../../redux/users-reducer";
 import {Users} from "./Users";
-import {Preloader} from "../../UI/Preloader/Preloader";
+import {Preloader} from "../../common/UI/Preloader/Preloader";
 import classes from "./Users.module.css";
 import {compose} from "redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
 //import {getUsers} from "../../redux/users-selectors";
 //import {getUsers} from "../../api/api";
 

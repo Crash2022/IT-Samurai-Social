@@ -1,9 +1,9 @@
 import React from "react";
 import {Field, InjectedFormProps} from "redux-form";
 import styles from './MyPostsAdd.module.css';
-import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
-import {SuperButton} from "../../../UI/Button/SuperButton";
-import {SuperTextArea} from "../../../UI/Textarea/SuperTextArea";
+import {maxLengthCreator, requiredField} from "../../../common/utils/validators/validators";
+import {SuperButton} from "../../../common/UI/Button/SuperButton";
+import {SuperTextArea} from "../../../common/UI/Textarea/SuperTextArea";
 
 export type MyPostsFormType = {
     newPostText: string

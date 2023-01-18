@@ -4,7 +4,7 @@ import {RootStateType} from "../../redux/redux-store";
 import {DialogsArray, MessagesArray} from "../../redux/dialogsPage-reducer";
 import {Messages} from "./Messages";
 import {sendMessageAC} from "../../redux/dialogsPage-reducer";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
 import {compose} from "redux";
 
 export type MessagesContainerType = MapStateToPropsMessagesType & MapDispatchToPropsMessagesType;

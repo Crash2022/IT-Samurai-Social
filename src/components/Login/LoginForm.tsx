@@ -1,10 +1,10 @@
 import React from "react";
 import {Field, InjectedFormProps} from "redux-form";
-import {SuperButton} from "../../UI/Button/SuperButton";
+import {SuperButton} from "../../common/UI/Button/SuperButton";
 import styles from './Login.module.css';
-import {SuperInputText} from "../../UI/Input/SuperInputText";
-import SuperCheckbox from "../../UI/Checkbox/SuperCheckbox";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {SuperInputText} from "../../common/UI/Input/SuperInputText";
+import SuperCheckbox from "../../common/UI/Checkbox/SuperCheckbox";
+import {maxLengthCreator, requiredField} from "../../common/utils/validators/validators";
 
 export type LoginFormValuesType = {
     email: string

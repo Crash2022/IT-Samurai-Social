@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Messages.module.css";
 import {Field, InjectedFormProps} from "redux-form";
-import {SuperTextArea} from "../../UI/Textarea/SuperTextArea";
-import {SuperButton} from "../../UI/Button/SuperButton";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {SuperTextArea} from "../../common/UI/Textarea/SuperTextArea";
+import {SuperButton} from "../../common/UI/Button/SuperButton";
+import {maxLengthCreator, requiredField} from "../../common/utils/validators/validators";
 
 export type MessageFormType = {
     newMessage: string

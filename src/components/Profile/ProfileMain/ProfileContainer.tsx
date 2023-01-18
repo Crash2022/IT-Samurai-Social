@@ -6,9 +6,9 @@ import {ProfileType, getProfileTC, getUserStatusTC,
     updateUserStatusTC, updateUserPhotoTC, updateUserProfileTC}
     from "../../../redux/profilePage-reducer";
 import {withRouter, RouteComponentProps} from "react-router-dom";
-//import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {FormDataType} from "../MyProfile/MyProfile";
+import {withAuthRedirect} from "../../../common/hoc/withAuthRedirect";
 
 export type ProfileContainerType =
     MapStateToPropsUserProfileType &
@@ -105,6 +105,6 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerTyp
 // export default connect(mapStateToProps, DispatchUserProfileToProps)(WithUrlDataContainerComponent);
 
 export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps),
-    //withAuthRedirect,
+    withAuthRedirect,
     withRouter)
 (ProfileContainerCompose);

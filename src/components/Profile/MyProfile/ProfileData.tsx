@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import styles from './MyProfile.module.css';
 import {ProfileType} from "../../../redux/profilePage-reducer";
-import {SuperButton} from "../../../UI/Button/SuperButton";
+import {SuperButton} from "../../../common/UI/Button/SuperButton";
 import {Contacts} from "./Contacts";
 
 type ProfileDataPropsType = {

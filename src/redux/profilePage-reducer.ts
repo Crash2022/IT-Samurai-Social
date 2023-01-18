@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {CombinedState, Dispatch} from "redux";
-import {profileAPI} from "../api/api";
+import {profileAPI} from "../common/api/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 import {RootStateType} from "./redux-store";

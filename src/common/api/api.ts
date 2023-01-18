@@ -1,5 +1,5 @@
 import axios from "axios";
-import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
+import {FormDataType} from "../../components/Profile/MyProfile/MyProfile";
 
 export enum ResultCodesEnum {
     Success = 0,

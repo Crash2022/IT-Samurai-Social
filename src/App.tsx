@@ -15,7 +15,7 @@ import {connect} from "react-redux";
 import {RootStateType} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeAppTC} from "./redux/app-reducer";
-import {Preloader} from "./UI/Preloader/Preloader";
+import {Preloader} from "./common/UI/Preloader/Preloader";
 import {NotFound} from "./components/NotFound/NotFound";
 import {Welcome} from "./components/Welcome/Welcome";
 

@@ -1,9 +1,9 @@
 import React from "react";
 import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
-import socialLogo from "../../assets/images/avatars/social_logo.png";
+import socialLogo from "../../common/assets/images/avatars/social_logo.png";
 import {HeaderContainerType} from "./HeaderContainer";
-import {SuperButton} from "../../UI/Button/SuperButton";
+import {SuperButton} from "../../common/UI/Button/SuperButton";
 
 export const Header = (props: HeaderContainerType) => {
 

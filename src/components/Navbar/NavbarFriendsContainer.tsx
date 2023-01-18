@@ -1,11 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-import {SidebarFriendsType} from "../../redux/sidebar-reducer";
+// import {SidebarFriendsType} from "../../redux/sidebar-reducer";
 import {NavbarFriends} from "./NavbarFriends";
+import {UsersArray} from "../../redux/users-reducer";
 
 export type MapStateNavbarToPropsType = {
-    friendsData: Array<SidebarFriendsType>
+    // friendsData: Array<SidebarFriendsType>
+    followedUsers: Array<UsersArray>
 }
 export type DispatchNavbarToPropsType = {
     //code here
@@ -14,7 +16,8 @@ export type NavbarFriendsContainerType = MapStateNavbarToPropsType & DispatchNav
 
 const mapStateToProps = (state: RootStateType): MapStateNavbarToPropsType => {
     return {
-        friendsData: state.sidebar.friendsData
+        // friendsData: state.sidebar.friendsData
+        followedUsers: state.usersPage.users
     }
 }
 const DispatchNavbarToProps: DispatchNavbarToPropsType = {

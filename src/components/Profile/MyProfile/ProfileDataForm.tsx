@@ -1,10 +1,10 @@
 import React from "react";
-import {SuperButton} from "../../../UI/Button/SuperButton";
+import {SuperButton} from "../../../common/UI/Button/SuperButton";
 import styles from "./MyProfile.module.css";
 import style from "../../Login/Login.module.css";
 import {Field, InjectedFormProps} from "redux-form";
-import {SuperInputText} from "../../../UI/Input/SuperInputText";
-import {requiredField} from "../../../utils/validators/validators";
+import {SuperInputText} from "../../../common/UI/Input/SuperInputText";
+import {requiredField} from "../../../common/utils/validators/validators";
 
 export type ProfileDataFormPropsType = {
     // profile: ProfileType

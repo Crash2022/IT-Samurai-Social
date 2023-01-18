@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import styles from './MyProfile.module.css';
-import {Preloader} from "../../../UI/Preloader/Preloader";
-import userAvatar from "../../../assets/images/avatars/user_avatar.jpg";
-import avatarPhoto from "../../../assets/images/avatars/avatar_photo.jpg";
+import {Preloader} from "../../../common/UI/Preloader/Preloader";
+import userAvatar from "../../../common/assets/images/avatars/user_avatar.jpg";
+import avatarPhoto from "../../../common/assets/images/avatars/avatar_photo.jpg";
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileData} from "./ProfileData";
