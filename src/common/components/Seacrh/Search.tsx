@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import styles from './Search.module.css'
 import {SuperButton} from '../../UI/Button/SuperButton';
 import {DebounceInput} from 'react-debounce-input';
@@ -11,31 +11,32 @@ type SearchPropsType = {
     clearInput: () => void
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
     setUserFilter: (filter: UsersSearchFilterType) => void
+    filterIsFriend: null | boolean
 }
 
-type SearchSelectType = {
-    term: string
-    friend: 'null' | 'true' | 'false'
-}
+// type SearchSelectType = {
+//     term: string
+//     friend: 'null' | 'true' | 'false'
+// }
 
 export const Search: React.FC<SearchPropsType> = React.memo(
-    ({searchValue, setSearchValue, clearInput, findFilteredUserHandler, setUserFilter}) => {
+    ({searchValue, setSearchValue, clearInput, findFilteredUserHandler, setUserFilter, filterIsFriend}) => {
 
-        const convertStringToBoolean = (values: SearchSelectType) => {
-            const friendFilter: UsersSearchFilterType = {
-                term: searchValue,
-                friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
-            }
-            return friendFilter.friend;
-        }
+        // const convertStringToBoolean = (values: SearchSelectType) => {
+        //     const friendFilter: UsersSearchFilterType = {
+        //         term: searchValue,
+        //         friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+        //     }
+        //     return friendFilter.friend;
+        // }
 
-        const buttonOnClickHandler = (e: ChangeEvent<HTMLSelectElement>/*, values: SearchSelectType*/) => {
+        const buttonOnClickHandler = (/*e: ChangeEvent<HTMLSelectElement>, values: SearchSelectType*/) => {
             // const friendFilter: UsersSearchFilterType = {
             //     term: searchValue,
             //     friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
             // }
 
-            findFilteredUserHandler({term: searchValue, friend: convertStringToBoolean({term: '', friend: 'true'})});
+            findFilteredUserHandler({term: searchValue, friend: filterIsFriend});
         }
 
         const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {

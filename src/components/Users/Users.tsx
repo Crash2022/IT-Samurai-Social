@@ -19,6 +19,7 @@ export type UsersPropsType = {
     clearInput: () => void
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
     setUserFilter: (filter: UsersSearchFilterType) => void
+    filterIsFriend: null | boolean
 }
 
 // const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
@@ -54,6 +55,7 @@ export const Users = (props: UsersPropsType) => {
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 setUserFilter={props.setUserFilter}
+                filterIsFriend={props.filterIsFriend}
             />
             <Paginator
                 pageSize={props.pageSize}

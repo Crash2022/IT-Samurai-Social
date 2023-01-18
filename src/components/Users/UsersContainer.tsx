@@ -49,7 +49,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
         isLoading: isLoadingSelector(state),
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
-        filter: filterUserSelector(state)
+        filter: filterUserSelector(state),
         // filterName: filterUserNameSelector(state),
         // filterIsFriend: filterIsUserFriendSelector(state)
     }
@@ -110,6 +110,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  clearInput={this.clearInput}
                                  findFilteredUserHandler={this.findFilteredUserHandler}
                                  setUserFilter={this.props.setUserFilter}
+                                 filterIsFriend={this.props.filter.friend}
                         />
                 }
             </>
