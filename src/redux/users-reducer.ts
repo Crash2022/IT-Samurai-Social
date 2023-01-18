@@ -1,5 +1,6 @@
 import {usersAPI} from "../common/api/api";
 import {Dispatch} from "redux";
+import {AppThunkType} from "./redux-store";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -57,6 +58,15 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Users
 
 /*-------------------------ACTION CREATOR-------------------------*/
 
+export type UsersActionsType =
+    UserFollowACType |
+    UserUnfollowACType |
+    SetUsersACType |
+    SetCurrentPageACType |
+    setUsersTotalCountACType | // весь список пользователей
+    ToggleIsLoadingACType |
+    ToggleFollowInProgressACType;
+
 export type UserFollowACType = ReturnType<typeof followAC>
 export type UserUnfollowACType = ReturnType<typeof unfollowAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
@@ -77,20 +87,11 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
     userId, following
 } as const)
 
-type UsersActionsType =
-    UserFollowACType |
-    UserUnfollowACType |
-    SetUsersACType |
-    SetCurrentPageACType |
-    setUsersTotalCountACType | // весь список пользователей
-    ToggleIsLoadingACType |
-    ToggleFollowInProgressACType
-
 /*-------------------------THUNK-------------------------*/
 
-export const getUsersTC = (currentPage: number, pageSize: number) => {
+export const getUsersTC = (currentPage: number, pageSize: number): AppThunkType => {
 
-    return (dispatch: Dispatch<UsersActionsType>) => {
+    return (dispatch) => {
         dispatch(toggleIsLoadingAC(true));
 
         usersAPI.getUsers(currentPage, pageSize)
@@ -103,9 +104,9 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
     }
 }
 
-export const deleteFollowTC = (userId: string) => {
+export const deleteFollowTC = (userId: string): AppThunkType => {
 
-    return (dispatch: Dispatch<UsersActionsType>) => {
+    return (dispatch) => {
         dispatch(toggleFollowInProgressAC(userId,true));
 
         usersAPI.deleteFollow(userId)
@@ -118,9 +119,9 @@ export const deleteFollowTC = (userId: string) => {
     }
 }
 
-export const postFollowTC = (userId: string) => {
+export const postFollowTC = (userId: string): AppThunkType => {
 
-    return (dispatch: Dispatch<UsersActionsType>) => {
+    return (dispatch) => {
         dispatch(toggleFollowInProgressAC(userId,true));
 
         usersAPI.postFollow(userId)

@@ -1,9 +1,11 @@
-import React from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import styles from "./Users.module.css";
-import {UsersArray} from "../../redux/users-reducer";
+import {getUsersTC, UsersArray} from "../../redux/users-reducer";
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 import {Search} from "../../common/components/Seacrh/Search";
+import {useDebounce} from "../../common/hooks/useDebounce";
+import {useDispatch} from "react-redux";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -18,9 +20,30 @@ export type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
 
+    const dispatch = useDispatch()
+    const [searchValue, setSearchValue] = useState<string>('')
+    const debouncedSearchValue = useDebounce<string>(searchValue, 1000)
+
+    const searchInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(e.currentTarget.value);
+        // return users.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()))
+    }
+
+    const clearInput = () => {
+        setSearchValue('');
+    }
+
+    // useEffect(() => {
+    //     dispatch(getUsersTC(props.currentPage, props.pageSize))
+    // }, [debouncedSearchValue])
+
     return (
         <>
-            <Search/>
+            <Search
+                searchValue={searchValue}
+                setSearchValue={searchInput}
+                clearInput={clearInput}
+            />
             <Paginator
                 pageSize={props.pageSize}
                 totalUsersCount={props.totalUsersCount}

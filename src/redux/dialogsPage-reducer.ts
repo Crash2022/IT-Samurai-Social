@@ -1,7 +1,5 @@
 import {v1} from "uuid";
 
-type DialogsActionsType = SendMessageACType;
-
 export type DialogsPropsType = {
     dialogsData: Array<DialogsArray>
     messagesData: Array<MessagesArray>
@@ -45,6 +43,10 @@ export const dialogsPageReducer = (state: DialogsPropsType = initialState, actio
             return state;
     }
 }
+
+/*-------------------------ACTION CREATOR-------------------------*/
+
+export type DialogsActionsType = SendMessageACType;
 
 export type SendMessageACType = ReturnType<typeof sendMessageAC>
 

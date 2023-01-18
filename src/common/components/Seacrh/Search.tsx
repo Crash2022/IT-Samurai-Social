@@ -1,22 +1,38 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from './Search.module.css'
 
-export const Search = () => {
+type SearchPropsType = {
+    searchValue: string
+    setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
+    clearInput: () => void
+}
 
-    const [searchValue, setSearchValue] = useState<string>('')
+export const Search: React.FC<SearchPropsType> = ({searchValue, setSearchValue, clearInput}) => {
 
-    const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(e.currentTarget.value);
-    }
+    // const [searchValue, setSearchValue] = useState<string>('')
+
+    // const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setSearchValue(e.currentTarget.value);
+    // }
+
+    // const clearInput = () => {
+    //     setSearchValue('');
+    // }
 
     return (
         <div className={styles.searchMain}>
-            <input
-                value={searchValue}
-                onChange={onChangeCallback}
-                className={styles.searchInput}
-                placeholder={'Поиск джедаев'}
-            />
+            <div>
+                <input
+                    value={searchValue}
+                    onChange={setSearchValue}
+                    className={styles.searchInput}
+                    placeholder={'Поиск джедаев'}
+                />
+            </div>
+            <div className={styles.clearInput} onClick={clearInput}>
+                X
+            </div>
+
         </div>
     );
 }

@@ -1,12 +1,20 @@
 .searchMain {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .searchInput {
-    width: 100%;
+    width: 900px;
     height: 35px;
     padding-left: 10px;
     border: 2px solid green;
+}
+
+.clearInput {
+    /*width: 50px;*/
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
 }

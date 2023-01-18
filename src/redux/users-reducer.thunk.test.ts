@@ -1,7 +1,7 @@
 import {deleteFollowTC, followAC, postFollowTC, toggleFollowInProgressAC, unfollowAC} from "./users-reducer";
 import {PutResponseType, ResultCodesEnum, usersAPI} from "../common/api/api";
 
-jest.mock('../api/api');
+jest.mock('../common/api/api');
 const userAPIMock = usersAPI as jest.Mocked<typeof usersAPI>
 
 const dispatchMock = jest.fn();
@@ -25,7 +25,7 @@ userAPIMock.deleteFollow.mockReturnValue(Promise.resolve(result));
 
 test('success follow thunk', async () => {
     const thunk = postFollowTC('1');
-    await thunk(dispatchMock/*, getStateMock, {}*/);
+    await thunk(dispatchMock, getStateMock, {});
 
     expect(dispatchMock).toBeCalledTimes(3);
     expect(dispatchMock).toHaveBeenCalledWith(1, toggleFollowInProgressAC('1',true));
@@ -35,7 +35,7 @@ test('success follow thunk', async () => {
 
 test('success unfollow thunk', async () => {
     const thunk = deleteFollowTC('1');
-    await thunk(dispatchMock/*, getStateMock, {}*/);
+    await thunk(dispatchMock, getStateMock, {});
 
     expect(dispatchMock).toBeCalledTimes(3);
     expect(dispatchMock).toHaveBeenCalledWith(1, toggleFollowInProgressAC('1',true));

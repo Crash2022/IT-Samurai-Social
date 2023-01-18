@@ -3,15 +3,8 @@ import {CombinedState, Dispatch} from "redux";
 import {profileAPI} from "../common/api/api";
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
-import {RootStateType} from "./redux-store";
+import {AppThunkType, RootStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
-
-type ProfileActionsType =
-    AddPostACType |
-    SetUserProfileACType |
-    SetUserStatusACType |
-    DeletePostACType |
-    UpdateUserPhotoACType;
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T
@@ -128,6 +121,13 @@ export const profileReducer = (state: MyPostsItemPropsType = initialState, actio
 
 /*-------------------------ACTION CREATOR-------------------------*/
 
+export type ProfileActionsType =
+    AddPostACType |
+    SetUserProfileACType |
+    SetUserStatusACType |
+    DeletePostACType |
+    UpdateUserPhotoACType;
+
 export type AddPostACType = ReturnType<typeof addPostAC>
 export type DeletePostACType = ReturnType<typeof deletePostAC>
 export type SetUserProfileACType = ReturnType<typeof setUserProfileAC>
@@ -169,8 +169,8 @@ const actions = {
 
 /*-------------------------THUNK-------------------------*/
 
-export const getProfileTC = (userId: string) => {
-    return (dispatch: Dispatch<ProfileActionsType>) => {
+export const getProfileTC = (userId: string): AppThunkType => {
+    return (dispatch) => {
 
         profileAPI.getProfile(userId)
             .then(data => {
@@ -179,8 +179,8 @@ export const getProfileTC = (userId: string) => {
     }
 }
 
-export const getUserStatusTC = (userId: string) => {
-    return (dispatch: Dispatch<ProfileActionsType>) => {
+export const getUserStatusTC = (userId: string): AppThunkType => {
+    return (dispatch) => {
 
         profileAPI.getUserStatus(userId)
             .then(data => {
@@ -189,9 +189,7 @@ export const getUserStatusTC = (userId: string) => {
     }
 }
 
-export const updateUserStatusTC = (userId: string, status: string):
-    ThunkAction<void, RootStateType, { }, ProfileActionsType> => {
-
+export const updateUserStatusTC = (userId: string, status: string): AppThunkType => {
     return (dispatch) => {
 
         profileAPI.updateUserStatus(status)
@@ -206,8 +204,8 @@ export const updateUserStatusTC = (userId: string, status: string):
     }
 }
 
-export const updateUserPhotoTC = (photoFile: File) => {
-    return (dispatch: Dispatch<ProfileActionsType>) => {
+export const updateUserPhotoTC = (photoFile: File): AppThunkType => {
+    return (dispatch) => {
 
         profileAPI.updateUserPhoto(photoFile)
             .then(data => {

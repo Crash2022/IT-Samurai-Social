@@ -30,6 +30,8 @@ export const sidebarReducer = (state: SideBarPropsType = initialState, action: S
     }
 }
 
+/*-------------------------ACTION CREATOR-------------------------*/
+
 export type SidebarActionsType = SetNavbarUsersACType
 
 export type SetNavbarUsersACType = ReturnType<typeof setNavbarUsersAC>

@@ -1,13 +1,7 @@
-import {Dispatch} from "redux";
 import {authAPI, securityAPI} from "../common/api/api";
 import {ThunkDispatch} from "redux-thunk";
-import {RootStateType} from "./redux-store";
+import {AppThunkType, RootStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
-
-export type AuthActionsType =
-    SetAuthUserDataACType |
-    LogoutUserDataACType |
-    GetCaptchaACType;
 
 export type AuthPropsType = {
     userId: null | string
@@ -41,6 +35,11 @@ export const authReducer = (state: AuthPropsType = initialState, action: AuthAct
 
 /*-------------------------ACTION CREATOR-------------------------*/
 
+export type AuthActionsType =
+    SetAuthUserDataACType |
+    LogoutUserDataACType |
+    GetCaptchaACType;
+
 export type SetAuthUserDataACType = ReturnType<typeof setAuthUserDataAC>
 export const setAuthUserDataAC = (userId: number, email: string,
                                   login: string, isAuth: boolean) => ({
@@ -68,8 +67,8 @@ export const getCaptchaAC = (captchaUrl: string) => ({
 
 /*-------------------------THUNK-------------------------*/
 
-export const getAuthTC = () => {
-    return (dispatch: Dispatch<AuthActionsType>) => {
+export const getAuthTC = (): AppThunkType => {
+    return (dispatch) => {
         authAPI.getAuth()
             .then(data => {
                 if (data.resultCode === 0) {
@@ -100,8 +99,8 @@ export const postLoginTC = (email: string, password: string,
     }
 }
 
-export const deleteLoginTC = () => {
-    return (dispatch: Dispatch<AuthActionsType>) => {
+export const deleteLoginTC = (): AppThunkType => {
+    return (dispatch) => {
         authAPI.deleteLogin()
             .then(data => {
                 if (data.resultCode === 0) {
@@ -111,8 +110,8 @@ export const deleteLoginTC = () => {
     }
 }
 
-export const getCaptchaTC = () => {
-    return (dispatch: Dispatch) => {
+export const getCaptchaTC = (): AppThunkType => {
+    return (dispatch) => {
         securityAPI.getCaptcha()
             .then(data => {
                 dispatch(getCaptchaAC(data.url));

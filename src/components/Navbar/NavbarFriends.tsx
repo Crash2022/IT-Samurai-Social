@@ -5,15 +5,18 @@ import {RootStateType} from "../../redux/redux-store";
 import {UsersArray} from "../../redux/users-reducer";
 import userAvatar from "../../common/assets/images/avatars/user_avatar.jpg";
 import {SidebarFriendsType} from "../../redux/sidebar-reducer";
+import {useAppSelector} from "../../common/hooks/useAppSelector";
 
 type NavbarFriendsPropsType = {
     friendsData: Array<SidebarFriendsType>
     // followedUsers: Array<UsersArray>
 }
 
+const selectedUsers = (state: RootStateType) => state.usersPage.users
+
 export const NavbarFriends: React.FC<NavbarFriendsPropsType> = ({friendsData}) => {
 
-    const users = useSelector<RootStateType, Array<UsersArray>>(state => state.usersPage.users)
+    const users = useAppSelector(selectedUsers)
     const filteredFollowedUsers = users.filter(u => u.followed ? u : '')
 
     if (filteredFollowedUsers.length !== 0) {
