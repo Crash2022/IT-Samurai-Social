@@ -99,3 +99,10 @@
     background-color: green;
     color: white;
 }
+
+.usersNotFound {
+    padding: 20px;
+    font-width: bold;
+    font-size: 20px;
+    color: green;
+}

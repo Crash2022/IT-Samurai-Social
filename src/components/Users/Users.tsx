@@ -5,7 +5,7 @@ import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 import {Search} from "../../common/components/Seacrh/Search";
 import {useDebounce} from "../../common/hooks/useDebounce";
-import {useDispatch} from "react-redux";
+import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -20,13 +20,13 @@ export type UsersPropsType = {
 
 export const Users = (props: UsersPropsType) => {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [searchValue, setSearchValue] = useState<string>('')
     const debouncedSearchValue = useDebounce<string>(searchValue, 1000)
 
-    const searchInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const searchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.currentTarget.value);
-        // return users.filter(user => user.name.toLowerCase().includes(searchValue.toLowerCase()))
+        // return props.users.filter((user: UsersArray) => user.name.toLowerCase().includes(searchValue.toLowerCase()))
     }
 
     const clearInput = () => {
@@ -34,14 +34,15 @@ export const Users = (props: UsersPropsType) => {
     }
 
     // useEffect(() => {
-    //     dispatch(getUsersTC(props.currentPage, props.pageSize))
-    // }, [debouncedSearchValue])
+    //     // dispatch(getUsersTC(props.currentPage, props.pageSize))
+    //     props.users.filter((user: UsersArray) => user.name.toLowerCase().includes(debouncedSearchValue.toLowerCase()))
+    // }, [props.users])
 
     return (
         <>
             <Search
                 searchValue={searchValue}
-                setSearchValue={searchInput}
+                setSearchValue={searchInputValue}
                 clearInput={clearInput}
             />
             <Paginator
@@ -54,6 +55,8 @@ export const Users = (props: UsersPropsType) => {
 
             <div className={styles.usersWrapper}>
                 {
+                    props.users.length !== 0
+                        ?
                     props.users.map(u => {
                         return (
                             <UserItem key={u.id}
@@ -64,6 +67,8 @@ export const Users = (props: UsersPropsType) => {
                             />
                         )
                     })
+                        :
+                        <div className={styles.usersNotFound}>Джедаи не найдены</div>
                 }
             </div>
         </>

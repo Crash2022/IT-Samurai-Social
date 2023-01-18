@@ -1,5 +1,4 @@
 import {usersAPI} from "../common/api/api";
-import {Dispatch} from "redux";
 import {AppThunkType} from "./redux-store";
 
 export type UsersPropsType = {

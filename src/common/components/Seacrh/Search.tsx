@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import styles from './Search.module.css'
 
 type SearchPropsType = {
