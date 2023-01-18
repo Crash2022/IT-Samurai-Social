@@ -99,6 +99,13 @@ export const usersAPI = {
                 .then(response => response.data)
         )
     },
+    getNavbarUsers() {
+        return (
+            instance
+                .get<GetUsersResponseType>(`users`, {})
+                .then(response => response.data)
+        )
+    },
     getProfile(userId: string) {
         // можно написать так на всякий случай
         console.log('Please, use new object');

@@ -1,25 +1,39 @@
-import {v1} from "uuid";
-
-//type SidebarActionsType = ;
+// import {v1} from "uuid";
+import {UsersArray} from "./users-reducer";
 
 export type SideBarPropsType = {
-    friendsData: Array<SidebarFriendsType>
+    // friendsData: Array<SidebarFriendsType>
+    users: Array<UsersArray>
 }
-export type SidebarFriendsType = {
-    id: string
-    name: string
-    avatar: string
-}
+// export type SidebarFriendsType = {
+//     id: string
+//     name: string
+//     avatar: string
+// }
 
-let initialState = {
+/*let initialState = {
     friendsData: [
         {id: v1(), name: 'Neil Tunicliff', avatar: 'https://www.tribalzine.com/IMG/jpg/neil_3small.jpg'},
         {id: v1(), name: 'Craig Lee Scott', avatar: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'},
         {id: v1(), name: 'Ali Clarkson', avatar: 'https://i.ytimg.com/vi/q_4gVJpSJtA/maxresdefault.jpg'},
         {id: v1(), name: 'Damon Watson', avatar: 'https://i.ytimg.com/vi/aiDyCZWiDeU/maxresdefault.jpg'}
     ]
+}*/
+
+const initialState = {
+    users: [] as Array<UsersArray>,
 }
 
-export const sidebarReducer = (state: SideBarPropsType = initialState, action: any): SideBarPropsType => {
-    return state;
+export const sidebarReducer = (state: SideBarPropsType = initialState, action: SidebarActionsType): SideBarPropsType => {
+    switch (action.type) {
+        case 'SIDEBAR/SET_USERS':
+            return {...state, users: action.users};
+        default:
+            return state;
+    }
 }
+
+export type SidebarActionsType = SetNavbarUsersACType
+
+export type SetNavbarUsersACType = ReturnType<typeof setNavbarUsersAC>
+export const setNavbarUsersAC = (users: Array<UsersArray>) => ({type: 'SIDEBAR/SET_USERS', users} as const)

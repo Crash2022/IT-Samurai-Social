@@ -1,8 +1,7 @@
 import React from "react";
 import styles from './Navbar.module.css';
-// import {SidebarFriendsType} from "../../redux/sidebar-reducer";
-// import {useSelector} from "react-redux";
-// import {RootStateType} from "../../redux/redux-store";
+import {useSelector} from "react-redux";
+import {RootStateType} from "../../redux/redux-store";
 import {UsersArray} from "../../redux/users-reducer";
 import userAvatar from "../../common/assets/images/avatars/user_avatar.jpg";
 
@@ -13,8 +12,8 @@ type NavbarFriendsPropsType = {
 
 export const NavbarFriends: React.FC<NavbarFriendsPropsType> = ({followedUsers}) => {
 
-    // const users = useSelector<RootStateType, Array<UsersArray>>(state => state.usersPage.users)
-    const filteredFollowedUsers = followedUsers.filter(u => u.followed ? u : '')
+    const users = useSelector<RootStateType, Array<UsersArray>>(state => state.usersPage.users)
+    const filteredFollowedUsers = users.filter(u => u.followed ? u : '')
 
     return (
             <div className={styles.friendsWrapper}>

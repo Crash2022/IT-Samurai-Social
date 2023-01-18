@@ -1,15 +1,6 @@
 import {usersAPI} from "../common/api/api";
 import {Dispatch} from "redux";
 
-type UsersActionsType =
-    UserFollowACType |
-    UserUnfollowACType |
-    SetUsersACType |
-    SetCurrentPageACType |
-    setUsersTotalCountACType | // весь список пользователей
-    ToggleIsLoadingACType |
-    ToggleFollowInProgressACType;
-
 export type UsersPropsType = {
     users: Array<UsersArray>
     pageSize: number
@@ -27,61 +18,7 @@ export type UsersArray = {
 }
 
 let initialState = {
-    users: [
-        /*{   id: v1(),
-            name: 'Craig Lee Scott',
-            followed: true,
-            status: 'Biketrials London UK!',
-            /!*location: {
-                country: 'UK',
-                city: 'London'
-            },*!/
-            photos: {
-                small: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg',
-                large: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'
-            }
-        }*/
-        /*{id: v1(),
-         fullName: 'Neil Tunicliff',
-         isFollowed: true,
-         status: 'Biketrials is my Life!',
-         location: {
-            country: 'UK',
-            city: 'London'
-         },
-         avatar: 'https://www.tribalzine.com/IMG/jpg/neil_3small.jpg',
-        },
-        {id: v1(),
-            fullName: 'Thomas Remvik Aasen',
-            isFollowed: false,
-            status: 'Norway BT',
-            location: {
-                country: 'Norway',
-                city: 'Oslo'
-            },
-            avatar: 'https://sun9-27.userapi.com/c10357/u12423350/-6/x_8e806d44.jpg',
-        },
-        {id: v1(),
-            fullName: 'Damon Watson',
-            isFollowed: true,
-            status: 'Biketrials rules!',
-            location: {
-                country: 'UK',
-                city: 'London'
-            },
-            avatar: 'https://i.ytimg.com/vi/aiDyCZWiDeU/maxresdefault.jpg',
-        },
-        {id: v1(),
-            fullName: 'Danny Macaskill',
-            isFollowed: false,
-            status: 'Redbull & Specialized Bikes prorider',
-            location: {
-                country: 'Scotland',
-                city: 'Edinburgh'
-            },
-            avatar: 'https://img.redbull.com/images/q_auto,f_auto/redbullcom/2015/12/10/1331764435698_1/danny-nin-%C3%B6zel-yap%C4%B1m-street-trials-bisikleti.jpg',
-        }*/
-    ] as Array<UsersArray>,
+    users: [] as Array<UsersArray>,
     pageSize: 20, // количество пользователей на одной странице
     totalUsersCount: 100, // количество пользователей приходит с сервера, теперь цифра не влияет
     currentPage: 1,
@@ -139,6 +76,15 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
     type: 'TOGGLE_FOLLOW_IN_PROGRESS',
     userId, following
 } as const)
+
+type UsersActionsType =
+    UserFollowACType |
+    UserUnfollowACType |
+    SetUsersACType |
+    SetCurrentPageACType |
+    setUsersTotalCountACType | // весь список пользователей
+    ToggleIsLoadingACType |
+    ToggleFollowInProgressACType
 
 /*-------------------------THUNK-------------------------*/
 
