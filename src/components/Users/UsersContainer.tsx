@@ -64,17 +64,17 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     }
 
     onChangePageHandler = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize, '');
+        const {pageSize, filter} = this.props;
+        this.props.getUsers(pageNumber, pageSize, filter);
     }
 
     onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>/*, currentPage: number, pageSize: number*/) => {
-        // dispatch(setFilterAC(e.currentTarget.value));
         this.props.setUserFilter(e.currentTarget.value);
     }
 
     clearInput = () => {
-        // dispatch(setFilterAC(''));
         this.props.setUserFilter('');
+        this.props.getUsers(1, this.props.pageSize, '');
     }
 
     findFilteredUserHandler = (filter: string) => {
