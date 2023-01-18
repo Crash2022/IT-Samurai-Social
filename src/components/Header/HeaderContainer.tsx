@@ -3,6 +3,7 @@ import {Header} from "./Header";
 import {connect} from "react-redux";
 import {deleteLoginTC} from "../../redux/auth-reducer";
 import {RootStateType} from "../../redux/redux-store";
+import {isAuthSelector, loginSelector} from '../../redux/auth-selectors';
 
 export type HeaderContainerType = MapStateToPropsHeaderType & MapDispatchToPropsHeaderType;
 
@@ -16,8 +17,8 @@ type MapDispatchToPropsHeaderType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsHeaderType => {
     return {
-        isAuth: state.auth.isAuth,
-        login: state.auth.login
+        isAuth: isAuthSelector(state),
+        login: loginSelector(state)
     }
 }
 const mapDispatchToProps: MapDispatchToPropsHeaderType = {

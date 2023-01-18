@@ -6,6 +6,7 @@ import {Messages} from "./Messages";
 import {sendMessageAC} from "../../redux/dialogsPage-reducer";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
 import {compose} from "redux";
+import {dialogsDataSelector, messagesDataSelector} from '../../redux/dialogsPage-selectors';
 
 export type MessagesContainerType = MapStateToPropsMessagesType & MapDispatchToPropsMessagesType;
 
@@ -19,8 +20,8 @@ type MapDispatchToPropsMessagesType = {
 
 const mapStateToProps = (state: RootStateType) => {
     return {
-        myDialogs: state.dialogsPage.dialogsData,
-        myMessages: state.dialogsPage.messagesData,
+        myDialogs: dialogsDataSelector(state),
+        myMessages: messagesDataSelector(state)
     }
 }
 

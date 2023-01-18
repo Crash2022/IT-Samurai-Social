@@ -76,7 +76,7 @@ export const Users = (props: UsersPropsType) => {
                         )
                     })
                         :
-                        <div className={styles.usersNotFound}>Джедаи не найдены</div>
+                        <div className={styles.usersNotFound}>Джедаи не найдены!</div>
                 }
             </div>
         </>

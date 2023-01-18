@@ -5,6 +5,7 @@ import {UserMessageType} from "../../../redux/profilePage-reducer";
 import {MyPosts} from "./MyPosts";
 import {addPostAC} from "../../../redux/profilePage-reducer";
 import {compose} from "redux";
+import {myPostsSelector} from '../../../redux/profilePage-selectors';
 
 export type MyPostsContainerType = MapStateToPropsMyPostsType & MapDispatchToPropsMyPostsType;
 
@@ -17,7 +18,7 @@ type MapDispatchToPropsMyPostsType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsMyPostsType => {
     return {
-        myPosts: state.profilePage.myPosts
+        myPosts: myPostsSelector(state)
     }
 }
 

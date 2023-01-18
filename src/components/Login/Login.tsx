@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {postLoginTC} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
+import {captchaUrlSelector, isAuthSelector} from '../../redux/auth-selectors';
 
 export type LoginPropsType = MapStateToPropsLoginType & MapDispatchToPropsLoginType;
 
@@ -20,8 +21,8 @@ export type MapDispatchToPropsLoginType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsLoginType => {
     return {
-        isAuth: state.auth.isAuth,
-        captchaUrl: state.auth.captchaUrl
+        isAuth: isAuthSelector(state),
+        captchaUrl: captchaUrlSelector(state)
     }
 }
 const mapDispatchToProps: MapDispatchToPropsLoginType = {

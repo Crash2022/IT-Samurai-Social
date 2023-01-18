@@ -11,18 +11,8 @@ type SearchPropsType = {
 
 export const Search: React.FC<SearchPropsType> = ({searchValue, setSearchValue, clearInput, findFilteredUserHandler}) => {
 
-    // const [searchValue, setSearchValue] = useState<string>('')
-
-    // const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    //     setSearchValue(e.currentTarget.value);
-    // }
-
-    // const clearInput = () => {
-    //     setSearchValue('');
-    // }
-
     const buttonOnClickHandler = () => {
-        findFilteredUserHandler(searchValue)
+        findFilteredUserHandler(searchValue);
     }
 
     return (

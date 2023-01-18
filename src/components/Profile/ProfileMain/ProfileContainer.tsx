@@ -9,6 +9,8 @@ import {withRouter, RouteComponentProps} from "react-router-dom";
 import {compose} from "redux";
 import {FormDataType} from "../MyProfile/MyProfile";
 import {withAuthRedirect} from "../../../common/hoc/withAuthRedirect";
+import {profileSelector, profileStatusSelector} from '../../../redux/profilePage-selectors';
+import {authUserIdSelector, isAuthSelector} from '../../../redux/auth-selectors';
 
 export type ProfileContainerType =
     MapStateToPropsUserProfileType &
@@ -35,10 +37,10 @@ export type PathParamType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsUserProfileType => {
     return {
-        profile: state.profilePage.profile,
-        status: state.profilePage.status,
-        authorizedUserId: state.auth.userId,
-        isAuth: state.auth.isAuth
+        profile: profileSelector(state),
+        status: profileStatusSelector(state),
+        authorizedUserId: authUserIdSelector(state),
+        isAuth: isAuthSelector(state)
     }
 }
 const mapDispatchToProps: MapDispatchToPropsUserProfileType = {

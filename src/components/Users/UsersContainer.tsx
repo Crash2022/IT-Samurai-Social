@@ -8,7 +8,13 @@ import {Preloader} from "../../common/UI/Preloader/Preloader";
 import classes from "./Users.module.css";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
-import {useDebounce} from '../../common/hooks/useDebounce';
+import {
+    currentPageSelector, filterUserNameSelector, followingInProgressSelector,
+    getUsersSelector, isLoadingSelector,
+    pageSizeSelector,
+    totalUsersCountSelector
+} from '../../redux/users-selectors';
+import {isAuthSelector} from '../../redux/auth-selectors';
 
 export type UsersContainerType = MapStateToPropsUsersType & MapDispatchToPropsUsersType;
 
@@ -31,15 +37,14 @@ type MapDispatchToPropsUsersType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
     return {
-        users: state.usersPage.users,
-        // users: getUsers(state),
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading,
-        followingInProgress: state.usersPage.followingInProgress,
-        isAuth: state.auth.isAuth,
-        filter: state.usersPage.filter.term
+        users: getUsersSelector(state),
+        pageSize: pageSizeSelector(state),
+        totalUsersCount: totalUsersCountSelector(state),
+        currentPage: currentPageSelector(state),
+        isLoading: isLoadingSelector(state),
+        followingInProgress: followingInProgressSelector(state),
+        isAuth: isAuthSelector(state),
+        filter: filterUserNameSelector(state)
     }
 }
 
