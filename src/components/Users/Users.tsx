@@ -3,6 +3,7 @@ import styles from "./Users.module.css";
 import {UsersArray} from "../../redux/users-reducer";
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
+import {Search} from "../../common/components/Seacrh/Search";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -19,6 +20,7 @@ export const Users = (props: UsersPropsType) => {
 
     return (
         <>
+            <Search/>
             <Paginator
                 pageSize={props.pageSize}
                 totalUsersCount={props.totalUsersCount}
