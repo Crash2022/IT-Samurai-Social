@@ -8,6 +8,7 @@ import {Preloader} from "../../common/UI/Preloader/Preloader";
 import classes from "./Users.module.css";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
+import {useDebounce} from '../../common/hooks/useDebounce';
 
 export type UsersContainerType = MapStateToPropsUsersType & MapDispatchToPropsUsersType;
 
@@ -66,7 +67,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
         this.props.getUsers(pageNumber, this.props.pageSize, '');
     }
 
-    onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>/*, currentPage: number, pageSize: number*/) => {
         // dispatch(setFilterAC(e.currentTarget.value));
         this.props.setUserFilter(e.currentTarget.value);
     }
@@ -74,6 +75,11 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     clearInput = () => {
         // dispatch(setFilterAC(''));
         this.props.setUserFilter('');
+    }
+
+    findFilteredUserHandler = (filter: string) => {
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize, filter);
     }
 
     render() {
@@ -96,6 +102,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  filterValue={this.props.filter}
                                  setSearchValue={this.onChangeSearchInputValue}
                                  clearInput={this.clearInput}
+                                 findFilteredUserHandler={this.findFilteredUserHandler}
                         />
                 }
             </>

@@ -13,8 +13,23 @@
 }
 
 .clearInput {
-    /*width: 50px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 20px;
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 10px;
+    color: white;
+    background-color: green;
+    width: 35px;
+    height: 35px;
+}
+.clearInput:hover {
+    opacity: 0.5;
+}
+
+.findButton {
+    min-width: 100px;
+    height: 35px;
+    margin-left: 10px;
 }
