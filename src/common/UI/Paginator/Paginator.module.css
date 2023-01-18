@@ -3,14 +3,24 @@
     justify-content: center;
     align-items: center;
 }
+.paginationWrapper button {
+    margin: 5px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 7px;
+}
+.paginationWrapper button:hover {
+    opacity: 0.7;
+}
+.paginationWrapper button:disabled {
+    background-color: gray;
+}
 .paginationButtonPrev {
     padding-right: 20px;
 }
 .paginationButtonNext {
     padding-left: 20px;
-}
-.paginationWrapper button {
-    margin: 5px;
 }
 
 .pagination {
