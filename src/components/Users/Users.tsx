@@ -18,19 +18,23 @@ export type UsersPropsType = {
     followingInProgress: Array<string>
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
+    filterValue: string
+    setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
+    clearInput: () => void
 }
 
-const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
+// const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
 
 export const Users = (props: UsersPropsType) => {
 
-    const dispatch = useAppDispatch()
+    // с использованием хуков
+    /*const dispatch = useAppDispatch()
     const filterValue = useAppSelector(selectedFilterValue)
     // const [searchValue, setSearchValue] = useState<string>('')
     const debouncedSearchValue = useDebounce<string>(filterValue, 1000)
 
-    // let filteredUsers = props.users.filter((user: UsersArray) =>
-    //     user.name.toLowerCase().includes(searchValue.toLowerCase()))
+    let filteredUsers = props.users.filter((user: UsersArray) =>
+        user.name.toLowerCase().includes(searchValue.toLowerCase()))
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilterAC(e.currentTarget.value));
@@ -40,16 +44,16 @@ export const Users = (props: UsersPropsType) => {
         dispatch(setFilterAC(''));
     }
 
-    // useEffect(() => {
-    //     dispatch(getUsersTC(props.currentPage, props.pageSize, debouncedSearchValue))
-    // }, [debouncedSearchValue])
-
+    useEffect(() => {
+        dispatch(getUsersTC(props.currentPage, props.pageSize, debouncedSearchValue))
+    }, [debouncedSearchValue])*/
+    console.log(props.filterValue)
     return (
         <>
             <Search
-                searchValue={filterValue}
-                setSearchValue={onChangeSearchInputValue}
-                clearInput={clearInput}
+                searchValue={props.filterValue}
+                setSearchValue={props.setSearchValue}
+                clearInput={props.clearInput}
             />
             <Paginator
                 pageSize={props.pageSize}

@@ -18,6 +18,9 @@
 .sendMessageArea {
     margin-bottom: 10px;
 }
+.sendMessageArea textarea {
+    border: 2px solid green;
+}
 .sendButton {
     display: flex;
     justify-content: flex-end;

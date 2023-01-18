@@ -1,15 +1,13 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {RootStateType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {UsersArray, getUsersTC, deleteFollowTC, postFollowTC}
-    from "../../redux/users-reducer";
+import {UsersArray, getUsersTC, deleteFollowTC, postFollowTC, setFilterAC}
+    from '../../redux/users-reducer';
 import {Users} from "./Users";
 import {Preloader} from "../../common/UI/Preloader/Preloader";
 import classes from "./Users.module.css";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../common/hoc/withAuthRedirect";
-//import {getUsers} from "../../redux/users-selectors";
-//import {getUsers} from "../../api/api";
 
 export type UsersContainerType = MapStateToPropsUsersType & MapDispatchToPropsUsersType;
 
@@ -27,6 +25,7 @@ type MapDispatchToPropsUsersType = {
     getUsers: (currentPage: number, pageSize: number, term: string) => void
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
+    setUserFilter: (term: string) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
@@ -52,7 +51,8 @@ const mapDispatchToProps: MapDispatchToPropsUsersType = {
 
     getUsers: getUsersTC,
     deleteFollow: deleteFollowTC,
-    postFollow: postFollowTC
+    postFollow: postFollowTC,
+    setUserFilter: setFilterAC
 }
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
@@ -64,6 +64,16 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
     onChangePageHandler = (pageNumber: number) => {
         this.props.getUsers(pageNumber, this.props.pageSize, '');
+    }
+
+    onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+        // dispatch(setFilterAC(e.currentTarget.value));
+        this.props.setUserFilter(e.currentTarget.value);
+    }
+
+    clearInput = () => {
+        // dispatch(setFilterAC(''));
+        this.props.setUserFilter('');
     }
 
     render() {
@@ -83,6 +93,9 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  followingInProgress={this.props.followingInProgress}
                                  deleteFollow={this.props.deleteFollow}
                                  postFollow={this.props.postFollow}
+                                 filterValue={this.props.filter}
+                                 setSearchValue={this.onChangeSearchInputValue}
+                                 clearInput={this.clearInput}
                         />
                 }
             </>
