@@ -1,27 +1,24 @@
-// import {v1} from "uuid";
+import {v1} from "uuid";
 import {UsersArray} from "./users-reducer";
 
 export type SideBarPropsType = {
-    // friendsData: Array<SidebarFriendsType>
     users: Array<UsersArray>
+    friendsData: Array<SidebarFriendsType>
 }
-// export type SidebarFriendsType = {
-//     id: string
-//     name: string
-//     avatar: string
-// }
+export type SidebarFriendsType = {
+    id: string
+    name: string
+    avatar: string
+}
 
-/*let initialState = {
+const initialState = {
+    users: [] as Array<UsersArray>,
     friendsData: [
         {id: v1(), name: 'Neil Tunicliff', avatar: 'https://www.tribalzine.com/IMG/jpg/neil_3small.jpg'},
         {id: v1(), name: 'Craig Lee Scott', avatar: 'https://i.ytimg.com/vi/rrnIievfbCM/hqdefault.jpg'},
         {id: v1(), name: 'Ali Clarkson', avatar: 'https://i.ytimg.com/vi/q_4gVJpSJtA/maxresdefault.jpg'},
         {id: v1(), name: 'Damon Watson', avatar: 'https://i.ytimg.com/vi/aiDyCZWiDeU/maxresdefault.jpg'}
     ]
-}*/
-
-const initialState = {
-    users: [] as Array<UsersArray>,
 }
 
 export const sidebarReducer = (state: SideBarPropsType = initialState, action: SidebarActionsType): SideBarPropsType => {
