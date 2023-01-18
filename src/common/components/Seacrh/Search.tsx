@@ -65,9 +65,9 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                 </div>
                 <div className={styles.searchSelect}>
                     <select onChange={onChangeCallback}>
-                        <option value={'null'}>All users</option>
-                        <option value={'true'}>Friends</option>
-                        <option value={'false'}>Not friends</option>
+                        <option value={'null'}>Все</option>
+                        <option value={'true'}>Друзья</option>
+                        <option value={'false'}>Недруги</option>
                     </select>
                     {/*<SuperSelect options={valueArray}
                              value={value}
