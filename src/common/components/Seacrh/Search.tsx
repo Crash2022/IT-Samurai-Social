@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import styles from './Search.module.css'
 import {SuperButton} from '../../UI/Button/SuperButton';
+import {DebounceInput} from 'react-debounce-input';
 
 type SearchPropsType = {
     searchValue: string
@@ -9,7 +10,7 @@ type SearchPropsType = {
     findFilteredUserHandler: (filter: string) => void
 }
 
-export const Search: React.FC<SearchPropsType> = ({searchValue, setSearchValue, clearInput, findFilteredUserHandler}) => {
+export const Search: React.FC<SearchPropsType> = React.memo(({searchValue, setSearchValue, clearInput, findFilteredUserHandler}) => {
 
     const buttonOnClickHandler = () => {
         findFilteredUserHandler(searchValue);
@@ -18,11 +19,19 @@ export const Search: React.FC<SearchPropsType> = ({searchValue, setSearchValue, 
     return (
         <div className={styles.searchMain}>
             <div>
-                <input
+                {/*<input
                     value={searchValue}
                     onChange={setSearchValue}
                     className={styles.searchInput}
                     placeholder={'Поиск джедаев'}
+                />*/}
+                <DebounceInput
+                    className={styles.searchInput}
+                    placeholder={'Поиск джедаев'}
+                    minLength={2}
+                    debounceTimeout={1000}
+                    value={searchValue}
+                    onChange={e => findFilteredUserHandler(e.target.value)}
                 />
             </div>
             <div>
@@ -36,4 +45,4 @@ export const Search: React.FC<SearchPropsType> = ({searchValue, setSearchValue, 
 
         </div>
     );
-}
+})

@@ -49,12 +49,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
 }
 
 const mapDispatchToProps: MapDispatchToPropsUsersType = {
-    //followAC, // больше не нужны тут, берутся из Thunk
-    //unfollowAC, // больше не нужны тут, берутся из Thunk
-    //setUsersAC, // больше не нужны тут, берутся из Thunk
-    //toggleIsLoadingAC, // больше не нужны тут, берутся из Thunk
-    //toggleFollowInProgressAC, // больше не нужны тут, берутся из Thunk
-
     getUsers: getUsersTC,
     deleteFollow: deleteFollowTC,
     postFollow: postFollowTC,
@@ -73,7 +67,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
         this.props.getUsers(pageNumber, pageSize, filter);
     }
 
-    onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>/*, currentPage: number, pageSize: number*/) => {
+    onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         this.props.setUserFilter(e.currentTarget.value);
     }
 
