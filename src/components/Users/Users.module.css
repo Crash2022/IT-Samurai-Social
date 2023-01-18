@@ -5,11 +5,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /*border: 2px solid green;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 5px;*/
-    /*max-width: 800px;*/
     margin: 20px 20px 20px 50px;
 }
 
@@ -57,7 +52,7 @@
     border-radius: 10px;
     margin: 10px;
     padding: 20px;
-    width: 600px;
+    width: 700px;
 }
 .users_rightSide_info {
     display: flex;

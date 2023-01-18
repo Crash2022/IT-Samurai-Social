@@ -14,7 +14,7 @@ export const useDebounce = <T>(value: T, delay?: number): T => {
     return debouncedValue
 }
 
-// debounce for class component
+// debounced input
 /*
 // yarn add react-debounce-input
 // import {DebounceInput} from 'react-debounce-input';

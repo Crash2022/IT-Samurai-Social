@@ -34,11 +34,11 @@ export const Search: React.FC<SearchPropsType> = React.memo(({searchValue, setSe
                     onChange={e => findFilteredUserHandler(e.target.value)}
                 />
             </div>
-            <div>
+            {/*<div>
                 <SuperButton onClick={buttonOnClickHandler} className={styles.findButton}>
                     Найти
                 </SuperButton>
-            </div>
+            </div>*/}
             <div className={styles.clearInput} onClick={clearInput}>
                 X
             </div>
