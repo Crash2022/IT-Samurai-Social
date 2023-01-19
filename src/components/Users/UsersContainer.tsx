@@ -66,7 +66,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
     componentDidMount() {
         const {currentPage, pageSize, filter} = this.props;
-        this.props.getUsers(currentPage, pageSize, filter);
+        this.props.getUsers(currentPage, pageSize, {term: '', friend: null});
     }
 
     onChangePageHandler = (pageNumber: number) => {
