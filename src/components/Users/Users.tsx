@@ -20,6 +20,7 @@ export type UsersPropsType = {
     setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
     clearInput: () => void
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    selectStateValue: string
 }
 
 // const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
@@ -56,6 +57,7 @@ export const Users = React.memo((props: UsersPropsType) => {
                 setSearchSelect={props.setSearchSelect}
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
+                selectStateValue={props.selectStateValue}
             />
             <Paginator
                 pageSize={props.pageSize}

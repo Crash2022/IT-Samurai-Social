@@ -64,6 +64,10 @@ const mapDispatchToProps: MapDispatchToPropsUsersType = {
 
 export class UsersAPIClassContainer extends React.Component<UsersContainerType> {
 
+    state = {
+        selectValue: 'null'
+    }
+
     componentDidMount() {
         const {currentPage, pageSize, filter} = this.props;
         this.props.getUsers(currentPage, pageSize, {term: '', friend: null});
@@ -79,7 +83,10 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     }
     onChangeSearchSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
         this.props.setUserFilter({term: this.props.filter.term,
-            friend: e.currentTarget.value === 'null' ? null : e.currentTarget.value === 'true' ? true : false});
+            friend: e.currentTarget.value === 'null' ? null : e.currentTarget.value === 'true'});
+        this.setState({
+            selectValue: e.currentTarget.value
+        });
     }
 
     clearInput = () => {
@@ -115,6 +122,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  setSearchSelect={this.onChangeSearchSelectValue}
                                  clearInput={this.clearInput}
                                  findFilteredUserHandler={this.findFilteredUserHandler}
+                                 selectStateValue={this.state.selectValue}
                         />
                 }
             </>

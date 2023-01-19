@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import styles from './Search.module.css'
 import {SuperButton} from '../../UI/Button/SuperButton';
 import {DebounceInput} from 'react-debounce-input';
@@ -11,6 +11,7 @@ type SearchPropsType = {
     setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
     clearInput: () => void
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    selectStateValue: string
 }
 
 // type SearchSelectType = {
@@ -19,7 +20,8 @@ type SearchPropsType = {
 // }
 
 export const Search: React.FC<SearchPropsType> = React.memo(
-    ({searchValue, filterIsFriend, setSearchValue, setSearchSelect, clearInput, findFilteredUserHandler}) => {
+    ({searchValue, filterIsFriend, setSearchValue, setSearchSelect,
+         clearInput, findFilteredUserHandler, selectStateValue}) => {
 
         // const convertStringToBoolean = (values: SearchSelectType) => {
         //     const friendFilter: UsersSearchFilterType = {
@@ -52,7 +54,10 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                     />*/}
                 </div>
                 <div className={styles.searchSelect}>
-                    <select name={'selectFriend'} onChange={setSearchSelect}>
+                    <select name={'selectFriend'}
+                            defaultValue={selectStateValue}
+                            onChange={setSearchSelect}
+                    >
                         <option value={'null'}>Все джедаи</option>
                         <option value={'true'}>Друзья</option>
                         <option value={'false'}>Незнакомые</option>
