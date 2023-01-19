@@ -32,16 +32,18 @@
     flex-wrap: wrap;
 }
 .friendsItem {
-    padding: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
+    padding: 5px;
 }
 .friendsName {
     color: white;
     text-align: center;
     word-break: break-word;
     width: 100px;
+    /*padding-bottom: 3px;*/
 }
 .friendsAvatar {
     text-align: center;
