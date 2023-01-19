@@ -15,13 +15,15 @@ export const NavbarFriends = () => {
     const currentPage = useAppSelector(selectedCurrentPage)
     const pageSize = useAppSelector(selectedPageSize)
 
+    const userFriends = users.filter (u => u.followed ? u : '')
+
     useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: true}))
     }, [])
 
     return (
         <div className={styles.friendsWrapper}>
-            {users.map(friend => {
+            {userFriends.map(friend => {
                 return (
                     <div className={styles.friendsItem} key={friend.id}>
                         <div className={styles.friendsName}>{friend.name}</div>
