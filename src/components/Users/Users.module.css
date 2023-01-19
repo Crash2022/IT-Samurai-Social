@@ -70,6 +70,9 @@
 .users_rightSide_status {
     font-size: 16px;
     font-style: italic;
+    /*width: 370px;*/
+    word-break: break-word;
+    text-align: center;
 }
 
 
