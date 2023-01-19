@@ -47,7 +47,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
 
         return (
             <div className={styles.searchMain}>
-                <div>
+                <div className={styles.searchInputMain}>
                     <input
                         value={searchValue}
                         onChange={setSearchValue}
@@ -67,7 +67,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                     <select onChange={onChangeCallback}>
                         <option value={'null'}>Все</option>
                         <option value={'true'}>Друзья</option>
-                        <option value={'false'}>Недруги</option>
+                        <option value={'false'}>Незнакомые</option>
                     </select>
                     {/*<SuperSelect options={valueArray}
                              value={value}
