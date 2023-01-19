@@ -5,6 +5,7 @@ import {useAppSelector} from "../../common/hooks/useAppSelector";
 import {getUsersTC} from "../../redux/users-reducer";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 import {selectedCurrentPage, selectedPageSize, selectedUsers} from "../../redux/users-selectors";
+import {NavLink} from "react-router-dom";
 
 export const NavbarFriends = () => {
 
@@ -24,11 +25,12 @@ export const NavbarFriends = () => {
                 return (
                     <div className={styles.friendsItem} key={friend.id}>
                         <div className={styles.friendsName}>{friend.name}</div>
-                        <div className={styles.friendsAvatar}>
-                            <img src={friend.photos.small ? friend.photos.small : userAvatar} alt="avatar"/>
-                        </div>
+                        <NavLink to={'/profile/' + friend.id}>
+                            <div className={styles.friendsAvatar}>
+                                <img src={friend.photos.small ? friend.photos.small : userAvatar} alt="avatar"/>
+                            </div>
+                        </NavLink>
                     </div>
-
                 )
             })}
         </div>
