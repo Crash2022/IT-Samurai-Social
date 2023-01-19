@@ -7,11 +7,11 @@ import {UsersSearchFilterType} from '../../../redux/users-reducer';
 
 type SearchPropsType = {
     searchValue: string
+    filterIsFriend: null | boolean
     setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
+    setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
     clearInput: () => void
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
-    setUserFilter: (filter: UsersSearchFilterType) => void
-    filterIsFriend: null | boolean
 }
 
 // type SearchSelectType = {
@@ -20,7 +20,7 @@ type SearchPropsType = {
 // }
 
 export const Search: React.FC<SearchPropsType> = React.memo(
-    ({searchValue, setSearchValue, clearInput, findFilteredUserHandler, setUserFilter, filterIsFriend}) => {
+    ({searchValue, filterIsFriend, setSearchValue, setSearchSelect, clearInput, findFilteredUserHandler}) => {
 
         // const convertStringToBoolean = (values: SearchSelectType) => {
         //     const friendFilter: UsersSearchFilterType = {
@@ -30,19 +30,8 @@ export const Search: React.FC<SearchPropsType> = React.memo(
         //     return friendFilter.friend;
         // }
 
-        const buttonOnClickHandler = (/*e: ChangeEvent<HTMLSelectElement>, values: SearchSelectType*/) => {
-            // const friendFilter: UsersSearchFilterType = {
-            //     term: searchValue,
-            //     friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
-            // }
-
+        const buttonOnClickHandler = () => {
             findFilteredUserHandler({term: searchValue, friend: filterIsFriend});
-        }
-
-        const onChangeCallback = (e: ChangeEvent<HTMLSelectElement>) => {
-            // @ts-ignore
-            setUserFilter({term: searchValue, friend: e.currentTarget.value})
-            console.log(searchValue, e.currentTarget.value)
         }
 
         return (
@@ -64,17 +53,17 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                 />*/}
                 </div>
                 <div className={styles.searchSelect}>
-                    <select onChange={onChangeCallback}>
-                        <option value={'null'}>Все</option>
+                    <select onChange={setSearchSelect}>
+                        <option value={'null'}>Все джедаи</option>
                         <option value={'true'}>Друзья</option>
                         <option value={'false'}>Незнакомые</option>
                     </select>
                     {/*<SuperSelect options={valueArray}
                              value={value}
                              onChangeOption={onChangeOption}
-                >
+                    >
 
-                </SuperSelect>*/}
+                    </SuperSelect>*/}
                 </div>
                 <div>
                     <SuperButton onClick={buttonOnClickHandler} className={styles.findButton}>

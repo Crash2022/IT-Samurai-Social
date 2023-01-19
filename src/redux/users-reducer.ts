@@ -46,7 +46,6 @@ export const usersReducer = (state: UsersPropsType = initialState, action: Users
             };
         case 'SET_FILTER':
             return {...state, filter: action.payload };
-            // return {...state, filter: {...state.filter, term: action.term} };
         case 'SET_USERS':
             return {...state, users: action.users};
         case 'SET_CURRENT_PAGE':

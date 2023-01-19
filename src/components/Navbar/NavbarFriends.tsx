@@ -1,6 +1,5 @@
 import React from "react";
 import styles from './Navbar.module.css';
-import {useSelector} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
 import {UsersArray} from "../../redux/users-reducer";
 import userAvatar from "../../common/assets/images/avatars/user_avatar.jpg";

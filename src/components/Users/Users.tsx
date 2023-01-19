@@ -15,16 +15,16 @@ export type UsersPropsType = {
     deleteFollow: (userId: string) => void
     postFollow: (userId: string) => void
     filterValue: string
+    filterIsFriend: null | boolean
     setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
+    setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
     clearInput: () => void
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
-    setUserFilter: (filter: UsersSearchFilterType) => void
-    filterIsFriend: null | boolean
 }
 
 // const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
 
-export const Users = (props: UsersPropsType) => {
+export const Users = React.memo((props: UsersPropsType) => {
 
     // с использованием хуков
     /*const dispatch = useAppDispatch()
@@ -51,11 +51,11 @@ export const Users = (props: UsersPropsType) => {
         <>
             <Search
                 searchValue={props.filterValue}
+                filterIsFriend={props.filterIsFriend}
                 setSearchValue={props.setSearchValue}
+                setSearchSelect={props.setSearchSelect}
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
-                setUserFilter={props.setUserFilter}
-                filterIsFriend={props.filterIsFriend}
             />
             <Paginator
                 pageSize={props.pageSize}
@@ -85,4 +85,4 @@ export const Users = (props: UsersPropsType) => {
             </div>
         </>
     );
-}
+})

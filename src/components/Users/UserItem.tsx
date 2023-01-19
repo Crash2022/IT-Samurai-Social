@@ -58,7 +58,7 @@ export const UserItem = (props: UserItemPropsType) => {
                             </div>
                         </div>
                         <div className={styles.users_rightSide_status}>
-                            {props.user.status !== null ? props.user.status : 'Here will be your status speech: user.status'}
+                            {props.user.status !== null ? props.user.status : 'Here will be your status text: user.status'}
                         </div>
                     </div>
                 </div>

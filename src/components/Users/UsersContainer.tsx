@@ -75,7 +75,12 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
     }
 
     onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        this.props.setUserFilter({term: e.currentTarget.value, friend: null});
+        this.props.setUserFilter({term: e.currentTarget.value, friend: this.props.filter.friend});
+        console.log('text ', e.currentTarget.value);
+    }
+    onChangeSearchSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
+        this.props.setUserFilter({term: this.props.filter.term,
+            friend: e.currentTarget.value === 'null' ? null : e.currentTarget.value === 'true' ? true : false});
     }
 
     clearInput = () => {
@@ -106,11 +111,11 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  deleteFollow={this.props.deleteFollow}
                                  postFollow={this.props.postFollow}
                                  filterValue={this.props.filter.term}
+                                 filterIsFriend={this.props.filter.friend}
                                  setSearchValue={this.onChangeSearchInputValue}
+                                 setSearchSelect={this.onChangeSearchSelectValue}
                                  clearInput={this.clearInput}
                                  findFilteredUserHandler={this.findFilteredUserHandler}
-                                 setUserFilter={this.props.setUserFilter}
-                                 filterIsFriend={this.props.filter.friend}
                         />
                 }
             </>
