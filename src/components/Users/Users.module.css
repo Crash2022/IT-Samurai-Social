@@ -52,7 +52,7 @@
     border-radius: 10px;
     margin: 10px;
     padding: 20px;
-    width: 700px;
+    width: 600px;
 }
 .users_rightSide_info {
     display: flex;
@@ -87,7 +87,6 @@
 .pagination span:hover {
     background-color: green;
     color: white;
-    /*opacity: 0.7;*/
     cursor: pointer;
 }
 .selectedPage {
@@ -100,7 +99,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    font-width: bold;
+    font-weight: bold;
     font-size: 20px;
     color: green;
 }
