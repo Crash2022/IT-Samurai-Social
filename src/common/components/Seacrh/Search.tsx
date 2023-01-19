@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import styles from './Search.module.css'
 import {SuperButton} from '../../UI/Button/SuperButton';
 import {DebounceInput} from 'react-debounce-input';

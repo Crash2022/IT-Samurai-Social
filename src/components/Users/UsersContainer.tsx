@@ -50,8 +50,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsUsersType => {
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
         filter: filterUserSelector(state),
-        // filterName: filterUserNameSelector(state),
-        // filterIsFriend: filterIsUserFriendSelector(state)
     }
 }
 
