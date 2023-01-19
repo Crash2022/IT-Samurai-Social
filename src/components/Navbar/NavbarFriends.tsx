@@ -1,53 +1,36 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './Navbar.module.css';
-import {RootStateType} from "../../redux/redux-store";
-import {UsersArray} from "../../redux/users-reducer";
 import userAvatar from "../../common/assets/images/avatars/user_avatar.jpg";
-import {SidebarFriendsType} from "../../redux/sidebar-reducer";
 import {useAppSelector} from "../../common/hooks/useAppSelector";
+import {getUsersTC} from "../../redux/users-reducer";
+import {useAppDispatch} from "../../common/hooks/useAppDispatch";
+import {selectedCurrentPage, selectedPageSize, selectedUsers} from "../../redux/users-selectors";
 
-type NavbarFriendsPropsType = {
-    friendsData: Array<SidebarFriendsType>
-    // followedUsers: Array<UsersArray>
-}
+export const NavbarFriends = () => {
 
-const selectedUsers = (state: RootStateType) => state.usersPage.users
-
-export const NavbarFriends: React.FC<NavbarFriendsPropsType> = ({friendsData}) => {
+    const dispatch = useAppDispatch()
 
     const users = useAppSelector(selectedUsers)
-    const filteredFollowedUsers = users.filter(u => u.followed ? u : '')
+    const currentPage = useAppSelector(selectedCurrentPage)
+    const pageSize = useAppSelector(selectedPageSize)
 
-    if (filteredFollowedUsers.length !== 0) {
-        return (
-            <div className={styles.friendsWrapper}>
-                {filteredFollowedUsers.map(friend => {
-                    return (
-                        <div className={styles.friendsItem} key={friend.id}>
-                            <div className={styles.friendsName}>{friend.name}</div>
-                            <div className={styles.friendsAvatar}>
-                                <img src={friend.photos.small ? friend.photos.small : userAvatar} alt="avatar"/>
-                            </div>
-                        </div>
+    useEffect(() => {
+        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: true}))
+    }, [])
 
-                    )
-                })}
-            </div>
-        )
-    } else {
-        return (
-            <div className={styles.friendsWrapper}>
-                {friendsData.map(friend => {
-                    return (
-                        <div className={styles.friendsItem} key={friend.id}>
-                            <div className={styles.friendsName}>{friend.name}</div>
-                            <div className={styles.friendsAvatar}>
-                                <img src={friend.avatar} alt="avatar"/>
-                            </div>
+    return (
+        <div className={styles.friendsWrapper}>
+            {users.map(friend => {
+                return (
+                    <div className={styles.friendsItem} key={friend.id}>
+                        <div className={styles.friendsName}>{friend.name}</div>
+                        <div className={styles.friendsAvatar}>
+                            <img src={friend.photos.small ? friend.photos.small : userAvatar} alt="avatar"/>
                         </div>
-                    )
-                })}
-            </div>
-        )
-    }
+                    </div>
+
+                )
+            })}
+        </div>
+    )
 }
