@@ -76,7 +76,6 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
     onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         this.props.setUserFilter({term: e.currentTarget.value, friend: this.props.filter.friend});
-        console.log('text ', e.currentTarget.value);
     }
     onChangeSearchSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
         this.props.setUserFilter({term: this.props.filter.term,
