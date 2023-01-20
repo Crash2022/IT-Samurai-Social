@@ -7,6 +7,8 @@ import {UsersSearchFilterType} from "../../../redux/users-reducer";
 type OldFormikSearchPropsType = {
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
     clearInput: () => void
+    filterValue: string
+    filterIsFriend: null | boolean
 }
 
 type SearchFormSelectType = {
@@ -14,9 +16,9 @@ type SearchFormSelectType = {
     friend: 'null' | 'true' | 'false'
 }
 
-export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFilteredUserHandler, clearInput}) => {
+export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
 
-    const submit = (values: SearchFormSelectType, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }) => {
+    const submit = (values: SearchFormSelectType/*, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }*/) => {
 
         const friendFilter: UsersSearchFilterType = {
             term: values.term,
@@ -24,7 +26,7 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
         }
 
         findFilteredUserHandler(friendFilter);
-        setSubmitting(false);
+        // setSubmitting(false);
     }
 
     const clearSearchHandler = () => {

@@ -55,12 +55,14 @@ export const Users = React.memo((props: UsersPropsType) => {
             {/*<OldFormikSearch
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 clearInput={props.clearInput}
+                filterValue={props.filterValue}
+                filterIsFriend={props.filterIsFriend}
             />*/}
-            <FormikSearch
+            {/*<FormikSearch
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 clearInput={props.clearInput}
-            />
-            {/*<Search
+            />*/}
+            <Search
                 searchValue={props.filterValue}
                 filterIsFriend={props.filterIsFriend}
                 setSearchValue={props.setSearchValue}
@@ -68,7 +70,7 @@ export const Users = React.memo((props: UsersPropsType) => {
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 selectStateValue={props.selectStateValue}
-            />*/}
+            />
             <Paginator
                 pageSize={props.pageSize}
                 totalUsersCount={props.totalUsersCount}
