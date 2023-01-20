@@ -7,13 +7,16 @@
 }
 
 .searchInputMain {
-
+    /*background: url('./src/common/assets/images/icons/magnifying-glass.svg');*/
 }
 .searchInput {
     width: 640px;
     height: 35px;
-    padding-left: 10px;
+    padding-left: 35px;
     border: 2px solid green;
+    /*background: transparent url("/src/common/assets/images/icons/magnifying-glass-01.svg") no-repeat 10px center;*/
+    background: transparent url("/src/common/assets/images/icons/magnifying-glass-03.svg") no-repeat 5px center;
+    background-size: 25px;
 }
 
 .searchSelect {

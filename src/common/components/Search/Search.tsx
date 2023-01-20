@@ -26,6 +26,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
             <div className={styles.searchMain}>
                 <div className={styles.searchInputMain}>
                     <input
+                        type='search'
                         value={searchValue}
                         onChange={setSearchValue}
                         className={styles.searchInput}
