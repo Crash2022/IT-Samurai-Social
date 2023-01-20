@@ -11,7 +11,7 @@ export type AuthPropsType = {
     captchaUrl: null | string
 }
 
-let initialState = {
+const initialState = {
     userId: null,
     email: null,
     login: null,

@@ -13,7 +13,7 @@ export type MessagesArray = {
     text: string
 }
 
-let initialState = {
+const initialState = {
     dialogsData: [
         {id: v1(), name: 'Neil Tunicliff'},
         {id: v1(), name: 'Craig Lee Scott'},

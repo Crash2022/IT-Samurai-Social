@@ -30,8 +30,6 @@ type MapStateToPropsUsersType = {
     followingInProgress: Array<string>
     isAuth: boolean
     filter: UsersSearchFilterType
-    // filterName: string
-    // filterIsFriend: null | boolean
 }
 type MapDispatchToPropsUsersType = {
     getUsers: (currentPage: number, pageSize: number, filter: UsersSearchFilterType) => void

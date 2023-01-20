@@ -5,7 +5,7 @@ export type AppPropsType = {
     initialized: boolean
 }
 
-let initialState = {
+const initialState = {
     initialized: false
 };
 

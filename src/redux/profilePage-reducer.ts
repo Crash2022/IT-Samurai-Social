@@ -1,10 +1,11 @@
 import {v1} from "uuid";
-import {CombinedState, Dispatch} from "redux";
+import {CombinedState} from "redux";
 import {profileAPI} from "../common/api/api";
-import {ThunkAction, ThunkDispatch} from "redux-thunk";
+import {ThunkDispatch} from "redux-thunk";
 import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
 import {AppThunkType, RootStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
+import postAvatar from './../common/assets/images/avatars/post_avatar.jpg'
 
 //иная запись типа null | другой тип
 //export type Nullable<T> = null | T
@@ -47,11 +48,11 @@ export type ProfileType = {
     }
 }
 
-let initialState = {
+const initialState = {
     myPosts: [
         {
             id: v1(),
-            avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
+            avatar: postAvatar,
             nickname: 'Crash555',
             postMessage: 'Hello to all MTB Community',
             likes: 15,
@@ -59,7 +60,7 @@ let initialState = {
         },
         {
             id: v1(),
-            avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
+            avatar: postAvatar,
             nickname: 'Crash555',
             postMessage: 'Hello to all Codewars',
             likes: 10,
@@ -67,17 +68,9 @@ let initialState = {
         },
         {
             id: v1(),
-            avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
+            avatar: postAvatar,
             nickname: 'Crash555',
-            postMessage: 'Hello to all FreeCodeCamp',
-            likes: 105,
-            dislikes: 10
-        },
-        {
-            id: v1(),
-            avatar: 'https://i.pinimg.com/736x/c2/6f/23/c26f23951566f65eb495497ccc208fc2--mountain-bike-dark-moon.jpg',
-            nickname: 'Crash555',
-            postMessage: 'Hello to all Incubators',
+            postMessage: 'Hello to all IT-Incubators family',
             likes: 105,
             dislikes: 10
         }
