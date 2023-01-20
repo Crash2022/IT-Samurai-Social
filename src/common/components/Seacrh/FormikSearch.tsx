@@ -2,54 +2,51 @@ import React from 'react';
 import {useFormik} from 'formik';
 import styles from './Search.module.css'
 import {SuperButton} from "../../UI/Button/SuperButton";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {setFilterAC, UsersSearchFilterType} from "../../../redux/users-reducer";
+import {UsersSearchFilterType} from "../../../redux/users-reducer";
 
-export const FormikSearch = () => {
+type FormikSearchPropsType = {
+    findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    selectStateValue: string
+    clearInput: () => void
+}
 
-    const dispatch = useAppDispatch();
+export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserHandler, selectStateValue, clearInput}) => {
 
     const formik = useFormik({
         initialValues: {
             term: '',
-            friend: false
+            friend: null
         },
-        onSubmit: (values: UsersSearchFilterType) => {
-            // debugger
-            // alert(JSON.stringify(values));
-
-            // if (values.friend === null) {
-            //     return 'null'
-            // } else if (values.friend === true) {
-            //     return 'true'
-            // } else {
-            //     return 'false'
-            // }
-
-            // values.friend === 'null' ? null : values.friend === 'true' ? true : false
-
-            dispatch(setFilterAC(values))
+        onSubmit: (values) => {
+            console.log(values)
+            findFilteredUserHandler(values)
         }
     })
 
     const clearSearchHandler = () => {
-        // debugger
-        dispatch(setFilterAC({term: '', friend: null}))
+        clearInput();
     }
 
     return (
         <form onSubmit={formik.handleSubmit} className={styles.searchMain}>
             <div className={styles.searchInputMain}>
                 <input
-                    type='search'
+                    type='text'
+                    name='term'
                     className={styles.searchInput}
                     placeholder={'Поиск джедаев'}
-                    {...formik.getFieldProps('term')}
+                    onChange={formik.handleChange}
+                    // value={formik.values.term}
+                    /*{...formik.getFieldProps('term')}*/
                 />
             </div>
             <div className={styles.searchSelect}>
                 <select
-                    {...formik.getFieldProps('friend')}
+                    name='friend'
+                    onChange={formik.handleChange}
+                    // value={formik.values.friend === null ? 'null' : formik.values.friend === true ? 'true' : 'false'}
+                    // defaultValue={selectStateValue}
+                    /*{...formik.getFieldProps('friend')}*/
                 >
                     <option value={'null'}>Все джедаи</option>
                     <option value={'true'}>Друзья</option>
