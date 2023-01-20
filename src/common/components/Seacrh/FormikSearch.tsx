@@ -6,11 +6,10 @@ import {UsersSearchFilterType} from "../../../redux/users-reducer";
 
 type FormikSearchPropsType = {
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
-    selectStateValue: string
     clearInput: () => void
 }
 
-export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserHandler, selectStateValue, clearInput}) => {
+export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserHandler, clearInput}) => {
 
     const formik = useFormik({
         initialValues: {
@@ -28,25 +27,22 @@ export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserH
     }
 
     return (
-        <form onSubmit={formik.handleSubmit} className={styles.searchMain}>
+        <form onSubmit={ formik.handleSubmit} className={styles.searchMain}>
             <div className={styles.searchInputMain}>
                 <input
                     type='text'
-                    name='term'
                     className={styles.searchInput}
                     placeholder={'Поиск джедаев'}
-                    onChange={formik.handleChange}
+                    // name='term'
+                    // onChange={formik.handleChange}
                     // value={formik.values.term}
-                    /*{...formik.getFieldProps('term')}*/
+                    {...formik.getFieldProps('term')}
                 />
             </div>
             <div className={styles.searchSelect}>
                 <select
                     name='friend'
                     onChange={formik.handleChange}
-                    // value={formik.values.friend === null ? 'null' : formik.values.friend === true ? 'true' : 'false'}
-                    // defaultValue={selectStateValue}
-                    /*{...formik.getFieldProps('friend')}*/
                 >
                     <option value={'null'}>Все джедаи</option>
                     <option value={'true'}>Друзья</option>
