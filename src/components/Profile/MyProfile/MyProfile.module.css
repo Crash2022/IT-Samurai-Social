@@ -18,14 +18,15 @@
 .content__info {
     grid-area: content__info;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     margin-bottom: 20px;
     margin-top: 50px;
+    /*padding: 0 100px;*/
 }
 
 .content__info_avatar {
-    padding-left: 150px;
+    padding-left: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,6 +80,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 50px;
+    width: 400px;
 }
 
 .content__info_info > div {
@@ -99,7 +101,7 @@
     font-size: 18px;
     max-height: 1px; /*чтобы не "прыгала" строчка при редактировании*/
     word-break: break-word;
-    max-width: 450px;
+    max-width: 400px;
     /*height: 100%;*/
 }
 
