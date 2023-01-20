@@ -37,12 +37,14 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
                 initialValues={{term: '', friend: 'null'}}
                 onSubmit={submit}
             >
-                {({isSubmitting}) => (
+                {({values, handleChange, isSubmitting}) => (
                     <Form className={styles.searchMain}>
                         <div className={styles.searchInputMain}>
                             <Field
                                 type='text'
                                 name='term'
+                                value={values.term}
+                                onChange={handleChange}
                                 className={styles.searchInput}
                                 placeholder={'Поиск джедаев'}
                             />

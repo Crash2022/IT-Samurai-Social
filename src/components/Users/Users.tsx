@@ -52,14 +52,14 @@ export const Users = React.memo((props: UsersPropsType) => {
 
     return (
         <>
-            <OldFormikSearch
-                findFilteredUserHandler={props.findFilteredUserHandler}
-                clearInput={props.clearInput}
-            />
-            {/*<FormikSearch
+            {/*<OldFormikSearch
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 clearInput={props.clearInput}
             />*/}
+            <FormikSearch
+                findFilteredUserHandler={props.findFilteredUserHandler}
+                clearInput={props.clearInput}
+            />
             {/*<Search
                 searchValue={props.filterValue}
                 filterIsFriend={props.filterIsFriend}

@@ -6,7 +6,6 @@ import avatarPhoto from "../../../common/assets/images/avatars/avatar_photo.jpg"
 import {ProfileType} from "../../../redux/profilePage-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileData} from "./ProfileData";
-import {Contacts} from "./Contacts";
 import {reduxForm} from "redux-form";
 import {ProfileDataForm, ProfileDataFormPropsType} from "./ProfileDataForm";
 

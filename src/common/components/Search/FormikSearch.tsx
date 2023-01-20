@@ -19,7 +19,8 @@ export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserH
         onSubmit: (values) => {
             console.log(values)
             findFilteredUserHandler(values)
-        }
+        },
+        // enableReinitialize: true
     })
 
     const clearSearchHandler = () => {
