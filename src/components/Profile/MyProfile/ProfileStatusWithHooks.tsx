@@ -6,6 +6,7 @@ export type ProfileStatusPropsType = {
     userId: string
     status: string
     updateUserStatus: (userId: string, status: string) => void
+    isOwner: boolean
 }
 
 // const maxLengthCreator20 = maxLengthCreator(20);
@@ -36,14 +37,15 @@ export const ProfileStatusWithHooks = (props: ProfileStatusPropsType) => {
     return (
         <div className={styles.content__status_text}>
             {
-                editMode
+                props.isOwner && editMode
                     ?
-                    <div>
-                        <input type="text"
+                    <div className={styles.changeStatusBlock}>
+                        <input type='text'
                                value={status}
                                onChange={onStatusChange}
                                onBlur={deactivateEditModeHandler}
                                autoFocus={true}
+                               className={styles.changeStatusInput}
                                // validate={[maxLengthCreator20]}
                         />
                     </div>

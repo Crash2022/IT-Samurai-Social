@@ -20,6 +20,7 @@
 }
 .sendMessageArea textarea {
     border: 2px solid green;
+    padding: 5px;
 }
 .sendButton {
     display: flex;

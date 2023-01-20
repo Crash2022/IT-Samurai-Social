@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 import styles from './MyProfile.module.css';
-import {Preloader} from "../../../common/UI/Preloader/Preloader";
-import userAvatar from "../../../common/assets/images/avatars/user_avatar.jpg";
-import avatarPhoto from "../../../common/assets/images/avatars/avatar_photo.jpg";
-import {ProfileType} from "../../../redux/profilePage-reducer";
-import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
-import {ProfileData} from "./ProfileData";
-import {reduxForm} from "redux-form";
-import {ProfileDataForm, ProfileDataFormPropsType} from "./ProfileDataForm";
+import {Preloader} from '../../../common/UI/Preloader/Preloader';
+import userAvatar from '../../../common/assets/images/avatars/user_avatar.jpg';
+import avatarPhoto from '../../../common/assets/images/avatars/avatar_photo.jpg';
+import {ProfileType} from '../../../redux/profilePage-reducer';
+import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
+import {ProfileData} from './ProfileData';
+import {reduxForm} from 'redux-form';
+import {ProfileDataForm, ProfileDataFormPropsType} from './ProfileDataForm';
 
 type MyProfilePropsType = {
     profile: null | ProfileType
@@ -33,8 +33,8 @@ export const MyProfile = (props: MyProfilePropsType) => {
         //setEditMode(true);
     }
 
-    const onSubmit =  (formData: ProfileDataFormPropsType) => {
-         props.updateUserProfile(formData).then(() => {
+    const onSubmit = (formData: ProfileDataFormPropsType) => {
+        props.updateUserProfile(formData).then(() => {
             //setEditMode(false);
             changeEditMode();
         })
@@ -79,33 +79,44 @@ export const MyProfile = (props: MyProfilePropsType) => {
                                 // можно написать так через псевдо истину-псевдо ложь
                                 // src={props.profile.photos.small || userAvatar}
                                 src={props.profile.photos.small !== null ? props.profile.photos.small : userAvatar}
-                                alt="my-avatar">
+                                alt='my-avatar'>
                             </img>
                         </div>
-                        <div className={styles.content__info_avatarUpload}>
-                            {props.isOwner ? <input type="file" onChange={onAvatarSelected}/> : ''}
-                        </div>
+                        <label className={styles.content__info_avatarUpload}>
+                            {
+                                props.isOwner
+                                    ?
+                                    <>
+                                        <input type='file' onChange={onAvatarSelected}
+                                               className={styles.content__info_avatarUploadInput}
+                                        />
+                                        <span>Выберите файл</span>
+                                    </>
+                                    : ''
+                            }
+                        </label>
                     </div>
 
                     <div className={styles.content__info_info}>
 
                         {
                             editMode
-                            ?
+                                ?
                                 <ProfileDataReduxForm initialValues={{...props.profile}}
                                                       onSubmit={onSubmit}
                                 />
-                            :
+                                :
                                 <ProfileData profile={props.profile}
                                              isOwner={props.isOwner}
                                              changeEditMode={changeEditMode}
-                                             //showProfileContacts={showProfileContacts}
+                                    //showProfileContacts={showProfileContacts}
                                 />
                         }
 
                         <ProfileStatusWithHooks userId={props.profile.userId}
                                                 status={props.status}
                                                 updateUserStatus={props.updateUserStatus}
+                                                isOwner={props.isOwner}
                         />
 
                     </div>
