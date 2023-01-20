@@ -3,8 +3,9 @@ import styles from "./Users.module.css";
 import {UsersArray, UsersSearchFilterType} from '../../redux/users-reducer';
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
-import {Search} from "../../common/components/Seacrh/Search";
-import {FormikSearch} from "../../common/components/Seacrh/FormikSearch";
+import {Search} from "../../common/components/Search/Search";
+import {FormikSearch} from "../../common/components/Search/FormikSearch";
+import {OldFormikSearch} from "../../common/components/Search/OldFormikSearch";
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -51,10 +52,14 @@ export const Users = React.memo((props: UsersPropsType) => {
 
     return (
         <>
-            <FormikSearch
+            <OldFormikSearch
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 clearInput={props.clearInput}
             />
+            {/*<FormikSearch
+                findFilteredUserHandler={props.findFilteredUserHandler}
+                clearInput={props.clearInput}
+            />*/}
             {/*<Search
                 searchValue={props.filterValue}
                 filterIsFriend={props.filterIsFriend}

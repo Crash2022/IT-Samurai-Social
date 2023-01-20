@@ -33,9 +33,6 @@ export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserH
                     type='text'
                     className={styles.searchInput}
                     placeholder={'Поиск джедаев'}
-                    // name='term'
-                    // onChange={formik.handleChange}
-                    // value={formik.values.term}
                     {...formik.getFieldProps('term')}
                 />
             </div>

@@ -14,22 +14,9 @@ type SearchPropsType = {
     selectStateValue: string
 }
 
-// type SearchSelectType = {
-//     term: string
-//     friend: 'null' | 'true' | 'false'
-// }
-
 export const Search: React.FC<SearchPropsType> = React.memo(
     ({searchValue, filterIsFriend, setSearchValue, setSearchSelect,
          clearInput, findFilteredUserHandler, selectStateValue}) => {
-
-        // const convertStringToBoolean = (values: SearchSelectType) => {
-        //     const friendFilter: UsersSearchFilterType = {
-        //         term: searchValue,
-        //         friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
-        //     }
-        //     return friendFilter.friend;
-        // }
 
         const buttonOnClickHandler = () => {
             findFilteredUserHandler({term: searchValue, friend: filterIsFriend});
