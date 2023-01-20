@@ -37,7 +37,7 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
                 initialValues={{term: '', friend: 'null'}}
                 onSubmit={submit}
             >
-                {({handleChange, isSubmitting}) => (
+                {({isSubmitting}) => (
                     <Form className={styles.searchMain}>
                         <div className={styles.searchInputMain}>
                             <Field
@@ -48,7 +48,7 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
                             />
                         </div>
                         <div className={styles.searchSelect}>
-                            <Field name='friend' as='select' onChange={handleChange}>
+                            <Field name='friend' as='select'>
                                 <option value={'null'}>Все джедаи</option>
                                 <option value={'true'}>Друзья</option>
                                 <option value={'false'}>Незнакомые</option>
