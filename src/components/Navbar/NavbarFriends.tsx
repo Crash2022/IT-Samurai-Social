@@ -17,9 +17,9 @@ export const NavbarFriends = () => {
 
     const userFriends = users.filter (u => u.followed ? u : '')
 
-    useEffect(() => {
-        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: true}))
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: true}, false))
+    // }, [])
 
     return (
         <div className={styles.friendsWrapper}>

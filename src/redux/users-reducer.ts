@@ -102,7 +102,7 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
 
 /*-------------------------THUNK-------------------------*/
 
-export const getUsersTC = (currentPage: number, pageSize: number, filterPayload: UsersSearchFilterType): AppThunkType => {
+export const getUsersTC = (currentPage: number, pageSize: number, filterPayload: UsersSearchFilterType, needSetFilter:boolean=true): AppThunkType => {
 
     return (dispatch) => {
         dispatch(toggleIsLoadingAC(true));
@@ -111,7 +111,7 @@ export const getUsersTC = (currentPage: number, pageSize: number, filterPayload:
         .then(data => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));
-            dispatch(setFilterAC(filterPayload));
+            needSetFilter && dispatch(setFilterAC(filterPayload));
             dispatch(setCurrentPageAC(currentPage));
             dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
         })

@@ -34,9 +34,9 @@ type UsersPropsType = {
     selectStateValue: string*/
 }
 
-export const Users = (/*props: UsersPropsType*/) => {
+export const Users = React.memo((props: UsersPropsType) => {
+    // debugger
 
-    // с использованием хуков
     const dispatch = useAppDispatch()
 
     const isLoading = useAppSelector(selectedUsersIsLoading)
@@ -48,7 +48,7 @@ export const Users = (/*props: UsersPropsType*/) => {
     const filter = useAppSelector(selectedFilter)
 
     // стейт для текущего значения селекта
-    const [selectStateValue, setSelectStateValue] = useState<any>(filter.friend)
+    const [selectStateValue, setSelectStateValue] = useState<any>('null')
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter))
@@ -75,7 +75,7 @@ export const Users = (/*props: UsersPropsType*/) => {
     }
 
     useEffect(() => {
-        dispatch(getUsersTC(currentPage, pageSize, filter))
+        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}))
     }, [])
 
     if(isLoading) {
@@ -85,8 +85,6 @@ export const Users = (/*props: UsersPropsType*/) => {
             </div>
         )
     }
-
-    console.log(filter)
 
     return (
         <>
@@ -159,4 +157,4 @@ export const Users = (/*props: UsersPropsType*/) => {
             </div>
         </>
     );
-}
+})

@@ -23,7 +23,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
         }
 
         console.log(selectStateValue)
-        console.log('filterIsFriend', filterIsFriend)
+        console.log('search filterIsFriend', filterIsFriend)
 
         return (
             <div className={styles.searchMain}>
