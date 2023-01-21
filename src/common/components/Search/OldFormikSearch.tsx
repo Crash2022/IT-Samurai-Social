@@ -43,7 +43,7 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
                     <Form className={styles.searchMain}>
                         <div className={styles.searchInputMain}>
                             <Field
-                                type='text'
+                                type='search'
                                 name='term'
                                 value={values.term}
                                 onChange={handleChange}

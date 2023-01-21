@@ -104,7 +104,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                         ? <div className={classes.usersWrapper}>
                             <Preloader />
                         </div>
-                        : <Users users={this.props.users}
+                        : <Users /*users={this.props.users}
                                  pageSize={this.props.pageSize}
                                  totalUsersCount={this.props.totalUsersCount}
                                  currentPage={this.props.currentPage}
@@ -118,7 +118,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
                                  setSearchSelect={this.onChangeSearchSelectValue}
                                  clearInput={this.clearInput}
                                  findFilteredUserHandler={this.findFilteredUserHandler}
-                                 selectStateValue={this.state.selectValue}
+                                 selectStateValue={this.state.selectValue}*/
                         />
                 }
             </>

@@ -80,7 +80,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 50px;
-    width: 400px;
+    width: 410px;
 }
 
 .content__info_info > div {
@@ -101,7 +101,7 @@
     font-size: 18px;
     max-height: 1px; /*чтобы не "прыгала" строчка при редактировании*/
     word-break: break-word;
-    max-width: 400px;
+    max-width: 410px;
     /*height: 100%;*/
 }
 

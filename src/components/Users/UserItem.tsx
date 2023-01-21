@@ -2,23 +2,28 @@ import React from "react";
 import styles from "./Users.module.css";
 import userAvatar from "../../common/assets/images/avatars/user_avatar.jpg";
 import {NavLink} from "react-router-dom";
-import {UsersArray} from "../../redux/users-reducer";
+import {deleteFollowTC, postFollowTC, UsersArray} from "../../redux/users-reducer";
+import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 
 export type UserItemPropsType = {
     user: UsersArray
     followingInProgress: Array<string>
-    deleteFollow: (userId: string) => void
-    postFollow: (userId: string) => void
+    // deleteFollow: (userId: string) => void
+    // postFollow: (userId: string) => void
 }
 
 export const UserItem = (props: UserItemPropsType) => {
 
+    const dispatch = useAppDispatch()
+
     const deleteFollowHandler = (userId: string) => {
-        props.deleteFollow(userId);
+        // props.deleteFollow(userId);
+        dispatch(deleteFollowTC(userId));
     }
 
     const postFollowHandler = (userId: string) => {
-        props.postFollow(userId);
+        // props.postFollow(userId);
+        dispatch(postFollowTC(userId));
     }
 
     return (

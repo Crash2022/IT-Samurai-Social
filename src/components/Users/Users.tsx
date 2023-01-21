@@ -1,54 +1,78 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import styles from "./Users.module.css";
-import {UsersArray, UsersSearchFilterType} from '../../redux/users-reducer';
+import {getUsersTC, setFilterAC, UsersArray, UsersSearchFilterType} from '../../redux/users-reducer';
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 import {Search} from "../../common/components/Search/Search";
 import {FormikSearch} from "../../common/components/Search/FormikSearch";
 import {OldFormikSearch} from "../../common/components/Search/OldFormikSearch";
+import {useAppDispatch} from "../../common/hooks/useAppDispatch";
+import {useAppSelector} from "../../common/hooks/useAppSelector";
+import {RootStateType} from "../../redux/redux-store";
+import {
+    selectedCurrentPage, selectedFilter, selectedFollowingInProgress,
+    selectedPageSize, selectedTotalUsersCount, selectedUsers
+} from "../../redux/users-selectors";
 
-export type UsersPropsType = {
-    users: Array<UsersArray>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    onChangePageHandler: (pageNumber: number) => void
-    followingInProgress: Array<string>
-    deleteFollow: (userId: string) => void
-    postFollow: (userId: string) => void
-    filterValue: string
-    filterIsFriend: null | boolean
-    setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
-    setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
-    clearInput: () => void
-    findFilteredUserHandler: (filter: UsersSearchFilterType) => void
-    selectStateValue: string
+type UsersPropsType = {
+    // users: Array<UsersArray>
+    // pageSize: number
+    // totalUsersCount: number
+    // currentPage: number
+    // onChangePageHandler: (pageNumber: number) => void
+    // followingInProgress: Array<string>
+    // deleteFollow: (userId: string) => void
+    // postFollow: (userId: string) => void
+    // filterValue: string
+    // filterIsFriend: null | boolean
+    // setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
+    // setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
+    // clearInput: () => void
+    // findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    // selectStateValue: string
 }
 
-// const selectedFilterValue = ((state: RootStateType) => state.usersPage.filter.term)
-
-export const Users = React.memo((props: UsersPropsType) => {
+export const Users = React.memo(() => {
 
     // с использованием хуков
-    /*const dispatch = useAppDispatch()
-    const filterValue = useAppSelector(selectedFilterValue)
-    // const [searchValue, setSearchValue] = useState<string>('')
-    const debouncedSearchValue = useDebounce<string>(filterValue, 1000)
+    const dispatch = useAppDispatch()
 
-    let filteredUsers = props.users.filter((user: UsersArray) =>
-        user.name.toLowerCase().includes(searchValue.toLowerCase()))
+    const users = useAppSelector(selectedUsers)
+    const currentPage = useAppSelector(selectedCurrentPage)
+    const pageSize = useAppSelector(selectedPageSize)
+    const totalUsersCount = useAppSelector(selectedTotalUsersCount)
+    const followingInProgress = useAppSelector(selectedFollowingInProgress)
+    const filter = useAppSelector(selectedFilter)
+
+    // стейт для текущего значения селекта
+    const [selectStateValue, setSelectStateValue] = useState<string>('null')
+
+    const onChangePageHandler = (pageNumber: number) => {
+        dispatch(getUsersTC(pageNumber, pageSize, filter))
+    }
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(setFilterAC(e.currentTarget.value));
+        dispatch(setFilterAC({term: e.currentTarget.value, friend: filter.friend}));
+    }
+
+    const onChangeSearchSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setFilterAC({term: filter.term,
+            friend: e.currentTarget.value === 'null' ? null : e.currentTarget.value === 'true'}));
+        setSelectStateValue(e.currentTarget.value);
     }
 
     const clearInput = () => {
-        dispatch(setFilterAC(''));
+        dispatch(setFilterAC({term: '', friend: null}));
+        dispatch(getUsersTC(1, pageSize, {term: '', friend: null}))
+    }
+
+    const findFilteredUserHandler = (filter: UsersSearchFilterType) => {
+        dispatch(getUsersTC(currentPage, pageSize, {term: filter.term, friend: filter.friend}));
     }
 
     useEffect(() => {
-        dispatch(getUsersTC(props.currentPage, props.pageSize, debouncedSearchValue))
-    }, [debouncedSearchValue])*/
+        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}))
+    }, [])
 
     return (
         <>
@@ -62,7 +86,17 @@ export const Users = React.memo((props: UsersPropsType) => {
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 clearInput={props.clearInput}
             />*/}
+
             <Search
+                searchValue={filter.term}
+                filterIsFriend={filter.friend}
+                setSearchValue={onChangeSearchInputValue}
+                setSearchSelect={onChangeSearchSelectValue}
+                clearInput={clearInput}
+                findFilteredUserHandler={findFilteredUserHandler}
+                selectStateValue={selectStateValue}
+            />
+            {/*<Search
                 searchValue={props.filterValue}
                 filterIsFriend={props.filterIsFriend}
                 setSearchValue={props.setSearchValue}
@@ -70,26 +104,35 @@ export const Users = React.memo((props: UsersPropsType) => {
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 selectStateValue={props.selectStateValue}
-            />
+            />*/}
+
             <Paginator
+                pageSize={pageSize}
+                totalUsersCount={totalUsersCount}
+                currentPage={currentPage}
+                onChangePageHandler={onChangePageHandler}
+                numberOfPagesInBlock={10}
+            />
+            {/*<Paginator
                 pageSize={props.pageSize}
                 totalUsersCount={props.totalUsersCount}
                 currentPage={props.currentPage}
                 onChangePageHandler={props.onChangePageHandler}
                 numberOfPagesInBlock={10}
-            />
+            />*/}
 
             <div className={styles.usersWrapper}>
                 {
-                    props.users.length !== 0
+                    users.length !== 0
                         ?
-                    props.users.map(u => {
+                    users.map(u => {
                         return (
                             <UserItem key={u.id}
                                       user={u}
-                                      followingInProgress={props.followingInProgress}
-                                      deleteFollow={props.deleteFollow}
-                                      postFollow={props.postFollow}
+                                      // followingInProgress={props.followingInProgress}
+                                      followingInProgress={followingInProgress}
+                                      // deleteFollow={props.deleteFollow}
+                                      // postFollow={props.postFollow}
                             />
                         )
                     })

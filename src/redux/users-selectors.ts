@@ -31,6 +31,10 @@ export const filterUserSelector = (state: RootStateType) => {
 export const selectedUsers = (state: RootStateType) => state.usersPage.users
 export const selectedCurrentPage = (state: RootStateType) => state.usersPage.currentPage
 export const selectedPageSize = (state: RootStateType) => state.usersPage.pageSize
+export const selectedTotalUsersCount = (state: RootStateType) => state.usersPage.totalUsersCount
+export const selectedUsersIsLoading = (state: RootStateType) => state.usersPage.isLoading
+export const selectedFollowingInProgress = (state: RootStateType) => state.usersPage.followingInProgress
+export const selectedFilter = ((state: RootStateType) => state.usersPage.filter)
 
 // пример reselect (аналог useMemo)
 // внутри вычисления, принимает обычный селектор и зависимость
