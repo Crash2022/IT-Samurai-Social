@@ -13,6 +13,8 @@ import {selectedCurrentPage, selectedFilter, selectedFollowingInProgress, select
     selectedTotalUsersCount, selectedUsers, selectedUsersIsLoading} from "../../redux/users-selectors";
 import classes from "./Users.module.css";
 import {Preloader} from "../../common/UI/Preloader/Preloader";
+import {useHistory} from 'react-router-dom';
+import queryString from 'querystring';
 
 type UsersPropsType = {
     /*users: Array<UsersArray>
@@ -32,9 +34,12 @@ type UsersPropsType = {
     selectStateValue: string*/
 }
 
+// type QueryParamsType = { term?: string, friend?: string, page?: string }
+
 export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const dispatch = useAppDispatch()
+    const history = useHistory()
 
     const isLoading = useAppSelector(selectedUsersIsLoading)
     const users = useAppSelector(selectedUsers)
@@ -72,8 +77,31 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
     }
 
     useEffect(() => {
-        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}))
+        /*const parsed = queryString.parse(history.location.search.substr(1));
+
+        let actualPage = currentPage;
+        let actualFilter = filter;
+
+        if(!!parsed.page) actualPage = Number(parsed.page)
+        if(!!parsed.term) actualFilter = {...actualFilter, term: parsed.term as string}
+        if(!!parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true'}*/
+
+        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
     }, [])
+
+    /*useEffect(() => {
+        const query: QueryParamsType = {}
+
+        if(!!filter.term) query.term = filter.term
+        if(filter.friend !== null) query.friend = String(filter.friend)
+        if(currentPage !== 1) query.page = String(currentPage)
+
+        history.push({
+            pathname: '/users',
+            // search: `?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
+            search: queryString.stringify(query)
+        })
+    }, [filter, currentPage])*/
 
     if(isLoading) {
         return (

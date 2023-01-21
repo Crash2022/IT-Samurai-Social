@@ -13,8 +13,9 @@ type OldFormikSearchPropsType = {
 
 export type SearchFormSelectType = {
     term: string
-    friend: 'null' | 'true' | 'false'
+    friend: FriendFormType
 }
+export type FriendFormType = 'null' | 'true' | 'false'
 
 export const SearchWithFormik: React.FC<OldFormikSearchPropsType> = (
     {findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
@@ -40,6 +41,7 @@ export const SearchWithFormik: React.FC<OldFormikSearchPropsType> = (
             <Formik
                 initialValues={{term: filterValue, friend: filterIsFriend === null ? 'null' : filterIsFriend === true ? 'true' : 'false'}}
                 onSubmit={submit}
+                // enableReinitialize: true // для useHistory чтобы игнорировал initialValues при первой отрисовке
             >
                 {({values, handleChange, isSubmitting}) => (
                     <Form className={styles.searchMain}>
