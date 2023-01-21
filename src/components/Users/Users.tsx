@@ -4,15 +4,13 @@ import {getUsersTC, setFilterAC, UsersArray, UsersSearchFilterType} from '../../
 import {Paginator} from "../../common/UI/Paginator/Paginator";
 import {UserItem} from "./UserItem";
 import {Search} from "../../common/components/Search/Search";
-import {FormikSearch} from "../../common/components/Search/FormikSearch";
-import {OldFormikSearch} from "../../common/components/Search/OldFormikSearch";
+import {SearchWithUseFormik} from "../../common/components/Search/SearchWithUseFormik";
+import {SearchWithFormik} from "../../common/components/Search/SearchWithFormik";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 import {useAppSelector} from "../../common/hooks/useAppSelector";
 import {RootStateType} from "../../redux/redux-store";
-import {
-    selectedCurrentPage, selectedFilter, selectedFollowingInProgress,
-    selectedPageSize, selectedTotalUsersCount, selectedUsers, selectedUsersIsLoading
-} from "../../redux/users-selectors";
+import {selectedCurrentPage, selectedFilter, selectedFollowingInProgress, selectedPageSize,
+    selectedTotalUsersCount, selectedUsers, selectedUsersIsLoading} from "../../redux/users-selectors";
 import classes from "./Users.module.css";
 import {Preloader} from "../../common/UI/Preloader/Preloader";
 
@@ -34,7 +32,7 @@ type UsersPropsType = {
     selectStateValue: string*/
 }
 
-export const Users = React.memo((props: UsersPropsType) => {
+export const Users = React.memo((/*props: UsersPropsType*/) => {
     // debugger
 
     const dispatch = useAppDispatch()
@@ -47,7 +45,7 @@ export const Users = React.memo((props: UsersPropsType) => {
     const followingInProgress = useAppSelector(selectedFollowingInProgress)
     const filter = useAppSelector(selectedFilter)
 
-    // стейт для текущего значения селекта
+    // стейт для текущего отображения селекта
     const [selectStateValue, setSelectStateValue] = useState<any>('null')
 
     const onChangePageHandler = (pageNumber: number) => {
@@ -88,13 +86,13 @@ export const Users = React.memo((props: UsersPropsType) => {
 
     return (
         <>
-            {/*<OldFormikSearch
+            {/*<SearchWithUseFormik
                 findFilteredUserHandler={findFilteredUserHandler}
                 clearInput={clearInput}
                 filterValue={filter.term}
                 filterIsFriend={filter.friend}
             />*/}
-            {/*<FormikSearch
+            {/*<SearchWithFormik
                 findFilteredUserHandler={findFilteredUserHandler}
                 clearInput={clearInput}
                 filterValue={filter.term}

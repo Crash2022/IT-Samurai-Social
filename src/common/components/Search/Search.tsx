@@ -22,9 +22,6 @@ export const Search: React.FC<SearchPropsType> = React.memo(
             findFilteredUserHandler({term: searchValue, friend: filterIsFriend});
         }
 
-        console.log(selectStateValue)
-        console.log('search filterIsFriend', filterIsFriend)
-
         return (
             <div className={styles.searchMain}>
                 <div className={styles.searchInputMain}>

@@ -3,7 +3,7 @@ import {useFormik} from 'formik';
 import styles from './Search.module.css'
 import {SuperButton} from "../../UI/Button/SuperButton";
 import {UsersSearchFilterType} from "../../../redux/users-reducer";
-import {SearchFormSelectType} from "./OldFormikSearch";
+import {SearchFormSelectType} from "./SearchWithFormik";
 
 type FormikSearchPropsType = {
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
@@ -12,7 +12,7 @@ type FormikSearchPropsType = {
     filterIsFriend: null | boolean
 }
 
-export const FormikSearch: React.FC<FormikSearchPropsType> = ({findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
+export const SearchWithUseFormik: React.FC<FormikSearchPropsType> = ({findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
 
     const formik = useFormik({
         initialValues: {

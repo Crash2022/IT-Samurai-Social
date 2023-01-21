@@ -16,7 +16,7 @@ export type SearchFormSelectType = {
     friend: 'null' | 'true' | 'false'
 }
 
-export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = (
+export const SearchWithFormik: React.FC<OldFormikSearchPropsType> = (
     {findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
 
     const submit = (values: SearchFormSelectType, {setSubmitting, resetForm}: { setSubmitting: (isSubmitting: boolean) => void, resetForm: any }) => {
