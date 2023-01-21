@@ -99,6 +99,13 @@ export const usersAPI = {
                 .then(response => response.data)
         )
     },
+    getUserFriends(currentPage: number, pageSize: number, friend: null | boolean = null) {
+        return (
+            instance
+                .get<GetUsersResponseType>(`users?page=${currentPage}&count=${pageSize}` + (friend === null ? '' : `&friend=${friend}`), {})
+                .then(response => response.data)
+        )
+    },
     getProfile(userId: string) {
         // можно написать так на всякий случай
         console.log('Please, use new object');

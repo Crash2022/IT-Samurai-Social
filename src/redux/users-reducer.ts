@@ -100,9 +100,10 @@ export const toggleFollowInProgressAC = (userId: string, following: boolean) => 
     userId, following
 } as const)
 
-/*-------------------------THUNK-------------------------*/
+/*------------------------------THUNK------------------------------*/
 
-export const getUsersTC = (currentPage: number, pageSize: number, filterPayload: UsersSearchFilterType, needSetFilter:boolean=true): AppThunkType => {
+export const getUsersTC = (currentPage: number, pageSize: number,
+                           filterPayload: UsersSearchFilterType): AppThunkType => {
 
     return (dispatch) => {
         dispatch(toggleIsLoadingAC(true));
@@ -111,25 +112,10 @@ export const getUsersTC = (currentPage: number, pageSize: number, filterPayload:
         .then(data => {
             dispatch(toggleIsLoadingAC(false));
             dispatch(setUsersAC(data.items));
-            needSetFilter && dispatch(setFilterAC(filterPayload));
+            dispatch(setFilterAC(filterPayload));
             dispatch(setCurrentPageAC(currentPage));
             dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
         })
-    }
-}
-
-export const deleteFollowTC = (userId: string): AppThunkType => {
-
-    return (dispatch) => {
-        dispatch(toggleFollowInProgressAC(userId,true));
-
-        usersAPI.deleteFollow(userId)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unfollowAC(userId));
-                }
-                dispatch(toggleFollowInProgressAC(userId,false));
-            })
     }
 }
 
@@ -142,6 +128,21 @@ export const postFollowTC = (userId: string): AppThunkType => {
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(followAC(userId));
+                }
+                dispatch(toggleFollowInProgressAC(userId,false));
+            })
+    }
+}
+
+export const deleteFollowTC = (userId: string): AppThunkType => {
+
+    return (dispatch) => {
+        dispatch(toggleFollowInProgressAC(userId,true));
+
+        usersAPI.deleteFollow(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowAC(userId));
                 }
                 dispatch(toggleFollowInProgressAC(userId,false));
             })

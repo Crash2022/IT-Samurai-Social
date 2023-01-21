@@ -1,5 +1,4 @@
 import {RootStateType} from "./redux-store";
 
-export const friendsDataSelector = (state: RootStateType) => {
-    return state.sidebar.friendsData;
-}
+export const selectedNavbarUsers = (state: RootStateType) => state.sidebar.users
+export const selectedNavbarFriends = (state: RootStateType) => state.sidebar.friend

@@ -2,28 +2,31 @@ import React, {useEffect} from "react";
 import styles from './Navbar.module.css';
 import userAvatar from "../../common/assets/images/avatars/user_avatar.jpg";
 import {useAppSelector} from "../../common/hooks/useAppSelector";
-import {getUsersTC} from "../../redux/users-reducer";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 import {selectedCurrentPage, selectedPageSize, selectedUsers} from "../../redux/users-selectors";
 import {NavLink} from "react-router-dom";
+import {getUserFriendsTC} from '../../redux/sidebar-reducer';
+import {selectedNavbarFriends, selectedNavbarUsers} from '../../redux/sidebar-selectors';
 
 export const NavbarFriends = () => {
 
     const dispatch = useAppDispatch()
 
     const users = useAppSelector(selectedUsers)
+    const navbarUsers = useAppSelector(selectedNavbarUsers)
+    const navbarFriendList = useAppSelector(selectedNavbarFriends)
     const currentPage = useAppSelector(selectedCurrentPage)
     const pageSize = useAppSelector(selectedPageSize)
 
     const userFriends = users.filter (u => u.followed ? u : '')
 
-    // useEffect(() => {
-    //     dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: true}, false))
-    // }, [])
+    useEffect(() => {
+        dispatch(getUserFriendsTC(currentPage, pageSize, true))
+    }, [])
 
     return (
         <div className={styles.friendsWrapper}>
-            {userFriends.map(friend => {
+            {navbarUsers.map(friend => {
                 return (
                     <div className={styles.friendsItem} key={friend.id}>
                         <div className={styles.friendsName}>{friend.name}</div>
