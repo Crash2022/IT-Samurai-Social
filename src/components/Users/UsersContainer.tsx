@@ -92,7 +92,7 @@ export class UsersAPIClassContainer extends React.Component<UsersContainerType> 
 
     findFilteredUserHandler = (filter: UsersSearchFilterType) => {
         const {currentPage, pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize, {term: filter.term, friend: filter.friend});
+        this.props.getUsers(currentPage, pageSize, filter);
     }
 
     render() {

@@ -15,24 +15,24 @@ import {
 } from "../../redux/users-selectors";
 
 type UsersPropsType = {
-    // users: Array<UsersArray>
-    // pageSize: number
-    // totalUsersCount: number
-    // currentPage: number
-    // onChangePageHandler: (pageNumber: number) => void
-    // followingInProgress: Array<string>
-    // deleteFollow: (userId: string) => void
-    // postFollow: (userId: string) => void
-    // filterValue: string
-    // filterIsFriend: null | boolean
-    // setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
-    // setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
-    // clearInput: () => void
-    // findFilteredUserHandler: (filter: UsersSearchFilterType) => void
-    // selectStateValue: string
+    /*users: Array<UsersArray>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+    onChangePageHandler: (pageNumber: number) => void
+    followingInProgress: Array<string>
+    deleteFollow: (userId: string) => void
+    postFollow: (userId: string) => void
+    filterValue: string
+    filterIsFriend: null | boolean
+    setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void
+    setSearchSelect: (e: ChangeEvent<HTMLSelectElement>) => void
+    clearInput: () => void
+    findFilteredUserHandler: (filter: UsersSearchFilterType) => void
+    selectStateValue: string*/
 }
 
-export const Users = React.memo(() => {
+export const Users = (/*props: UsersPropsType*/) => {
 
     // с использованием хуков
     const dispatch = useAppDispatch()
@@ -63,6 +63,7 @@ export const Users = React.memo(() => {
 
     const clearInput = () => {
         dispatch(setFilterAC({term: '', friend: null}));
+        setSelectStateValue('null')
         dispatch(getUsersTC(1, pageSize, {term: '', friend: null}))
     }
 
@@ -71,23 +72,26 @@ export const Users = React.memo(() => {
     }
 
     useEffect(() => {
-        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}))
+        // console.log('use effect')
+        dispatch(getUsersTC(currentPage, pageSize, filter))
     }, [])
 
     return (
         <>
             {/*<OldFormikSearch
-                findFilteredUserHandler={props.findFilteredUserHandler}
-                clearInput={props.clearInput}
-                filterValue={props.filterValue}
-                filterIsFriend={props.filterIsFriend}
+                findFilteredUserHandler={findFilteredUserHandler}
+                clearInput={clearInput}
+                filterValue={filter.term}
+                filterIsFriend={filter.friend}
             />*/}
-            {/*<FormikSearch
-                findFilteredUserHandler={props.findFilteredUserHandler}
-                clearInput={props.clearInput}
-            />*/}
+            <FormikSearch
+                findFilteredUserHandler={findFilteredUserHandler}
+                clearInput={clearInput}
+                filterValue={filter.term}
+                filterIsFriend={filter.friend}
+            />
 
-            <Search
+            {/*<Search
                 searchValue={filter.term}
                 filterIsFriend={filter.friend}
                 setSearchValue={onChangeSearchInputValue}
@@ -95,7 +99,7 @@ export const Users = React.memo(() => {
                 clearInput={clearInput}
                 findFilteredUserHandler={findFilteredUserHandler}
                 selectStateValue={selectStateValue}
-            />
+            />*/}
             {/*<Search
                 searchValue={props.filterValue}
                 filterIsFriend={props.filterIsFriend}
@@ -142,4 +146,4 @@ export const Users = React.memo(() => {
             </div>
         </>
     );
-})
+}

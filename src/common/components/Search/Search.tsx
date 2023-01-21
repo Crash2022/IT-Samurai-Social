@@ -22,6 +22,8 @@ export const Search: React.FC<SearchPropsType> = React.memo(
             findFilteredUserHandler({term: searchValue, friend: filterIsFriend});
         }
 
+        console.log(selectStateValue)
+
         return (
             <div className={styles.searchMain}>
                 <div className={styles.searchInputMain}>
@@ -43,7 +45,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                 </div>
                 <div className={styles.searchSelect}>
                     <select name={'selectFriend'}
-                            defaultValue={selectStateValue}
+                            value={selectStateValue}
                             onChange={setSearchSelect}
                     >
                         <option value={'null'}>Все джедаи</option>

@@ -11,22 +11,24 @@ type OldFormikSearchPropsType = {
     filterIsFriend: null | boolean
 }
 
-type SearchFormSelectType = {
+export type SearchFormSelectType = {
     term: string
     friend: 'null' | 'true' | 'false'
 }
 
-export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
+export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = (
+    {findFilteredUserHandler, clearInput, filterValue, filterIsFriend}) => {
 
-    const submit = (values: SearchFormSelectType/*, {setSubmitting}: { setSubmitting: (isSubmitting: boolean) => void }*/) => {
+    const submit = (values: SearchFormSelectType, {setSubmitting, resetForm}: { setSubmitting: (isSubmitting: boolean) => void, resetForm: any }) => {
 
         const friendFilter: UsersSearchFilterType = {
             term: values.term,
-            friend: values.friend === 'null' ? null : values.friend === 'true'
+            friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
         }
 
         findFilteredUserHandler(friendFilter);
-        // setSubmitting(false);
+        setSubmitting(false);
+        resetForm(); // нужно перенести в clearInput
     }
 
     const clearSearchHandler = () => {
@@ -36,7 +38,7 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
     return (
         <div>
             <Formik
-                initialValues={{term: '', friend: 'null'}}
+                initialValues={{term: filterValue, friend: filterIsFriend === null ? 'null' : filterIsFriend === true ? 'true' : 'false'}}
                 onSubmit={submit}
             >
                 {({values, handleChange, isSubmitting}) => (
@@ -52,7 +54,7 @@ export const OldFormikSearch: React.FC<OldFormikSearchPropsType> = ({findFiltere
                             />
                         </div>
                         <div className={styles.searchSelect}>
-                            <Field name='friend' as='select'>
+                            <Field name='friend' as='select' value={values.friend}>
                                 <option value={'null'}>Все джедаи</option>
                                 <option value={'true'}>Друзья</option>
                                 <option value={'false'}>Незнакомые</option>

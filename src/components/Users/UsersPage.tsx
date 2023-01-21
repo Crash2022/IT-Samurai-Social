@@ -12,12 +12,13 @@ export const UsersPage = () => {
     return (
         <>
             {
-                isLoading
-                    ? <div className={classes.usersWrapper}>
+                isLoading && (
+                    <div className={classes.usersWrapper}>
                         <Preloader />
                     </div>
-                    : <Users />
+                )
             }
+            <Users />
         </>
     )
 }
