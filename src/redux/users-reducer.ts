@@ -1,5 +1,6 @@
 import {usersAPI} from "../common/api/api";
 import {AppThunkType} from "./redux-store";
+import {getUserFriendsTC} from './sidebar-reducer';
 
 export type UsersPropsType = {
     users: Array<UsersArray>
@@ -114,7 +115,7 @@ export const getUsersTC = (currentPage: number, pageSize: number,
             dispatch(setUsersAC(data.items));
             dispatch(setFilterAC(filterPayload));
             dispatch(setCurrentPageAC(currentPage));
-            dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
+            dispatch(setUsersTotalCountAC(data.totalCount));
         })
     }
 }
@@ -128,6 +129,8 @@ export const postFollowTC = (userId: string): AppThunkType => {
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(followAC(userId));
+                    // для обновления списка навбара
+                    dispatch(getUserFriendsTC(1, 20, true))
                 }
                 dispatch(toggleFollowInProgressAC(userId,false));
             })
@@ -143,6 +146,8 @@ export const deleteFollowTC = (userId: string): AppThunkType => {
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(unfollowAC(userId));
+                    // для обновления списка навбара
+                    dispatch(getUserFriendsTC(1, 20, true))
                 }
                 dispatch(toggleFollowInProgressAC(userId,false));
             })

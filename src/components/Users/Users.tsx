@@ -33,7 +33,6 @@ type UsersPropsType = {
 }
 
 export const Users = React.memo((/*props: UsersPropsType*/) => {
-    // debugger
 
     const dispatch = useAppDispatch()
 

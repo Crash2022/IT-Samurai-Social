@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {toggleIsLoadingAC, setCurrentPageAC, setUsersTotalCountAC, UsersArray} from './users-reducer';
+import {toggleIsLoadingAC, setUsersTotalCountAC, setCurrentPageAC, UsersArray} from './users-reducer';
 import {AppThunkType} from './redux-store';
 import {usersAPI} from '../common/api/api';
 
@@ -59,7 +59,7 @@ export const getUserFriendsTC = (currentPage: number, pageSize: number, friend: 
                 dispatch(setNavbarUsersAC(data.items));
                 dispatch(setNavbarFriendsAC(friend));
                 dispatch(setCurrentPageAC(currentPage));
-                // dispatch(setUsersTotalCountAC(data.totalCount)); // все пользователи
+                // dispatch(setUsersTotalCountAC(data.totalCount));
             })
     }
 }
