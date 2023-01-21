@@ -23,6 +23,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
         }
 
         console.log(selectStateValue)
+        console.log('filterIsFriend', filterIsFriend)
 
         return (
             <div className={styles.searchMain}>
@@ -45,7 +46,8 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                 </div>
                 <div className={styles.searchSelect}>
                     <select name={'selectFriend'}
-                            value={selectStateValue}
+                            // value={selectStateValue}
+                            defaultValue={selectStateValue}
                             onChange={setSearchSelect}
                     >
                         <option value={'null'}>Все джедаи</option>

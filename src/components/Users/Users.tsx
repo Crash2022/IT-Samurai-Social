@@ -11,8 +11,10 @@ import {useAppSelector} from "../../common/hooks/useAppSelector";
 import {RootStateType} from "../../redux/redux-store";
 import {
     selectedCurrentPage, selectedFilter, selectedFollowingInProgress,
-    selectedPageSize, selectedTotalUsersCount, selectedUsers
+    selectedPageSize, selectedTotalUsersCount, selectedUsers, selectedUsersIsLoading
 } from "../../redux/users-selectors";
+import classes from "./Users.module.css";
+import {Preloader} from "../../common/UI/Preloader/Preloader";
 
 type UsersPropsType = {
     /*users: Array<UsersArray>
@@ -37,6 +39,7 @@ export const Users = (/*props: UsersPropsType*/) => {
     // с использованием хуков
     const dispatch = useAppDispatch()
 
+    const isLoading = useAppSelector(selectedUsersIsLoading)
     const users = useAppSelector(selectedUsers)
     const currentPage = useAppSelector(selectedCurrentPage)
     const pageSize = useAppSelector(selectedPageSize)
@@ -45,7 +48,7 @@ export const Users = (/*props: UsersPropsType*/) => {
     const filter = useAppSelector(selectedFilter)
 
     // стейт для текущего значения селекта
-    const [selectStateValue, setSelectStateValue] = useState<string>('null')
+    const [selectStateValue, setSelectStateValue] = useState<any>(filter.friend)
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter))
@@ -62,8 +65,8 @@ export const Users = (/*props: UsersPropsType*/) => {
     }
 
     const clearInput = () => {
+        setSelectStateValue('null');
         dispatch(setFilterAC({term: '', friend: null}));
-        setSelectStateValue('null')
         dispatch(getUsersTC(1, pageSize, {term: '', friend: null}))
     }
 
@@ -72,9 +75,18 @@ export const Users = (/*props: UsersPropsType*/) => {
     }
 
     useEffect(() => {
-        // console.log('use effect')
         dispatch(getUsersTC(currentPage, pageSize, filter))
     }, [])
+
+    if(isLoading) {
+        return (
+            <div className={classes.usersWrapper}>
+                <Preloader />
+            </div>
+        )
+    }
+
+    console.log(filter)
 
     return (
         <>
@@ -84,14 +96,14 @@ export const Users = (/*props: UsersPropsType*/) => {
                 filterValue={filter.term}
                 filterIsFriend={filter.friend}
             />*/}
-            <FormikSearch
+            {/*<FormikSearch
                 findFilteredUserHandler={findFilteredUserHandler}
                 clearInput={clearInput}
                 filterValue={filter.term}
                 filterIsFriend={filter.friend}
-            />
+            />*/}
 
-            {/*<Search
+            <Search
                 searchValue={filter.term}
                 filterIsFriend={filter.friend}
                 setSearchValue={onChangeSearchInputValue}
@@ -99,7 +111,16 @@ export const Users = (/*props: UsersPropsType*/) => {
                 clearInput={clearInput}
                 findFilteredUserHandler={findFilteredUserHandler}
                 selectStateValue={selectStateValue}
-            />*/}
+            />
+            <Paginator
+                pageSize={pageSize}
+                totalUsersCount={totalUsersCount}
+                currentPage={currentPage}
+                onChangePageHandler={onChangePageHandler}
+                numberOfPagesInBlock={10}
+            />
+
+            {/*для классовой компоненты*/}
             {/*<Search
                 searchValue={props.filterValue}
                 filterIsFriend={props.filterIsFriend}
@@ -108,16 +129,8 @@ export const Users = (/*props: UsersPropsType*/) => {
                 clearInput={props.clearInput}
                 findFilteredUserHandler={props.findFilteredUserHandler}
                 selectStateValue={props.selectStateValue}
-            />*/}
-
-            <Paginator
-                pageSize={pageSize}
-                totalUsersCount={totalUsersCount}
-                currentPage={currentPage}
-                onChangePageHandler={onChangePageHandler}
-                numberOfPagesInBlock={10}
             />
-            {/*<Paginator
+            <Paginator
                 pageSize={props.pageSize}
                 totalUsersCount={props.totalUsersCount}
                 currentPage={props.currentPage}

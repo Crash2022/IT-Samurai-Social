@@ -18,7 +18,7 @@ import {initializeAppTC} from "./redux/app-reducer";
 import {Preloader} from "./common/UI/Preloader/Preloader";
 import {NotFound} from "./common/components/NotFound/NotFound";
 import {Welcome} from "./components/Welcome/Welcome";
-import {UsersPage} from "./components/Users/UsersPage";
+import {Users} from "./components/Users/Users";
 
 // loadable не работает
 /*import {loadable} from 'react-lazily/loadable';
@@ -96,7 +96,7 @@ export class App extends React.Component<AppPropsType> {
                             <Route path={"/music"} render={() => <Music/>} />
                             {/*замена классовой компоненты на функциональную UsersPage*/}
                             {/*<Route path={"/users"} render={() => <UsersContainer/>} />*/}
-                            <Route path={"/users"} render={() => <UsersPage/>} />
+                            <Route path={"/users"} render={() => <Users/>} />
                             <Route path={"/settings"} render={() => <Settings/>} />
                             <Route path={"/login"} render={() => <LoginContainer/>} />
                             <Route path="*" render={() => <NotFound/>} />
