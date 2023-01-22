@@ -51,6 +51,12 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
+    // if (e.currentTarget.value !== '') {
+    //     searchParams.set('packName', e.currentTarget.value)
+    // } else {
+    //     searchParams.delete('packName')
+    // }
+
     // стейт для текущего отображения селекта
     const [selectStateValue, setSelectStateValue] = useState<any>('null')
 

@@ -15,5 +15,5 @@ export const captchaUrlSelector = (state: RootStateType) => {
 
 export const selectedIsAuth = (state: RootStateType) => state.auth.isAuth
 export const selectedLogin = (state: RootStateType) => state.auth.login
-export const selectedUserId = (state: RootStateType) => state.auth.userId
+export const selectedAuthUserId = (state: RootStateType) => state.auth.userId
 export const selectedCaptcha = (state: RootStateType) => state.auth.captchaUrl

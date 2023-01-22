@@ -3,16 +3,21 @@ import styles from './MyProfile.module.css';
 import {Preloader} from '../../../common/UI/Preloader/Preloader';
 import userAvatar from '../../../common/assets/images/avatars/user_avatar.jpg';
 import avatarPhoto from '../../../common/assets/images/avatars/avatar_photo.jpg';
-import {updateUserPhotoTC, updateUserProfileTC} from '../../../redux/profilePage-reducer';
+import {
+    getProfileTC,
+    getUserStatusTC,
+    updateUserPhotoTC,
+    updateUserProfileTC
+} from '../../../redux/profilePage-reducer';
 import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
 import {ProfileData} from './ProfileData';
 import {reduxForm} from 'redux-form';
 import {ProfileDataForm, ProfileDataFormPropsType} from './ProfileDataForm';
 import {useAppSelector} from "../../../common/hooks/useAppSelector";
 import {selectedProfile, selectedProfileStatus} from "../../../redux/profilePage-selectors";
-import {selectedIsAuth, selectedUserId} from "../../../redux/auth-selectors";
+import {selectedAuthUserId, selectedIsAuth} from "../../../redux/auth-selectors";
 import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
-import {useSearchParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 type MyProfilePropsType = {
     // profile: null | ProfileType
@@ -35,31 +40,18 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
 
     const profile = useAppSelector(selectedProfile)
     const status = useAppSelector(selectedProfileStatus)
-    const userId = useAppSelector(selectedUserId)
-    const isAuth = useAppSelector(selectedIsAuth)
-
-    const [searchParams, setSearchParams] = useSearchParams()
-
-    // if (e.currentTarget.value !== '') {
-    //     searchParams.set('packName', e.currentTarget.value)
-    // } else {
-    //     searchParams.delete('packName')
-    // }
+    const authUserId = useAppSelector(selectedAuthUserId)
 
     const [editMode, setEditMode] = useState<boolean>(false);
+
+    const {userId} = useParams();
 
     const changeEditMode = () => {
         setEditMode(!editMode);
     }
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
-        dispatch(updateUserProfileTC(formData));
-        changeEditMode();
-
-        // props.updateUserProfile(formData).then(() => {
-        //     //setEditMode(false);
-        //     changeEditMode();
-        // })
+        dispatch(updateUserProfileTC(formData)).then(() => {changeEditMode()});
     }
 
     const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +60,30 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
         }
     }
 
-    useEffect(() => {
+    const refreshProfile = () => {
+        const getUserData = (userId: string) => {
+            dispatch(getProfileTC(userId));
+            dispatch(getUserStatusTC(userId));
+        }
 
+        let userIdFromParams = userId;
+        let userIdFromState = authUserId;
+
+        if(userIdFromParams) {
+            getUserData(userIdFromParams);
+            return;
+        }
+
+        if(userIdFromState) {
+            getUserData(userIdFromState);
+            return;
+        }
+
+        // this.props.history.push('/login'); // метод для редиректа на нужную страницу
+    }
+
+    useEffect(() => {
+        refreshProfile();
     }, [])
 
     if (!profile) {
@@ -95,7 +109,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
                         </div>
                         <label className={styles.content__info_avatarUpload}>
                             {
-                                props.isOwner
+                                userId
                                     ?
                                     <>
                                         <input type='file' onChange={onAvatarSelected}
@@ -118,14 +132,14 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
                                 />
                                 :
                                 <ProfileData profile={profile}
-                                             isOwner={props.isOwner}
+                                             isOwner={!userId}
                                              changeEditMode={changeEditMode}
                                 />
                         }
 
                         <ProfileStatusWithHooks userId={profile.userId}
                                                 status={status}
-                                                isOwner={props.isOwner}
+                                                isOwner={!userId}
                         />
 
                     </div>
