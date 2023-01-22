@@ -17,7 +17,7 @@ import {useAppSelector} from "../../../common/hooks/useAppSelector";
 import {selectedProfile, selectedProfileStatus} from "../../../redux/profilePage-selectors";
 import {selectedAuthUserId, selectedIsAuth} from "../../../redux/auth-selectors";
 import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 type MyProfilePropsType = {
     // profile: null | ProfileType
@@ -37,6 +37,7 @@ export type FormDataType = {
 export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
 
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
 
     const profile = useAppSelector(selectedProfile)
     const status = useAppSelector(selectedProfileStatus)
@@ -79,7 +80,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
             return;
         }
 
-        // this.props.history.push('/login'); // метод для редиректа на нужную страницу
+        navigate('/login')
     }
 
     useEffect(() => {

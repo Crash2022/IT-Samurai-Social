@@ -32,7 +32,6 @@ const mapDispatchToProps: MapDispatchToPropsLoginType = {
 export const Login = (props: LoginPropsType) => {
 
     const onSubmit = (formData: LoginFormValuesType) => {
-        //console.log(formData);
         props.setAuthUserData(formData.email, formData.password,
             formData.rememberMe, formData.captchaUrl);
     }
