@@ -13,7 +13,6 @@ type MessageItemPropsType = {
 export const MessageItem = (props: MessageItemPropsType) => {
 
     const onSubmit = (formData: MessageFormType) => {
-        //console.log(formData);
         props.sendMessageHandler(formData.newMessage);
     }
 

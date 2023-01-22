@@ -91,15 +91,15 @@ export class App extends React.Component<AppPropsType> {
                             {/*<Route path={'/profile/:userId?'} element={() => <ProfileContainer/>} />*/}
                             <Route path={'/profile/:userId?'} element={<Profile/>} />
                             <Route path={'/messages'}
-                                   element={() => {
-                                       return <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
+                                   element={
+                                       <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
                                            <MessagesContainer/>
                                        </Suspense>
-                                   }}
+                                   }
                             />
                             <Route path={'/news'} element={<News/>} />
                             <Route path={'/music'} element={<Music/>} />
-                            {/*замена классовой компоненты на функциональную UsersPage*/}
+                            {/*замена классовой компоненты на функциональную Users*/}
                             {/*<Route path={'/users'} element={() => <UsersContainer/>} />*/}
                             <Route path={'/users'} element={<Users/>} />
                             <Route path={'/settings'} element={<Settings/>} />

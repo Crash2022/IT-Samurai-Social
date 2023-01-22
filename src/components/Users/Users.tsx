@@ -34,6 +34,7 @@ type UsersPropsType = {
     selectStateValue: string*/
 }
 
+// searchQuery with React Router Dom v5
 // type QueryParamsType = { term?: string, friend?: string, page?: string }
 
 export const Users = React.memo((/*props: UsersPropsType*/) => {
@@ -50,54 +51,87 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
     const filter = useAppSelector(selectedFilter)
 
     const [searchParams, setSearchParams] = useSearchParams()
-
-    // if (e.currentTarget.value !== '') {
-    //     searchParams.set('packName', e.currentTarget.value)
-    // } else {
-    //     searchParams.delete('packName')
-    // }
+    // console.log(searchParams)
 
     // стейт для текущего отображения селекта
     const [selectStateValue, setSelectStateValue] = useState<any>('null')
 
     const onChangePageHandler = (pageNumber: number) => {
-        dispatch(getUsersTC(pageNumber, pageSize, filter))
+        dispatch(getUsersTC(pageNumber, pageSize, filter));
+        // searchParams.set('currentPage', `${pageNumber}`);
+        setSearchParams(`${pageNumber}`);
     }
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilterAC({term: e.currentTarget.value, friend: filter.friend}));
+        // searchParams.set('term', e.currentTarget.value);
+
+        if (filter.term !== '') {
+            // searchParams.set('term', e.currentTarget.value);
+            setSearchParams(filter.term);
+        } else {
+            // searchParams.delete('term');
+            setSearchParams('');
+        }
     }
 
     const onChangeSearchSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setFilterAC({term: filter.term,
             friend: e.currentTarget.value === 'null' ? null : e.currentTarget.value === 'true'}));
         setSelectStateValue(e.currentTarget.value);
+        // searchParams.set('friend', e.currentTarget.value);
+        setSearchParams(filter.friend === null ? 'null' : filter.friend === true ? 'true' : 'false');
+
+        // if (filter.friend !== '') {
+        //     searchParams.set('friend', e.currentTarget.value);
+        // } else {
+        //     searchParams.delete('friend')
+        // }
     }
 
     const clearInput = () => {
         setSelectStateValue('null');
         dispatch(setFilterAC({term: '', friend: null}));
-        dispatch(getUsersTC(1, pageSize, {term: '', friend: null}))
+        dispatch(getUsersTC(1, pageSize, {term: '', friend: null}));
+        // searchParams.delete('term');
+        // searchParams.delete('friend');
+        // searchParams.delete('currentPage');
+        setSearchParams('');
     }
 
     const findFilteredUserHandler = (filter: UsersSearchFilterType) => {
         dispatch(getUsersTC(currentPage, pageSize, {term: filter.term, friend: filter.friend}));
     }
 
+    // useEffect(() => {
+    //
+    // }, [])
+
     useEffect(() => {
-        /*const parsed = queryString.parse(history.location.search.substr(1));
+
+        // const termQuery = searchParams.get('term') || '';
+        // const friendQuery = searchParams.get('friend') || null;
+        // const pageQuery = searchParams.get('currentPage') || 1;
+
+        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
+        // setSearchParams(searchParams);
+    }, [])
+
+    // searchQuery with React Router Dom v5
+    /*useEffect(() => {
+        /!*const parsed = queryString.parse(history.location.search.substr(1));
 
         let actualPage = currentPage;
         let actualFilter = filter;
 
         if(!!parsed.page) actualPage = Number(parsed.page)
         if(!!parsed.term) actualFilter = {...actualFilter, term: parsed.term as string}
-        if(!!parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true'}*/
+        if(!!parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true'}*!/
 
         dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
     }, [])
 
-    /*useEffect(() => {
+    useEffect(() => {
         const query: QueryParamsType = {}
 
         if(!!filter.term) query.term = filter.term

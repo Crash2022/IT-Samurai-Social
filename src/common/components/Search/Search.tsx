@@ -27,6 +27,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                 <div className={styles.searchInputMain}>
                     <input
                         type='search'
+                        name='term'
                         value={searchValue}
                         onChange={setSearchValue}
                         className={styles.searchInput}
@@ -42,7 +43,7 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                     />*/}
                 </div>
                 <div className={styles.searchSelect}>
-                    <select name={'selectFriend'}
+                    <select name='friend'
                             // value={selectStateValue}
                             defaultValue={selectStateValue}
                             onChange={setSearchSelect}
