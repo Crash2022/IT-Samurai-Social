@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {Route, /*Switch, withRouter,*/ Routes} from 'react-router-dom';
+import {Route, /*Switch, withRouter,*/ Routes, Navigate} from 'react-router-dom';
 import {Navbar} from "./components/Navbar/Navbar";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
@@ -87,9 +87,9 @@ export class App extends React.Component<AppPropsType> {
                     <Navbar/>
                     <div className="right__main">
                         <Routes>
-                            <Route path={'/'} element={() => <Welcome/>} />
+                            <Route path={'/'} element={<Welcome/>} />
                             {/*<Route path={'/profile/:userId?'} element={() => <ProfileContainer/>} />*/}
-                            <Route path={'/profile/:userId?'} element={() => <Profile/>} />
+                            <Route path={'/profile/:userId?'} element={<Profile/>} />
                             <Route path={'/messages'}
                                    element={() => {
                                        return <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
@@ -97,14 +97,15 @@ export class App extends React.Component<AppPropsType> {
                                        </Suspense>
                                    }}
                             />
-                            <Route path={'/news'} element={() => <News/>} />
-                            <Route path={'/music'} element={() => <Music/>} />
+                            <Route path={'/news'} element={<News/>} />
+                            <Route path={'/music'} element={<Music/>} />
                             {/*замена классовой компоненты на функциональную UsersPage*/}
                             {/*<Route path={'/users'} element={() => <UsersContainer/>} />*/}
-                            <Route path={'/users'} element={() => <Users/>} />
-                            <Route path={'/settings'} element={() => <Settings/>} />
-                            <Route path={'/login'} element={() => <LoginContainer/>} />
-                            <Route path='*' element={() => <NotFound/>} />
+                            <Route path={'/users'} element={<Users/>} />
+                            <Route path={'/settings'} element={<Settings/>} />
+                            <Route path={'/login'} element={<LoginContainer/>} />
+                            <Route path={'/error404'} element={<NotFound/>} />
+                            <Route path={'*'} element={<Navigate to={'error404'} />} />
                         </Routes>
                     </div>
                     <Footer/>
