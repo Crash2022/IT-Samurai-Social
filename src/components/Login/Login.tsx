@@ -4,7 +4,7 @@ import {reduxForm} from "redux-form";
 import {LoginForm, LoginFormOwnProps, LoginFormValuesType} from "./LoginForm";
 import {connect} from "react-redux";
 import {postLoginTC} from "../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
+import {/*Redirect,*/ Navigate} from "react-router-dom";
 import {RootStateType} from "../../redux/redux-store";
 import {captchaUrlSelector, isAuthSelector} from '../../redux/auth-selectors';
 
@@ -38,7 +38,8 @@ export const Login = (props: LoginPropsType) => {
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile'}/>
+        // return <Redirect to={'/profile'}/>
+        return <Navigate to={'/profile'}/>
     }
 
     return (

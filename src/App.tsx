@@ -1,15 +1,15 @@
 import React, {Suspense} from 'react';
 import './App.css';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import {Route, /*Switch, withRouter,*/ Routes} from 'react-router-dom';
 import {Navbar} from "./components/Navbar/Navbar";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {LoginContainer} from "./components/Login/Login";
 import {Footer} from "./components/Footer/Footer";
-//import {MessagesContainer} from "./components/Messages/MessagesContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
-import {ProfileContainer} from "./components/Profile/ProfileMain/ProfileContainer";
+// import {MessagesContainer} from "./components/Messages/MessagesContainer";
+// import {UsersContainer} from "./components/Users/UsersContainer";
+// import {ProfileContainer} from "./components/Profile/ProfileMain/ProfileContainer";
 import {HeaderContainer} from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
 import {RootStateType} from "./redux/redux-store";
@@ -19,6 +19,10 @@ import {Preloader} from "./common/UI/Preloader/Preloader";
 import {NotFound} from "./common/components/NotFound/NotFound";
 import {Welcome} from "./components/Welcome/Welcome";
 import {Users} from "./components/Users/Users";
+// import {ProfileContainerWithHooks} from "./components/Profile/ProfileMain/ProfileContainerWithHooks";
+import {Profile} from "./components/Profile/ProfileMain/Profile";
+
+// "react-router-dom": "5.3.0", // была эта версия до 6.4.3
 
 // loadable не работает
 /*import {loadable} from 'react-lazily/loadable';
@@ -82,25 +86,26 @@ export class App extends React.Component<AppPropsType> {
                     <HeaderContainer/>
                     <Navbar/>
                     <div className="right__main">
-                        <Switch>
-                            <Route exact path={"/"} render={() => <Welcome/>} />
-                            <Route path={"/profile/:userId?"} render={() => <ProfileContainer/>} />
-                            <Route path={"/messages"}
-                                   render={() => {
+                        <Routes>
+                            <Route path={'/'} element={() => <Welcome/>} />
+                            {/*<Route path={'/profile/:userId?'} element={() => <ProfileContainer/>} />*/}
+                            <Route path={'/profile/:userId?'} element={() => <Profile/>} />
+                            <Route path={'/messages'}
+                                   element={() => {
                                        return <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>
                                            <MessagesContainer/>
                                        </Suspense>
                                    }}
                             />
-                            <Route path={"/news"} render={() => <News/>} />
-                            <Route path={"/music"} render={() => <Music/>} />
+                            <Route path={'/news'} element={() => <News/>} />
+                            <Route path={'/music'} element={() => <Music/>} />
                             {/*замена классовой компоненты на функциональную UsersPage*/}
-                            {/*<Route path={"/users"} render={() => <UsersContainer/>} />*/}
-                            <Route path={"/users"} render={() => <Users/>} />
-                            <Route path={"/settings"} render={() => <Settings/>} />
-                            <Route path={"/login"} render={() => <LoginContainer/>} />
-                            <Route path="*" render={() => <NotFound/>} />
-                        </Switch>
+                            {/*<Route path={'/users'} element={() => <UsersContainer/>} />*/}
+                            <Route path={'/users'} element={() => <Users/>} />
+                            <Route path={'/settings'} element={() => <Settings/>} />
+                            <Route path={'/login'} element={() => <LoginContainer/>} />
+                            <Route path='*' element={() => <NotFound/>} />
+                        </Routes>
                     </div>
                     <Footer/>
                 </div>
@@ -110,4 +115,4 @@ export class App extends React.Component<AppPropsType> {
 }
 
 export const AppContainer = compose<React.ComponentType>
-(connect(mapStateToProps, mapDispatchToProps), withRouter)(App);
+(connect(mapStateToProps, mapDispatchToProps)/*, withRouter*/)(App);

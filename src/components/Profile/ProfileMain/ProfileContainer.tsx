@@ -1,3 +1,4 @@
+/*
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
@@ -31,7 +32,7 @@ type MapDispatchToPropsUserProfileType = {
     updatePhoto: (photoFile: any) => void
     updateUserProfile: (profile: FormDataType) => any // ???
 }
-export type PathParamType = {
+type PathParamType = {
     userId: string
 }
 
@@ -107,6 +108,7 @@ export class ProfileContainerCompose extends React.Component<ProfileContainerTyp
 // export default connect(mapStateToProps, DispatchUserProfileToProps)(WithUrlDataContainerComponent);
 
 export const ProfileContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps),
-    withAuthRedirect,
-    withRouter)
-(ProfileContainerCompose);
+    withAuthRedirect, withRouter)
+(ProfileContainerCompose);*/
+
+export default () => {};

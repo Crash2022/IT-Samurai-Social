@@ -1,3 +1,4 @@
+/*
 import React, {useState} from 'react';
 import styles from './MyProfile.module.css';
 import {Preloader} from '../../../common/UI/Preloader/Preloader';
@@ -8,14 +9,18 @@ import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
 import {ProfileData} from './ProfileData';
 import {reduxForm} from 'redux-form';
 import {ProfileDataForm, ProfileDataFormPropsType} from './ProfileDataForm';
+import {useAppSelector} from "../../../common/hooks/useAppSelector";
+import {selectedProfile, selectedProfileStatus} from "../../../redux/profilePage-selectors";
+import {selectedIsAuth, selectedUserId} from "../../../redux/auth-selectors";
+import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
 
 type MyProfilePropsType = {
-    profile: null | ProfileType
-    status: string
-    isOwner: boolean
-    updateUserStatus: (userId: string, status: string) => void
-    updatePhoto: (photoFile: any) => void
-    updateUserProfile: (data: FormDataType) => Promise<any> // ???
+    // profile: null | ProfileType
+    // status: string
+    // isOwner: boolean
+    // updateUserStatus: (userId: string, status: string) => void
+    // updatePhoto: (photoFile: any) => void
+    // updateUserProfile: (data: FormDataType) => Promise<any> // ???
 }
 
 export type FormDataType = {
@@ -25,6 +30,13 @@ export type FormDataType = {
 }
 
 export const MyProfile = (props: MyProfilePropsType) => {
+
+    const dispatch = useAppDispatch()
+
+    const profile = useAppSelector(selectedProfile)
+    const status = useAppSelector(selectedProfileStatus)
+    const userId = useAppSelector(selectedUserId)
+    const isAuth = useAppSelector(selectedIsAuth)
 
     const [editMode, setEditMode] = useState<boolean>(false);
 
@@ -46,7 +58,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         }
     }
 
-    /*const showProfileContacts = () => {
+    /!*const showProfileContacts = () => {
         // проверяем есть ли такие поля в стейте
         if (props.profile && props.profile.contacts) {
 
@@ -59,7 +71,7 @@ export const MyProfile = (props: MyProfilePropsType) => {
         } else {
             return <> </>;
         }
-    }*/
+    }*!/
 
     if (!props.profile) {
         return <Preloader/>
@@ -128,4 +140,6 @@ export const MyProfile = (props: MyProfilePropsType) => {
 
 export const ProfileDataReduxForm = reduxForm<ProfileDataFormPropsType>({
     form: 'profileDataForm' // уникальное строковое имя для каждой формы
-})(ProfileDataForm)
+})(ProfileDataForm)*/
+
+export default () => {};

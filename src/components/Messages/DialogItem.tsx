@@ -15,7 +15,8 @@ export const DialogItem = (props: DialogItemPropsType) => {
             {props.myDialogs.map(dialog => {
                 return (
                     <div key={v1()}>
-                        <NavLink to={'/messages/' + dialog.id} activeClassName={classes.activeLink}>
+                        {/*<NavLink to={'/messages/' + dialog.id} activeClassName={classes.activeLink}>*/}
+                        <NavLink to={'/messages/' + dialog.id}>
                             {dialog.name}
                         </NavLink>
                     </div>

@@ -2,7 +2,7 @@ import {v1} from "uuid";
 import {CombinedState} from "redux";
 import {profileAPI} from "../common/api/api";
 import {ThunkDispatch} from "redux-thunk";
-import {FormDataType} from "../components/Profile/MyProfile/MyProfile";
+import {FormDataType} from "../components/Profile/MyProfile/MyProfileWithHooks";
 import {AppThunkType, RootStateType} from "./redux-store";
 import {stopSubmit} from "redux-form";
 import postAvatar from './../common/assets/images/avatars/post_avatar.jpg'

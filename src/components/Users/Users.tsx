@@ -8,13 +8,13 @@ import {SearchWithUseFormik} from "../../common/components/Search/SearchWithUseF
 import {SearchWithFormik} from "../../common/components/Search/SearchWithFormik";
 import {useAppDispatch} from "../../common/hooks/useAppDispatch";
 import {useAppSelector} from "../../common/hooks/useAppSelector";
-import {RootStateType} from "../../redux/redux-store";
 import {selectedCurrentPage, selectedFilter, selectedFollowingInProgress, selectedPageSize,
     selectedTotalUsersCount, selectedUsers, selectedUsersIsLoading} from "../../redux/users-selectors";
 import classes from "./Users.module.css";
 import {Preloader} from "../../common/UI/Preloader/Preloader";
-import {useHistory} from 'react-router-dom';
-import queryString from 'querystring';
+// import {useHistory} from 'react-router-dom';
+// import queryString from 'querystring';
+import { useSearchParams } from 'react-router-dom';
 
 type UsersPropsType = {
     /*users: Array<UsersArray>
@@ -39,7 +39,7 @@ type UsersPropsType = {
 export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const dispatch = useAppDispatch()
-    const history = useHistory()
+    // const history = useHistory()
 
     const isLoading = useAppSelector(selectedUsersIsLoading)
     const users = useAppSelector(selectedUsers)
@@ -48,6 +48,8 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
     const totalUsersCount = useAppSelector(selectedTotalUsersCount)
     const followingInProgress = useAppSelector(selectedFollowingInProgress)
     const filter = useAppSelector(selectedFilter)
+
+    const [searchParams, setSearchParams] = useSearchParams()
 
     // стейт для текущего отображения селекта
     const [selectStateValue, setSelectStateValue] = useState<any>('null')
