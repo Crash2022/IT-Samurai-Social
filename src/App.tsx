@@ -89,7 +89,10 @@ export class App extends React.Component<AppPropsType> {
                         <Routes>
                             <Route path={'/'} element={<Welcome/>} />
                             {/*<Route path={'/profile/:userId?'} element={() => <ProfileContainer/>} />*/}
-                            <Route path={'/profile/:userId?'} element={<Profile/>} />
+                            {/*<Route path={'/profile/:userId?'} element={<Profile/>} />*/}
+                            <Route path={'/profile/*'} element={<Profile/>}>
+                                <Route path={':userId'} element={<Profile/>}/>
+                            </Route>
                             <Route path={'/messages'}
                                    element={
                                        <Suspense fallback={<div style={{textAlign: 'center'}}>Загрузка...</div>}>

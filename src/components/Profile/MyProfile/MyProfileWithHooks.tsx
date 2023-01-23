@@ -13,10 +13,10 @@ import {ProfileStatusWithHooks} from './ProfileStatusWithHooks';
 import {ProfileData} from './ProfileData';
 import {reduxForm} from 'redux-form';
 import {ProfileDataForm, ProfileDataFormPropsType} from './ProfileDataForm';
-import {useAppSelector} from "../../../common/hooks/useAppSelector";
-import {selectedProfile, selectedProfileStatus} from "../../../redux/profilePage-selectors";
-import {selectedAuthUserId, selectedIsAuth} from "../../../redux/auth-selectors";
-import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
+import {useAppSelector} from '../../../common/hooks/useAppSelector';
+import {selectedProfile, selectedProfileStatus} from '../../../redux/profilePage-selectors';
+import {selectedAuthUserId, selectedIsAuth} from '../../../redux/auth-selectors';
+import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
 import {useLocation, useNavigate, useParams} from 'react-router-dom';
 
 type MyProfilePropsType = {
@@ -53,7 +53,9 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
     }
 
     const onSubmit = (formData: ProfileDataFormPropsType) => {
-        dispatch(updateUserProfileTC(formData)).then(() => {changeEditMode()});
+        dispatch(updateUserProfileTC(formData)).then(() => {
+            changeEditMode()
+        });
     }
 
     const onAvatarSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,31 +64,14 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
         }
     }
 
-    const refreshProfile = () => {
-        const getUserData = (userId: string) => {
-            dispatch(getProfileTC(userId));
-            dispatch(getUserStatusTC(userId));
-        }
-
-        let userIdFromParams = userId;
-        let userIdFromState = authUserId;
-
-        if(userIdFromParams) {
-            getUserData(userIdFromParams);
-            return;
-        }
-
-        if(userIdFromState) {
-            getUserData(userIdFromState);
-            return;
-        }
-
-        navigate('/login')
-    }
-
     useEffect(() => {
-        refreshProfile();
-    }, [])
+        userId
+            ? dispatch(getProfileTC(userId))
+            : authUserId && dispatch(getProfileTC(authUserId))
+        userId
+            ? dispatch(getUserStatusTC(userId))
+            : authUserId && dispatch(getUserStatusTC(authUserId))
+    }, [userId, authUserId])
 
     if (!profile) {
         return <Preloader/>
@@ -106,7 +91,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
                                 // можно написать так через псевдо истину-псевдо ложь
                                 // src={props.profile.photos.small || userAvatar}
                                 src={profile.photos.small !== null ? profile.photos.small : userAvatar}
-                                alt='my-avatar'>
+                                alt="my-avatar">
                             </img>
                         </div>
                         <label className={styles.content__info_avatarUpload}>
@@ -114,7 +99,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
                                 userId
                                     ?
                                     <>
-                                        <input type='file' onChange={onAvatarSelected}
+                                        <input type="file" onChange={onAvatarSelected}
                                                className={styles.content__info_avatarUploadInput}
                                         />
                                         <span>Выберите файл</span>
