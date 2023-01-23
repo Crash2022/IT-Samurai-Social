@@ -17,7 +17,7 @@ import {useAppSelector} from "../../../common/hooks/useAppSelector";
 import {selectedProfile, selectedProfileStatus} from "../../../redux/profilePage-selectors";
 import {selectedAuthUserId, selectedIsAuth} from "../../../redux/auth-selectors";
 import {useAppDispatch} from "../../../common/hooks/useAppDispatch";
-import {useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from 'react-router-dom';
 
 type MyProfilePropsType = {
     // profile: null | ProfileType
