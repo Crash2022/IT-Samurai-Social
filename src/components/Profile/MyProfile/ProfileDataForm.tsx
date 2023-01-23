@@ -4,7 +4,7 @@ import styles from "./MyProfile.module.css";
 import style from "../../Login/Login.module.css";
 import {Field, InjectedFormProps} from "redux-form";
 import {SuperInputText} from "../../../common/UI/Input/SuperInputText";
-import {requiredField} from "../../../common/utils/validators/validators";
+import {requiredField} from "../../../common/utils/validators";
 
 export type ProfileDataFormPropsType = {
     // profile: ProfileType

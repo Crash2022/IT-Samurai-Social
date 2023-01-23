@@ -3,6 +3,10 @@ import {Formik, Form, Field} from 'formik';
 import styles from './Search.module.css'
 import {SuperButton} from "../../UI/Button/SuperButton";
 import {UsersSearchFilterType} from "../../../redux/users-reducer";
+import {
+    friendFilterValueTypeFromString,
+    friendFilterValueTypeToString
+} from '../../utils/searchFilterFriendTypesModifier';
 
 type OldFormikSearchPropsType = {
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
@@ -24,7 +28,7 @@ export const SearchWithFormik: React.FC<OldFormikSearchPropsType> = (
 
         const friendFilter: UsersSearchFilterType = {
             term: values.term,
-            friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+            friend: friendFilterValueTypeFromString(values.friend)
         }
 
         findFilteredUserHandler(friendFilter);
@@ -39,7 +43,7 @@ export const SearchWithFormik: React.FC<OldFormikSearchPropsType> = (
     return (
         <div>
             <Formik
-                initialValues={{term: filterValue, friend: filterIsFriend === null ? 'null' : filterIsFriend === true ? 'true' : 'false'}}
+                initialValues={{term: filterValue, friend: friendFilterValueTypeToString(filterIsFriend)}}
                 onSubmit={submit}
                 // enableReinitialize: true // для useHistory чтобы игнорировал initialValues при первой отрисовке
             >

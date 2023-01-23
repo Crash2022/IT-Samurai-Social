@@ -3,7 +3,7 @@ import styles from "./Messages.module.css";
 import {Field, InjectedFormProps} from "redux-form";
 import {SuperTextArea} from "../../common/UI/Textarea/SuperTextArea";
 import {SuperButton} from "../../common/UI/Button/SuperButton";
-import {maxLengthCreator, requiredField} from "../../common/utils/validators/validators";
+import {maxLengthCreator, requiredField} from "../../common/utils/validators";
 
 export type MessageFormType = {
     newMessage: string

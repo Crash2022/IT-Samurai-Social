@@ -15,6 +15,10 @@ import {Preloader} from "../../common/UI/Preloader/Preloader";
 // import {useHistory} from 'react-router-dom';
 // import queryString from 'querystring';
 import { useSearchParams } from 'react-router-dom';
+import {
+    friendFilterValueTypeFromString,
+    friendFilterValueTypeToString
+} from '../../common/utils/searchFilterFriendTypesModifier';
 
 type UsersPropsType = {
     /*users: Array<UsersArray>
@@ -40,6 +44,7 @@ type UsersPropsType = {
 export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const dispatch = useAppDispatch()
+    // with React Router Dom v5
     // const history = useHistory()
 
     const isLoading = useAppSelector(selectedUsersIsLoading)
@@ -51,70 +56,45 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
     const filter = useAppSelector(selectedFilter)
 
     const [searchParams, setSearchParams] = useSearchParams()
-    // console.log(searchParams)
 
     // стейт для текущего отображения селекта
     const [selectStateValue, setSelectStateValue] = useState<any>('null')
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter));
-        // searchParams.set('currentPage', `${pageNumber}`);
-        setSearchParams(`${pageNumber}`);
     }
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilterAC({term: e.currentTarget.value, friend: filter.friend}));
-        // searchParams.set('term', e.currentTarget.value);
-
-        if (filter.term !== '') {
-            // searchParams.set('term', e.currentTarget.value);
-            setSearchParams(filter.term);
-        } else {
-            // searchParams.delete('term');
-            setSearchParams('');
-        }
     }
 
     const onChangeSearchSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setFilterAC({term: filter.term,
-            friend: e.currentTarget.value === 'null' ? null : e.currentTarget.value === 'true'}));
+            friend: friendFilterValueTypeFromString(e.currentTarget.value)}));
         setSelectStateValue(e.currentTarget.value);
-        // searchParams.set('friend', e.currentTarget.value);
-        setSearchParams(filter.friend === null ? 'null' : filter.friend === true ? 'true' : 'false');
-
-        // if (filter.friend !== '') {
-        //     searchParams.set('friend', e.currentTarget.value);
-        // } else {
-        //     searchParams.delete('friend')
-        // }
     }
 
     const clearInput = () => {
         setSelectStateValue('null');
         dispatch(setFilterAC({term: '', friend: null}));
         dispatch(getUsersTC(1, pageSize, {term: '', friend: null}));
-        // searchParams.delete('term');
-        // searchParams.delete('friend');
-        // searchParams.delete('currentPage');
         setSearchParams('');
     }
 
     const findFilteredUserHandler = (filter: UsersSearchFilterType) => {
         dispatch(getUsersTC(currentPage, pageSize, {term: filter.term, friend: filter.friend}));
+        searchParams.set('page', currentPage.toString());
+        searchParams.set('term', filter.term);
+        searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
+        setSearchParams(searchParams);
     }
 
     // useEffect(() => {
-    //
-    // }, [])
+    //     setSearchParams(searchParams);
+    // }, [currentPage])
 
     useEffect(() => {
-
-        // const termQuery = searchParams.get('term') || '';
-        // const friendQuery = searchParams.get('friend') || null;
-        // const pageQuery = searchParams.get('currentPage') || 1;
-
         dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
-        // setSearchParams(searchParams);
     }, [])
 
     // searchQuery with React Router Dom v5
@@ -126,7 +106,7 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
         if(!!parsed.page) actualPage = Number(parsed.page)
         if(!!parsed.term) actualFilter = {...actualFilter, term: parsed.term as string}
-        if(!!parsed.friend) actualFilter = {...actualFilter, friend: parsed.friend === 'null' ? null : parsed.friend === 'true'}*!/
+        if(!!parsed.friend) actualFilter = {...actualFilter, friend: friendFilterValueTypeFromString(parsed.friend)}*!/
 
         dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
     }, [])

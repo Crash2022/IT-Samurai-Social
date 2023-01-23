@@ -17,7 +17,6 @@ export const MyPostsAdd = (props: MyPostAddPropsType) => {
     // }
 
     const onSubmit = (formData: MyPostsFormType) => {
-        //console.log(formData);
         props.onAddPostMessage(formData.newPostText);
     }
 

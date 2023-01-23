@@ -4,6 +4,10 @@ import styles from './Search.module.css'
 import {SuperButton} from "../../UI/Button/SuperButton";
 import {UsersSearchFilterType} from "../../../redux/users-reducer";
 import {SearchFormSelectType} from "./SearchWithFormik";
+import {
+    friendFilterValueTypeFromString,
+    friendFilterValueTypeToString
+} from '../../utils/searchFilterFriendTypesModifier';
 
 type FormikSearchPropsType = {
     findFilteredUserHandler: (filter: UsersSearchFilterType) => void
@@ -17,13 +21,13 @@ export const SearchWithUseFormik: React.FC<FormikSearchPropsType> = ({findFilter
     const formik = useFormik({
         initialValues: {
             term: filterValue,
-            friend: filterIsFriend === null ? 'null' : filterIsFriend === true ? 'true' : 'false'
+            friend: friendFilterValueTypeToString(filterIsFriend)
         },
         onSubmit: (values: SearchFormSelectType) => {
 
             const friendFilter: UsersSearchFilterType = {
                 term: filterValue,
-                friend: values.friend === 'null' ? null : values.friend === 'true' ? true : false
+                friend: friendFilterValueTypeFromString(values.friend)
             }
 
             findFilteredUserHandler(friendFilter);

@@ -4,7 +4,7 @@ import {SuperButton} from "../../common/UI/Button/SuperButton";
 import styles from './Login.module.css';
 import {SuperInputText} from "../../common/UI/Input/SuperInputText";
 import SuperCheckbox from "../../common/UI/Checkbox/SuperCheckbox";
-import {maxLengthCreator, requiredField} from "../../common/utils/validators/validators";
+import {maxLengthCreator, requiredField} from "../../common/utils/validators";
 
 export type LoginFormValuesType = {
     email: string
