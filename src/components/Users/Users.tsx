@@ -62,7 +62,7 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter));
-        searchParams.set('page', pageNumber.toString());
+        // searchParams.set('page', pageNumber.toString());
     }
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -77,9 +77,9 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const clearInput = () => {
         setSelectStateValue('null');
+        setSearchParams('');
         dispatch(setFilterAC({term: '', friend: null}));
         dispatch(getUsersTC(1, pageSize, {term: '', friend: null}));
-        setSearchParams('');
     }
 
     const findFilteredUserHandler = (filter: UsersSearchFilterType) => {
@@ -93,11 +93,12 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
             searchParams.delete('term');
         }
 
-        if (filter.friend !== null) {
-            searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
-        } else {
-            searchParams.delete('friend');
-        }
+        searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
+        // if (filter.friend !== null) {
+        //     searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
+        // } else {
+        //     searchParams.delete('friend');
+        // }
 
         // searchParams.set('page', currentPage.toString());
         // searchParams.set('term', filter.term);
@@ -110,8 +111,11 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
         let termQuery = searchParams.get('term') || '';
         let friendQuery = searchParams.get('friend') || null;
 
-        dispatch(getUsersTC(Number(pageQuery), pageSize, {term: termQuery, friend: friendFilterValueTypeFromString(friendQuery)}));
-    }, [currentPage])
+        // searchParams.set('page', currentPage.toString());
+
+        dispatch(getUsersTC(/*Number(pageQuery),*/ currentPage, pageSize,
+            {term: termQuery, friend: friendFilterValueTypeFromString(friendQuery)}));
+    }, [])
 
     // searchQuery with React Router Dom v5
     /*useEffect(() => {

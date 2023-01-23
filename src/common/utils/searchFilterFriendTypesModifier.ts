@@ -11,5 +11,9 @@ export const friendFilterValueTypeToString = (value: any) => {
 export const friendFilterValueTypeFromString = (value: any) => {
     if (value === 'null') {
         return null;
-    } else return value === 'true';
+    } else if (value === 'true') {
+        return true;
+    } else {
+        return false;
+    }
 }
