@@ -61,5 +61,8 @@ export const getUserFriendsTC = (currentPage: number, pageSize: number, friend: 
                 dispatch(setCurrentPageAC(currentPage));
                 // dispatch(setUsersTotalCountAC(data.totalCount));
             })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }

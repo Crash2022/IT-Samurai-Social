@@ -76,6 +76,9 @@ export const getAuthTC = (): AppThunkType => {
                     dispatch(setAuthUserDataAC(id, email, login, true));
                 }
             })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 
@@ -96,6 +99,9 @@ export const postLoginTC = (email: string, password: string,
                     dispatch(stopSubmit('login', {_error: message}));
                 }
             })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 
@@ -107,6 +113,9 @@ export const deleteLoginTC = (): AppThunkType => {
                     dispatch(logoutUserDataAC(null, null, null, false));
                 }
             })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 
@@ -115,6 +124,9 @@ export const getCaptchaTC = (): AppThunkType => {
         securityAPI.getCaptcha()
             .then(data => {
                 dispatch(getCaptchaAC(data.url));
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }
 }

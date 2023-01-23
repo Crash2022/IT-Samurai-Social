@@ -169,6 +169,9 @@ export const getProfileTC = (userId: string): AppThunkType => {
             .then(data => {
                 dispatch(setUserProfileAC(data));
             })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 
@@ -178,6 +181,9 @@ export const getUserStatusTC = (userId: string): AppThunkType => {
         profileAPI.getUserStatus(userId)
             .then(data => {
                 dispatch(setUserStatusAC(data));
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }
 }
@@ -193,7 +199,9 @@ export const updateUserStatusTC = (userId: string, status: string): AppThunkType
                     alert(data.messages[0]);
                 }
             })
-            .catch(error => console.log(error))
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 
@@ -205,6 +213,9 @@ export const updateUserPhotoTC = (photoFile: File): AppThunkType => {
                 if (data.resultCode === 0) {
                     dispatch(updateUserPhotoAC(data.data.photos));
                 }
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }
 }
@@ -222,5 +233,8 @@ export const updateUserProfileTC = (profile: FormDataType) =>
                     dispatch(stopSubmit('profileDataForm', {_error: data.messages[0]}));
                     return Promise.reject(data.messages[0]);
                 }
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }

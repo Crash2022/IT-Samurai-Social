@@ -117,6 +117,9 @@ export const getUsersTC = (currentPage: number, pageSize: number,
             dispatch(setCurrentPageAC(currentPage));
             dispatch(setUsersTotalCountAC(data.totalCount));
         })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 }
 
@@ -134,6 +137,9 @@ export const postFollowTC = (userId: string): AppThunkType => {
                 }
                 dispatch(toggleFollowInProgressAC(userId,false));
             })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 }
 
@@ -150,6 +156,9 @@ export const deleteFollowTC = (userId: string): AppThunkType => {
                     dispatch(getUserFriendsTC(1, 20, true))
                 }
                 dispatch(toggleFollowInProgressAC(userId,false));
+            })
+            .catch((error) => {
+                console.log(error);
             })
     }
 }

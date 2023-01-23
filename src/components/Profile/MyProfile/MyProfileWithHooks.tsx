@@ -45,7 +45,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
     const [editMode, setEditMode] = useState<boolean>(false);
 
     const params = useParams<'userId'>();
-    const userId = params.userId;
+    let userId = params.userId;
 
     const changeEditMode = () => {
         setEditMode(!editMode);
@@ -64,13 +64,21 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
     }
 
     useEffect(() => {
-        userId
-            ? dispatch(getProfileTC(userId))
-            : authUserId && dispatch(getProfileTC(authUserId))
-        userId
-            ? dispatch(getUserStatusTC(userId))
-            : authUserId && dispatch(getUserStatusTC(authUserId))
-    }, [userId, authUserId])
+        if (!userId) {
+            userId = authUserId?.toString();
+        }
+        if (userId) {
+            dispatch(getProfileTC(userId));
+            dispatch(getUserStatusTC(userId));
+        }
+
+        // userId
+        //     ? dispatch(getProfileTC(userId))
+        //     : authUserId && dispatch(getProfileTC(authUserId))
+        // userId
+        //     ? dispatch(getUserStatusTC(userId))
+        //     : authUserId && dispatch(getUserStatusTC(authUserId))
+    }, [userId/*, authUserId*/])
 
     if (!profile) {
         return <Preloader/>
