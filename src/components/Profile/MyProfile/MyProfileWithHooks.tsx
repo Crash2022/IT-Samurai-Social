@@ -47,7 +47,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
 
     const params = useParams<'userId'>();
     const userId = params.userId;
-    console.log(params)
+
     const changeEditMode = () => {
         setEditMode(!editMode);
     }
