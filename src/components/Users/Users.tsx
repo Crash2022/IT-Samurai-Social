@@ -57,12 +57,17 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const [searchParams, setSearchParams] = useSearchParams();
 
+    let pageQuery = searchParams.get('page') || 1;
+    let termQuery = searchParams.get('term') || '';
+    let friendQuery = searchParams.get('friend') || null;
+
     // стейт для текущего отображения селекта
-    const [selectStateValue, setSelectStateValue] = useState<any>('null');
+    const [selectStateValue, setSelectStateValue] = useState<any>(friendQuery);
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter));
-        // searchParams.set('page', pageNumber.toString());
+        searchParams.set('page', pageNumber.toString());
+        setSearchParams(searchParams);
     }
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -107,13 +112,7 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
     }
 
     useEffect(() => {
-        let pageQuery = searchParams.get('page') || 1;
-        let termQuery = searchParams.get('term') || '';
-        let friendQuery = searchParams.get('friend') || null;
-
-        // searchParams.set('page', currentPage.toString());
-
-        dispatch(getUsersTC(/*Number(pageQuery),*/ currentPage, pageSize,
+        dispatch(getUsersTC(Number(pageQuery), /*currentPage,*/ pageSize,
             {term: termQuery, friend: friendFilterValueTypeFromString(friendQuery)}));
     }, [])
 

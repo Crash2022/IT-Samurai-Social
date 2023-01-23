@@ -44,8 +44,8 @@ export const Search: React.FC<SearchPropsType> = React.memo(
                 </div>
                 <div className={styles.searchSelect}>
                     <select name='friend'
-                            // value={selectStateValue}
-                            defaultValue={selectStateValue}
+                            value={selectStateValue}
+                            // defaultValue={selectStateValue}
                             onChange={setSearchSelect}
                     >
                         <option value={'null'}>Все джедаи</option>
