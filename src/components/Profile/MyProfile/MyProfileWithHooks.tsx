@@ -15,9 +15,9 @@ import {reduxForm} from 'redux-form';
 import {ProfileDataForm, ProfileDataFormPropsType} from './ProfileDataForm';
 import {useAppSelector} from '../../../common/hooks/useAppSelector';
 import {selectedProfile, selectedProfileStatus} from '../../../redux/profilePage-selectors';
-import {selectedAuthUserId, selectedIsAuth} from '../../../redux/auth-selectors';
+import {selectedAuthUserId} from '../../../redux/auth-selectors';
 import {useAppDispatch} from '../../../common/hooks/useAppDispatch';
-import {useLocation, useNavigate, useParams} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 
 type MyProfilePropsType = {
     // profile: null | ProfileType
@@ -37,7 +37,6 @@ export type FormDataType = {
 export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
 
     const dispatch = useAppDispatch()
-    const navigate = useNavigate()
 
     const profile = useAppSelector(selectedProfile)
     const status = useAppSelector(selectedProfileStatus)
@@ -80,7 +79,7 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
             <>
                 <div className={styles.content__avatar}>
                     <img src={avatarPhoto}
-                         alt="profile-avatar">
+                         alt='profile-avatar'>
                     </img>
                 </div>
 
@@ -91,15 +90,15 @@ export const MyProfileWithHooks = (/*props: MyProfilePropsType*/) => {
                                 // можно написать так через псевдо истину-псевдо ложь
                                 // src={props.profile.photos.small || userAvatar}
                                 src={profile.photos.small !== null ? profile.photos.small : userAvatar}
-                                alt="my-avatar">
+                                alt='my-avatar'>
                             </img>
                         </div>
                         <label className={styles.content__info_avatarUpload}>
                             {
-                                userId
+                                !userId
                                     ?
                                     <>
-                                        <input type="file" onChange={onAvatarSelected}
+                                        <input type='file' onChange={onAvatarSelected}
                                                className={styles.content__info_avatarUploadInput}
                                         />
                                         <span>Выберите файл</span>
