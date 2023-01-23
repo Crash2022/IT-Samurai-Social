@@ -62,6 +62,7 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter));
+        searchParams.set('page', pageNumber.toString());
     }
 
     const onChangeSearchInputValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -83,20 +84,34 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     const findFilteredUserHandler = (filter: UsersSearchFilterType) => {
         dispatch(getUsersTC(currentPage, pageSize, {term: filter.term, friend: filter.friend}));
+
         searchParams.set('page', currentPage.toString());
-        searchParams.set('term', filter.term);
-        searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
+
+        if (filter.term !== '') {
+            searchParams.set('term', filter.term);
+        } else {
+            searchParams.delete('term');
+        }
+
+        if (filter.friend !== null) {
+            searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
+        } else {
+            searchParams.delete('friend');
+        }
+
+        // searchParams.set('page', currentPage.toString());
+        // searchParams.set('term', filter.term);
+        // searchParams.set('friend', friendFilterValueTypeToString(filter.friend));
         setSearchParams(searchParams);
     }
 
-    // useEffect(() => {
-    //     setSearchParams(searchParams);
-    // }, [searchParams])
-
     useEffect(() => {
-        dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
-        setSearchParams('');
-    }, [])
+        let pageQuery = searchParams.get('page') || 1;
+        let termQuery = searchParams.get('term') || '';
+        let friendQuery = searchParams.get('friend') || null;
+
+        dispatch(getUsersTC(Number(pageQuery), pageSize, {term: termQuery, friend: friendFilterValueTypeFromString(friendQuery)}));
+    }, [currentPage])
 
     // searchQuery with React Router Dom v5
     /*useEffect(() => {
