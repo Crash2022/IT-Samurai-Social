@@ -55,10 +55,10 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
     const followingInProgress = useAppSelector(selectedFollowingInProgress)
     const filter = useAppSelector(selectedFilter)
 
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // стейт для текущего отображения селекта
-    const [selectStateValue, setSelectStateValue] = useState<any>('null')
+    const [selectStateValue, setSelectStateValue] = useState<any>('null');
 
     const onChangePageHandler = (pageNumber: number) => {
         dispatch(getUsersTC(pageNumber, pageSize, filter));
@@ -91,10 +91,11 @@ export const Users = React.memo((/*props: UsersPropsType*/) => {
 
     // useEffect(() => {
     //     setSearchParams(searchParams);
-    // }, [currentPage])
+    // }, [searchParams])
 
     useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize, {term: '', friend: null}));
+        setSearchParams('');
     }, [])
 
     // searchQuery with React Router Dom v5
