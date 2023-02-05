@@ -2,7 +2,7 @@
   "name": "it-samurai-social",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Crash2022.github.io/IT-Samurai-Social",
+  "homepage": "",
   "dependencies": {
     "@loadable/component": "^5.15.2",
     "@testing-library/jest-dom": "5.14.1",
