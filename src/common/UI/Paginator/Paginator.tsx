@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import styles from "./Paginator.module.css";
 import {v1} from "uuid";
 
-// позволяет писать классы стилей через запятую, добавлять лоигку
+// позволяет писать классы стилей через запятую, добавлять логику
 // import cn from 'classnames';
 // className={cn(styles.myClassName1, myClassName2)}
 
